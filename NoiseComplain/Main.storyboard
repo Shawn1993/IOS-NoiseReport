@@ -308,27 +308,9 @@
             <point key="canvasLocation" x="1543.5" y="-1190.25"/>
         </scene>
         <!--噪声投诉-->
-        <scene sceneID="8sU-8u-bf2">
-            <objects>
-                <navigationController id="e51-b5-SdD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="噪声投诉" image="second" id="Dzu-UQ-mAi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zyQ-Eo-Bja">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="tDA-M2-iT0" kind="relationship" relationship="rootViewController" id="4md-fS-YDX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x92-XU-h7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-15" y="-450"/>
-        </scene>
-        <!--噪声投诉-->
         <scene sceneID="Oag-1j-kU2">
             <objects>
-                <tableViewController id="tDA-M2-iT0" customClass="NCPComplainViewController" sceneMemberID="viewController">
+                <tableViewController id="tDA-M2-iT0" customClass="NCPComplainFormViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="raz-48-xSB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -337,37 +319,71 @@
                         <sections>
                             <tableViewSection headerTitle="噪声强度" id="EA2-ro-Jhj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="gJ5-Vd-k8v" detailTextLabel="IKq-76-enb" style="IBUITableViewCellStyleValue1" id="Mip-YG-xkx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mip-YG-xkx">
                                         <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mip-YG-xkx" id="ohH-A9-A2O">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="测量结果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gJ5-Vd-k8v">
-                                                    <rect key="frame" x="15" y="12" width="68" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测量结果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucY-tk-MqM">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="正在测量..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IKq-76-enb">
-                                                    <rect key="frame" x="503" y="12" width="82" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测量中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-Y0-wf8">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7Lr-Zl-LWB">
+                                                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                                    <animations/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7Lr-Zl-LWB" secondAttribute="trailing" constant="8" id="0T4-v6-ruV"/>
+                                                <constraint firstItem="ucY-tk-MqM" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="1Se-FA-BRk"/>
+                                                <constraint firstItem="ucY-tk-MqM" firstAttribute="leading" secondItem="ohH-A9-A2O" secondAttribute="leadingMargin" constant="8" id="SNU-UY-SZO"/>
+                                                <constraint firstItem="phK-Y0-wf8" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="p86-hP-FZD"/>
+                                                <constraint firstItem="7Lr-Zl-LWB" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="raR-q3-rta"/>
+                                                <constraint firstItem="7Lr-Zl-LWB" firstAttribute="leading" secondItem="phK-Y0-wf8" secondAttribute="trailing" constant="8" id="vGM-5p-Qm7"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="ucY-tk-MqM"/>
+                                                    <exclude reference="phK-Y0-wf8"/>
+                                                    <exclude reference="7Lr-Zl-LWB"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="1Se-FA-BRk"/>
+                                                    <exclude reference="SNU-UY-SZO"/>
+                                                    <exclude reference="p86-hP-FZD"/>
+                                                    <exclude reference="0T4-v6-ruV"/>
+                                                    <exclude reference="raR-q3-rta"/>
+                                                    <exclude reference="vGM-5p-Qm7"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="ucY-tk-MqM"/>
+                                                    <include reference="phK-Y0-wf8"/>
+                                                    <include reference="7Lr-Zl-LWB"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="1Se-FA-BRk"/>
+                                                    <include reference="SNU-UY-SZO"/>
+                                                    <include reference="p86-hP-FZD"/>
+                                                    <include reference="0T4-v6-ruV"/>
+                                                    <include reference="raR-q3-rta"/>
+                                                    <include reference="vGM-5p-Qm7"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -649,11 +665,92 @@
                             <outlet property="delegate" destination="tDA-M2-iT0" id="15V-wb-3QQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="噪声投诉" id="Dj5-Zu-76H"/>
+                    <navigationItem key="navigationItem" title="噪声投诉" id="Dj5-Zu-76H">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xZJ-2c-H61">
+                            <connections>
+                                <action selector="barButtonCancelClick:" destination="tDA-M2-iT0" id="UEH-VQ-fJf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="重置" id="zIO-hn-lCk">
+                            <connections>
+                                <action selector="barButtonClearClick:" destination="tDA-M2-iT0" id="FWS-Pm-2Zk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x99-oe-Hrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2353.5" y="-450"/>
+        </scene>
+        <!--噪声投诉-->
+        <scene sceneID="dlt-P0-hZf">
+            <objects>
+                <tableViewController id="wcR-57-LlN" customClass="NCPComplainGuideViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="jM0-Ks-yLB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DTS-gj-Czd">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTS-gj-Czd" id="bRn-8d-h21">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wcR-57-LlN" id="qdc-hT-Cwo"/>
+                            <outlet property="delegate" destination="wcR-57-LlN" id="fWA-La-9In"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="噪声投诉" id="eeg-vz-O4F">
+                        <barButtonItem key="rightBarButtonItem" title="啊啊" id="MIo-K1-RRl">
+                            <connections>
+                                <segue destination="1d9-tO-8ag" kind="presentation" id="hkh-yT-NTn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kG2-Fg-vx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="760.5" y="-450"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tdP-jt-wl5">
+            <objects>
+                <navigationController id="1d9-tO-8ag" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NVE-FS-43K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tDA-M2-iT0" kind="relationship" relationship="rootViewController" id="TIx-4k-2is"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oz2-WO-h0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543.5" y="-450"/>
+        </scene>
+        <!--投诉-->
+        <scene sceneID="MZH-2f-m0O">
+            <objects>
+                <navigationController id="Kwe-bb-v5U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="投诉" image="second" id="XRo-fY-wC3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BAd-na-62X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wcR-57-LlN" kind="relationship" relationship="rootViewController" id="8c9-dH-0tp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dIQ-an-oGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15" y="-450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Ku-ZB-mpf">
@@ -670,7 +767,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="962-cb-0i4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543.5" y="-450"/>
+            <point key="canvasLocation" x="3136.5" y="-450"/>
         </scene>
         <!--噪声源定位-->
         <scene sceneID="FrF-7W-aKH">
@@ -701,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqs-vH-gZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2353.5" y="-450"/>
+            <point key="canvasLocation" x="3946.5" y="-450"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qCj-Vk-vfA">
@@ -717,7 +814,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="PhM-yN-tRS" kind="relationship" relationship="viewControllers" id="pEC-D2-lf3"/>
-                        <segue destination="e51-b5-SdD" kind="relationship" relationship="viewControllers" id="2Oi-35-4B3"/>
+                        <segue destination="Kwe-bb-v5U" kind="relationship" relationship="viewControllers" id="dkH-tC-MK7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSP-92-eGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
