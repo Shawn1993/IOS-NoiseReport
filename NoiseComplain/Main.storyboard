@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -361,12 +362,12 @@
                                                     <exclude reference="7Lr-Zl-LWB"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="1Se-FA-BRk"/>
-                                                    <exclude reference="SNU-UY-SZO"/>
-                                                    <exclude reference="p86-hP-FZD"/>
                                                     <exclude reference="0T4-v6-ruV"/>
                                                     <exclude reference="raR-q3-rta"/>
                                                     <exclude reference="vGM-5p-Qm7"/>
+                                                    <exclude reference="p86-hP-FZD"/>
+                                                    <exclude reference="1Se-FA-BRk"/>
+                                                    <exclude reference="SNU-UY-SZO"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -376,12 +377,12 @@
                                                     <include reference="7Lr-Zl-LWB"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="1Se-FA-BRk"/>
-                                                    <include reference="SNU-UY-SZO"/>
-                                                    <include reference="p86-hP-FZD"/>
                                                     <include reference="0T4-v6-ruV"/>
                                                     <include reference="raR-q3-rta"/>
                                                     <include reference="vGM-5p-Qm7"/>
+                                                    <include reference="p86-hP-FZD"/>
+                                                    <include reference="1Se-FA-BRk"/>
+                                                    <include reference="SNU-UY-SZO"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -687,13 +688,16 @@
             <objects>
                 <tableViewController id="wcR-57-LlN" customClass="NCPComplainGuideViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="jM0-Ks-yLB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DTS-gj-Czd">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTS-gj-Czd" id="bRn-8d-h21">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>
