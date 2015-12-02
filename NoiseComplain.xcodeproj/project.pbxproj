@@ -165,9 +165,9 @@
 		CA4B31151C0F17440013E70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
 				CA4B31181C0F17730013E70E /* PropertyList */,
 				CA4B31171C0F17610013E70E /* Storyboard */,
-				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -599,6 +599,7 @@
 				CA4B310E1C0F17050013E70E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA4B310F1C0F17050013E70E /* Build configuration list for PBXNativeTarget "NoiseComplainTests" */ = {
 			isa = XCConfigurationList;
@@ -607,6 +608,7 @@
 				CA4B31111C0F17050013E70E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA4B31121C0F17050013E70E /* Build configuration list for PBXNativeTarget "NoiseComplainUITests" */ = {
 			isa = XCConfigurationList;
@@ -615,6 +617,7 @@
 				CA4B31141C0F17050013E70E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
