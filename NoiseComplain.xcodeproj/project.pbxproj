@@ -8,13 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
-		CA4B30E71C0F17050013E70E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E61C0F17050013E70E /* AppDelegate.m */; };
-		CA4B30EA1C0F17050013E70E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E91C0F17050013E70E /* ViewController.m */; };
-		CA4B30ED1C0F17050013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EB1C0F17050013E70E /* Main.storyboard */; };
 		CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EE1C0F17050013E70E /* Assets.xcassets */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
 		CA4B30FD1C0F17050013E70E /* NoiseComplainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30FC1C0F17050013E70E /* NoiseComplainTests.m */; };
 		CA4B31081C0F17050013E70E /* NoiseComplainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */; };
+		CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */; };
+		CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B311F1C0F18900013E70E /* NCPComplainForm.m */; };
+		CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */; };
+		CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */; };
+		CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31251C0F18900013E70E /* NCPGraphView.m */; };
+		CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31271C0F18900013E70E /* NCPLocationViewController.m */; };
+		CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31291C0F18900013E70E /* NCPMeterViewController.m */; };
+		CA4B31351C0F18900013E70E /* NCPNoiseMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */; };
+		CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */; };
+		CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B31781C0F1A220013E70E /* Main.storyboard */; };
+		CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */; };
+		CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +46,6 @@
 /* Begin PBXFileReference section */
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CA4B30E51C0F17050013E70E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		CA4B30E61C0F17050013E70E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CA4B30E81C0F17050013E70E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CA4B30E91C0F17050013E70E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CA4B30EC1C0F17050013E70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA4B30EE1C0F17050013E70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4B30F11C0F17050013E70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA4B30F31C0F17050013E70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +55,27 @@
 		CA4B31031C0F17050013E70E /* NoiseComplainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoiseComplainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoiseComplainUITests.m; sourceTree = "<group>"; };
 		CA4B31091C0F17050013E70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPAppDelegate.h; sourceTree = "<group>"; };
+		CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPAppDelegate.m; sourceTree = "<group>"; };
+		CA4B311E1C0F18900013E70E /* NCPComplainForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainForm.h; sourceTree = "<group>"; };
+		CA4B311F1C0F18900013E70E /* NCPComplainForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainForm.m; sourceTree = "<group>"; };
+		CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormViewController.h; sourceTree = "<group>"; };
+		CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainFormViewController.m; sourceTree = "<group>"; };
+		CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainGuideViewController.h; sourceTree = "<group>"; };
+		CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainGuideViewController.m; sourceTree = "<group>"; };
+		CA4B31241C0F18900013E70E /* NCPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPGraphView.h; sourceTree = "<group>"; };
+		CA4B31251C0F18900013E70E /* NCPGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPGraphView.m; sourceTree = "<group>"; };
+		CA4B31261C0F18900013E70E /* NCPLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPLocationViewController.h; sourceTree = "<group>"; };
+		CA4B31271C0F18900013E70E /* NCPLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPLocationViewController.m; sourceTree = "<group>"; };
+		CA4B31281C0F18900013E70E /* NCPMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPMeterViewController.h; sourceTree = "<group>"; };
+		CA4B31291C0F18900013E70E /* NCPMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPMeterViewController.m; sourceTree = "<group>"; };
+		CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseMeter.h; sourceTree = "<group>"; };
+		CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseMeter.m; sourceTree = "<group>"; };
+		CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPSettingViewController.h; sourceTree = "<group>"; };
+		CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPSettingViewController.m; sourceTree = "<group>"; };
+		CA4B31781C0F1A220013E70E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoiseType.plist; sourceTree = "<group>"; };
+		CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundFunctionalAreaType.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +112,7 @@
 				CA4B30E01C0F17050013E70E /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		CA4B30E01C0F17050013E70E /* Products */ = {
 			isa = PBXGroup;
@@ -101,14 +127,10 @@
 		CA4B30E11C0F17050013E70E /* NoiseComplain */ = {
 			isa = PBXGroup;
 			children = (
-				CA4B30E51C0F17050013E70E /* AppDelegate.h */,
-				CA4B30E61C0F17050013E70E /* AppDelegate.m */,
-				CA4B30E81C0F17050013E70E /* ViewController.h */,
-				CA4B30E91C0F17050013E70E /* ViewController.m */,
-				CA4B30EB1C0F17050013E70E /* Main.storyboard */,
-				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
-				CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */,
-				CA4B30F31C0F17050013E70E /* Info.plist */,
+				CA4B31161C0F17570013E70E /* Sources */,
+				CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */,
+				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
+				CA4B31151C0F17440013E70E /* Resources */,
 				CA4B30E21C0F17050013E70E /* Supporting Files */,
 			);
 			path = NoiseComplain;
@@ -138,6 +160,82 @@
 				CA4B31091C0F17050013E70E /* Info.plist */,
 			);
 			path = NoiseComplainUITests;
+			sourceTree = "<group>";
+		};
+		CA4B31151C0F17440013E70E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B31181C0F17730013E70E /* PropertyList */,
+				CA4B31171C0F17610013E70E /* Storyboard */,
+				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CA4B31161C0F17570013E70E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B311A1C0F17990013E70E /* CustomViews */,
+				CA4B31191C0F178E0013E70E /* ViewControllers */,
+				CA4B311B1C0F17A80013E70E /* FunctionalModules */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		CA4B31171C0F17610013E70E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B31781C0F1A220013E70E /* Main.storyboard */,
+				CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		CA4B31181C0F17730013E70E /* PropertyList */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */,
+				CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */,
+				CA4B30F31C0F17050013E70E /* Info.plist */,
+			);
+			name = PropertyList;
+			sourceTree = "<group>";
+		};
+		CA4B31191C0F178E0013E70E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B31281C0F18900013E70E /* NCPMeterViewController.h */,
+				CA4B31291C0F18900013E70E /* NCPMeterViewController.m */,
+				CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */,
+				CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */,
+				CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */,
+				CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */,
+				CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */,
+				CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */,
+				CA4B31261C0F18900013E70E /* NCPLocationViewController.h */,
+				CA4B31271C0F18900013E70E /* NCPLocationViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CA4B311A1C0F17990013E70E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
+				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		CA4B311B1C0F17A80013E70E /* FunctionalModules */ = {
+			isa = PBXGroup;
+			children = (
+				CA4B311E1C0F18900013E70E /* NCPComplainForm.h */,
+				CA4B311F1C0F18900013E70E /* NCPComplainForm.m */,
+				CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */,
+				CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */,
+			);
+			name = FunctionalModules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +300,7 @@
 		CA4B30D71C0F17050013E70E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = NCP;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = sysu;
 				TargetAttributes = {
@@ -246,9 +345,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */,
+				CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */,
+				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */,
 				CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */,
-				CA4B30ED1C0F17050013E70E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +374,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA4B30EA1C0F17050013E70E /* ViewController.m in Sources */,
-				CA4B30E71C0F17050013E70E /* AppDelegate.m in Sources */,
+				CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */,
+				CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */,
+				CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */,
+				CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */,
+				CA4B31351C0F18900013E70E /* NCPNoiseMeter.m in Sources */,
+				CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */,
 				CA4B30E41C0F17050013E70E /* main.m in Sources */,
+				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
+				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
+				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,14 +419,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CA4B30EB1C0F17050013E70E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA4B30EC1C0F17050013E70E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
