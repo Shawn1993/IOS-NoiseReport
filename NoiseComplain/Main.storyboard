@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-15" y="-1190.25"/>
         </scene>
-        <!--噪声仪-->
+        <!--Meter View Controller-->
         <scene sceneID="AKF-ia-Ovb">
             <objects>
                 <viewController id="nk0-X4-lyp" customClass="NCPMeterViewController" sceneMemberID="viewController">
@@ -41,27 +41,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-12-LQA" userLabel="Dashboard">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                            </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-89-kwF">
-                                <rect key="frame" x="-60" y="-14" width="121" height="29"/>
-                                <animations/>
-                                <segments>
-                                    <segment title="实时" width="119.33333333333333"/>
-                                    <segment title="测量" width="119.33333333333333"/>
-                                    <segment title="记录" width="119.33333333333333"/>
-                                </segments>
-                                <color key="tintColor" red="0.15686274510000001" green="0.32156862749999998" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-W8-hzr" userLabel="Circle">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="173" y="255" width="54" height="54"/>
+                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Yvk-v4-g8p" userLabel="Arrow">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="194" y="177" width="12" height="106"/>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek3-MV-8pU">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -81,7 +73,8 @@
                                         <exclude reference="U2e-ce-bZp"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="20" y="108" width="24" height="21"/>
                                     <mask key="constraints">
                                         <include reference="EcM-eA-DMb"/>
                                         <include reference="U2e-ce-bZp"/>
@@ -102,7 +95,8 @@
                                         <exclude reference="s13-uI-Q3v"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="39" y="109" width="21" height="21"/>
                                     <mask key="constraints">
                                         <include reference="s13-uI-Q3v"/>
                                     </mask>
@@ -112,98 +106,85 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="406" width="400" height="350"/>
+                                </variation>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-12-LQA" userLabel="Dashboard">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="69" y="151" width="262" height="180"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eh5-W8-hzr" firstAttribute="top" secondItem="oCZ-12-LQA" secondAttribute="bottom" constant="-76" id="6Ec-se-GOW"/>
-                            <constraint firstItem="oCZ-12-LQA" firstAttribute="top" secondItem="Yvk-v4-g8p" secondAttribute="bottom" constant="-132" id="8yK-3f-Bcl"/>
                             <constraint firstItem="Yvk-v4-g8p" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="ETM-Cv-UIo"/>
-                            <constraint firstItem="bqQ-89-kwF" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="KKv-HE-BYu"/>
-                            <constraint firstItem="oCZ-12-LQA" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="SsD-K1-2Z0"/>
                             <constraint firstItem="cmu-FP-Zgs" firstAttribute="leading" secondItem="qqZ-cE-riM" secondAttribute="leadingMargin" constant="20" id="VOr-cU-6jy">
                                 <variation key="heightClass=regular-widthClass=compact" constant="19"/>
                             </constraint>
-                            <constraint firstItem="Ek3-MV-8pU" firstAttribute="leading" secondItem="bqQ-89-kwF" secondAttribute="leading" id="Vlm-k1-tpI"/>
                             <constraint firstItem="eh5-W8-hzr" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="W7a-k3-EFY"/>
-                            <constraint firstItem="Ek3-MV-8pU" firstAttribute="top" secondItem="bqQ-89-kwF" secondAttribute="bottom" constant="8" symbolic="YES" id="bbs-M5-eS9"/>
-                            <constraint firstItem="oCZ-12-LQA" firstAttribute="top" secondItem="bqQ-89-kwF" secondAttribute="bottom" constant="51" id="di7-zf-Xkj"/>
                             <constraint firstItem="Eqs-8E-EKj" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="fDa-Lj-3rD"/>
-                            <constraint firstItem="cmu-FP-Zgs" firstAttribute="top" secondItem="bqQ-89-kwF" secondAttribute="bottom" constant="7" id="k8x-gm-RNj">
-                                <variation key="heightClass=regular-widthClass=compact" constant="9"/>
-                            </constraint>
-                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="top" secondItem="oCZ-12-LQA" secondAttribute="bottom" constant="75" id="tkM-KV-g8j"/>
                             <constraint firstItem="cmu-FP-Zgs" firstAttribute="baseline" secondItem="Ek3-MV-8pU" secondAttribute="baseline" id="ujB-Ut-IUJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="2"/>
                             </constraint>
-                            <constraint firstItem="bqQ-89-kwF" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="8" id="unB-ij-d0R"/>
                             <constraint firstItem="Eqs-8E-EKj" firstAttribute="leading" secondItem="qqZ-cE-riM" secondAttribute="leading" id="wMV-GG-sJD"/>
                             <constraint firstItem="9G5-ep-F2H" firstAttribute="top" secondItem="Eqs-8E-EKj" secondAttribute="bottom" id="zmS-pH-MHI"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="oCZ-12-LQA"/>
-                                <exclude reference="bqQ-89-kwF"/>
                                 <exclude reference="eh5-W8-hzr"/>
                                 <exclude reference="Yvk-v4-g8p"/>
                                 <exclude reference="Ek3-MV-8pU"/>
                                 <exclude reference="cmu-FP-Zgs"/>
                                 <exclude reference="Eqs-8E-EKj"/>
+                                <exclude reference="oCZ-12-LQA"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Vlm-k1-tpI"/>
-                                <exclude reference="bbs-M5-eS9"/>
                                 <exclude reference="VOr-cU-6jy"/>
-                                <exclude reference="k8x-gm-RNj"/>
                                 <exclude reference="ujB-Ut-IUJ"/>
                                 <exclude reference="zmS-pH-MHI"/>
-                                <exclude reference="KKv-HE-BYu"/>
-                                <exclude reference="unB-ij-d0R"/>
                                 <exclude reference="fDa-Lj-3rD"/>
-                                <exclude reference="tkM-KV-g8j"/>
                                 <exclude reference="wMV-GG-sJD"/>
                                 <exclude reference="ETM-Cv-UIo"/>
-                                <exclude reference="6Ec-se-GOW"/>
                                 <exclude reference="W7a-k3-EFY"/>
-                                <exclude reference="8yK-3f-Bcl"/>
-                                <exclude reference="SsD-K1-2Z0"/>
-                                <exclude reference="di7-zf-Xkj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="oCZ-12-LQA"/>
-                                <include reference="bqQ-89-kwF"/>
                                 <include reference="eh5-W8-hzr"/>
                                 <include reference="Yvk-v4-g8p"/>
                                 <include reference="Ek3-MV-8pU"/>
                                 <include reference="cmu-FP-Zgs"/>
                                 <include reference="Eqs-8E-EKj"/>
+                                <include reference="oCZ-12-LQA"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Vlm-k1-tpI"/>
-                                <include reference="bbs-M5-eS9"/>
                                 <include reference="VOr-cU-6jy"/>
-                                <include reference="k8x-gm-RNj"/>
                                 <include reference="ujB-Ut-IUJ"/>
                                 <include reference="zmS-pH-MHI"/>
-                                <include reference="KKv-HE-BYu"/>
-                                <include reference="unB-ij-d0R"/>
                                 <include reference="fDa-Lj-3rD"/>
-                                <include reference="tkM-KV-g8j"/>
                                 <include reference="wMV-GG-sJD"/>
                                 <include reference="ETM-Cv-UIo"/>
-                                <include reference="6Ec-se-GOW"/>
                                 <include reference="W7a-k3-EFY"/>
-                                <include reference="8yK-3f-Bcl"/>
-                                <include reference="SsD-K1-2Z0"/>
-                                <include reference="di7-zf-Xkj"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="噪声仪" id="W8t-Ty-SR3">
+                    <navigationItem key="navigationItem" id="W8t-Ty-SR3">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="bqQ-89-kwF">
+                            <rect key="frame" x="-60" y="-14" width="121" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <segments>
+                                <segment title="实时"/>
+                                <segment title="记录"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="选项" id="rBs-dr-BRx">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -290,6 +271,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tve-Uc-rDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2353.5" y="-1190.25"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="dvr-uK-CyR">
+            <objects>
+                <viewControllerPlaceholder id="hFN-VD-F9i" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWZ-W2-CEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3557.25" y="-1396.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ipM-OL-N6M">
