@@ -11,7 +11,7 @@
         <scene sceneID="MrY-BH-9v5">
             <objects>
                 <navigationController id="PhM-yN-tRS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="噪声仪" image="first" id="UWW-QQ-9O5"/>
+                    <tabBarItem key="tabBarItem" title="噪声仪" id="UWW-QQ-9O5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9ko-ym-VvR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -106,7 +106,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oCZ-12-LQA" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="0V7-YD-fXV"/>
-                            <constraint firstItem="Yvk-v4-g8p" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="ETM-Cv-UIo"/>
+                            <constraint firstItem="Yvk-v4-g8p" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="ETM-Cv-UIo">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-1"/>
+                            </constraint>
                             <constraint firstItem="oCZ-12-LQA" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="87" id="Hs5-3b-e5a">
                                 <variation key="heightClass=regular-widthClass=compact" constant="49"/>
                             </constraint>
@@ -144,16 +146,16 @@
                                 <exclude reference="qz5-WU-V16"/>
                                 <exclude reference="VOr-cU-6jy"/>
                                 <exclude reference="czG-kZ-zxi"/>
-                                <exclude reference="0V7-YD-fXV"/>
-                                <exclude reference="Hs5-3b-e5a"/>
+                                <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="hF3-6g-zM5"/>
+                                <exclude reference="iTX-FZ-BZO"/>
+                                <exclude reference="wMV-GG-sJD"/>
                                 <exclude reference="ETM-Cv-UIo"/>
                                 <exclude reference="yUE-f9-MNR"/>
                                 <exclude reference="QJT-Nu-3Wq"/>
                                 <exclude reference="y7t-6b-dTW"/>
-                                <exclude reference="hF3-6g-zM5"/>
-                                <exclude reference="iTX-FZ-BZO"/>
-                                <exclude reference="wMV-GG-sJD"/>
-                                <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="0V7-YD-fXV"/>
+                                <exclude reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -171,16 +173,16 @@
                                 <include reference="qz5-WU-V16"/>
                                 <include reference="VOr-cU-6jy"/>
                                 <include reference="czG-kZ-zxi"/>
-                                <include reference="0V7-YD-fXV"/>
-                                <include reference="Hs5-3b-e5a"/>
+                                <include reference="zmS-pH-MHI"/>
+                                <include reference="hF3-6g-zM5"/>
+                                <include reference="iTX-FZ-BZO"/>
+                                <include reference="wMV-GG-sJD"/>
                                 <include reference="ETM-Cv-UIo"/>
                                 <include reference="yUE-f9-MNR"/>
                                 <include reference="QJT-Nu-3Wq"/>
                                 <include reference="y7t-6b-dTW"/>
-                                <include reference="hF3-6g-zM5"/>
-                                <include reference="iTX-FZ-BZO"/>
-                                <include reference="wMV-GG-sJD"/>
-                                <include reference="zmS-pH-MHI"/>
+                                <include reference="0V7-YD-fXV"/>
+                                <include reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                     </view>
@@ -188,7 +190,7 @@
                     <navigationItem key="navigationItem" id="W8t-Ty-SR3">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="bqQ-89-kwF">
-                            <rect key="frame" x="-60" y="-14" width="121" height="29"/>
+                            <rect key="frame" x="239.5" y="7.5" width="121" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <segments>
@@ -743,7 +745,7 @@
         <scene sceneID="MZH-2f-m0O">
             <objects>
                 <navigationController id="Kwe-bb-v5U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="投诉" image="second" id="XRo-fY-wC3"/>
+                    <tabBarItem key="tabBarItem" title="投诉" id="XRo-fY-wC3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BAd-na-62X">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -831,7 +833,5 @@
         <image name="arrow" width="12" height="106"/>
         <image name="circle" width="54" height="54"/>
         <image name="dashboard" width="262" height="180"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

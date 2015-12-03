@@ -8,6 +8,8 @@
 
 #import "NCPMeterViewController.h"
 #import "NCPNoiseMeter.h"
+#define DEGREE_TO_RADIAN(x) ((x)*3.14/180)
+#define RADIAN_TO_DEGREE(x) ((x)/3.14*180)
 
 @interface NCPMeterViewController ()
 
@@ -21,28 +23,46 @@
 
 @implementation NCPMeterViewController
 
+NSTimer *mTimer;
+double valueSPL;
+
 /** (重写)viewDidLoad方法 */
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+   
     
+    mTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     
     // 实例化噪声仪对象
     NCPNoiseMeter *meter = [[NCPNoiseMeter alloc] init];
     
     [meter startWithCallback:^{
-        CGFloat halfWidth = _imageViewArrow.layer.bounds.size.height/2;
-        
-        CGAffineTransform transform =CGAffineTransformMakeTranslation(0, halfWidth);
-        transform = CGAffineTransformRotate(transform, (meter.lastAvg+100)/180*3.14);
-        transform = CGAffineTransformTranslate(transform,-0,-halfWidth);
-        _imageViewArrow.transform = transform;
-        
-        _lableSPL.text = [NSString stringWithFormat:@"%d", (int)(100+meter.lastAvg)];
-        
-        [_graphView addValue:100+meter.lastAvg];
-        
+        valueSPL = 100+meter.lastAvg;
+        [self rotateArrow:valueSPL];
     }];
+    
+    [mTimer fire];
+}
+
+- (void) rotateArrow:(double) degree{
+    CGFloat halfHeight = _imageViewArrow.layer.bounds.size.height/2;
+    
+    CGAffineTransform transform =CGAffineTransformMakeTranslation(0, halfHeight);
+    transform = CGAffineTransformRotate(transform, DEGREE_TO_RADIAN(degree));
+    transform = CGAffineTransformTranslate(transform,-0,-halfHeight);
+    _imageViewArrow.transform = transform;
+
+}
+
+- (void) timerAction{
+  
+    
+    _lableSPL.text = [NSString stringWithFormat:@"%d", (int)(valueSPL)];
+    
+    [_graphView addValue:valueSPL];
+
 }
 
 @end
