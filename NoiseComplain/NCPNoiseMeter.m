@@ -46,7 +46,6 @@ static const double kTimerTickPerSecond = 30.0;
 
 
 /** 获取NCPNoiseMeter的单例实例 */
-
 + (NCPNoiseMeter *)getInstance {
     static NCPNoiseMeter *instance;
     static dispatch_once_t once;

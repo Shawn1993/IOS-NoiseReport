@@ -8,8 +8,8 @@
 
 #import "NCPMeterViewController.h"
 #import "NCPNoiseMeter.h"
-#define DEGREE_TO_RADIAN(x) ((x)*3.14/180)
-#define RADIAN_TO_DEGREE(x) ((x)/3.14*180)
+#define DEGREE_TO_RADIAN(x) ((x)*M_PI/180)
+#define RADIAN_TO_DEGREE(x) ((x)/M_PI*180)
 
 @interface NCPMeterViewController ()
 
@@ -40,29 +40,44 @@ double valueSPL;
     
     [meter startWithCallback:^{
         valueSPL = 100+meter.lastAvg;
-        [self rotateArrow:valueSPL];
+//        [self rotateArrow:valueSPL];
     }];
     
     [mTimer fire];
 }
 
+/** 旋转仪表盘箭头: 角度 */
 - (void) rotateArrow:(double) degree{
-    CGFloat halfHeight = _imageViewArrow.layer.bounds.size.height/2;
+    CGFloat halfHeight= _imageViewArrow.layer.bounds.size.height/2;
+    CGAffineTransform transform;
     
-    CGAffineTransform transform =CGAffineTransformMakeTranslation(0, halfHeight);
+    transform = CGAffineTransformMakeTranslation(0, halfHeight);
     transform = CGAffineTransformRotate(transform, DEGREE_TO_RADIAN(degree));
-    transform = CGAffineTransformTranslate(transform,-0,-halfHeight);
+    transform = CGAffineTransformTranslate(transform, 0,-halfHeight);
+    
     _imageViewArrow.transform = transform;
+}
+
+-(void) rotateArrowWithAnimation:(double) degree{
+    CGFloat halfHeight= _imageViewArrow.layer.bounds.size.height/2;
+    CGAffineTransform transform;
+    
+    transform = CGAffineTransformMakeTranslation(0, halfHeight);
+    transform = CGAffineTransformRotate(transform, DEGREE_TO_RADIAN(degree));
+    transform = CGAffineTransformTranslate(transform, 0,-halfHeight);
+
+    [UIView beginAnimations:nil context:NULL];
+    [_imageViewArrow.layer setAffineTransform:transform];
+    _imageViewArrow.layer.opacity = 1;
+    [UIView commitAnimations];
 
 }
 
+/** 定时器调用的执行方法*/
 - (void) timerAction{
-  
-    
+    [self rotateArrowWithAnimation:valueSPL];
     _lableSPL.text = [NSString stringWithFormat:@"%d", (int)(valueSPL)];
-    
     [_graphView addValue:valueSPL];
-
 }
 
 @end

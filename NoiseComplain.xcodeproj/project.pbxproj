@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		582A1FEE1C1021AE0000082D /* DashbaordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582A1FED1C1021AE0000082D /* DashbaordView.xib */; };
+		58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A4DDEA1C10977000600F78 /* NCPDashboardView.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
 		CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EE1C0F17050013E70E /* Assets.xcassets */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		582A1FED1C1021AE0000082D /* DashbaordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashbaordView.xib; sourceTree = "<group>"; };
+		58A4DDE91C10977000600F78 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
+		58A4DDEA1C10977000600F78 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA4B30EE1C0F17050013E70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,8 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				CA4B31161C0F17570013E70E /* Sources */,
-				CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */,
-				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
 				CA4B31151C0F17440013E70E /* Resources */,
 				CA4B30E21C0F17050013E70E /* Supporting Files */,
 			);
@@ -175,8 +176,8 @@
 		CA4B31151C0F17440013E70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				582A1FEC1C1021780000082D /* XIB */,
 				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
+				582A1FEC1C1021780000082D /* XIB */,
 				CA4B31181C0F17730013E70E /* PropertyList */,
 				CA4B31171C0F17610013E70E /* Storyboard */,
 			);
@@ -186,6 +187,8 @@
 		CA4B31161C0F17570013E70E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
+				CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */,
 				CA4B311A1C0F17990013E70E /* CustomViews */,
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
 				CA4B311B1C0F17A80013E70E /* FunctionalModules */,
@@ -234,6 +237,8 @@
 			children = (
 				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
 				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
+				58A4DDE91C10977000600F78 /* NCPDashboardView.h */,
+				58A4DDEA1C10977000600F78 /* NCPDashboardView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				CA4B30E41C0F17050013E70E /* main.m in Sources */,
 				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
+				58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
