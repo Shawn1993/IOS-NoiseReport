@@ -9,6 +9,19 @@
 #import "NCPNoiseMeter.h"
 #import <AVFoundation/AVFoundation.h>
 
+/** 采样率 */
+#define SAMPLE_RATE 44110
+
+/** 声道数 */
+#define CHANNEL_NUM 1
+
+/** 位数 */
+#define BIT_DEPTH 8
+
+/** 文件格式 */
+#define FORMAT_ID kAudioFormatLinearPCM
+
+
 static const int kDataArrayMaxLength = 100;
 static const double kTimerTickPerSecond = 30.0;
 
@@ -63,10 +76,14 @@ static const double kTimerTickPerSecond = 30.0;
     if (self) {
         // 设置并实例化AVAudioRecorder
         NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-        NSDictionary *settings = @{AVSampleRateKey: @44100.0,
-                                     AVFormatIDKey: [NSNumber numberWithInt:kAudioFormatAppleLossless],
-                             AVNumberOfChannelsKey: @1,
-                          AVEncoderAudioQualityKey: [NSNumber numberWithInt:AVAudioQualityMax]};
+        
+        //
+        NSDictionary *settings = @{
+                                   AVFormatIDKey: [NSNumber numberWithInt:FORMAT_ID],
+                                   AVSampleRateKey: [NSNumber numberWithInt:SAMPLE_RATE],
+                                   AVNumberOfChannelsKey: [NSNumber numberWithInt:CHANNEL_NUM],
+                                   AVEncoderAudioQualityKey: [NSNumber numberWithInt:AVAudioQualityMax]
+                                   };
         _recorder = [[AVAudioRecorder alloc] initWithURL:url
                                                 settings:settings
                                                    error:nil];
