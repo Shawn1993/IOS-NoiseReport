@@ -18,4 +18,6 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 
 - (void)addKey:(NSString *)key value:(id)value;
 
++ (NSDictionary *)connectWithPage:(NSString *)page completionHandler:(void(^)(NSDictionary *data)) handler;
+
 @end

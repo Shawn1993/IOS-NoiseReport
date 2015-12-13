@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A4DDEA1C10977000600F78 /* NCPDashboardView.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
 		CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EE1C0F17050013E70E /* Assets.xcassets */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
@@ -46,8 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		58A4DDE91C10977000600F78 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
-		58A4DDEA1C10977000600F78 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA4B30EE1C0F17050013E70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,8 +234,6 @@
 			children = (
 				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
 				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
-				58A4DDE91C10977000600F78 /* NCPDashboardView.h */,
-				58A4DDEA1C10977000600F78 /* NCPDashboardView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -402,7 +397,6 @@
 				CA4B30E41C0F17050013E70E /* main.m in Sources */,
 				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
-				58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

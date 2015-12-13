@@ -7,7 +7,7 @@
 //
 
 #import "NCPComplainFormViewController.h"
-#import "NCPWebService.h"
+#import "NCPWebRequest.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate>
 
@@ -41,7 +41,7 @@
             break;
         case 3:
             // 提交投诉session
-            [NCPWebService connectWithPage:@"test" completionHandler:nil];
+            [NCPWebRequest connectWithPage:@"test" completionHandler:nil];
             break;
         default:
             break;
