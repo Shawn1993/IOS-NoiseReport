@@ -26,6 +26,7 @@
 		CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B31781C0F1A220013E70E /* Main.storyboard */; };
 		CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */; };
 		CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */; };
+		CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE671081C1AADF3003D8271 /* NCPWebRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		CA4B31781C0F1A220013E70E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoiseType.plist; sourceTree = "<group>"; };
 		CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundFunctionalAreaType.plist; sourceTree = "<group>"; };
+		CAE671071C1AADF3003D8271 /* NCPWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebRequest.h; sourceTree = "<group>"; };
+		CAE671081C1AADF3003D8271 /* NCPWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,8 @@
 				CA4B311F1C0F18900013E70E /* NCPComplainForm.m */,
 				CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */,
 				CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */,
+				CAE671071C1AADF3003D8271 /* NCPWebRequest.h */,
+				CAE671081C1AADF3003D8271 /* NCPWebRequest.m */,
 			);
 			name = FunctionalModules;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			files = (
 				CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */,
 				CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */,
+				CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */,
 				CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */,
 				CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */,
 				CA4B31351C0F18900013E70E /* NCPNoiseMeter.m in Sources */,
