@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" red="0.15686274509803921" green="0.32156862745098042" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.15686274509803921" green="0.32549019607843138" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -41,6 +41,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-12-LQA" userLabel="Dashboard">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek3-MV-8pU">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
@@ -48,10 +52,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-12-LQA" userLabel="Dashboard">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-W8-hzr" userLabel="Circle">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
@@ -63,7 +63,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eqs-8E-EKj" customClass="NCPGraphView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.16862745100000001" green="0.2901960784" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="406" width="400" height="350"/>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="db" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmu-FP-Zgs">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -74,7 +77,7 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.29019607843137257" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oCZ-12-LQA" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="0V7-YD-fXV"/>
                             <constraint firstItem="Yvk-v4-g8p" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="ETM-Cv-UIo">
@@ -90,9 +93,6 @@
                             <constraint firstItem="cmu-FP-Zgs" firstAttribute="leading" secondItem="Ek3-MV-8pU" secondAttribute="trailing" constant="0.5" id="X6z-eT-bk7">
                                 <variation key="heightClass=regular-widthClass=compact" constant="7.5"/>
                             </constraint>
-                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="width" secondItem="qqZ-cE-riM" secondAttribute="width" id="hF3-6g-zM5"/>
-                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="342" id="iTX-FZ-BZO"/>
-                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="leading" secondItem="qqZ-cE-riM" secondAttribute="leading" id="wMV-GG-sJD"/>
                             <constraint firstItem="eh5-W8-hzr" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="191" id="y7t-6b-dTW">
                                 <variation key="heightClass=regular-widthClass=compact" constant="153"/>
                             </constraint>
@@ -103,8 +103,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Ek3-MV-8pU"/>
                                 <exclude reference="oCZ-12-LQA"/>
+                                <exclude reference="Ek3-MV-8pU"/>
                                 <exclude reference="eh5-W8-hzr"/>
                                 <exclude reference="Yvk-v4-g8p"/>
                                 <exclude reference="Eqs-8E-EKj"/>
@@ -115,22 +115,19 @@
                                 <exclude reference="P7Y-g6-WIL"/>
                                 <exclude reference="GIv-FW-1oG"/>
                                 <exclude reference="X6z-eT-bk7"/>
-                                <exclude reference="0V7-YD-fXV"/>
-                                <exclude reference="Hs5-3b-e5a"/>
+                                <exclude reference="zmS-pH-MHI"/>
                                 <exclude reference="ETM-Cv-UIo"/>
                                 <exclude reference="yUE-f9-MNR"/>
                                 <exclude reference="QJT-Nu-3Wq"/>
                                 <exclude reference="y7t-6b-dTW"/>
-                                <exclude reference="hF3-6g-zM5"/>
-                                <exclude reference="iTX-FZ-BZO"/>
-                                <exclude reference="wMV-GG-sJD"/>
-                                <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="0V7-YD-fXV"/>
+                                <exclude reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Ek3-MV-8pU"/>
                                 <include reference="oCZ-12-LQA"/>
+                                <include reference="Ek3-MV-8pU"/>
                                 <include reference="eh5-W8-hzr"/>
                                 <include reference="Yvk-v4-g8p"/>
                                 <include reference="Eqs-8E-EKj"/>
@@ -141,16 +138,13 @@
                                 <include reference="P7Y-g6-WIL"/>
                                 <include reference="GIv-FW-1oG"/>
                                 <include reference="X6z-eT-bk7"/>
-                                <include reference="0V7-YD-fXV"/>
-                                <include reference="Hs5-3b-e5a"/>
+                                <include reference="zmS-pH-MHI"/>
                                 <include reference="ETM-Cv-UIo"/>
                                 <include reference="yUE-f9-MNR"/>
                                 <include reference="QJT-Nu-3Wq"/>
                                 <include reference="y7t-6b-dTW"/>
-                                <include reference="hF3-6g-zM5"/>
-                                <include reference="iTX-FZ-BZO"/>
-                                <include reference="wMV-GG-sJD"/>
-                                <include reference="zmS-pH-MHI"/>
+                                <include reference="0V7-YD-fXV"/>
+                                <include reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                     </view>
