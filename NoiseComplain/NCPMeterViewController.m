@@ -29,9 +29,15 @@
 
 #pragma mark - 生命周期
 
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleLightContent;
+//}
+
 /** (重写)viewDidLoad方法 */
 - (void)viewDidLoad{
     [super viewDidLoad];
+//    [self prefersStatusBarHidden];
+    
     [self initNoiseMeter];
     [self initTimer];
 }
