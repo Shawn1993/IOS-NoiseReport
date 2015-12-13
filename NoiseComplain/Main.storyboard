@@ -286,14 +286,6 @@
             </objects>
             <point key="canvasLocation" x="2353.5" y="-1190.25"/>
         </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="dvr-uK-CyR">
-            <objects>
-                <viewControllerPlaceholder id="hFN-VD-F9i" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bWZ-W2-CEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3557.25" y="-1396.5"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ipM-OL-N6M">
             <objects>
@@ -665,7 +657,6 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="tDA-M2-iT0" id="u4C-Yq-q9y"/>
                             <outlet property="delegate" destination="tDA-M2-iT0" id="15V-wb-3QQ"/>
                         </connections>
                     </tableView>
