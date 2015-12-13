@@ -19,7 +19,7 @@
 #define BIT_DEPTH 8
 
 /** 文件格式 */
-#define FORMAT_ID kAudioFormatLinearPCM
+#define FORMAT_ID kAudioFormatAppleLossless
 
 
 static const int kDataArrayMaxLength = 100;
@@ -28,28 +28,27 @@ static const double kTimerTickPerSecond = 30.0;
 #pragma mark - NCPNoiseMeter私有分类
 
 
-@interface NCPNoiseMeter () {
+@interface NCPNoiseMeter () <AVAudioRecorderDelegate>{
     
     /** 平均值记录数组 */
-    NSMutableArray *_avgArray;
+    NSMutableArray *avgArray;
     /** 峰值记录数组 */
-    NSMutableArray *_peakArray;
+    NSMutableArray *peakArray;
     
     /** 录音器 */
-    AVAudioRecorder *_recorder;
+    AVAudioRecorder *mAudioRecorder;
     /** 定时器 */
-    NSTimer *_timer;
+    NSTimer *mTimer;
     
     /** 是否暂停标识位 */
-    BOOL _isPausing;
+    BOOL isPaused;
     
     /** 定时器回调Block */
-    void(^_timerCallback)(void);
+    void(^timerCallback)(void);
 }
 
-
 /** 定时器回调方法 */
-- (void)timerCallBack:(NSTimer *)timer;
+- (void)timerAction:(NSTimer *)timer;
 
 @end
 
@@ -68,112 +67,164 @@ static const double kTimerTickPerSecond = 30.0;
     return instance;
 }
 
-#pragma mark - 定时检测功能
+#pragma mark - 获得实例的方法
+
+/** 获得实例－文件存储路径*/
+-(NSURL*)filePath
+{
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    return url;
+}
+
+/** 获得实例－音频设定*/
+- (NSDictionary*)audioSettings
+{
+    NSDictionary *settings = @{
+                               AVFormatIDKey: [NSNumber numberWithInt:FORMAT_ID],
+                               AVSampleRateKey: [NSNumber numberWithInt:SAMPLE_RATE],
+                               AVNumberOfChannelsKey: [NSNumber numberWithInt:CHANNEL_NUM],
+                               };
+    return settings;
+}
+
+/** 获得实例－定时器*/
+-(NSTimer*) timer
+{
+    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:1.0/kTimerTickPerSecond
+                                                       target:self
+                                                     selector:@selector(timerAction:)
+                                                     userInfo:nil
+                                                      repeats:YES];
+    return  timer;
+}
 
 /** (重写)init方法, 执行初始化工作并准备开始进行检测 */
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // 设置并实例化AVAudioRecorder
-        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-        
-        //
-        NSDictionary *settings = @{
-                                   AVFormatIDKey: [NSNumber numberWithInt:FORMAT_ID],
-                                   AVSampleRateKey: [NSNumber numberWithInt:SAMPLE_RATE],
-                                   AVNumberOfChannelsKey: [NSNumber numberWithInt:CHANNEL_NUM],
-                                   AVEncoderAudioQualityKey: [NSNumber numberWithInt:AVAudioQualityMax]
-                                   };
-        _recorder = [[AVAudioRecorder alloc] initWithURL:url
-                                                settings:settings
-                                                   error:nil];
-        
-        // 对录音器进行初始化
-        if (_recorder) {
-            [_recorder prepareToRecord];
-            _recorder.meteringEnabled = YES;
+        // 初始化录音对象
+        if (!mAudioRecorder) {
+            NSLog(@"初始化");
+            NSError *error = nil ;
+            mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
+            mAudioRecorder.meteringEnabled = YES;
+            mAudioRecorder.delegate = self;
+            if(error){
+                NSLog(@"Error when recorder inits,%@",error.localizedDescription);
+            }
+            if(![mAudioRecorder prepareToRecord]){
+                NSLog(@"Error when recorder prepare");
+            }
         }
-        
         // 实例化其他成员变量
-        _avgArray = [[NSMutableArray alloc] init];
-        _peakArray  = [[NSMutableArray alloc] init];
+        avgArray = [[NSMutableArray alloc] init];
+        peakArray  = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-/** 开始检测并记录数据: 检测频率(每秒) */
-- (void)startWithCallback:(void(^)(void))callback {
-    if (_recorder) {
-        
-        // 初始化数据和标识位
-        [_avgArray removeAllObjects];
-        [_peakArray removeAllObjects];
-        _isPausing = NO;
-        
-        // 开启录音器
-        [_recorder record];
-        
-        // 开启定时器, 注册回调Block
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 / kTimerTickPerSecond
-                                                  target:self
-                                                selector:@selector(timerCallBack:)
-                                                userInfo:nil
-                                                 repeats:YES];
-        _timerCallback = callback;
+
+/** 计时器回调方法 */
+- (void)timerAction:(NSTimer *)timer {
+    
+    if (isPaused)
+        return;
+    
+    // 刷新录音器
+    [mAudioRecorder updateMeters];
+    
+    // 取值
+    _lastAvg = [mAudioRecorder averagePowerForChannel:0];
+    _lastPeak = [mAudioRecorder peakPowerForChannel:0];
+    
+    // 存值
+    if (avgArray.count > kDataArrayMaxLength) {
+        [avgArray removeObjectAtIndex:0];
+    }
+    if (peakArray.count > kDataArrayMaxLength) {
+        [peakArray removeObjectAtIndex:0];
+    }
+    
+    [avgArray addObject:[NSNumber numberWithDouble:_lastAvg]];
+    [peakArray addObject:[NSNumber numberWithDouble:_lastPeak]];
+    
+    // 触发接口
+    if (timerCallback) {
+        NSLog(@"test");
+        timerCallback();
     }
 }
 
+#pragma mark - 录音控制操作
+
+/** 开始检测并记录数据: 检测频率(每秒) */
+- (void)startWithCallback:(void(^)(void))callback {
+    
+    if (!mAudioRecorder)
+        return;
+    if(mAudioRecorder.isRecording)
+        return;
+    
+    // 做一些初始化
+    isPaused = NO;
+    timerCallback = callback;
+    [avgArray removeAllObjects];
+    [peakArray removeAllObjects];
+    
+    // 开始录音
+    [mAudioRecorder record];
+    
+    // 开启定时器
+    mTimer = [self timer];
+    
+    [mTimer fire];
+}
+
+
 /** 暂停记录数据 */
 - (void)pause {
-    _isPausing = YES;
-    [_recorder pause];
+    if (!mAudioRecorder)
+        return;
+    if(isPaused)
+        return;
+    [mAudioRecorder pause];
+    isPaused = YES;
 }
 
 /** 继续记录数据 */
 - (void)resume {
-    _isPausing = NO;
-    [_recorder record];
+    if (!mAudioRecorder)
+        return;
+    if(!isPaused)
+        return;
+    [mAudioRecorder record];
+    isPaused = NO;
 }
 
 /** 停止记录数据 */
 - (void)stop {
-    if (_recorder) {
-        [_recorder stop];
+    if (!mAudioRecorder)
+        return;
+    [mAudioRecorder stop];
+    isPaused = YES;
+    
+    if (mTimer)
+    {
+        [mTimer invalidate];
+        mTimer = nil;
+        timerCallback = nil;
     }
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
-        _timerCallback = nil;
-    }
+
 }
 
-/** 计时器回调方法 */
-- (void)timerCallBack:(NSTimer *)timer {
-    // 当没有暂停的时候才进行处理
-    if (!_isPausing) {
-        
-        // 刷新录音器
-        [_recorder updateMeters];
-        
-        // 记录数据
-        _lastAvg = [_recorder averagePowerForChannel:0];
-        _lastPeak = [_recorder peakPowerForChannel:0];
-        if (_avgArray.count > kDataArrayMaxLength) {
-            [_avgArray removeObjectAtIndex:0];
-        }
-        if (_peakArray.count > kDataArrayMaxLength) {
-            [_peakArray removeObjectAtIndex:0];
-        }
-        [_avgArray addObject:[NSNumber numberWithDouble:_lastAvg]];
-        [_peakArray addObject:[NSNumber numberWithDouble:_lastPeak]];
-        
-        // 调用注册的Block
-        if (_timerCallback) {
-            _timerCallback();
-        }
+#pragma mark - AVAudioRecorderDelegate
+
+- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
+{
+    if(error)
+    {
+        NSLog(@"Error when recording,%@",error.localizedDescription);
     }
 }
-
-#pragma mark - 获取数据
 
 @end
