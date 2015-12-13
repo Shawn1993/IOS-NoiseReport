@@ -11,7 +11,7 @@
         <scene sceneID="MrY-BH-9v5">
             <objects>
                 <navigationController id="PhM-yN-tRS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="噪声仪" id="UWW-QQ-9O5"/>
+                    <tabBarItem key="tabBarItem" title="噪声仪" image="microphone" id="UWW-QQ-9O5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9ko-ym-VvR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -824,5 +824,6 @@
         <image name="arrow" width="12" height="106"/>
         <image name="circle" width="54" height="54"/>
         <image name="dashboard" width="262" height="180"/>
+        <image name="microphone" width="18" height="18"/>
     </resources>
 </document>

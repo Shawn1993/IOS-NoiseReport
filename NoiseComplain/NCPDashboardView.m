@@ -10,7 +10,9 @@
 #define DEGREE_TO_RADIAN(x) ((x)*3.14/180)
 #define RADIAN_TO_DEGREE(x) ((x)/3.14*180)
 
-@interface NCPDashboardView()
+@interface NCPDashboardView(private){
+    
+}
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewArrow;
@@ -18,6 +20,7 @@
 @end
 
 @implementation NCPDashboardView
+
 
 /** 旋转箭头：角度 */
 - (void) rotateArrow:(double) degree{
