@@ -32,7 +32,7 @@ int displayIndex;
     displayIndex = 0;
     _maxY = 110;
     _minY = 0;
-    _maxX = 50;
+    _maxX = 500;
     _minX = 0;
 }
 
