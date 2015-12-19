@@ -32,7 +32,7 @@ int displayIndex;
     displayIndex = 0;
     _maxY = 110;
     _minY = 0;
-    _maxX = 200;
+    _maxX = 50;
     _minX = 0;
 }
 
@@ -40,7 +40,8 @@ int displayIndex;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         [self initData];
     }
     return self;
@@ -49,13 +50,13 @@ int displayIndex;
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-    if (self) {
+    if (self)
+    {
         [self initData];
     }
     return self;
 }
 
-// 绘制图像
 - (void)drawRect:(CGRect)rect
 {
     int pointCount = (int)[points count];
@@ -63,35 +64,29 @@ int displayIndex;
     float xSpace = self.frame.size.width/(_maxX-_minX);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineCap(context, kCGLineCapSquare);
     CGContextSetLineWidth(context,5.0);
     CGContextSetRGBStrokeColor(context, 1.0, 1.0, 0, 1.0);
+    CGContextSetShadow(context, CGSizeMake(3.0, 3.0), 0.5);
+    CGContextSetAlpha(context, 0.6);
     
     //开始绘制曲线
     CGContextBeginPath(context);
     CGContextMoveToPoint(context,0,self.frame.size.height-[[points objectAtIndex:pointCount-1] doubleValue]*ySpace);
     
     int displayCount = pointCount>(_maxX-_minX)?(_maxX-_minX):pointCount;
-    //    int curveCount = (displayCount-1)/3;
-    //
-    //    // 首先绘制三次贝赛尔曲线
-    //    int x=0;
-    //    int i=0;
-    //    for(; i <curveCount ; i++)
-    //    {
-    //        double x0 = (++x)*xSpace;
-    //        double x1 = (++x)*xSpace;
-    //        double x2 = (++x)*xSpace;
-    //        double value0 = self.frame.size.height-[[points objectAtIndex:pointCount-i*3-1] doubleValue]*ySpace;
-    //        double value1 = self.frame.size.height-[[points objectAtIndex:pointCount-i*3-2] doubleValue]*ySpace;
-    //        double value2 = self.frame.size.height-[[points objectAtIndex:pointCount-i*3-3] doubleValue]*ySpace;
-    //
-    //        CGContextAddCurveToPoint(context, x0, value0, x1 ,value1, x2, value2);
-    //    }
-    for(int i =1; i<displayCount;i++)
+    for(int i =1; i<displayCount-3;i++)
     {
         double y = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
         double x = i*xSpace;
+//        i++;
+//        double y1 = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
+//        double x1 = i*xSpace;
+//        i++;
+//        double y2 = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
+//        double x2 = i*xSpace;
+       
+//        CGContextAddCurveToPoint(context, x, y, x1, y1, x2, y2);
         CGContextAddLineToPoint(context,x,y);
     }
     CGContextStrokePath(context);

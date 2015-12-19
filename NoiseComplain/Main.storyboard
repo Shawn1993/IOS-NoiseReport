@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XT2-sx-DLh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XT2-sx-DLh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -12,11 +12,10 @@
             <objects>
                 <navigationController title="MeterNav" id="PhM-yN-tRS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="噪声仪" image="microphone" selectedImage="microphone_selected" id="UWW-QQ-9O5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9ko-ym-VvR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="9ko-ym-VvR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" red="0.15686274509803921" green="0.32549019607843138" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -60,14 +59,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eqs-8E-EKj" customClass="NCPGraphView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.16862745100000001" green="0.2901960784" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="406" width="400" height="350"/>
-                                </variation>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="db" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmu-FP-Zgs">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
@@ -75,19 +66,38 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eqs-8E-EKj" customClass="NCPGraphView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="xqW-ae-k5U"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xqW-ae-k5U"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="xqW-ae-k5U"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.16862745098039217" green="0.29019607843137257" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oCZ-12-LQA" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="0V7-YD-fXV"/>
+                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="24f-0r-55Z"/>
                             <constraint firstItem="Yvk-v4-g8p" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="ETM-Cv-UIo">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-1"/>
                             </constraint>
                             <constraint firstItem="cmu-FP-Zgs" firstAttribute="baseline" secondItem="Ek3-MV-8pU" secondAttribute="baseline" id="GIv-FW-1oG"/>
+                            <constraint firstItem="Eqs-8E-EKj" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="230" id="Ggc-Iw-w3l"/>
                             <constraint firstItem="oCZ-12-LQA" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="87" id="Hs5-3b-e5a">
                                 <variation key="heightClass=regular-widthClass=compact" constant="49"/>
                             </constraint>
                             <constraint firstItem="Ek3-MV-8pU" firstAttribute="top" secondItem="djz-TJ-8N9" secondAttribute="bottom" constant="8" id="KjI-L0-PjB"/>
+                            <constraint firstItem="9G5-ep-F2H" firstAttribute="top" secondItem="Eqs-8E-EKj" secondAttribute="bottom" id="M2O-AJ-O99"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Ek3-MV-8pU" secondAttribute="leading" id="P7Y-g6-WIL"/>
                             <constraint firstItem="eh5-W8-hzr" firstAttribute="centerX" secondItem="qqZ-cE-riM" secondAttribute="centerX" id="QJT-Nu-3Wq"/>
                             <constraint firstItem="cmu-FP-Zgs" firstAttribute="leading" secondItem="Ek3-MV-8pU" secondAttribute="trailing" constant="0.5" id="X6z-eT-bk7">
@@ -107,15 +117,18 @@
                                 <exclude reference="Ek3-MV-8pU"/>
                                 <exclude reference="eh5-W8-hzr"/>
                                 <exclude reference="Yvk-v4-g8p"/>
-                                <exclude reference="Eqs-8E-EKj"/>
                                 <exclude reference="cmu-FP-Zgs"/>
+                                <exclude reference="Eqs-8E-EKj"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="KjI-L0-PjB"/>
                                 <exclude reference="P7Y-g6-WIL"/>
                                 <exclude reference="GIv-FW-1oG"/>
                                 <exclude reference="X6z-eT-bk7"/>
+                                <exclude reference="M2O-AJ-O99"/>
                                 <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="24f-0r-55Z"/>
+                                <exclude reference="Ggc-Iw-w3l"/>
                                 <exclude reference="ETM-Cv-UIo"/>
                                 <exclude reference="yUE-f9-MNR"/>
                                 <exclude reference="QJT-Nu-3Wq"/>
@@ -130,15 +143,18 @@
                                 <include reference="Ek3-MV-8pU"/>
                                 <include reference="eh5-W8-hzr"/>
                                 <include reference="Yvk-v4-g8p"/>
-                                <include reference="Eqs-8E-EKj"/>
                                 <include reference="cmu-FP-Zgs"/>
+                                <include reference="Eqs-8E-EKj"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="KjI-L0-PjB"/>
                                 <include reference="P7Y-g6-WIL"/>
                                 <include reference="GIv-FW-1oG"/>
                                 <include reference="X6z-eT-bk7"/>
+                                <include reference="M2O-AJ-O99"/>
                                 <include reference="zmS-pH-MHI"/>
+                                <include reference="24f-0r-55Z"/>
+                                <include reference="Ggc-Iw-w3l"/>
                                 <include reference="ETM-Cv-UIo"/>
                                 <include reference="yUE-f9-MNR"/>
                                 <include reference="QJT-Nu-3Wq"/>
@@ -150,7 +166,6 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="W8t-Ty-SR3">
-                        <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="bqQ-89-kwF">
                             <rect key="frame" x="239.5" y="7.5" width="121" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -765,7 +780,7 @@
             <objects>
                 <tabBarController title="TabBar" id="XT2-sx-DLh" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oXP-de-OG6"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="3JD-UJ-YLF">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="3JD-UJ-YLF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>

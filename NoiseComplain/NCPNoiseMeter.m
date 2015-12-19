@@ -23,7 +23,7 @@
 
 
 static const int kDataArrayMaxLength = 100;
-static const double kTimerTickPerSecond = 30.0;
+static const double kTimerTickPerSecond = 20;
 
 #pragma mark - NCPNoiseMeter私有分类
 
@@ -104,7 +104,6 @@ static const double kTimerTickPerSecond = 30.0;
     if (self) {
         // 初始化录音对象
         if (!mAudioRecorder) {
-            NSLog(@"初始化");
             NSError *error = nil ;
             mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
             mAudioRecorder.meteringEnabled = YES;
@@ -150,7 +149,6 @@ static const double kTimerTickPerSecond = 30.0;
     
     // 触发接口
     if (timerCallback) {
-        NSLog(@"test");
         timerCallback();
     }
 }
