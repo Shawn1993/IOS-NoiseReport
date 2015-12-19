@@ -147,8 +147,10 @@
                                 <exclude reference="P7Y-g6-WIL"/>
                                 <exclude reference="GIv-FW-1oG"/>
                                 <exclude reference="X6z-eT-bk7"/>
-                                <exclude reference="0V7-YD-fXV"/>
-                                <exclude reference="Hs5-3b-e5a"/>
+                                <exclude reference="M2O-AJ-O99"/>
+                                <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="24f-0r-55Z"/>
+                                <exclude reference="Ggc-Iw-w3l"/>
                                 <exclude reference="ETM-Cv-UIo"/>
                                 <exclude reference="yUE-f9-MNR"/>
                                 <exclude reference="QJT-Nu-3Wq"/>
@@ -156,10 +158,8 @@
                                 <exclude reference="BTi-c8-4SC"/>
                                 <exclude reference="HWt-Yy-ESY"/>
                                 <exclude reference="xkO-kk-Mce"/>
-                                <exclude reference="24f-0r-55Z"/>
-                                <exclude reference="Ggc-Iw-w3l"/>
-                                <exclude reference="M2O-AJ-O99"/>
-                                <exclude reference="zmS-pH-MHI"/>
+                                <exclude reference="0V7-YD-fXV"/>
+                                <exclude reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -177,8 +177,10 @@
                                 <include reference="P7Y-g6-WIL"/>
                                 <include reference="GIv-FW-1oG"/>
                                 <include reference="X6z-eT-bk7"/>
-                                <include reference="0V7-YD-fXV"/>
-                                <include reference="Hs5-3b-e5a"/>
+                                <include reference="M2O-AJ-O99"/>
+                                <include reference="zmS-pH-MHI"/>
+                                <include reference="24f-0r-55Z"/>
+                                <include reference="Ggc-Iw-w3l"/>
                                 <include reference="ETM-Cv-UIo"/>
                                 <include reference="yUE-f9-MNR"/>
                                 <include reference="QJT-Nu-3Wq"/>
@@ -186,10 +188,8 @@
                                 <include reference="BTi-c8-4SC"/>
                                 <include reference="HWt-Yy-ESY"/>
                                 <include reference="xkO-kk-Mce"/>
-                                <include reference="24f-0r-55Z"/>
-                                <include reference="Ggc-Iw-w3l"/>
-                                <include reference="M2O-AJ-O99"/>
-                                <include reference="zmS-pH-MHI"/>
+                                <include reference="0V7-YD-fXV"/>
+                                <include reference="Hs5-3b-e5a"/>
                             </mask>
                         </variation>
                     </view>
