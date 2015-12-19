@@ -7,7 +7,7 @@
 //
 
 #import "NCPComplainFormViewController.h"
-#import "NCPWebService.h"
+#import "NCPWebRequest.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate>
 
@@ -29,6 +29,17 @@
 #pragma mark - UITableView数据源协议与代理协议
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NCPWebRequest *web = [NCPWebRequest requestWithPage:@"test"];
+    [web setKey:@"Test1" forInteger:1];
+    [web setKey:@"Test2" forString:@"Hello"];
+    [web sendWithCompletionBlock:^(NSData* data, NSURLResponse *response, NSDictionary *object) {
+        NSLog(@"Data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"Response: %@", response);
+        NSLog(@"Object: %@", object);
+    }];
+    
+    
     switch (indexPath.section) {
         case 0:
             // 测量结果session
@@ -41,7 +52,6 @@
             break;
         case 3:
             // 提交投诉session
-            [NCPWebService connectWithPage:@"test" completionHandler:nil];
             break;
         default:
             break;

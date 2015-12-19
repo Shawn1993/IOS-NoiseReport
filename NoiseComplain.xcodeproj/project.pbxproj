@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		582A1FEE1C1021AE0000082D /* DashbaordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582A1FED1C1021AE0000082D /* DashbaordView.xib */; };
 		58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A4DDEA1C10977000600F78 /* NCPDashboardView.m */; };
+		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
 		CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EE1C0F17050013E70E /* Assets.xcassets */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
@@ -26,6 +27,7 @@
 		CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B31781C0F1A220013E70E /* Main.storyboard */; };
 		CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */; };
 		CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */; };
+		CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0CB791C23F8C60055DE89 /* GTLBase64.m */; };
 		CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE671081C1AADF3003D8271 /* NCPWebRequest.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,8 @@
 		582A1FED1C1021AE0000082D /* DashbaordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashbaordView.xib; sourceTree = "<group>"; };
 		58A4DDE91C10977000600F78 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
 		58A4DDEA1C10977000600F78 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
+		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
+		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA4B30EE1C0F17050013E70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		CA4B31781C0F1A220013E70E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoiseType.plist; sourceTree = "<group>"; };
 		CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundFunctionalAreaType.plist; sourceTree = "<group>"; };
+		CAA0CB781C23F8C60055DE89 /* GTLBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLBase64.h; sourceTree = "<group>"; };
+		CAA0CB791C23F8C60055DE89 /* GTLBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLBase64.m; sourceTree = "<group>"; };
 		CAE671071C1AADF3003D8271 /* NCPWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebRequest.h; sourceTree = "<group>"; };
 		CAE671081C1AADF3003D8271 /* NCPWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +201,7 @@
 				CA4B311A1C0F17990013E70E /* CustomViews */,
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
 				CA4B311B1C0F17A80013E70E /* FunctionalModules */,
+				CAB15E941C1E8B29001886F6 /* Libraries */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -253,10 +260,37 @@
 				CA4B311F1C0F18900013E70E /* NCPComplainForm.m */,
 				CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */,
 				CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */,
+				CAB15E9E1C1E99CB001886F6 /* WebService */,
+			);
+			name = FunctionalModules;
+			sourceTree = "<group>";
+		};
+		CAA0CB7B1C23F8C90055DE89 /* GTLBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				CAA0CB781C23F8C60055DE89 /* GTLBase64.h */,
+				CAA0CB791C23F8C60055DE89 /* GTLBase64.m */,
+			);
+			name = GTLBase64;
+			sourceTree = "<group>";
+		};
+		CAB15E941C1E8B29001886F6 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				CAA0CB7B1C23F8C90055DE89 /* GTLBase64 */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		CAB15E9E1C1E99CB001886F6 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */,
+				CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */,
 				CAE671071C1AADF3003D8271 /* NCPWebRequest.h */,
 				CAE671081C1AADF3003D8271 /* NCPWebRequest.m */,
 			);
-			name = FunctionalModules;
+			name = WebService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,7 +439,9 @@
 				CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */,
 				CA4B30E41C0F17050013E70E /* main.m in Sources */,
 				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
+				CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */,
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
+				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
 				58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
