@@ -11,7 +11,6 @@
 		58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A4DDEA1C10977000600F78 /* NCPDashboardView.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
-		CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30EE1C0F17050013E70E /* Assets.xcassets */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
 		CA4B30FD1C0F17050013E70E /* NoiseComplainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30FC1C0F17050013E70E /* NoiseComplainTests.m */; };
 		CA4B31081C0F17050013E70E /* NoiseComplainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */; };
@@ -56,7 +55,6 @@
 		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CA4B30EE1C0F17050013E70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4B30F11C0F17050013E70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA4B30F31C0F17050013E70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA4B30F81C0F17050013E70E /* NoiseComplainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoiseComplainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +118,6 @@
 		582A1FEC1C1021780000082D /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				582A1FED1C1021AE0000082D /* DashbaordView.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -185,7 +182,7 @@
 		CA4B31151C0F17440013E70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CA4B30EE1C0F17050013E70E /* Assets.xcassets */,
+				58EC3DE41C1E736800DC35AA /* Assets.xcassets */,
 				582A1FEC1C1021780000082D /* XIB */,
 				CA4B31181C0F17730013E70E /* PropertyList */,
 				CA4B31171C0F17610013E70E /* Storyboard */,
@@ -247,8 +244,6 @@
 			children = (
 				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
 				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
-				58A4DDE91C10977000600F78 /* NCPDashboardView.h */,
-				58A4DDEA1C10977000600F78 /* NCPDashboardView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -404,8 +399,7 @@
 				CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */,
-				CA4B30EF1C0F17050013E70E /* Assets.xcassets in Resources */,
-				582A1FEE1C1021AE0000082D /* DashbaordView.xib in Resources */,
+				58EC3DE51C1E736800DC35AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

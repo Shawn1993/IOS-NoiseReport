@@ -213,4 +213,6 @@ typedef enum : NSUInteger {
  */
 - (BOOL)sendWithCompletionBlock:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler;
 
++ (NSDictionary *)connectWithPage:(NSString *)page completionHandler:(void(^)(NSDictionary *data)) handler;
+
 @end
