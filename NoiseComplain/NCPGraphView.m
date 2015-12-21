@@ -65,9 +65,9 @@ int displayIndex;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapSquare);
-    CGContextSetLineWidth(context,5.0);
-    CGContextSetRGBStrokeColor(context, 1.0, 1.0, 0, 1.0);
-    CGContextSetShadow(context, CGSizeMake(3.0, 3.0), 0.5);
+    CGContextSetLineWidth(context,1.0);
+    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
+//    CGContextSetShadow(context, CGSizeMake(3.0, 3.0), 0.5);
     CGContextSetAlpha(context, 0.6);
     
     //开始绘制曲线

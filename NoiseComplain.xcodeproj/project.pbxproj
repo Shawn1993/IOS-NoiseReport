@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A4DDEA1C10977000600F78 /* NCPDashboardView.m */; };
+		5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A39E1C2674B800A95609 /* NCPDashboardView.m */; };
+		5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A3A11C2699A100A95609 /* NCPArrowView.m */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
@@ -48,7 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		58A4DDEA1C10977000600F78 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
+		5850A39D1C2674B800A95609 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
+		5850A39E1C2674B800A95609 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
+		5850A3A01C2699A100A95609 /* NCPArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPArrowView.h; sourceTree = "<group>"; };
+		5850A3A11C2699A100A95609 /* NCPArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPArrowView.m; sourceTree = "<group>"; };
 		58C632431C25ADFD00869630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
 		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
@@ -114,13 +118,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		582A1FEC1C1021780000082D /* XIB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = XIB;
-			sourceTree = "<group>";
-		};
 		CA4B30D61C0F17050013E70E = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				58C632431C25ADFD00869630 /* Assets.xcassets */,
-				582A1FEC1C1021780000082D /* XIB */,
 				CA4B31181C0F17730013E70E /* PropertyList */,
 				CA4B31171C0F17610013E70E /* Storyboard */,
 			);
@@ -243,6 +239,10 @@
 			children = (
 				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
 				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
+				5850A39D1C2674B800A95609 /* NCPDashboardView.h */,
+				5850A39E1C2674B800A95609 /* NCPDashboardView.m */,
+				5850A3A01C2699A100A95609 /* NCPArrowView.h */,
+				5850A3A11C2699A100A95609 /* NCPArrowView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -434,8 +434,9 @@
 				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
 				CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */,
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
+				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
+				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
-				58A4DDEB1C10977000600F78 /* NCPDashboardView.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
