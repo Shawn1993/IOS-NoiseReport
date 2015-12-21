@@ -14,8 +14,7 @@
 // 屏幕大小
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 #define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
-#define DEGREE_TO_RADIAN(x) ((x)*M_PI/180)
-#define RADIAN_TO_DEGREE(x) ((x)/M_PI*180)
+
 
 #define ARROW_LENGTH 140
 #define ARROW_WIDTH 10
@@ -61,10 +60,14 @@
     mNoiseMeter = [[NCPNoiseMeter alloc] init];
     
     [mNoiseMeter startWithCallback:^{
-        mValueSPL = mNoiseMeter.lastAvg+100;
-        _lableSPL.text = [NSString stringWithFormat:@"%d", (int)(mValueSPL)];
-         [_graphView addValue:mValueSPL];
-        [self.dashboardView rotateArrow:mValueSPL ];
+        
+        mValueSPL = mNoiseMeter.lastAvg+120;
+ 
+        self.lableSPL.text = [NSString stringWithFormat:@"%d", (int)(mValueSPL)];
+        
+        [self.graphView addValue:mValueSPL];
+        
+        [self.dashboardView showValue:mValueSPL];
     }];
 }
 

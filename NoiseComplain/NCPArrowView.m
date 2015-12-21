@@ -26,18 +26,19 @@
 
 -(void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self drawArrow:context];
+    [self drawArrow:context Rect:rect];
 }
 
-- (void) drawArrow:(CGContextRef) context{
+
+- (void) drawArrow:(CGContextRef) context Rect:(CGRect) rect{
     
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, SIZE_W_2, SIZE_H);
-    CGContextAddLineToPoint(context, SIZE_W_2, 0);
+    CGContextMoveToPoint(context, rect.size.width/2, rect.size.height);
+    CGContextAddLineToPoint(context, rect.size.width/2, 0);
     
-    CGContextMoveToPoint(context, 0, SIZE_W_2);
-    CGContextAddLineToPoint(context, SIZE_W_2, 0);
-    CGContextAddLineToPoint(context, SIZE_W, SIZE_W_2);
+    CGContextMoveToPoint(context, 0, rect.size.width/2);
+    CGContextAddLineToPoint(context, rect.size.width/2, 0);
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.width/2);
     CGContextStrokePath(context);
 }
 

@@ -67,7 +67,6 @@ int displayIndex;
     CGContextSetLineCap(context, kCGLineCapSquare);
     CGContextSetLineWidth(context,1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
-//    CGContextSetShadow(context, CGSizeMake(3.0, 3.0), 0.5);
     CGContextSetAlpha(context, 0.6);
     
     //开始绘制曲线
@@ -79,14 +78,6 @@ int displayIndex;
     {
         double y = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
         double x = i*xSpace;
-//        i++;
-//        double y1 = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
-//        double x1 = i*xSpace;
-//        i++;
-//        double y2 = self.frame.size.height-[[points objectAtIndex:pointCount-i-1] doubleValue]*ySpace;
-//        double x2 = i*xSpace;
-       
-//        CGContextAddCurveToPoint(context, x, y, x1, y1, x2, y2);
         CGContextAddLineToPoint(context,x,y);
     }
     CGContextStrokePath(context);

@@ -10,6 +10,6 @@
 
 @interface NCPDashboardView : UIView
 
--(void)rotateArrow:(CGFloat)angle;
+-(void)showValue:(double)value;
 
 @end
