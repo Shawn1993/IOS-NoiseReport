@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "NCPCoreDataDAOProtocol.h"
 
 /*!
  *  Core Data DAO 基类
@@ -37,5 +38,16 @@
  *  @return 沙箱目录URL
  */
 - (NSURL *)applicationDocumentsDirectory;
+
+#pragma mark - 基本操作(增删改查)
+
+- (NSArray *)findAll;
+- (NSArray *)findByPredicate:(NSString *)format, ...;
+- (id)findByKey:(id)key;
+- (BOOL)create:(id)model;
+- (BOOL)remove:(id)model;
+- (BOOL)modify:(id)model;
+
+- (BOOL)ascending;
 
 @end
