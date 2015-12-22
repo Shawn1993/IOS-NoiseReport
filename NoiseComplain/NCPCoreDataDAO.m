@@ -156,6 +156,8 @@ static NSString *kNCPCoreDataModelFileName = @"NoiseComplain";
     }
     NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
     
+    
+    
     return NO;
 }
 
