@@ -19,8 +19,8 @@
 #define MINVALUE 40
 #define TICK_NUM 26
 #define LABLE_NUM 6
-#define RADUIS_OFFSET_S 2.0
-#define RADUIS_OFFSET_L 5.0
+#define RADUIS_OFFSET_S 3.0
+#define RADUIS_OFFSET_L 6.0
 #define RADUIS (SIZE_W/2)
 #define ARROW_LENGTH RADUIS*0.9
 #define ARROW_WIDTH RADUIS/10

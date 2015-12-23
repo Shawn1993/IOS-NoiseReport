@@ -30,7 +30,8 @@
 
 @property (weak, nonatomic) IBOutlet NCPGraphView *graphView;
 
-@property (strong, nonatomic) NCPArrowView *arrowView;
+@property (weak, nonatomic) IBOutlet UIButton *btnRecord;
+
 
 @end
 
@@ -44,16 +45,19 @@
     [super viewDidLoad];
     [self initView];
     [self initNoiseMeter];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self.btnRecord addTarget:self action:@selector(touchDownBtnRecord:) forControlEvents:UIControlEventTouchDown];
+    [self.btnRecord addTarget:self action:@selector(dragOutsideBtnRecord:) forControlEvents:UIControlEventTouchDragExit];
 }
 
 #pragma mark - 初始化方法
 
 - (void)initView{
-    // 背景颜色
-    _graphView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
 }
+
 
 -(void)initNoiseMeter{
 
@@ -72,5 +76,17 @@
 }
 
 
+#pragma mark - btnRecord Action
+-(void)touchDownBtnRecord:(id)sender{
+    NSLog(@"down");
+}
+
+-(void)dragOutsideBtnRecord:(id)sender{
+    NSLog(@"outside");
+}
+
+-(void)touchUpOutsideBtnRecord:(id)sender{
+    
+}
 
 @end

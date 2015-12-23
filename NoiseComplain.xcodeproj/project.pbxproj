@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */; };
 		5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A39E1C2674B800A95609 /* NCPDashboardView.m */; };
 		5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A3A11C2699A100A95609 /* NCPArrowView.m */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		581D7A9E1C2A8B0E005E1153 /* CALayer+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addtions.h"; sourceTree = "<group>"; };
+		581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addtions.m"; sourceTree = "<group>"; };
 		5850A39D1C2674B800A95609 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
 		5850A39E1C2674B800A95609 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
 		5850A3A01C2699A100A95609 /* NCPArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPArrowView.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				5850A39E1C2674B800A95609 /* NCPDashboardView.m */,
 				5850A3A01C2699A100A95609 /* NCPArrowView.h */,
 				5850A3A11C2699A100A95609 /* NCPArrowView.m */,
+				581D7A9E1C2A8B0E005E1153 /* CALayer+Addtions.h */,
+				581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
 				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
+				581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
