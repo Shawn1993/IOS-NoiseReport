@@ -211,6 +211,6 @@ typedef enum : NSUInteger {
  *
  *  @return 成功发出请求返回<b>YES</b>, 否则返回<b>NO</b>
  */
-- (BOOL)sendWithCompletionBlock:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler;
+- (BOOL)sendWithCompletionHandler:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler;
 
 @end

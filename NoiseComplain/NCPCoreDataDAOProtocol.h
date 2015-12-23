@@ -19,7 +19,8 @@
 @required
 
 /*!
- *  获取DAO对应实体的名称, 用于获取实体
+ *  获取DAO对应实体的名称<br>
+ *  实体名称应当与<b>.xcdatamodeld</b>文件中的实体名称一致
  *
  *  @return 对应实体的名称
  */
@@ -28,38 +29,62 @@
 /*!
  *  通过ManagedObject获取对应Object转换方法
  *
- *  @param mo ManagedObjcet
+ *  @param mo 被托管模型对象
  *
  *  @return 对应Object
  */
-- (id)objectWithManaged:(NSManagedObject *)mo;
+- (id)objectWithManagedObject:(NSManagedObject *)mo;
 
 /*!
- *  通过Object获取对应ManagedObjcet转换方法
+ *  通过Object为ManagedObject的各属性赋值
  *
- *  @param obj Object
+ *  @param obj 模型对象
+ *  @param mo  被托管模型对象
  *
- *  @return 对应ManagedObject
+ *  @return 被托管模型对象
  */
-- (NSManagedObject *)managedWithObject:(id)obj;
+- (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo;
 
 /*!
  *  主键名, 是排序和查找的依据
  *
  *  @return 字段名
  */
-- (NSString *)key;
-
-@optional
+- (NSString *)keyName;
 
 /*!
- *  主键排序方向<br>
- *  默认升序(如果没有实现这个方法的话)
+ *  从模型对象中获取主键的值
  *
- *  @return 升序返回<b>YES</b>, 降序返回<b>NO</b>
+ *  @param model 模型队形
+ *
+ *  @return 主键的值
  */
-- (BOOL)ascending;
+- (id)keyValueWithObject:(id)model;
 
 @end
+
+/* 方法实现部分
+
+- (NSString *)entityName {
+    
+}
+
+- (id)objectWithManagedObject:(NSManagedObject *)mo {
+    
+}
+
+- (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo {
+    
+}
+
+- (NSString *)keyName {
+    
+}
+
+- (id)keyValueWithObject:(id)model {
+    
+}
+ 
+*/
 
 #endif /* NCPCoreDataDAOProtocol_h */
