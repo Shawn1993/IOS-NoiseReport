@@ -146,10 +146,10 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 #pragma mark - 发起及响应请求
 
 - (BOOL)send {
-    return [self sendWithCompletionBlock:nil];
+    return [self sendWithCompletionHandler:nil];
 }
 
-- (BOOL)sendWithCompletionBlock:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler {
+- (BOOL)sendWithCompletionHandler:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler {
     // 检查page是否有效
     if (!_page) {
         // page没有被正确地赋值, 请求无法发出

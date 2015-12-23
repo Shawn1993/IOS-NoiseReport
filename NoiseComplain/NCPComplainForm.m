@@ -10,4 +10,13 @@
 
 @implementation NCPComplainForm
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _date = [NSDate date];
+    }
+    return self;
+}
+
 @end

@@ -8,12 +8,23 @@
 
 #import "NCPComplainFormViewController.h"
 #import "NCPWebRequest.h"
+#import "NCPComplainForm.h"
+#import "NCPComplainFormDAO.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate>
 
-/** 导航栏按钮Cancel点击事件 */
+/*!
+ *  导航栏按钮Cancel点击事件
+ *
+ *  @param sender sender
+ */
 - (IBAction)barButtonCancelClick:(id)sender;
-/** 导航栏按钮Clear点击事件 */
+
+/*!
+ *  导航栏按钮Clear点击事件
+ *
+ *  @param sender sender
+ */
 - (IBAction)barButtonClearClick:(id)sender;
 
 @end
@@ -22,23 +33,22 @@
 
 #pragma mark - 生命周期事件
 
+/*!
+ *  视图初始化
+ */
 - (void)viewDidLoad {
     
 }
 
 #pragma mark - UITableView数据源协议与代理协议
 
+/*!
+ *  表格选择代理方法
+ *
+ *  @param tableView 表格视图
+ *  @param indexPath 表格索引路径
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NCPWebRequest *web = [NCPWebRequest requestWithPage:@"test"];
-    [web setKey:@"Test1" forInteger:1];
-    [web setKey:@"Test2" forString:@"Hello"];
-    [web sendWithCompletionBlock:^(NSData* data, NSURLResponse *response, NSDictionary *object) {
-        NSLog(@"Data: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"Response: %@", response);
-        NSLog(@"Object: %@", object);
-    }];
-    
     
     switch (indexPath.section) {
         case 0:
@@ -52,6 +62,16 @@
             break;
         case 3:
             // 提交投诉session
+        {
+            // 创建投诉表单对象
+            NCPComplainForm *form = [self generateComplainForm];
+            
+            // 将投诉表单发送至服务器
+            [self sendComplainForm:form];
+            
+            // 将投诉表单保存至本地
+            [self saveComplainForm:form];
+        }
             break;
         default:
             break;
@@ -60,14 +80,42 @@
 
 #pragma mark - 控件事件
 
-/** 导航栏按钮Cancel点击事件 */
 - (IBAction)barButtonCancelClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/** 导航栏按钮Clear点击事件 */
 - (IBAction)barButtonClearClick:(id)sender {
 
+}
+
+#pragma mark - 私有方法
+
+/*!
+ *  根据界面中的内容, 生成一个表单对象
+ *
+ *  @return 生成的表单对象
+ */
+- (NCPComplainForm *)generateComplainForm {
+    NCPComplainForm *form = [[NCPComplainForm alloc] init];
+    
+    // 添加内容
+    // TODO
+    
+    return form;
+}
+
+/*!
+ *  向服务器发送投诉表单
+ */
+- (void)sendComplainForm:(NCPComplainForm *)form {
+    NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
+}
+
+/*!
+ *  在本地保存此次投诉表单
+ */
+- (void)saveComplainForm:(NCPComplainForm *)form {
+    NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
 }
 
 @end
