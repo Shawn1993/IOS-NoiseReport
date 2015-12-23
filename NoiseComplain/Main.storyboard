@@ -13,7 +13,7 @@
             <objects>
                 <navigationController title="MeterNav" id="PhM-yN-tRS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="噪声仪" image="microphone" selectedImage="microphone_selected" id="UWW-QQ-9O5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="9ko-ym-VvR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9ko-ym-VvR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -44,23 +44,66 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htn-Px-xYI">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT3-Hi-Uep" customClass="NCPDashboardView">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3x-FT-blT" customClass="NCPGraphView">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bT3-Hi-Uep" customClass="NCPDashboardView">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zd-eu-YJm">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.73933053523936176" green="0.73933053523936176" blue="0.73933053523936176" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="0Ta-4y-8z1">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                            </constraint>
+                                            <constraint firstAttribute="height" constant="21" id="nf7-q1-8KI">
+                                                <variation key="heightClass=regular-widthClass=compact" constant="50"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="alpha">
+                                                <integer key="value" value="255"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="0Ta-4y-8z1"/>
+                                                <exclude reference="nf7-q1-8KI"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="0Ta-4y-8z1"/>
+                                                <include reference="nf7-q1-8KI"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-Pm-3Zz">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.76425365691489366" green="0.76425365691489366" blue="0.76425365691489366" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.97987657912234039" green="0.97987657912234039" blue="0.97987657912234039" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="按住 测量">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="disabled" title="disabled"/>
                                         <state key="selected" title="selected">
@@ -78,44 +121,10 @@
                                                 <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
-                                                <color key="value" red="0.32284740691489366" green="0.32284740691489366" blue="0.32284740691489366" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzd-mU-XEi">
-                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.70980392156862748" green="0.70980392156862748" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20.5" id="bkI-Or-fSD">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="50"/>
-                                            </constraint>
-                                            <constraint firstAttribute="width" constant="10.5" id="hRp-mn-k6R">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="50"/>
-                                            </constraint>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="bkI-Or-fSD"/>
-                                                <exclude reference="hRp-mn-k6R"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="bkI-Or-fSD"/>
-                                                <include reference="hRp-mn-k6R"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
                                 </subviews>
                                 <animations/>
                                 <constraints>
@@ -123,7 +132,6 @@
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
                                     <constraint firstItem="bT3-Hi-Uep" firstAttribute="height" secondItem="htn-Px-xYI" secondAttribute="height" multiplier="0.5" id="3FY-PE-6EC"/>
-                                    <constraint firstItem="vzd-mU-XEi" firstAttribute="centerY" secondItem="htn-Px-xYI" secondAttribute="centerY" id="D99-11-BBE"/>
                                     <constraint firstItem="N3x-FT-blT" firstAttribute="height" secondItem="htn-Px-xYI" secondAttribute="height" multiplier="0.5" id="INl-Vj-BaO"/>
                                     <constraint firstItem="b5W-Pm-3Zz" firstAttribute="leading" secondItem="htn-Px-xYI" secondAttribute="leading" constant="177" id="MOM-XV-tNY">
                                         <variation key="heightClass=regular-widthClass=compact" constant="70"/>
@@ -131,15 +139,16 @@
                                     <constraint firstItem="bT3-Hi-Uep" firstAttribute="leading" secondItem="htn-Px-xYI" secondAttribute="leading" constant="-80" id="Odv-VH-FEo">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
-                                    <constraint firstItem="vzd-mU-XEi" firstAttribute="centerX" secondItem="htn-Px-xYI" secondAttribute="centerX" id="RRj-h1-y5v"/>
                                     <constraint firstAttribute="bottom" secondItem="N3x-FT-blT" secondAttribute="bottom" constant="173" id="aTo-E4-twD">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="b5W-Pm-3Zz" secondAttribute="trailing" constant="177" id="eAo-68-aA7">
                                         <variation key="heightClass=regular-widthClass=compact" constant="70"/>
                                     </constraint>
+                                    <constraint firstItem="4zd-eu-YJm" firstAttribute="centerX" secondItem="htn-Px-xYI" secondAttribute="centerX" id="gWl-LB-RE6"/>
                                     <constraint firstItem="N3x-FT-blT" firstAttribute="leading" secondItem="htn-Px-xYI" secondAttribute="leading" id="hKy-AH-29y"/>
                                     <constraint firstAttribute="trailing" secondItem="bT3-Hi-Uep" secondAttribute="trailing" id="k0T-wS-laV"/>
+                                    <constraint firstItem="4zd-eu-YJm" firstAttribute="centerY" secondItem="htn-Px-xYI" secondAttribute="centerY" id="ksI-gC-KKD"/>
                                     <constraint firstAttribute="trailing" secondItem="N3x-FT-blT" secondAttribute="trailing" id="wWz-4t-DmD"/>
                                     <constraint firstAttribute="bottom" secondItem="b5W-Pm-3Zz" secondAttribute="bottom" constant="331" id="wwB-EU-Ygm">
                                         <variation key="heightClass=regular-widthClass=compact" constant="10"/>
@@ -147,48 +156,48 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="bT3-Hi-Uep"/>
                                         <exclude reference="N3x-FT-blT"/>
+                                        <exclude reference="bT3-Hi-Uep"/>
+                                        <exclude reference="4zd-eu-YJm"/>
                                         <exclude reference="b5W-Pm-3Zz"/>
-                                        <exclude reference="vzd-mU-XEi"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="MOM-XV-tNY"/>
-                                        <exclude reference="eAo-68-aA7"/>
-                                        <exclude reference="wwB-EU-Ygm"/>
-                                        <exclude reference="D99-11-BBE"/>
-                                        <exclude reference="RRj-h1-y5v"/>
-                                        <exclude reference="INl-Vj-BaO"/>
-                                        <exclude reference="aTo-E4-twD"/>
-                                        <exclude reference="hKy-AH-29y"/>
-                                        <exclude reference="wWz-4t-DmD"/>
                                         <exclude reference="1zS-hk-DMC"/>
                                         <exclude reference="3FY-PE-6EC"/>
                                         <exclude reference="Odv-VH-FEo"/>
                                         <exclude reference="k0T-wS-laV"/>
+                                        <exclude reference="INl-Vj-BaO"/>
+                                        <exclude reference="aTo-E4-twD"/>
+                                        <exclude reference="hKy-AH-29y"/>
+                                        <exclude reference="wWz-4t-DmD"/>
+                                        <exclude reference="gWl-LB-RE6"/>
+                                        <exclude reference="ksI-gC-KKD"/>
+                                        <exclude reference="MOM-XV-tNY"/>
+                                        <exclude reference="eAo-68-aA7"/>
+                                        <exclude reference="wwB-EU-Ygm"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
-                                        <include reference="bT3-Hi-Uep"/>
                                         <include reference="N3x-FT-blT"/>
+                                        <include reference="bT3-Hi-Uep"/>
+                                        <include reference="4zd-eu-YJm"/>
                                         <include reference="b5W-Pm-3Zz"/>
-                                        <include reference="vzd-mU-XEi"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="MOM-XV-tNY"/>
-                                        <include reference="eAo-68-aA7"/>
-                                        <include reference="wwB-EU-Ygm"/>
-                                        <include reference="D99-11-BBE"/>
-                                        <include reference="RRj-h1-y5v"/>
-                                        <include reference="INl-Vj-BaO"/>
-                                        <include reference="aTo-E4-twD"/>
-                                        <include reference="hKy-AH-29y"/>
-                                        <include reference="wWz-4t-DmD"/>
                                         <include reference="1zS-hk-DMC"/>
                                         <include reference="3FY-PE-6EC"/>
                                         <include reference="Odv-VH-FEo"/>
                                         <include reference="k0T-wS-laV"/>
+                                        <include reference="INl-Vj-BaO"/>
+                                        <include reference="aTo-E4-twD"/>
+                                        <include reference="hKy-AH-29y"/>
+                                        <include reference="wWz-4t-DmD"/>
+                                        <include reference="gWl-LB-RE6"/>
+                                        <include reference="ksI-gC-KKD"/>
+                                        <include reference="MOM-XV-tNY"/>
+                                        <include reference="eAo-68-aA7"/>
+                                        <include reference="wwB-EU-Ygm"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -234,10 +243,10 @@
                                 <segment title="实时"/>
                                 <segment title="记录"/>
                             </segments>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="选项" id="rBs-dr-BRx">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Wh4-YL-Hgj" kind="presentation" id="yhU-aP-csn"/>
                             </connections>
@@ -248,7 +257,7 @@
                         <outlet property="btnRecord" destination="b5W-Pm-3Zz" id="wg5-hf-POv"/>
                         <outlet property="dashboardView" destination="bT3-Hi-Uep" id="oNn-g0-CeP"/>
                         <outlet property="graphView" destination="N3x-FT-blT" id="HlQ-N1-7d8"/>
-                        <outlet property="lableSPL" destination="vzd-mU-XEi" id="JYp-fU-QlO"/>
+                        <outlet property="labelSPL" destination="4zd-eu-YJm" id="H3q-Uu-9Ki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Dn-ox-ade" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -841,12 +850,17 @@
             <objects>
                 <tabBarController title="TabBar" id="XT2-sx-DLh" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oXP-de-OG6"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="3JD-UJ-YLF">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="3JD-UJ-YLF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.15686274510000001" green="0.32156862749999998" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="tintColor" red="1" green="0.58329756970000002" blue="0.32004458260000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="selectedImageTintColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="PhM-yN-tRS" kind="relationship" relationship="viewControllers" id="pEC-D2-lf3"/>

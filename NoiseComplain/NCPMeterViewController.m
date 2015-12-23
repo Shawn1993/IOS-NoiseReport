@@ -26,7 +26,7 @@
 }
 @property (weak, nonatomic) IBOutlet NCPDashboardView *dashboardView;
 
-@property (weak, nonatomic) IBOutlet UILabel *lableSPL;
+@property (weak, nonatomic) IBOutlet UILabel *labelSPL;
 
 @property (weak, nonatomic) IBOutlet NCPGraphView *graphView;
 
@@ -48,14 +48,14 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [self.btnRecord addTarget:self action:@selector(touchDownBtnRecord:) forControlEvents:UIControlEventTouchDown];
-    [self.btnRecord addTarget:self action:@selector(dragOutsideBtnRecord:) forControlEvents:UIControlEventTouchDragExit];
+    
 }
 
 #pragma mark - 初始化方法
 
 - (void)initView{
-    
+    [self.btnRecord addTarget:self action:@selector(touchDownBtnRecord:) forControlEvents:UIControlEventTouchDown];
+    [self.btnRecord addTarget:self action:@selector(dragOutsideBtnRecord:) forControlEvents:UIControlEventTouchDragExit];
 }
 
 
@@ -67,7 +67,7 @@
         
         mValueSPL = mNoiseMeter.lastAvg+120;
  
-        self.lableSPL.text = [NSString stringWithFormat:@"%d", (int)(mValueSPL)];
+        self.labelSPL.text = [NSString stringWithFormat:@"%d", (int)(mValueSPL)];
         
         [self.graphView addValue:mValueSPL];
         
