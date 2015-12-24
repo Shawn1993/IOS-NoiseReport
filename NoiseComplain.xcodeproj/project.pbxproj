@@ -11,6 +11,7 @@
 		5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A39E1C2674B800A95609 /* NCPDashboardView.m */; };
 		5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A3A11C2699A100A95609 /* NCPArrowView.m */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
+		58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
@@ -66,6 +67,8 @@
 		5850A3A01C2699A100A95609 /* NCPArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPArrowView.h; sourceTree = "<group>"; };
 		5850A3A11C2699A100A95609 /* NCPArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPArrowView.m; sourceTree = "<group>"; };
 		58C632431C25ADFD00869630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordViewController.h; sourceTree = "<group>"; };
+		58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordViewController.m; sourceTree = "<group>"; };
 		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
 		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +262,8 @@
 				CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */,
 				CA4B31261C0F18900013E70E /* NCPLocationViewController.h */,
 				CA4B31271C0F18900013E70E /* NCPLocationViewController.m */,
+				58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */,
+				58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
 				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
 				CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */,
+				58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */,
 				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
 				581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */,

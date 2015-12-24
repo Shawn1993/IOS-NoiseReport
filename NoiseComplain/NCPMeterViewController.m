@@ -78,7 +78,14 @@
 
 #pragma mark - btnRecord Action
 -(void)touchDownBtnRecord:(id)sender{
-    NSLog(@"down");
+    
+    self.navigationController.navigationBar.translucent = YES;
+ 
+    UIView *view = [[UIView alloc] initWithFrame:self.view.window.frame];
+    NSLog(@"%f %f",self.view.window.frame.size.width,self.view.window.frame.size.height);
+    view.backgroundColor = [UIColor grayColor];
+    view.alpha = 0.5;
+    [self.view addSubview:view];
 }
 
 -(void)dragOutsideBtnRecord:(id)sender{
