@@ -657,7 +657,7 @@
         <!--声功能区类型选择-->
         <scene sceneID="dhG-V2-sG6">
             <objects>
-                <tableViewController id="C71-Dg-jOG" sceneMemberID="viewController">
+                <tableViewController id="C71-Dg-jOG" customClass="NCPSFATypeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kcL-LH-dZg">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -683,7 +683,7 @@
         <!--描述信息-->
         <scene sceneID="gRt-pT-2hX">
             <objects>
-                <tableViewController id="DrB-Tf-iVr" sceneMemberID="viewController">
+                <tableViewController id="DrB-Tf-iVr" customClass="NCPCommentViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P6a-fT-d5o">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -709,7 +709,7 @@
         <!--噪音类型选择-->
         <scene sceneID="rvM-F4-oV8">
             <objects>
-                <tableViewController id="IQJ-Lg-qv3" sceneMemberID="viewController">
+                <tableViewController id="IQJ-Lg-qv3" customClass="NCPNoiseTypeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kGw-0j-nMU">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
