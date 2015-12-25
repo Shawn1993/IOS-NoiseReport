@@ -10,7 +10,10 @@
 		581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */; };
 		5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A39E1C2674B800A95609 /* NCPDashboardView.m */; };
 		5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A3A11C2699A100A95609 /* NCPArrowView.m */; };
+		5857D0021C2D114500334579 /* NCPNoiseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5857D0011C2D114500334579 /* NCPNoiseRecorder.m */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
+		58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */; };
+		58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */; };
 		58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.m */; };
@@ -66,7 +69,12 @@
 		5850A39E1C2674B800A95609 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
 		5850A3A01C2699A100A95609 /* NCPArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPArrowView.h; sourceTree = "<group>"; };
 		5850A3A11C2699A100A95609 /* NCPArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPArrowView.m; sourceTree = "<group>"; };
+		5857D0001C2D114500334579 /* NCPNoiseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseRecorder.h; sourceTree = "<group>"; };
+		5857D0011C2D114500334579 /* NCPNoiseRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseRecorder.m; sourceTree = "<group>"; };
 		58C632431C25ADFD00869630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoiseRecordingView.xib; sourceTree = "<group>"; };
+		58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordedPower.h; sourceTree = "<group>"; };
+		58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordedPower.m; sourceTree = "<group>"; };
 		58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordViewController.h; sourceTree = "<group>"; };
 		58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordViewController.m; sourceTree = "<group>"; };
 		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
@@ -153,6 +161,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58D4A6081C2D9437004A914D /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */,
+			);
+			name = Xib;
+			sourceTree = "<group>";
+		};
 		CA4B30D61C0F17050013E70E = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 		CA4B31151C0F17440013E70E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				58D4A6081C2D9437004A914D /* Xib */,
 				58C632431C25ADFD00869630 /* Assets.xcassets */,
 				CA4B31181C0F17730013E70E /* PropertyList */,
 				CA4B31171C0F17610013E70E /* Storyboard */,
@@ -293,6 +310,10 @@
 				CA4B311F1C0F18900013E70E /* NCPComplainForm.m */,
 				CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */,
 				CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */,
+				5857D0001C2D114500334579 /* NCPNoiseRecorder.h */,
+				5857D0011C2D114500334579 /* NCPNoiseRecorder.m */,
+				58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */,
+				58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -501,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */,
 				CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */,
 				CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
@@ -544,6 +566,7 @@
 				CA4B30E41C0F17050013E70E /* main.m in Sources */,
 				CAC4E5341C2A44ED00991334 /* NCPComplainFormManagedObject+CoreDataProperties.m in Sources */,
 				CAACDEB81C2BE4CC00456D5B /* NCPCommentViewController.m in Sources */,
+				58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */,
 				CAC4E5351C2A44ED00991334 /* NCPComplainFormManagedObject.m in Sources */,
 				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
 				CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */,
@@ -555,6 +578,7 @@
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
 				581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */,
 				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
+				5857D0021C2D114500334579 /* NCPNoiseRecorder.m in Sources */,
 				CAACDEBA1C2BE4CC00456D5B /* NCPSFATypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
