@@ -85,6 +85,7 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
     switch (indexPath.section) {
         case 0:
             // 测量结果session
@@ -111,6 +112,7 @@
         default:
             break;
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - BMKMapViewDelegate
@@ -171,14 +173,14 @@
  *  向服务器发送投诉表单
  */
 - (void)sendComplainForm:(NCPComplainForm *)form {
-    NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
+    // NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
 }
 
 /*!
  *  在本地保存此次投诉表单
  */
 - (void)saveComplainForm:(NCPComplainForm *)form {
-    NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
+    // NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
 }
 
 @end

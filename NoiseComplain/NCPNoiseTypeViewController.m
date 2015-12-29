@@ -7,9 +7,9 @@
 //
 
 #import "NCPNoiseTypeViewController.h"
+#import "NCPComplainFormTableViewCell.h"
 
-static NSString *kNCPNoiseTypePListFileName = @"NoiseType";
-static NSString *kNCPNoiseTypeCell = @"NoiseTypeCellIdentifier";
+NSString *kNCPNoiseTypePListFileName = @"NoiseType";
 
 #pragma mark Private category
 
@@ -49,11 +49,14 @@ static NSString *kNCPNoiseTypeCell = @"NoiseTypeCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPNoiseTypeCell forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPComplainFormTableCellIdentifier forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        NSLog(@"nil");
+    }
 
     NSUInteger row = indexPath.row;
-    cell.textLabel.text = self.pList[row];
-    
+    cell.textLabel.text = self.pList[row][@"name"];
     
     return cell;
 }
@@ -111,6 +114,7 @@ static NSString *kNCPNoiseTypeCell = @"NoiseTypeCellIdentifier";
         _pList = [[NSArray alloc] initWithContentsOfFile:plistPath];
         NSLog(@"%@", _pList);
     }
+    NSLog(@"%@", _pList);
     return _pList;
 }
 
