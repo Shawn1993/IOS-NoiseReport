@@ -8,6 +8,7 @@
 
 #import "NCPWebRequest.h"
 #import "NCPWebParameter.h"
+#import "GTLBase64.h"
 
 #pragma mark 常量定义
 
@@ -214,6 +215,9 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
     // 获取前缀
     NSString *prefix = [value prefix];
     
+    // 数组型是否添加'&'标识符
+    BOOL first = YES;
+    
     switch (value.type) {
         case NCPWebInteger:
         case NCPWebFloat:
@@ -230,12 +234,12 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
             }
             break;
         case NCPWebData:
-            // 二进制型, 不转码直接附加
+            // 二进制型, 转码为Base64
         {
-            NSMutableData *buff = [NSMutableData data];
-            [buff appendData:[[NSString stringWithFormat:@"%@%@=", prefix, key] dataUsingEncoding:NSUTF8StringEncoding]];
-            [buff appendData:value.content];
-            return buff;
+            NSMutableString *buff = [NSMutableString string];
+            [buff appendFormat:@"%@%@=", prefix, key];
+            [buff appendString:GTLEncodeBase64(value.content)];
+            return [buff dataUsingEncoding:NSUTF8StringEncoding];
         }
             break;
         case NCPWebIntegerArray:
@@ -246,6 +250,14 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
             NSMutableString *buff = [NSMutableString string];
             NSArray *array = value.content;
             for (NCPWebParameter *item in array) {
+                
+                // 数组内添加'&'分隔符
+                if (first) {
+                    first = NO;
+                } else {
+                    [buff appendString:@"&"];
+                }
+                
                 [buff appendFormat:@"%@%@=%@", prefix, key, item.content];
             }
             return [buff dataUsingEncoding:NSUTF8StringEncoding];
@@ -257,6 +269,14 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
             NSMutableString *buff = [NSMutableString string];
             NSArray *array = value.content;
             for (NCPWebParameter *item in array) {
+                
+                // 数组内添加'&'分隔符
+                if (first) {
+                    first = NO;
+                } else {
+                    [buff appendString:@"&"];
+                }
+                
                 if ([((NSNumber *)item.content) boolValue]) {
                     [buff appendFormat:@"%@%@=true", prefix, key];
                 } else {
@@ -267,14 +287,23 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
         }
             break;
         case NCPWebDataArray:
+            // 二进制数组型, 转码为Base64
         {
-            NSMutableData *buff = [NSMutableData data];
+            NSMutableString *buff = [NSMutableString string];
             NSArray *array = value.content;
             for (NCPWebParameter *item in array) {
-                [buff appendData:[[NSString stringWithFormat:@"%@%@=", prefix, key] dataUsingEncoding:NSUTF8StringEncoding]];
-                [buff appendData:item.content];
+                
+                // 数组内添加'&'分隔符
+                if (first) {
+                    first = NO;
+                } else {
+                    [buff appendString:@"&"];
+                }
+                
+                [buff appendFormat:@"%@%@=", prefix, key];
+                [buff appendString:GTLEncodeBase64(item.content)];
             }
-            return buff;
+            return [buff dataUsingEncoding:NSUTF8StringEncoding];
         }
             break;
         default:
