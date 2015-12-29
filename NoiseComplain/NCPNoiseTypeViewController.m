@@ -7,21 +7,30 @@
 //
 
 #import "NCPNoiseTypeViewController.h"
+#import "NCPComplainFormTableViewCell.h"
+
+NSString *kNCPNoiseTypePListFileName = @"NoiseType";
+
+#pragma mark Private category
 
 @interface NCPNoiseTypeViewController ()
 
+@property (strong, nonatomic) NSArray *pList;
+
 @end
+
+#pragma mark - Implementation
 
 @implementation NCPNoiseTypeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +41,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return _pList.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPComplainFormTableCellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    if (cell == nil) {
+        NSLog(@"nil");
+    }
+
+    NSUInteger row = indexPath.row;
+    cell.textLabel.text = self.pList[row][@"name"];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -94,5 +105,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Getter & Setter
+
+- (NSArray *)pList {
+    if (!_pList) {
+        NSString *plistPath = [[NSBundle mainBundle] pathForResource:kNCPNoiseTypePListFileName ofType:@"plist"];
+        _pList = [[NSArray alloc] initWithContentsOfFile:plistPath];
+        NSLog(@"%@", _pList);
+    }
+    NSLog(@"%@", _pList);
+    return _pList;
+}
 
 @end

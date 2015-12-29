@@ -33,6 +33,8 @@
 		58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */; };
 		58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */; };
 		58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */; };
+		CA208CB51C3232080097652A /* NCPComplainFormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA208CB41C3232080097652A /* NCPComplainFormTableViewCell.m */; };
+		CA208CB91C3232790097652A /* NCPComplainGuideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA208CB81C3232790097652A /* NCPComplainGuideTableViewCell.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA4B30E41C0F17050013E70E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.mm */; };
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
@@ -114,6 +116,10 @@
 		58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordedPower.m; sourceTree = "<group>"; };
 		58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordViewController.h; sourceTree = "<group>"; };
 		58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordViewController.m; sourceTree = "<group>"; };
+		CA208CB31C3232080097652A /* NCPComplainFormTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormTableViewCell.h; sourceTree = "<group>"; };
+		CA208CB41C3232080097652A /* NCPComplainFormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainFormTableViewCell.m; sourceTree = "<group>"; };
+		CA208CB71C3232790097652A /* NCPComplainGuideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainGuideTableViewCell.h; sourceTree = "<group>"; };
+		CA208CB81C3232790097652A /* NCPComplainGuideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainGuideTableViewCell.m; sourceTree = "<group>"; };
 		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
 		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +251,17 @@
 			name = Xib;
 			sourceTree = "<group>";
 		};
+		CA208CB61C32325E0097652A /* ComplainGuide */ = {
+			isa = PBXGroup;
+			children = (
+				CA208CB71C3232790097652A /* NCPComplainGuideTableViewCell.h */,
+				CA208CB81C3232790097652A /* NCPComplainGuideTableViewCell.m */,
+				CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */,
+				CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */,
+			);
+			name = ComplainGuide;
+			sourceTree = "<group>";
+		};
 		CA4B30D61C0F17050013E70E = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +341,6 @@
 				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
 				CA4B311A1C0F17990013E70E /* CustomViews */,
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
-				CA4B311B1C0F17A80013E70E /* Models */,
 				CAA0CB831C25AE8B0055DE89 /* DataPersistence */,
 				CAA0CBCF1C2689BC0055DE89 /* Utilities */,
 				CAB15E941C1E8B29001886F6 /* Libraries */,
@@ -337,6 +353,7 @@
 			children = (
 				CA4B31781C0F1A220013E70E /* Main.storyboard */,
 				CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */,
+				CA4B311B1C0F17A80013E70E /* Models */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -354,13 +371,12 @@
 		CA4B31191C0F178E0013E70E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA208CB61C32325E0097652A /* ComplainGuide */,
 				CAACDEBB1C2BE4F600456D5B /* ComplainForm */,
 				CA4B31281C0F18900013E70E /* NCPMeterViewController.h */,
 				CA4B31291C0F18900013E70E /* NCPMeterViewController.m */,
 				CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */,
 				CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */,
-				CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */,
-				CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */,
 				58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */,
 				58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */,
 			);
@@ -462,14 +478,16 @@
 		CAACDEBB1C2BE4F600456D5B /* ComplainForm */ = {
 			isa = PBXGroup;
 			children = (
+				CA208CB31C3232080097652A /* NCPComplainFormTableViewCell.h */,
+				CA208CB41C3232080097652A /* NCPComplainFormTableViewCell.m */,
+				CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */,
+				CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */,
 				CAACDEB21C2BE4CC00456D5B /* NCPCommentViewController.h */,
 				CAACDEB31C2BE4CC00456D5B /* NCPCommentViewController.m */,
 				CAACDEB41C2BE4CC00456D5B /* NCPNoiseTypeViewController.h */,
 				CAACDEB51C2BE4CC00456D5B /* NCPNoiseTypeViewController.m */,
 				CAACDEB61C2BE4CC00456D5B /* NCPSFATypeViewController.h */,
 				CAACDEB71C2BE4CC00456D5B /* NCPSFATypeViewController.m */,
-				CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */,
-				CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */,
 				CA4B31261C0F18900013E70E /* NCPLocationViewController.h */,
 				CA4B31271C0F18900013E70E /* NCPLocationViewController.m */,
 			);
@@ -639,6 +657,7 @@
 				CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */,
 				CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */,
 				CAACDEB91C2BE4CC00456D5B /* NCPNoiseTypeViewController.m in Sources */,
+				CA208CB91C3232790097652A /* NCPComplainGuideTableViewCell.m in Sources */,
 				CA540B8A1C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld in Sources */,
 				CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */,
 				CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */,
@@ -655,6 +674,7 @@
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
 				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
 				CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */,
+				CA208CB51C3232080097652A /* NCPComplainFormTableViewCell.m in Sources */,
 				58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */,
 				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
