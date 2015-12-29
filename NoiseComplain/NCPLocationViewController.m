@@ -7,31 +7,39 @@
 //
 
 #import "NCPLocationViewController.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
-@interface NCPLocationViewController ()
+#pragma mark - private interface
+@interface NCPLocationViewController (){
+    
+    
+}
 
+@property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
 
-/** 导航栏按钮Done点击事件 */
-- (IBAction)barButtonDoneClick:(id)sender;
-/** 导航栏按钮Cancel点击事件 */
-- (IBAction)barButtonCancelClick:(id)sender;
+@property (strong, nonatomic) BMKMapView *mapView;
+
+- (IBAction)doneButtonClick:(id)sender;
 
 @end
 
+
+#pragma mark - implementation
 @implementation NCPLocationViewController
 
-/** 导航栏按钮Done点击事件 */
-- (IBAction)barButtonDoneClick:(id)sender {
-    // 退出定位视图
+-(void)viewDidLoad{
+    self.mapView = [[BMKMapView alloc] init];
+    [self.mapViewContainer addSubview:self.mapView];
+}
+
+-(void)viewDidLayoutSubviews{
+    self.mapView.frame = self.mapViewContainer.bounds;
+}
+
+
+- (IBAction)doneButtonClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
-        // 保存定位结果
+        
     }];
 }
-
-/** 导航栏按钮Cancel点击事件 */
-- (IBAction)barButtonCancelClick:(id)sender {
-    // 退出定位视图, 不做任何操作
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 @end

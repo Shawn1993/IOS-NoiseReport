@@ -16,6 +16,13 @@
 @implementation NCPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    self.mapManager = [[BMKMapManager alloc]init];
+    
+    BOOL result = [self.mapManager start:@"cIvjsxRwYmIGgi1Gwob3V6i4"  generalDelegate:nil];
+    if (!result) {
+        NSLog(@"manager start failed!");
+    }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

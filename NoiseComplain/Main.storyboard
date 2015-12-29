@@ -476,38 +476,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VSR-FT-M3q" id="hxY-eT-5ih">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="131.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(地图缩略图)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jai-bx-Sha">
-                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <animations/>
-                                            <constraints>
-                                                <constraint firstItem="jai-bx-Sha" firstAttribute="centerY" secondItem="hxY-eT-5ih" secondAttribute="centerY" id="6X8-LT-y4g"/>
-                                                <constraint firstItem="jai-bx-Sha" firstAttribute="centerX" secondItem="hxY-eT-5ih" secondAttribute="centerX" id="83k-IZ-9EP"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="jai-bx-Sha"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="6X8-LT-y4g"/>
-                                                    <exclude reference="83k-IZ-9EP"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="jai-bx-Sha"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="6X8-LT-y4g"/>
-                                                    <include reference="83k-IZ-9EP"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -693,6 +662,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapViewContainer" destination="hxY-eT-5ih" id="Z7N-6w-pdv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x99-oe-Hrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -728,7 +700,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Lv-Bm-wLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3136.5" y="241.5"/>
+            <point key="canvasLocation" x="3040.5" y="880.5"/>
         </scene>
         <!--描述信息-->
         <scene sceneID="gRt-pT-2hX">
@@ -760,7 +732,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwO-o1-XXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543.5" y="241.5"/>
+            <point key="canvasLocation" x="1627.5" y="880.5"/>
         </scene>
         <!--噪音类型选择-->
         <scene sceneID="rvM-F4-oV8">
@@ -792,7 +764,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6g-HA-hXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2353.5" y="241.5"/>
+            <point key="canvasLocation" x="2299.5" y="880.5"/>
         </scene>
         <!--噪声投诉-->
         <scene sceneID="dlt-P0-hZf">
@@ -884,25 +856,141 @@
                     <view key="view" contentMode="scaleToFill" id="iZr-Tc-YOP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-nR-3Dq" userLabel="MapViewContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gJi-eX-Wtq">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <animations/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="6xt-aR-p5X" id="gQX-d9-UKg"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="gJi-eX-Wtq" firstAttribute="leading" secondItem="KRO-nR-3Dq" secondAttribute="leading" constant="-7" id="3Hf-su-TD7">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="gJi-eX-Wtq" firstAttribute="top" secondItem="KRO-nR-3Dq" secondAttribute="top" constant="348" id="ADM-YE-9wi">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="gJi-eX-Wtq" secondAttribute="trailing" constant="7" id="JF1-oK-vlw">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="gJi-eX-Wtq"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="3Hf-su-TD7"/>
+                                        <exclude reference="ADM-YE-9wi"/>
+                                        <exclude reference="JF1-oK-vlw"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="gJi-eX-Wtq"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="3Hf-su-TD7"/>
+                                        <include reference="ADM-YE-9wi"/>
+                                        <include reference="JF1-oK-vlw"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KRO-nR-3Dq" firstAttribute="leading" secondItem="iZr-Tc-YOP" secondAttribute="leading" constant="30" id="6WH-T9-sZb">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="KRO-nR-3Dq" firstAttribute="top" secondItem="das-52-dmd" secondAttribute="bottom" constant="109" id="J5K-mf-Cf9">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="TIk-1A-EyT" firstAttribute="top" secondItem="KRO-nR-3Dq" secondAttribute="bottom" constant="499" id="syN-9V-Co8">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="KRO-nR-3Dq" secondAttribute="trailing" constant="130" id="ua9-PJ-Asy">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="KRO-nR-3Dq"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="syN-9V-Co8"/>
+                                <exclude reference="6WH-T9-sZb"/>
+                                <exclude reference="J5K-mf-Cf9"/>
+                                <exclude reference="ua9-PJ-Asy"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="KRO-nR-3Dq"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="syN-9V-Co8"/>
+                                <include reference="6WH-T9-sZb"/>
+                                <include reference="J5K-mf-Cf9"/>
+                                <include reference="ua9-PJ-Asy"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="噪声源定位" id="zsG-Db-Wkz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YAr-5C-dH8">
-                            <connections>
-                                <action selector="barButtonCancelClick:" destination="6xt-aR-p5X" id="nCB-lY-SAr"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8As-i1-qM2">
                             <connections>
-                                <action selector="barButtonDoneClick:" destination="6xt-aR-p5X" id="uuZ-j1-XcV"/>
+                                <action selector="doneButtonClick:" destination="6xt-aR-p5X" id="YIJ-vc-wpr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapViewContainer" destination="KRO-nR-3Dq" id="fzd-XC-GdY"/>
+                        <outlet property="searchDisplayController" destination="SR7-DE-ebV" id="XU6-oC-unB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqs-vH-gZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="fkm-Pq-cLR">
+                    <connections>
+                        <outlet property="delegate" destination="6xt-aR-p5X" id="ZiA-Yn-61l"/>
+                        <outlet property="searchContentsController" destination="6xt-aR-p5X" id="QC7-oY-tuy"/>
+                        <outlet property="searchResultsDataSource" destination="6xt-aR-p5X" id="6wM-as-aoa"/>
+                        <outlet property="searchResultsDelegate" destination="6xt-aR-p5X" id="Yks-g2-Exn"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="jdS-Ak-62Q">
+                    <connections>
+                        <outlet property="delegate" destination="6xt-aR-p5X" id="THP-8Z-Wqo"/>
+                        <outlet property="searchContentsController" destination="6xt-aR-p5X" id="wqF-2P-AlS"/>
+                        <outlet property="searchResultsDataSource" destination="6xt-aR-p5X" id="QbG-Ex-juJ"/>
+                        <outlet property="searchResultsDelegate" destination="6xt-aR-p5X" id="LYX-0z-NyY"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="dMM-yK-YOj">
+                    <connections>
+                        <outlet property="delegate" destination="6xt-aR-p5X" id="eV6-gs-Xih"/>
+                        <outlet property="searchContentsController" destination="6xt-aR-p5X" id="sg2-Ar-cl7"/>
+                        <outlet property="searchResultsDataSource" destination="6xt-aR-p5X" id="NAk-PD-K41"/>
+                        <outlet property="searchResultsDelegate" destination="6xt-aR-p5X" id="BwE-e0-dj0"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="SR7-DE-ebV">
+                    <connections>
+                        <outlet property="delegate" destination="6xt-aR-p5X" id="N5X-wQ-PTJ"/>
+                        <outlet property="searchBar" destination="gJi-eX-Wtq" id="xD5-Tq-SGM"/>
+                        <outlet property="searchContentsController" destination="6xt-aR-p5X" id="LvP-rE-8rZ"/>
+                        <outlet property="searchResultsDataSource" destination="6xt-aR-p5X" id="3pl-kF-7hp"/>
+                        <outlet property="searchResultsDelegate" destination="6xt-aR-p5X" id="T67-ft-n8z"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3943.5" y="241.5"/>
+            <point key="canvasLocation" x="3721.5" y="880.5"/>
         </scene>
         <!--TabBar-->
         <scene sceneID="qCj-Vk-vfA">
@@ -929,6 +1017,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSP-92-eGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-972" y="-842.25"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SkC-w3-rrJ">
+            <objects>
+                <viewController id="q4C-GQ-sWl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pkt-9P-XUS"/>
+                        <viewControllerLayoutGuide type="bottom" id="S2Z-Ch-pKP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4dU-zQ-em2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KX6-10-54F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

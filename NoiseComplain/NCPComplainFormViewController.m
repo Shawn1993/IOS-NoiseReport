@@ -10,8 +10,12 @@
 #import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
 #import "NCPComplainFormDAO.h"
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import "NCPSystemValue.h"
 
-@interface NCPComplainFormViewController () <UITableViewDelegate>
+@interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate>
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -27,6 +31,12 @@
  */
 - (IBAction)barButtonClearClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
+
+@property (strong,nonatomic) BMKMapView *mapView;
+
+@property (strong, nonatomic) BMKLocationService *locationService;
+
 @end
 
 @implementation NCPComplainFormViewController
@@ -37,7 +47,32 @@
  *  视图初始化
  */
 - (void)viewDidLoad {
+    self.mapView = [[BMKMapView alloc] init];
+    self.mapView.showsUserLocation = YES;
+    [self.mapViewContainer addSubview:self.mapView];
+    self.mapView.userTrackingMode =BMKUserTrackingModeFollow;
+
     
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    [self.locationService startUserLocationService];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.mapView viewWillAppear];
+    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
+    self.mapView.delegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    self.mapView.frame = self.mapViewContainer.bounds;
+    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.mapView viewWillDisappear];
+    self.mapView.delegate = nil;
 }
 
 #pragma mark - UITableView数据源协议与代理协议
@@ -78,6 +113,34 @@
     }
 }
 
+#pragma mark - BMKMapViewDelegate
+
+
+#pragma mark - BMKLocationServiceDelegate
+
+-(void)willStartLocatingUser{
+    NSLog(@"开始定位");
+    
+}
+
+-(void)didStopLocatingUser{
+    NSLog(@"结束定位");
+}
+
+-(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+
+    if (!userLocation.location)
+        return;
+    [self.mapView updateLocationData:userLocation];
+    NCPCurrentLatitude = userLocation.location.coordinate.latitude;
+    NCPCurrentLongtitude = userLocation.location.coordinate.longitude;
+    
+}
+
+-(void)didFailToLocateUserWithError:(NSError *)error{
+    NSLog(@"定位失败");
+}
+
 #pragma mark - 控件事件
 
 - (IBAction)barButtonCancelClick:(id)sender {
@@ -85,7 +148,7 @@
 }
 
 - (IBAction)barButtonClearClick:(id)sender {
-
+    
 }
 
 #pragma mark - 私有方法
