@@ -8,6 +8,7 @@
 
 #import "NCPMeterViewController.h"
 #import "NCPNoiseMeter.h"
+#import "NCPNoiseRecorder.h"
 #import "NCPDashboardView.h"
 #import "NCPArrowView.h"
 
@@ -22,6 +23,7 @@
 @interface NCPMeterViewController (){
     NSTimer *mTimer;
     NCPNoiseMeter *mNoiseMeter;
+    NCPNoiseRecorder *mNoiseRecorder;
     double mValueSPL;
 }
 @property (weak, nonatomic) IBOutlet NCPDashboardView *dashboardView;
@@ -44,6 +46,9 @@
 
     [super viewDidLoad];
     [self initView];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     [self initNoiseMeter];
 }
 
@@ -51,10 +56,26 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"viewWillDisappear");
+    if(mNoiseMeter){
+        [mNoiseMeter stop];
+        mNoiseMeter = nil;
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"viewDidDisappear");
+}
+
+
+
 #pragma mark - 初始化方法
 
 - (void)initView{
     [self.btnRecord addTarget:self action:@selector(touchDownBtnRecord:) forControlEvents:UIControlEventTouchDown];
+    [self.btnRecord addTarget:self action:@selector(touchUpInsideBtnRecord:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnRecord addTarget:self action:@selector(touchUpOutsideBtnRecord:) forControlEvents:UIControlEventTouchUpOutside];
     [self.btnRecord addTarget:self action:@selector(dragOutsideBtnRecord:) forControlEvents:UIControlEventTouchDragExit];
 }
 
@@ -79,21 +100,44 @@
 #pragma mark - btnRecord Action
 -(void)touchDownBtnRecord:(id)sender{
     
-    self.navigationController.navigationBar.translucent = YES;
- 
-    UIView *view = [[UIView alloc] initWithFrame:self.view.window.frame];
-    NSLog(@"%f %f",self.view.window.frame.size.width,self.view.window.frame.size.height);
-    view.backgroundColor = [UIColor grayColor];
-    view.alpha = 0.5;
-    [self.view addSubview:view];
-}
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    view.frame = CGRectMake(0, 0, self.view.frame.size.width/2, self.view.frame.size.width/2);
+    view.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
 
--(void)dragOutsideBtnRecord:(id)sender{
-    NSLog(@"outside");
+    view.tag = 100;
+    view.layer.masksToBounds =YES;
+    view.layer.cornerRadius = 10;
+    [self.view addSubview:view];
+    
+    
+    UIImageView *recordingImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"record"]];
+    recordingImageView.center = CGPointMake(view.frame.size.width/4, view.frame.size.height/2);
+    [view addSubview:recordingImageView];
+
+    mNoiseRecorder = [[NCPNoiseRecorder alloc] init];
+    [mNoiseRecorder start];
+    
 }
 
 -(void)touchUpOutsideBtnRecord:(id)sender{
-    
+    [[self.view.window viewWithTag:100] removeFromSuperview];
+    [mNoiseRecorder finish];
+    NSLog(@"在外面抬起");
+}
+
+-(void)touchUpInsideBtnRecord:(id)sender{
+    [[self.view.window viewWithTag:100] removeFromSuperview];
+    [mNoiseRecorder finishUsingBlock:^(float averagePower, float peakPower) {
+        NSLog(@"测量成功");
+        NSLog(@"平均分贝%f",averagePower);
+        NSLog(@"最高分呗%f",peakPower);
+    }];
+
+}
+
+-(void)dragOutsideBtnRecord:(id)sender{
+
 }
 
 @end

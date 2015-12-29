@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
 
-/*!
- *  App代理类
- */
 @interface NCPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) BMKMapManager *mapManager;
 
 @end

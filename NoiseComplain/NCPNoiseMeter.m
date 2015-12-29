@@ -28,7 +28,7 @@ static const double kTimerTickPerSecond = 20;
 #pragma mark - NCPNoiseMeter私有分类
 
 
-@interface NCPNoiseMeter () <AVAudioRecorderDelegate>{
+@interface NCPNoiseMeter (){
     
     /** 平均值记录数组 */
     NSMutableArray *avgArray;
@@ -54,21 +54,31 @@ static const double kTimerTickPerSecond = 20;
 
 @implementation NCPNoiseMeter
 
-#pragma mark - 单例模式
-
-
-/** 获取NCPNoiseMeter的单例实例 */
-+ (NCPNoiseMeter *)getInstance {
-    static NCPNoiseMeter *instance;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        instance = [[NCPNoiseMeter alloc] init];
-    });
-    return instance;
+#pragma mark - 初始化
+/** (重写)init方法, 执行初始化工作并准备开始进行检测 */
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // 初始化录音对象
+        if (!mAudioRecorder) {
+            NSError *error = nil ;
+            mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
+            mAudioRecorder.meteringEnabled = YES;
+            if(error){
+                NSLog(@"Error when recorder inits,%@",error.localizedDescription);
+            }
+            if(![mAudioRecorder prepareToRecord]){
+                NSLog(@"Error when recorder prepare");
+            }
+        }
+        // 实例化其他成员变量
+        avgArray = [[NSMutableArray alloc] init];
+        peakArray  = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
 
-#pragma mark - 获得实例的方法
-
+#pragma mark - 获取配置的方法
 /** 获得实例－文件存储路径*/
 -(NSURL*)filePath
 {
@@ -98,31 +108,8 @@ static const double kTimerTickPerSecond = 20;
     return  timer;
 }
 
-/** (重写)init方法, 执行初始化工作并准备开始进行检测 */
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        // 初始化录音对象
-        if (!mAudioRecorder) {
-            NSError *error = nil ;
-            mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
-            mAudioRecorder.meteringEnabled = YES;
-            mAudioRecorder.delegate = self;
-            if(error){
-                NSLog(@"Error when recorder inits,%@",error.localizedDescription);
-            }
-            if(![mAudioRecorder prepareToRecord]){
-                NSLog(@"Error when recorder prepare");
-            }
-        }
-        // 实例化其他成员变量
-        avgArray = [[NSMutableArray alloc] init];
-        peakArray  = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
 
-
+#pragma mark - 回调方法
 /** 计时器回调方法 */
 - (void)timerAction:(NSTimer *)timer {
     
@@ -153,8 +140,7 @@ static const double kTimerTickPerSecond = 20;
     }
 }
 
-#pragma mark - 录音控制操作
-
+#pragma mark - 生命周期
 /** 开始检测并记录数据: 检测频率(每秒) */
 - (void)startWithCallback:(void(^)(void))callback {
     
@@ -203,26 +189,15 @@ static const double kTimerTickPerSecond = 20;
 - (void)stop {
     if (!mAudioRecorder)
         return;
-    [mAudioRecorder stop];
-    isPaused = YES;
-    
     if (mTimer)
     {
         [mTimer invalidate];
         mTimer = nil;
         timerCallback = nil;
     }
-
-}
-
-#pragma mark - AVAudioRecorderDelegate
-
-- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error
-{
-    if(error)
-    {
-        NSLog(@"Error when recording,%@",error.localizedDescription);
-    }
+    [mAudioRecorder stop];
+    mAudioRecorder = nil;
+    isPaused = YES;
 }
 
 @end
