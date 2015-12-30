@@ -31,7 +31,8 @@ NSString *kNCPNoiseTypePListFileName = @"NoiseType";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:kNCPNoiseTypePListFileName ofType:@"plist"];
+    _pList = [[NSArray alloc] initWithContentsOfFile:plistPath];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,8 +47,6 @@ NSString *kNCPNoiseTypePListFileName = @"NoiseType";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSLog(@"NCPNoiseTypeViewController - cellForRowAtIndexPath");
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPComplainFormTableCellIdentifier forIndexPath:indexPath];
     
@@ -105,17 +104,5 @@ NSString *kNCPNoiseTypePListFileName = @"NoiseType";
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark - Getter & Setter
-
-- (NSArray *)pList {
-    if (!_pList) {
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:kNCPNoiseTypePListFileName ofType:@"plist"];
-        _pList = [[NSArray alloc] initWithContentsOfFile:plistPath];
-        NSLog(@"%@", _pList);
-    }
-    NSLog(@"%@", _pList);
-    return _pList;
-}
 
 @end
