@@ -63,7 +63,20 @@
  *
  *  @return 生成的新实体
  */
-+ (instancetype)form;
++ (instancetype _Nullable)form;
 
+/*!
+ *  获取当前正在填写的表单(方便跨视图调用)
+ *
+ *  @return 在表单填写过程中返回当前的表单对象, 否则返回<b>nil</b>
+ */
++ ( NCPComplainForm * _Nullable)current;
+
+/*!
+ *  设置当前正在填写的表单(方便跨视图调用)
+ *
+ *  @param current 设置的值
+ */
++ (void)setCurrent:(NCPComplainForm * _Nullable)current;
 
 @end

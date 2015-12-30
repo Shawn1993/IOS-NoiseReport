@@ -18,17 +18,17 @@
 
 - (id)objectWithManagedObject:(NSManagedObject *)mo {
     NCPComplainFormManagedObject *tmo = (NCPComplainFormManagedObject *)mo;
-    NCPComplainForm *model = [[NCPComplainForm alloc] init];
-    model.comment = tmo.comment;
-    model.date = tmo.date;
-    model.intensity = tmo.intensity;
-    model.latitude = tmo.latitude;
-    model.longitude = tmo.longitude;
-    model.altitude = tmo.altitude;
-    model.image = tmo.image;
-    model.sfaType = tmo.sfaType;
-    model.noiseType = tmo.noiseType;
-    return model;
+    NCPComplainForm *tmodel = [[NCPComplainForm alloc] init];
+    tmodel.comment = tmo.comment;
+    tmodel.date = tmo.date;
+    tmodel.intensity = tmo.intensity;
+    tmodel.latitude = tmo.latitude;
+    tmodel.longitude = tmo.longitude;
+    tmodel.altitude = tmo.altitude;
+    tmodel.image = tmo.image;
+    tmodel.sfaType = tmo.sfaType;
+    tmodel.noiseType = tmo.noiseType;
+    return tmodel;
 }
 
 - (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo {

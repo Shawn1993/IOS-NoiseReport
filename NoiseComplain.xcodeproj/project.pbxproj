@@ -85,7 +85,6 @@
 /* Begin PBXFileReference section */
 		581D7A9E1C2A8B0E005E1153 /* CALayer+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addtions.h"; sourceTree = "<group>"; };
 		581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addtions.m"; sourceTree = "<group>"; };
-		5820E7291C3024A60003C091 /* NCPSystemValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPSystemValue.h; sourceTree = "<group>"; };
 		5820E72F1C3039EC0003C091 /* w1021.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = w1021.gpx; path = ../w1021.gpx; sourceTree = "<group>"; };
 		5850A39D1C2674B800A95609 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
 		5850A39E1C2674B800A95609 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
@@ -171,6 +170,7 @@
 		CAACDEB51C2BE4CC00456D5B /* NCPNoiseTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseTypeViewController.m; sourceTree = "<group>"; };
 		CAACDEB61C2BE4CC00456D5B /* NCPSFATypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPSFATypeViewController.h; sourceTree = "<group>"; };
 		CAACDEB71C2BE4CC00456D5B /* NCPSFATypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPSFATypeViewController.m; sourceTree = "<group>"; };
+		CAC476E81C344BF9006C177F /* NCPLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPLog.h; sourceTree = "<group>"; };
 		CAC4E5301C2A44ED00991334 /* NCPComplainFormManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NCPComplainFormManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
 		CAC4E5311C2A44ED00991334 /* NCPComplainFormManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NCPComplainFormManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		CAC4E5321C2A44ED00991334 /* NCPComplainFormManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormManagedObject.h; sourceTree = "<group>"; };
@@ -408,7 +408,6 @@
 				5857D0011C2D114500334579 /* NCPNoiseRecorder.m */,
 				58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */,
 				58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */,
-				5820E7291C3024A60003C091 /* NCPSystemValue.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -448,6 +447,7 @@
 			children = (
 				CAA0CB831C25AE8B0055DE89 /* DataPersistence */,
 				CAB15E9E1C1E99CB001886F6 /* WebService */,
+				CAC476E81C344BF9006C177F /* NCPLog.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";

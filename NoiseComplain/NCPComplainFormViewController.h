@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class NCPComplainForm;
+
 /*!
  *  噪声投诉表单视图控制器
  */
