@@ -341,7 +341,7 @@
 				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
 				CA4B311A1C0F17990013E70E /* CustomViews */,
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
-				CAA0CB831C25AE8B0055DE89 /* DataPersistence */,
+				CA4B311B1C0F17A80013E70E /* Models */,
 				CAA0CBCF1C2689BC0055DE89 /* Utilities */,
 				CAB15E941C1E8B29001886F6 /* Libraries */,
 			);
@@ -353,7 +353,6 @@
 			children = (
 				CA4B31781C0F1A220013E70E /* Main.storyboard */,
 				CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */,
-				CA4B311B1C0F17A80013E70E /* Models */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -447,6 +446,7 @@
 		CAA0CBCF1C2689BC0055DE89 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CAA0CB831C25AE8B0055DE89 /* DataPersistence */,
 				CAB15E9E1C1E99CB001886F6 /* WebService */,
 			);
 			name = Utilities;
@@ -815,6 +815,7 @@
 					"$(PROJECT_DIR)/BaiduMap_Framework",
 				);
 				INFOPLIST_FILE = NoiseComplain/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = sysu.NoiseComplain;
@@ -831,6 +832,7 @@
 					"$(PROJECT_DIR)/BaiduMap_Framework",
 				);
 				INFOPLIST_FILE = NoiseComplain/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = sysu.NoiseComplain;

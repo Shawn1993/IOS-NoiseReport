@@ -631,10 +631,10 @@
         <scene sceneID="dhG-V2-sG6">
             <objects>
                 <tableViewController id="C71-Dg-jOG" customClass="NCPSFATypeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kcL-LH-dZg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kcL-LH-dZg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="tyi-jz-ekg" customClass="NCPComplainFormTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -737,10 +737,10 @@
         <scene sceneID="rvM-F4-oV8">
             <objects>
                 <tableViewController id="IQJ-Lg-qv3" customClass="NCPNoiseTypeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kGw-0j-nMU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kGw-0j-nMU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="bLf-GP-bzW" customClass="NCPComplainFormTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -752,8 +752,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="IQJ-Lg-qv3" id="flo-zK-Xp7"/>
-                            <outlet property="delegate" destination="IQJ-Lg-qv3" id="kZu-fE-GLt"/>
+                            <outlet property="dataSource" destination="IQJ-Lg-qv3" id="4aa-Pm-5BZ"/>
+                            <outlet property="delegate" destination="IQJ-Lg-qv3" id="MWl-UA-nwZ"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="噪音类型选择" id="aEV-m4-ieD"/>
@@ -771,7 +771,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainGuideTableViewCell" id="DTS-gj-Czd">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainGuideTableViewCell" id="DTS-gj-Czd" customClass="NCPComplainGuideTableViewCell">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DTS-gj-Czd" id="bRn-8d-h21">
@@ -780,13 +780,14 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="wcR-57-LlN" id="qdc-hT-Cwo"/>
                             <outlet property="delegate" destination="wcR-57-LlN" id="fWA-La-9In"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="噪声投诉" id="eeg-vz-O4F">
-                        <barButtonItem key="rightBarButtonItem" title="啊啊" id="MIo-K1-RRl">
+                        <barButtonItem key="rightBarButtonItem" title="测试" id="MIo-K1-RRl">
                             <connections>
                                 <segue destination="1d9-tO-8ag" kind="presentation" id="hkh-yT-NTn"/>
                             </connections>

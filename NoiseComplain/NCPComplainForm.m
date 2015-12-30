@@ -19,4 +19,8 @@
     return self;
 }
 
++ (instancetype)form {
+    return [[NCPComplainForm alloc] init];
+}
+
 @end

@@ -30,6 +30,7 @@ NSString *kNCPNoiseTypePListFileName = @"NoiseType";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 
 }
 
@@ -40,15 +41,14 @@ NSString *kNCPNoiseTypePListFileName = @"NoiseType";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _pList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"NCPNoiseTypeViewController - cellForRowAtIndexPath");
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPComplainFormTableCellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
