@@ -9,6 +9,12 @@
 #ifndef NCPLog_h
 #define NCPLog_h
 
+/*!
+ *  使用以下的宏定义代替NSLog<br>
+ *  可以方便地全局开关日志功能(关闭时变为空语句)<br>
+ *  可以自定义格式, 配合<b>LSLog-Xcode</b>插件使用, 非常清晰
+ */
+
 #include <Foundation/Foundation.h>
 
 /*!
