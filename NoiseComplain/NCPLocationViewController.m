@@ -14,7 +14,7 @@
 #pragma mark - private interface
 @interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate>{
     
-    
+    CLLocationCoordinate2D mLocationCoordinate;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
@@ -39,7 +39,7 @@
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
     [self.mapViewContainer addSubview:self.mapView];
     
-    self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"name"]];
+    self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
     [self.mapViewContainer addSubview:self.locationView];
     
     self.locationService = [[BMKLocationService alloc] init];
@@ -58,9 +58,10 @@
 
 -(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
-    self.mapViewContainer.center = CGPointMake(self.mapViewContainer.frame.size.width/2, self.mapViewContainer.frame.size.height/2);
+    
+    self.locationView.layer.anchorPoint=CGPointMake(0.5, 1.0);
+    self.locationView.center = self.mapViewContainer.center;
 }
-
 
 - (IBAction)doneButtonClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -68,7 +69,12 @@
     }];
 }
 
-#pragma  mark - BMKLocationServiceDelegate
+#pragma mark - BMKMapViewDelegate
+- (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    mLocationCoordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.view];
+}
+
+#pragma mark - BMKLocationServiceDelegate
 
 /**
  *在将要启动定位时，会调用此函数

@@ -40,6 +40,11 @@
  */
 @property (strong,nonatomic) BMKMapView *mapView;
 
+/*!
+ *  定位服务
+ */
+@property (strong, nonatomic) BMKLocationService *locationService;
+
 @end
 
 @implementation NCPComplainFormViewController
@@ -65,6 +70,9 @@
 
 -(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
+    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
+    
+    NSLog(@"CF - didAppear");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
