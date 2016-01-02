@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NCPNoiseTypeViewController : UITableViewController <UITableViewDataSource>
+@interface NCPNoiseTypeViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

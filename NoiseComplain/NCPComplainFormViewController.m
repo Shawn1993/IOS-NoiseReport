@@ -13,7 +13,6 @@
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
-#import "NCPSystemValue.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate>
 
@@ -31,8 +30,14 @@
  */
 - (IBAction)barButtonClearClick:(id)sender;
 
+/*!
+ *  地图视图容器
+ */
 @property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
 
+/*!
+ *  地图视图
+ */
 @property (strong,nonatomic) BMKMapView *mapView;
 
 @end
@@ -45,23 +50,32 @@
  *  视图初始化
  */
 - (void)viewDidLoad {
+    // 定位及地图功能初始化
     self.mapView = [[BMKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
 //    [self.mapViewContainer addSubview:self.mapView];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [self.mapView viewWillAppear];
     self.mapView.delegate = self;
+    
+    NSLog(@"CF - willAppear");
 }
 
 -(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
+    
+    NSLog(@"CF - willDisappear");
+}
+
+- (void)dealloc {
+    NSLog(@"CF - dealloc");
 }
 
 #pragma mark - UITableView数据源协议与代理协议
@@ -123,9 +137,12 @@
     if (!userLocation.location)
         return;
     [self.mapView updateLocationData:userLocation];
-    NCPCurrentLatitude = userLocation.location.coordinate.latitude;
-    NCPCurrentLongtitude = userLocation.location.coordinate.longitude;
     
+    //!!!: 删除了NCPSystemValue.h的内容
+    NCPComplainForm *form = [NCPComplainForm current];
+    form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
+    form.latitude = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
+    form.altitude = [NSNumber numberWithFloat:userLocation.location.altitude];
 }
 
 -(void)didFailToLocateUserWithError:(NSError *)error{
