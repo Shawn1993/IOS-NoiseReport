@@ -15,7 +15,7 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPSystemValue.h"
 
-@interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate>
+@interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate>
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -35,8 +35,6 @@
 
 @property (strong,nonatomic) BMKMapView *mapView;
 
-@property (strong, nonatomic) BMKLocationService *locationService;
-
 @end
 
 @implementation NCPComplainFormViewController
@@ -49,25 +47,16 @@
 - (void)viewDidLoad {
     self.mapView = [[BMKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
-    [self.mapViewContainer addSubview:self.mapView];
-    self.mapView.userTrackingMode =BMKUserTrackingModeFollow;
-
-    
-    self.locationService = [[BMKLocationService alloc] init];
-    self.locationService.delegate = self;
-    [self.locationService startUserLocationService];
-    
+//    [self.mapViewContainer addSubview:self.mapView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.mapView viewWillAppear];
-    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
     self.mapView.delegate = self;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+-(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
-    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

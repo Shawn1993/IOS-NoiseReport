@@ -23,6 +23,8 @@
 
 @property (strong, nonatomic) BMKLocationService *locationService;
 
+@property (strong, nonatomic) UIImageView *locationView;
+
 - (IBAction)doneButtonClick:(id)sender;
 
 @end
@@ -36,6 +38,9 @@
     self.mapView.showsUserLocation = YES ;
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
     [self.mapViewContainer addSubview:self.mapView];
+    
+    self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"name"]];
+    [self.mapViewContainer addSubview:self.locationView];
     
     self.locationService = [[BMKLocationService alloc] init];
     [self.locationService startUserLocationService];
@@ -53,6 +58,7 @@
 
 -(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
+    self.mapViewContainer.center = CGPointMake(self.mapViewContainer.frame.size.width/2, self.mapViewContainer.frame.size.height/2);
 }
 
 
