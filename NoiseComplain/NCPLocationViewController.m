@@ -15,15 +15,21 @@
 @interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate>{
     
     CLLocationCoordinate2D mLocationCoordinate;
+    BOOL mIsNeedUpdateLocation;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
+
+@property (weak, nonatomic) IBOutlet UIButton *updateLocationButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property (strong, nonatomic) BMKMapView *mapView;
 
 @property (strong, nonatomic) BMKLocationService *locationService;
 
 @property (strong, nonatomic) UIImageView *locationView;
+
 
 - (IBAction)doneButtonClick:(id)sender;
 
@@ -38,12 +44,14 @@
     self.mapView.showsUserLocation = YES ;
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
     [self.mapViewContainer addSubview:self.mapView];
+    [self.mapViewContainer sendSubviewToBack:self.mapView];
     
     self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
     [self.mapViewContainer addSubview:self.locationView];
     
     self.locationService = [[BMKLocationService alloc] init];
     [self.locationService startUserLocationService];
+    mIsNeedUpdateLocation = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,7 +68,7 @@
     self.mapView.frame = self.mapViewContainer.bounds;
     
     self.locationView.layer.anchorPoint=CGPointMake(0.5, 1.0);
-    self.locationView.center = self.mapViewContainer.center;
+    self.locationView.center = CGPointMake(self.mapViewContainer.frame.size.width/2, self.mapViewContainer.frame.size.height/2);
 }
 
 - (IBAction)doneButtonClick:(id)sender {
@@ -68,10 +76,20 @@
         
     }];
 }
+- (IBAction)updateLocationButtonClick:(id)sender {
+    if (mIsNeedUpdateLocation) {
+        self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
+        [self.locationService startUserLocationService];
+        self.updateLocationButton.titleLabel.text = @"回位";
+    }
+}
 
 #pragma mark - BMKMapViewDelegate
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     mLocationCoordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.view];
+    self.updateLocationButton.titleLabel.text = @"回";
+    mIsNeedUpdateLocation = YES;
+    
 }
 
 #pragma mark - BMKLocationServiceDelegate
@@ -104,6 +122,7 @@
  */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
     [self.mapView updateLocationData:userLocation];
+    [self.locationService stopUserLocationService];
 }
 
 /**
