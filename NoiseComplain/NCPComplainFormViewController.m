@@ -71,7 +71,19 @@
     // 定位及地图功能初始化
     self.mapView = [[BMKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
-//    [self.mapViewContainer addSubview:self.mapView];
+    [self.mapViewContainer addSubview:self.mapView];
+    self.mapView.userTrackingMode =BMKUserTrackingModeFollow;
+
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    [self.locationService startUserLocationService];
+    
+    // 创建一个新的表单对象
+    NCPComplainForm *form = [NCPComplainForm form];
+    form.comment = @"null";
+    [NCPComplainForm setCurrent:form];
+    
+    NCPLogVerbose(@"CF - viewDidLoad", nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated {

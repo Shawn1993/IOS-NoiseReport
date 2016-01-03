@@ -642,7 +642,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="tyi-jz-ekg" customClass="NCPComplainFormTableViewCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tyi-jz-ekg" id="GBs-Ln-a9b">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -748,7 +748,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="bLf-GP-bzW" customClass="NCPComplainFormTableViewCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bLf-GP-bzW" id="6C0-sc-D2n">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -858,6 +858,14 @@
                                             <outlet property="delegate" destination="6xt-aR-p5X" id="gQX-d9-UKg"/>
                                         </connections>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlj-aC-utE">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" image="updatelocation" backgroundImage="mapbutton_bg"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChT-HM-uLQ">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" backgroundImage="mapbutton_bg"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -867,28 +875,50 @@
                                     <constraint firstItem="gJi-eX-Wtq" firstAttribute="top" secondItem="KRO-nR-3Dq" secondAttribute="top" constant="348" id="ADM-YE-9wi">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="leading" secondItem="KRO-nR-3Dq" secondAttribute="leading" constant="8" id="D1W-Nw-abd"/>
                                     <constraint firstAttribute="trailing" secondItem="gJi-eX-Wtq" secondAttribute="trailing" constant="7" id="JF1-oK-vlw">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="top" secondItem="ChT-HM-uLQ" secondAttribute="bottom" constant="8" id="lkc-Et-yXW"/>
+                                    <constraint firstItem="ChT-HM-uLQ" firstAttribute="leading" secondItem="nlj-aC-utE" secondAttribute="leading" id="lxh-fE-2EX"/>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="top" secondItem="ChT-HM-uLQ" secondAttribute="bottom" constant="8" symbolic="YES" id="sO8-7n-Xa2"/>
+                                    <constraint firstAttribute="bottom" secondItem="nlj-aC-utE" secondAttribute="bottom" constant="20" id="su7-7Y-7Nt"/>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="leading" secondItem="KRO-nR-3Dq" secondAttribute="leadingMargin" id="vJQ-OP-O51"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="gJi-eX-Wtq"/>
+                                        <exclude reference="nlj-aC-utE"/>
+                                        <exclude reference="ChT-HM-uLQ"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="3Hf-su-TD7"/>
                                         <exclude reference="ADM-YE-9wi"/>
                                         <exclude reference="JF1-oK-vlw"/>
+                                        <exclude reference="lxh-fE-2EX"/>
+                                        <exclude reference="D1W-Nw-abd"/>
+                                        <exclude reference="lkc-Et-yXW"/>
+                                        <exclude reference="sO8-7n-Xa2"/>
+                                        <exclude reference="su7-7Y-7Nt"/>
+                                        <exclude reference="vJQ-OP-O51"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="gJi-eX-Wtq"/>
+                                        <include reference="nlj-aC-utE"/>
+                                        <include reference="ChT-HM-uLQ"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="3Hf-su-TD7"/>
                                         <include reference="ADM-YE-9wi"/>
                                         <include reference="JF1-oK-vlw"/>
+                                        <include reference="lxh-fE-2EX"/>
+                                        <exclude reference="D1W-Nw-abd"/>
+                                        <exclude reference="lkc-Et-yXW"/>
+                                        <include reference="sO8-7n-Xa2"/>
+                                        <include reference="su7-7Y-7Nt"/>
+                                        <include reference="vJQ-OP-O51"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -913,10 +943,10 @@
                                 <exclude reference="KRO-nR-3Dq"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="syN-9V-Co8"/>
                                 <exclude reference="6WH-T9-sZb"/>
                                 <exclude reference="J5K-mf-Cf9"/>
                                 <exclude reference="ua9-PJ-Asy"/>
+                                <exclude reference="syN-9V-Co8"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -924,10 +954,10 @@
                                 <include reference="KRO-nR-3Dq"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="syN-9V-Co8"/>
                                 <include reference="6WH-T9-sZb"/>
                                 <include reference="J5K-mf-Cf9"/>
                                 <include reference="ua9-PJ-Asy"/>
+                                <include reference="syN-9V-Co8"/>
                             </mask>
                         </variation>
                     </view>
@@ -939,8 +969,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationButton" destination="ChT-HM-uLQ" id="I2a-rS-JNn"/>
                         <outlet property="mapViewContainer" destination="KRO-nR-3Dq" id="fzd-XC-GdY"/>
                         <outlet property="searchDisplayController" destination="SR7-DE-ebV" id="XU6-oC-unB"/>
+                        <outlet property="updateLocationButton" destination="nlj-aC-utE" id="yn9-Cn-Z4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqs-vH-gZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1007,9 +1039,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="mapbutton_bg" width="40" height="40"/>
         <image name="microphone" width="18" height="18"/>
         <image name="microphone_selected" width="18" height="18"/>
         <image name="reportcard" width="18" height="18"/>
         <image name="reportcard_selected" width="18" height="18"/>
+        <image name="updatelocation" width="40" height="40"/>
     </resources>
 </document>
