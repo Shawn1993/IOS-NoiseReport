@@ -34,7 +34,7 @@
  *  @param format 格式字符串
  *  @param ...    参数(若无, 请传入<b>nil</b>)
  */
-#define NCPLogVerbose(format, ...)  NSLog([NSString stringWithFormat:@"<VERBOSE> %@", format], __VA_ARGS__)
+#define NCPLogVerbose(format, ...)  NSLog([NSString stringWithFormat:@"<V> %@", format], __VA_ARGS__)
 
 /*!
  *  发送一条Info日志
@@ -42,7 +42,7 @@
  *  @param format 格式字符串
  *  @param ...    参数(若无, 请传入<b>nil</b>)
  */
-#define NCPLogInfo(format, ...)     NSLog([NSString stringWithFormat:@"<INFO> %@", format], __VA_ARGS__)
+#define NCPLogInfo(format, ...)     NSLog([NSString stringWithFormat:@"<I> %@", format], __VA_ARGS__)
 
 /*!
  *  发送一条Warn日志
@@ -50,7 +50,7 @@
  *  @param format 格式字符串
  *  @param ...    参数(若无, 请传入<b>nil</b>)
  */
-#define NCPLogWarn(format, ...)     NSLog([NSString stringWithFormat:@"<WARN> %@", format], __VA_ARGS__)
+#define NCPLogWarn(format, ...)     NSLog([NSString stringWithFormat:@"<W> %@", format], __VA_ARGS__)
 
 /*!
  *  发送一条Error日志
@@ -58,7 +58,7 @@
  *  @param format 格式字符串
  *  @param ...    参数(若无, 请传入<b>nil</b>)
  */
-#define NCPLogError(format, ...)    NSLog([NSString stringWithFormat:@"<ERROR> %@", format], __VA_ARGS__)
+#define NCPLogError(format, ...)    NSLog([NSString stringWithFormat:@"<E> %@", format], __VA_ARGS__)
 
 /*!
  *  发送一条日志(默认Verbose)
@@ -112,7 +112,7 @@
  */
 #define NCPLog(format, ...)
 
-#endif
+#endif /* _NCPLOG_ON */
 
 #undef _NCPLOG_ON
 

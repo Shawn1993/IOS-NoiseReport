@@ -4,21 +4,21 @@
 <array>
 	<dict>
 		<key>image</key>
-		<string>reportcard</string>
+		<string></string>
 		<key>name</key>
-		<string>生活噪音</string>
+		<string>住宅区</string>
 	</dict>
 	<dict>
 		<key>image</key>
-		<string>microphone_selected2</string>
+		<string></string>
 		<key>name</key>
-		<string>施工噪音</string>
+		<string>工业区</string>
 	</dict>
 	<dict>
 		<key>image</key>
-		<string>microphone</string>
+		<string></string>
 		<key>name</key>
-		<string>交通噪音</string>
+		<string>教学区</string>
 	</dict>
 </array>
 </plist>

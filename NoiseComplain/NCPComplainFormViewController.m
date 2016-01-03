@@ -13,8 +13,20 @@
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import "NCPLog.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate>
+
+#pragma mark - 输出口
+
+@property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
+@property (weak, nonatomic) IBOutlet UILabel *labelNoiseLocation;
+@property (weak, nonatomic) IBOutlet UILabel *labelNoiseType;
+@property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
+@property (weak, nonatomic) IBOutlet UILabel *labelComment;
+
+#pragma mark - 动作事件
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -55,6 +67,7 @@
  *  视图初始化
  */
 - (void)viewDidLoad {
+    
     // 定位及地图功能初始化
     self.mapView = [[BMKMapView alloc] init];
     self.mapView.showsUserLocation = YES;
@@ -70,6 +83,7 @@
     form.comment = @"null";
     [NCPComplainForm setCurrent:form];
     
+    NCPLogVerbose(@"CF - viewDidLoad", nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,25 +91,32 @@
     NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
     self.mapView.delegate = self;
     
-    NSLog(@"CF - willAppear");
+    // 刷新界面
+    [self displayComplainForm];
+    
+    NCPLogVerbose(@"CF - willAppear", nil);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.mapView.frame = self.mapViewContainer.bounds;
     NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
     
-    NSLog(@"CF - didAppear");
+    NCPLogVerbose(@"CF - didAppear", nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.mapView viewWillDisappear];
     self.mapView.delegate = nil;
     
-    NSLog(@"CF - willDisappear");
+    NCPLogVerbose(@"CF - willDisappear", nil);
 }
 
 - (void)dealloc {
-    NSLog(@"CF - dealloc");
+    
+    // 删除当前的表单对象
+    [NCPComplainForm setCurrent:nil];
+    
+    NCPLogVerbose(@"CF - dealloc", nil);
 }
 
 #pragma mark - UITableView数据源协议与代理协议
@@ -122,14 +143,11 @@
         case 3:
             // 提交投诉session
         {
-            // 创建投诉表单对象
-            NCPComplainForm *form = [self generateComplainForm];
-            
             // 将投诉表单发送至服务器
-            [self sendComplainForm:form];
+            [self sendComplainForm:[NCPComplainForm current]];
             
             // 将投诉表单保存至本地
-            [self saveComplainForm:form];
+            [self saveComplainForm:[NCPComplainForm current]];
         }
             break;
         default:
@@ -169,7 +187,7 @@
     NSLog(@"定位失败");
 }
 
-#pragma mark - 控件事件
+#pragma mark - 动作事件
 
 - (IBAction)barButtonCancelClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -181,18 +199,9 @@
 
 #pragma mark - 私有方法
 
-/*!
- *  根据界面中的内容, 生成一个表单对象
- *
- *  @return 生成的表单对象
- */
-- (NCPComplainForm *)generateComplainForm {
-    NCPComplainForm *form = [[NCPComplainForm alloc] init];
+- (void)displayComplainForm {
+    NCPComplainForm *form = [NCPComplainForm current];
     
-    // 添加内容
-    // TODO
-    
-    return form;
 }
 
 /*!

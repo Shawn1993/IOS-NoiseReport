@@ -619,6 +619,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="indicatorMeasuring" destination="7Lr-Zl-LWB" id="GM8-Lm-ZV9"/>
+                        <outlet property="labelComment" destination="Jzo-Wb-Xsv" id="nQ7-Mt-Rs9"/>
+                        <outlet property="labelIntensity" destination="phK-Y0-wf8" id="MEE-ix-DVu"/>
+                        <outlet property="labelNoiseLocation" destination="kMs-Ar-Uc6" id="Rqp-gV-3TL"/>
+                        <outlet property="labelNoiseType" destination="aD4-db-wge" id="nCQ-ES-VGa"/>
+                        <outlet property="labelSFAType" destination="Ugn-28-qBS" id="1XR-wK-9uu"/>
                         <outlet property="mapViewContainer" destination="hxY-eT-5ih" id="Z7N-6w-pdv"/>
                     </connections>
                 </tableViewController>
@@ -630,13 +636,13 @@
         <scene sceneID="dhG-V2-sG6">
             <objects>
                 <tableViewController id="C71-Dg-jOG" customClass="NCPSFATypeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kcL-LH-dZg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kcL-LH-dZg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="tyi-jz-ekg" customClass="NCPComplainFormTableViewCell">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tyi-jz-ekg" id="GBs-Ln-a9b">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -653,7 +659,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Lv-Bm-wLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3040.5" y="880.5"/>
+            <point key="canvasLocation" x="2746.5" y="349.5"/>
         </scene>
         <!--描述信息-->
         <scene sceneID="gRt-pT-2hX">
@@ -730,19 +736,19 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwO-o1-XXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627.5" y="880.5"/>
+            <point key="canvasLocation" x="1333.5" y="349.5"/>
         </scene>
         <!--噪音类型选择-->
         <scene sceneID="rvM-F4-oV8">
             <objects>
                 <tableViewController id="IQJ-Lg-qv3" customClass="NCPNoiseTypeViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kGw-0j-nMU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kGw-0j-nMU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NCPComplainFormTableViewCell" id="bLf-GP-bzW" customClass="NCPComplainFormTableViewCell">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bLf-GP-bzW" id="6C0-sc-D2n">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -759,7 +765,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6g-HA-hXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2299.5" y="880.5"/>
+            <point key="canvasLocation" x="2005.5" y="349.5"/>
         </scene>
         <!--噪声投诉-->
         <scene sceneID="dlt-P0-hZf">
@@ -972,7 +978,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3721.5" y="880.5"/>
+            <point key="canvasLocation" x="3427.5" y="349.5"/>
         </scene>
         <!--TabBar-->
         <scene sceneID="qCj-Vk-vfA">

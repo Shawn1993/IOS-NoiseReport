@@ -51,7 +51,7 @@
 		CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */; };
 		CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B31781C0F1A220013E70E /* Main.storyboard */; };
 		CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */; };
-		CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */; };
+		CA4B317D1C0F1B2C0013E70E /* SFAType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SFAType.plist */; };
 		CA540B8A1C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA540B881C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld */; };
 		CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0CB791C23F8C60055DE89 /* GTLBase64.m */; };
 		CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA42D711C294B970004C03B /* NCPComplainFormDAO.m */; };
@@ -151,7 +151,7 @@
 		CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPSettingViewController.m; sourceTree = "<group>"; };
 		CA4B31781C0F1A220013E70E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoiseType.plist; sourceTree = "<group>"; };
-		CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundFunctionalAreaType.plist; sourceTree = "<group>"; };
+		CA4B317B1C0F1B2C0013E70E /* SFAType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SFAType.plist; sourceTree = "<group>"; };
 		CA540B891C27BE8B00F8E860 /* NoiseComplain.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoiseComplain.xcdatamodel; sourceTree = "<group>"; };
 		CA540B911C27D3D200F8E860 /* NCPCoreDataDAOProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPCoreDataDAOProtocol.h; sourceTree = "<group>"; };
 		CA540B971C27EEE000F8E860 /* NoiseComplain.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = NoiseComplain.md; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */,
-				CA4B317B1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist */,
+				CA4B317B1C0F1B2C0013E70E /* SFAType.plist */,
 				CA4B30F31C0F17050013E70E /* Info.plist */,
 			);
 			name = PropertyList;
@@ -622,7 +622,7 @@
 			files = (
 				58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */,
 				CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */,
-				CA4B317D1C0F1B2C0013E70E /* SoundFunctionalAreaType.plist in Resources */,
+				CA4B317D1C0F1B2C0013E70E /* SFAType.plist in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				5820E7301C3039EC0003C091 /* w1021.gpx in Resources */,
 				CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */,
