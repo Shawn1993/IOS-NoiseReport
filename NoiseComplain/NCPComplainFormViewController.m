@@ -198,9 +198,52 @@
 
 #pragma mark - 私有方法
 
+/*!
+ *  将投诉表单的内容显示在界面上
+ */
 - (void)displayComplainForm {
     NCPComplainForm *form = [NCPComplainForm current];
     
+    // TODO 显示噪声强度和噪声源位置
+    
+    // 噪声类型
+    if (form.noiseType) {
+        self.labelNoiseType.text = form.noiseType;
+    } else {
+        self.labelNoiseType.text = @"点击选择";
+    }
+    
+    // 声功能区
+    if (form.sfaType) {
+        self.labelSFAType.text = form.sfaType;
+    } else {
+        self.labelSFAType.text = @"点击选择";
+    }
+    
+    // TODO: 描述信息
+}
+
+/*!
+ *  检查投诉表单是否填写完毕
+ *
+ *  @return 填写完毕返回<b>YES</b>, 还有必要项未填返回<b>NO</b>
+ */
+- (BOOL)isFormComplete {
+    NCPComplainForm *form = [NCPComplainForm current];
+    if (form) {
+        if (form.noiseType) {
+            if (form.sfaType) {
+                if (form.longitude) {
+                    if (form.latitude) {
+                        if (form.intensity) {
+                            return YES;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return NO;
 }
 
 /*!
