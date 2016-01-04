@@ -7,12 +7,13 @@
 //
 
 #import "NCPCoreDataDAO.h"
+#import "NCPLog.h"
 
 static NSString *kNCPCoreDataModelFileName = @"NoiseComplain";
 
 static void errorLog(NSError *error) {
     if (error) {
-        NSLog(@"Core Data Error: %@", error);
+        NCPLogWarn(@"Core Data Error: %@", error);
     }
 }
 
@@ -173,8 +174,7 @@ static void errorLog(NSError *error) {
     
     NSManagedObjectContext *context = dao.managedObjectContext;
     
-    // 检查是否已经存在此实体
-    // TODO
+    // TODO: 在插入前检查是否已经存在此实体
     
     // 获取ManagedObject并为其赋值
     NSManagedObject *mo = [NSEntityDescription insertNewObjectForEntityForName:[dao entityName]

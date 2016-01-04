@@ -7,6 +7,7 @@
 //
 
 #import "NCPNoiseMeter.h"
+#import "NCPLog.h"
 #import <AVFoundation/AVFoundation.h>
 
 /** 采样率 */
@@ -65,10 +66,10 @@ static const double kTimerTickPerSecond = 20;
             mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
             mAudioRecorder.meteringEnabled = YES;
             if(error){
-                NSLog(@"Error when recorder inits,%@",error.localizedDescription);
+                NCPLogVerbose(@"Error when recorder inits,%@",error.localizedDescription);
             }
             if(![mAudioRecorder prepareToRecord]){
-                NSLog(@"Error when recorder prepare");
+                NCPLogVerbose(@"Error when recorder prepare", nil);
             }
         }
         // 实例化其他成员变量

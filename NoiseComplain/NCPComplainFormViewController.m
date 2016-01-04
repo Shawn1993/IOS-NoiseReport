@@ -98,7 +98,7 @@
 
 -(void)viewDidLayoutSubviews{
     self.mapView.frame = self.mapViewContainer.bounds;
-    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
+    NCPLogVerbose(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
     
     NCPLogVerbose(@"CF - didAppear", nil);
 }
@@ -161,12 +161,12 @@
 #pragma mark - BMKLocationServiceDelegate
 
 -(void)willStartLocatingUser{
-    NSLog(@"开始定位");
+    NCPLogVerbose(@"开始定位", nil);
     
 }
 
 -(void)didStopLocatingUser{
-    NSLog(@"结束定位");
+    NCPLogVerbose(@"结束定位", nil);
 }
 
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
@@ -183,7 +183,7 @@
 }
 
 -(void)didFailToLocateUserWithError:(NSError *)error{
-    NSLog(@"定位失败");
+    NCPLogVerbose(@"定位失败", nil);
 }
 
 #pragma mark - 动作事件

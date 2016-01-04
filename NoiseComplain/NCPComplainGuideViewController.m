@@ -22,8 +22,6 @@
     // 检查历史投诉
     NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
     self.historyArray = [dao findAll];
-
-    NSLog(@"%@", self.historyArray);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
