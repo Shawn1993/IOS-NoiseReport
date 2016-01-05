@@ -33,7 +33,6 @@
  */
 @property (nullable, nonatomic, retain) NSString *address;
 
-
 /*!
  *  纬度(float)
  */

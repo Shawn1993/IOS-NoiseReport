@@ -28,6 +28,7 @@
     tmodel.image = tmo.image;
     tmodel.sfaType = tmo.sfaType;
     tmodel.noiseType = tmo.noiseType;
+    tmodel.address = tmo.address;
     return tmodel;
 }
 
@@ -43,6 +44,7 @@
     tmo.image = tmodel.image;
     tmo.sfaType = tmodel.sfaType;
     tmo.noiseType = tmodel.noiseType;
+    tmo.address = tmodel.address;
     return tmo;
 }
 
