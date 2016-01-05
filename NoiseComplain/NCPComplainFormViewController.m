@@ -15,7 +15,7 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
 
-@interface NCPComplainFormViewController () <UITableViewDelegate,BMKMapViewDelegate>
+@interface NCPComplainFormViewController () <UITableViewDelegate>
 
 #pragma mark - 输出口
 
@@ -43,16 +43,6 @@
 - (IBAction)barButtonClearClick:(id)sender;
 
 /*!
- *  地图视图容器
- */
-@property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
-
-/*!
- *  地图视图
- */
-@property (strong,nonatomic) BMKMapView *mapView;
-
-/*!
  *  定位服务
  */
 @property (strong, nonatomic) BMKLocationService *locationService;
@@ -67,17 +57,6 @@
  *  视图初始化
  */
 - (void)viewDidLoad {
-    
-    // 定位及地图功能初始化
-    self.mapView = [[BMKMapView alloc] init];
-    self.mapView.showsUserLocation = YES;
-    [self.mapViewContainer addSubview:self.mapView];
-    self.mapView.userTrackingMode =BMKUserTrackingModeFollow;
-
-    self.locationService = [[BMKLocationService alloc] init];
-    self.locationService.delegate = self;
-    [self.locationService startUserLocationService];
-    
     // 创建一个新的表单对象
     NCPComplainForm *form = [NCPComplainForm form];
     form.comment = @"null";
@@ -87,31 +66,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.mapView viewWillAppear];
-    self.mapView.delegate = self;
-    
     // 刷新界面
     [self displayComplainForm];
-    
     NCPLogVerbose(@"CF - willAppear", nil);
 }
 
 -(void)viewDidLayoutSubviews{
-    self.mapView.frame = self.mapViewContainer.bounds;
-    NSLog(@"%f %f",self.mapViewContainer.bounds.size.width,self.mapViewContainer.bounds.size.height);
-    
     NCPLogVerbose(@"CF - didAppear", nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.mapView viewWillDisappear];
-    self.mapView.delegate = nil;
-    
     NCPLogVerbose(@"CF - willDisappear", nil);
 }
 
 - (void)dealloc {
-    
     // 删除当前的表单对象
     [NCPComplainForm setCurrent:nil];
     
@@ -155,26 +123,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - BMKMapViewDelegate
 
-
-#pragma mark - BMKLocationServiceDelegate
-
--(void)willStartLocatingUser{
-    NSLog(@"开始定位");
-    
-}
-
--(void)didStopLocatingUser{
-    NSLog(@"结束定位");
-}
-
+#pragma mark - desperated
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
 
-    if (!userLocation.location)
-        return;
-    [self.mapView updateLocationData:userLocation];
-    
     //!!!: 删除了NCPSystemValue.h的内容
     NCPComplainForm *form = [NCPComplainForm current];
     form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
@@ -200,7 +152,6 @@
 
 - (void)displayComplainForm {
     NCPComplainForm *form = [NCPComplainForm current];
-    
 }
 
 /*!

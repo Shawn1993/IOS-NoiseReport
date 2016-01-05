@@ -443,20 +443,12 @@
                                             <segue destination="6xt-aR-p5X" kind="show" id="5cJ-aV-ICf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="VSR-FT-M3q">
-                                        <rect key="frame" x="0.0" y="251.5" width="600" height="132"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VSR-FT-M3q" id="hxY-eT-5ih">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="131.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="噪声源信息" id="SCo-d6-2ri">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Fo-gf-zI0" detailTextLabel="aD4-db-wge" style="IBUITableViewCellStyleValue1" id="oRL-jh-bfW">
-                                        <rect key="frame" x="0.0" y="433.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="301.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRL-jh-bfW" id="3aa-MV-ud9">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -489,7 +481,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Qmn-je-IE8" detailTextLabel="Ugn-28-qBS" style="IBUITableViewCellStyleValue1" id="IfY-QW-yGw">
-                                        <rect key="frame" x="0.0" y="477.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="345.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfY-QW-yGw" id="xdm-Gr-Vi7">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -522,7 +514,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="MMI-tE-ytS" detailTextLabel="Jzo-Wb-Xsv" style="IBUITableViewCellStyleValue1" id="dhV-c2-uwi">
-                                        <rect key="frame" x="0.0" y="521.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="389.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dhV-c2-uwi" id="wS4-UU-thN">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -559,7 +551,7 @@
                             <tableViewSection id="qHh-kp-9IO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="SIs-yg-m4b">
-                                        <rect key="frame" x="0.0" y="601.5" width="600" height="45"/>
+                                        <rect key="frame" x="0.0" y="469.5" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SIs-yg-m4b" id="8Yy-3e-IXM">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
@@ -625,7 +617,6 @@
                         <outlet property="labelNoiseLocation" destination="kMs-Ar-Uc6" id="Rqp-gV-3TL"/>
                         <outlet property="labelNoiseType" destination="aD4-db-wge" id="nCQ-ES-VGa"/>
                         <outlet property="labelSFAType" destination="Ugn-28-qBS" id="1XR-wK-9uu"/>
-                        <outlet property="mapViewContainer" destination="hxY-eT-5ih" id="Z7N-6w-pdv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x99-oe-Hrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -851,24 +842,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-nR-3Dq" userLabel="MapViewContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gJi-eX-Wtq">
+                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="gJi-eX-Wtq">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="6xt-aR-p5X" id="gQX-d9-UKg"/>
-                                        </connections>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlj-aC-utE">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" image="updatelocation" backgroundImage="mapbutton_bg"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChT-HM-uLQ">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" backgroundImage="mapbutton_bg"/>
+                                        <connections>
+                                            <action selector="updateLocationButtonClick:" destination="6xt-aR-p5X" eventType="touchUpInside" id="TDb-xM-6wu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="bottom" secondItem="KRO-nR-3Dq" secondAttribute="bottomMargin" id="2K2-kZ-dEY"/>
                                     <constraint firstItem="gJi-eX-Wtq" firstAttribute="leading" secondItem="KRO-nR-3Dq" secondAttribute="leading" constant="-7" id="3Hf-su-TD7">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
@@ -879,46 +867,40 @@
                                     <constraint firstAttribute="trailing" secondItem="gJi-eX-Wtq" secondAttribute="trailing" constant="7" id="JF1-oK-vlw">
                                         <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                     </constraint>
-                                    <constraint firstItem="nlj-aC-utE" firstAttribute="top" secondItem="ChT-HM-uLQ" secondAttribute="bottom" constant="8" id="lkc-Et-yXW"/>
-                                    <constraint firstItem="ChT-HM-uLQ" firstAttribute="leading" secondItem="nlj-aC-utE" secondAttribute="leading" id="lxh-fE-2EX"/>
-                                    <constraint firstItem="nlj-aC-utE" firstAttribute="top" secondItem="ChT-HM-uLQ" secondAttribute="bottom" constant="8" symbolic="YES" id="sO8-7n-Xa2"/>
                                     <constraint firstAttribute="bottom" secondItem="nlj-aC-utE" secondAttribute="bottom" constant="20" id="su7-7Y-7Nt"/>
                                     <constraint firstItem="nlj-aC-utE" firstAttribute="leading" secondItem="KRO-nR-3Dq" secondAttribute="leadingMargin" id="vJQ-OP-O51"/>
+                                    <constraint firstItem="nlj-aC-utE" firstAttribute="trailing" secondItem="KRO-nR-3Dq" secondAttribute="trailingMargin" id="vdx-gK-nbu"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="gJi-eX-Wtq"/>
                                         <exclude reference="nlj-aC-utE"/>
-                                        <exclude reference="ChT-HM-uLQ"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <exclude reference="2K2-kZ-dEY"/>
+                                        <exclude reference="D1W-Nw-abd"/>
+                                        <exclude reference="su7-7Y-7Nt"/>
+                                        <exclude reference="vJQ-OP-O51"/>
+                                        <exclude reference="vdx-gK-nbu"/>
                                         <exclude reference="3Hf-su-TD7"/>
                                         <exclude reference="ADM-YE-9wi"/>
                                         <exclude reference="JF1-oK-vlw"/>
-                                        <exclude reference="lxh-fE-2EX"/>
-                                        <exclude reference="D1W-Nw-abd"/>
-                                        <exclude reference="lkc-Et-yXW"/>
-                                        <exclude reference="sO8-7n-Xa2"/>
-                                        <exclude reference="su7-7Y-7Nt"/>
-                                        <exclude reference="vJQ-OP-O51"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="gJi-eX-Wtq"/>
                                         <include reference="nlj-aC-utE"/>
-                                        <include reference="ChT-HM-uLQ"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="2K2-kZ-dEY"/>
+                                        <exclude reference="D1W-Nw-abd"/>
+                                        <exclude reference="su7-7Y-7Nt"/>
+                                        <exclude reference="vJQ-OP-O51"/>
+                                        <include reference="vdx-gK-nbu"/>
                                         <include reference="3Hf-su-TD7"/>
                                         <include reference="ADM-YE-9wi"/>
                                         <include reference="JF1-oK-vlw"/>
-                                        <include reference="lxh-fE-2EX"/>
-                                        <exclude reference="D1W-Nw-abd"/>
-                                        <exclude reference="lkc-Et-yXW"/>
-                                        <include reference="sO8-7n-Xa2"/>
-                                        <include reference="su7-7Y-7Nt"/>
-                                        <include reference="vJQ-OP-O51"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -943,10 +925,10 @@
                                 <exclude reference="KRO-nR-3Dq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="syN-9V-Co8"/>
                                 <exclude reference="6WH-T9-sZb"/>
                                 <exclude reference="J5K-mf-Cf9"/>
                                 <exclude reference="ua9-PJ-Asy"/>
-                                <exclude reference="syN-9V-Co8"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -954,10 +936,10 @@
                                 <include reference="KRO-nR-3Dq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="syN-9V-Co8"/>
                                 <include reference="6WH-T9-sZb"/>
                                 <include reference="J5K-mf-Cf9"/>
                                 <include reference="ua9-PJ-Asy"/>
-                                <include reference="syN-9V-Co8"/>
                             </mask>
                         </variation>
                     </view>
@@ -969,10 +951,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="locationButton" destination="ChT-HM-uLQ" id="I2a-rS-JNn"/>
                         <outlet property="mapViewContainer" destination="KRO-nR-3Dq" id="fzd-XC-GdY"/>
                         <outlet property="searchDisplayController" destination="SR7-DE-ebV" id="XU6-oC-unB"/>
-                        <outlet property="updateLocationButton" destination="nlj-aC-utE" id="yn9-Cn-Z4d"/>
+                        <outlet property="updateLocationButton" destination="nlj-aC-utE" id="PQr-ll-M6M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqs-vH-gZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1003,7 +984,6 @@
                 <searchDisplayController id="SR7-DE-ebV">
                     <connections>
                         <outlet property="delegate" destination="6xt-aR-p5X" id="N5X-wQ-PTJ"/>
-                        <outlet property="searchBar" destination="gJi-eX-Wtq" id="xD5-Tq-SGM"/>
                         <outlet property="searchContentsController" destination="6xt-aR-p5X" id="LvP-rE-8rZ"/>
                         <outlet property="searchResultsDataSource" destination="6xt-aR-p5X" id="3pl-kF-7hp"/>
                         <outlet property="searchResultsDelegate" destination="6xt-aR-p5X" id="T67-ft-n8z"/>

@@ -9,29 +9,25 @@
 #import "NCPLocationViewController.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 
 
 #pragma mark - private interface
 @interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate>{
     
+    CLLocationCoordinate2D mPinCoordinate;
     CLLocationCoordinate2D mLocationCoordinate;
-    BOOL mIsNeedUpdateLocation;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
 
 @property (weak, nonatomic) IBOutlet UIButton *updateLocationButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *locationButton;
-
 @property (strong, nonatomic) BMKMapView *mapView;
 
 @property (strong, nonatomic) BMKLocationService *locationService;
 
 @property (strong, nonatomic) UIImageView *locationView;
-
-
-- (IBAction)doneButtonClick:(id)sender;
 
 @end
 
@@ -41,17 +37,14 @@
 
 -(void)viewDidLoad{
     self.mapView = [[BMKMapView alloc] init];
-    self.mapView.showsUserLocation = YES ;
-    self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    self.mapView.showsUserLocation = YES;
     [self.mapViewContainer addSubview:self.mapView];
-    [self.mapViewContainer sendSubviewToBack:self.mapView];
     
-    self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
+    self.locationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin"]];
     [self.mapViewContainer addSubview:self.locationView];
     
     self.locationService = [[BMKLocationService alloc] init];
     [self.locationService startUserLocationService];
-    mIsNeedUpdateLocation = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -68,69 +61,52 @@
     self.mapView.frame = self.mapViewContainer.bounds;
     
     self.locationView.layer.anchorPoint=CGPointMake(0.5, 1.0);
-    self.locationView.center = CGPointMake(self.mapViewContainer.frame.size.width/2, self.mapViewContainer.frame.size.height/2);
+    self.locationView.center = self.mapView.center;
 }
 
+# pragma mark - 按钮响应
 - (IBAction)doneButtonClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
+
 - (IBAction)updateLocationButtonClick:(id)sender {
-    if (mIsNeedUpdateLocation) {
-        self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
-        [self.locationService startUserLocationService];
-        self.updateLocationButton.titleLabel.text = @"回位";
-    }
+    mPinCoordinate = mLocationCoordinate;
+    [self.mapView setCenterCoordinate:mPinCoordinate animated:YES];
+    [self checkUpdateButtonIsNeedHide];
 }
 
 #pragma mark - BMKMapViewDelegate
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-    mLocationCoordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.view];
-    self.updateLocationButton.titleLabel.text = @"回";
-    mIsNeedUpdateLocation = YES;
-    
+    mPinCoordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView];
+    [self checkUpdateButtonIsNeedHide];
 }
 
 #pragma mark - BMKLocationServiceDelegate
-
-/**
- *在将要启动定位时，会调用此函数
- */
-- (void)willStartLocatingUser{
-    
-}
-
-/**
- *在停止定位后，会调用此函数
- */
-- (void)didStopLocatingUser{
-    
-}
-
-/**
- *用户方向更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation{
-    
-}
-
-/**
- *用户位置更新后，会调用此函数
- *@param userLocation 新的用户位置
- */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    if(!userLocation)
+        return;
+    
     [self.mapView updateLocationData:userLocation];
-    [self.locationService stopUserLocationService];
+   
+    mLocationCoordinate = userLocation.location.coordinate;
+    
+    [self checkUpdateButtonIsNeedHide];
 }
 
-/**
- *定位失败后，会调用此函数
- *@param error 错误号
- */
 - (void)didFailToLocateUserWithError:(NSError *)error{
+    NSLog(@"LOCATION ERROR");
+}
+
+#pragma mark - wrapper 
+
+-(void)checkUpdateButtonIsNeedHide{
+    BMKMapPoint locationPoint = BMKMapPointForCoordinate(mLocationCoordinate);
+    BMKMapPoint pinPoint = BMKMapPointForCoordinate(mPinCoordinate);
+    CLLocationDistance distance = BMKMetersBetweenMapPoints(pinPoint, locationPoint);
     
+    self.updateLocationButton.hidden = (fabs(distance)<1);
 }
 
 @end
