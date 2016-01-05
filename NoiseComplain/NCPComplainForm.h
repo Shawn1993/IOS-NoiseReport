@@ -29,6 +29,12 @@
 @property (nullable, nonatomic, retain) NSNumber *intensity;
 
 /*!
+ *  地址信息
+ */
+@property (nullable, nonatomic, retain) NSString *address;
+
+
+/*!
  *  纬度(float)
  */
 @property (nullable, nonatomic, retain) NSNumber *latitude;

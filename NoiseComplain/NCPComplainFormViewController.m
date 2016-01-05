@@ -61,29 +61,16 @@
     NCPComplainForm *form = [NCPComplainForm form];
     form.comment = @"null";
     [NCPComplainForm setCurrent:form];
-    
-    NCPLogVerbose(@"CF - viewDidLoad", nil);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // 刷新界面
     [self displayComplainForm];
-    NCPLogVerbose(@"CF - willAppear", nil);
-}
-
--(void)viewDidLayoutSubviews{
-    NCPLogVerbose(@"CF - didAppear", nil);
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    NCPLogVerbose(@"CF - willDisappear", nil);
 }
 
 - (void)dealloc {
     // 删除当前的表单对象
     [NCPComplainForm setCurrent:nil];
-    
-    NCPLogVerbose(@"CF - dealloc", nil);
 }
 
 #pragma mark - UITableView数据源协议与代理协议
@@ -124,7 +111,6 @@
 }
 
 
-#pragma mark - desperated
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
 
     //!!!: 删除了NCPSystemValue.h的内容
@@ -132,10 +118,6 @@
     form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
     form.latitude = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
     form.altitude = [NSNumber numberWithFloat:userLocation.location.altitude];
-}
-
--(void)didFailToLocateUserWithError:(NSError *)error{
-    NSLog(@"定位失败");
 }
 
 #pragma mark - 动作事件

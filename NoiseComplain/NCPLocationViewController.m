@@ -7,13 +7,15 @@
 //
 
 #import "NCPLocationViewController.h"
+#import "NCPComplainForm.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
 
 #pragma mark - private interface
-@interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate>{
+@interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
     
     CLLocationCoordinate2D mPinCoordinate;
     CLLocationCoordinate2D mLocationCoordinate;
@@ -23,11 +25,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *updateLocationButton;
 
+@property (strong, nonatomic) UIImageView *locationView;
+
 @property (strong, nonatomic) BMKMapView *mapView;
 
 @property (strong, nonatomic) BMKLocationService *locationService;
 
-@property (strong, nonatomic) UIImageView *locationView;
+@property (strong, nonatomic) BMKGeoCodeSearch *geoCodeSearch;
 
 @end
 
@@ -45,16 +49,20 @@
     
     self.locationService = [[BMKLocationService alloc] init];
     [self.locationService startUserLocationService];
+    
+    self.geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     self.mapView.delegate = self;
     self.locationService.delegate = self;
+    self.geoCodeSearch.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     self.mapView.delegate = nil;
     self.locationService.delegate = nil;
+    self.geoCodeSearch.delegate = nil;
 }
 
 -(void)viewDidLayoutSubviews{
@@ -66,9 +74,10 @@
 
 # pragma mark - 按钮响应
 - (IBAction)doneButtonClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [NCPComplainForm current].latitude =[NSNumber numberWithDouble: mPinCoordinate.latitude];
+    [NCPComplainForm current].longitude =[NSNumber numberWithDouble: mPinCoordinate.longitude];
+    [NCPComplainForm current].address =
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)updateLocationButtonClick:(id)sender {
@@ -89,17 +98,16 @@
         return;
     
     [self.mapView updateLocationData:userLocation];
-   
+    
     mLocationCoordinate = userLocation.location.coordinate;
     
     [self checkUpdateButtonIsNeedHide];
 }
 
-- (void)didFailToLocateUserWithError:(NSError *)error{
-    NSLog(@"LOCATION ERROR");
-}
+#pragma mark -
 
-#pragma mark - wrapper 
+
+#pragma mark - wrapper
 
 -(void)checkUpdateButtonIsNeedHide{
     BMKMapPoint locationPoint = BMKMapPointForCoordinate(mLocationCoordinate);
