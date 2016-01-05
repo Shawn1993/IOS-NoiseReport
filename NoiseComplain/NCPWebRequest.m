@@ -9,6 +9,7 @@
 #import "NCPWebRequest.h"
 #import "NCPWebParameter.h"
 #import "GTLBase64.h"
+#import "NCPLog.h"
 
 #pragma mark 常量定义
 
@@ -175,13 +176,13 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
                                     NSURLResponse *response,
                                     NSError *error) {
                     if (error) {
-                        NSLog(@"Error: %@", error);
+                        NCPLogWarn(@"Request error occored in NSURLSession completionHandler: %@", error);
                     }
                     if (handler) {
                         NSError *jsonError;
                         handler(data, response, [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError]);
                         if (jsonError) {
-                            NSLog(@"JSON Error: %@", jsonError);
+                            NCPLogWarn(@"JSON error occored in NSURLSession completionHandler: %@", error);
                         }
                     }
                }] resume];

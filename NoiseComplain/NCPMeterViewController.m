@@ -11,6 +11,7 @@
 #import "NCPNoiseRecorder.h"
 #import "NCPDashboardView.h"
 #import "NCPArrowView.h"
+#import "NCPLog.h"
 
 // 屏幕大小
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
@@ -57,7 +58,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"viewWillDisappear");
+    NCPLogVerbose(@"viewWillDisappear", nil);
     if(mNoiseMeter){
         [mNoiseMeter stop];
         mNoiseMeter = nil;
@@ -65,7 +66,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"viewDidDisappear");
+    NCPLogVerbose(@"viewDidDisappear", nil);
 }
 
 
@@ -123,15 +124,15 @@
 -(void)touchUpOutsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
     [mNoiseRecorder finish];
-    NSLog(@"在外面抬起");
+    NCPLogVerbose(@"在外面抬起", nil);
 }
 
 -(void)touchUpInsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
     [mNoiseRecorder finishUsingBlock:^(float averagePower, float peakPower) {
-        NSLog(@"测量成功");
-        NSLog(@"平均分贝%f",averagePower);
-        NSLog(@"最高分呗%f",peakPower);
+        NCPLogVerbose(@"测量成功", nil);
+        NCPLogVerbose(@"平均分贝%f",averagePower);
+        NCPLogVerbose(@"最高分呗%f",peakPower);
     }];
 
 }

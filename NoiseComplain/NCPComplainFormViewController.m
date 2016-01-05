@@ -132,6 +132,9 @@
 
 #pragma mark - 私有方法
 
+/*!
+ *  将投诉表单的内容显示在界面上
+ */
 - (void)displayComplainForm {
     NCPComplainForm *form = [NCPComplainForm current];
 }

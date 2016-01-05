@@ -7,7 +7,7 @@
 //
 
 #import "NCPAppDelegate.h"
-
+#import "NCPLog.h"
 
 @interface NCPAppDelegate ()
 
@@ -20,7 +20,7 @@
 
     BOOL result = [self.mapManager start:@"cIvjsxRwYmIGgi1Gwob3V6i4"  generalDelegate:nil];
     if (!result) {
-        NSLog(@"manager start failed!");
+        NCPLogVerbose(@"manager start failed!", nil);
     }
     [self.window makeKeyAndVisible];
     return YES;
