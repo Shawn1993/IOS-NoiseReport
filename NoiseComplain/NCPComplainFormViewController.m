@@ -24,8 +24,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
 
-@property (nonatomic) NCPComplainForm *compalinForm;
-
 /*!
  *  导航栏按钮Cancel点击事件
  *
@@ -56,8 +54,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
  */
 - (void)viewDidLoad {
     // 创建一个新的表单对象
-    self.compalinForm = [NCPComplainForm form];
-    [NCPComplainForm setCurrent:self.compalinForm];
+    [NCPComplainForm setCurrent:[NCPComplainForm form]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
