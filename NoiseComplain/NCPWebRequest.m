@@ -21,16 +21,7 @@ static const NSString *kNCPServerURL = @"http://localhost:8080";
 /*!
  *  服务器上Web工程名称
  */
-static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
-
-#pragma mark - 私有分类
-
-@interface NCPWebRequest ()
-
-- (NSData *)organizeHTTPBodyData;
-- (NSData *)organizeParameterData:(NCPWebParameter *)para key:(NSString *)key;
-
-@end
+static const NSString *kNCPServerProjectName = @"NCPServer";
 
 @implementation NCPWebRequest
 
@@ -51,85 +42,83 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 
 #pragma mark - 设置参数
 
-- (void)setKey:(NSString *)key forInteger:(int)value {
-    NCPWebParameter *para = [NCPWebParameter paraWithInteger:value];
-    [_paraDict setObject:para forKey:key];
+- (void)addParameter:(NSString *)key withInteger:(int)value {
+    NCPWebParameter *para = [NCPWebParameter parameterWithInteger:value];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)setKey:(NSString *)key forFloat:(float)value {
-    NCPWebParameter *para = [NCPWebParameter paraWithFloat:value];
-    [_paraDict setObject:para forKey:key];
+- (void)addParameter:(NSString *)key withFloat:(float)value {
+    NCPWebParameter *para = [NCPWebParameter parameterWithFloat:value];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)setKey:(NSString *)key forBool:(BOOL)value {
-    NCPWebParameter *para = [NCPWebParameter paraWithBool:value];
-    [_paraDict setObject:para forKey:key];
+- (void)addParameter:(NSString *)key withBool:(BOOL)value {
+    NCPWebParameter *para = [NCPWebParameter parameterWithBool:value];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)setKey:(NSString *)key forString:(NSString *)value {
-    NCPWebParameter *para = [NCPWebParameter paraWithString:value];
-    [_paraDict setObject:para forKey:key];
+- (void)addParameter:(NSString *)key withString:(NSString *)value {
+    NCPWebParameter *para = [NCPWebParameter parameterWithString:value];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)setKey:(NSString *)key forData:(NSData *)value {
-    NCPWebParameter *para = [NCPWebParameter paraWithData:value];
-    [_paraDict setObject:para forKey:key];
+- (void)addParameter:(NSString *)key withData:(NSData *)value {
+    NCPWebParameter *para = [NCPWebParameter parameterWithData:value];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)setEmptyArrayWithKey:(NSString *)key type:(NCPWebParaTypeEnum)type{
-    if ([NCPWebParameter isArray:type]) {
-        NCPWebParameter *para = [NCPWebParameter arrayWithType:type];
-        [_paraDict setObject:para forKey:key];
-    }
+- (void)addParameterArray:(NSString *)key {
+    NCPWebParameter *para = [NCPWebParameter array];
+    [self.paraDict setObject:para forKey:key];
 }
 
-- (void)addInteger:(int)value toArray:(NSString *)key {
-    NCPWebParameter *array = [_paraDict objectForKey:key];
-    if (array && array.type == NCPWebIntegerArray) {
+- (void)addToArray:(NSString *)key withInteger:(int)value {
+    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
-        NCPWebParameter *item = [NCPWebParameter paraWithInteger:value];
+        NCPWebParameter *item = [NCPWebParameter parameterWithInteger:value];
         [content addObject:item];
     }
 }
 
-- (void)addFloat:(float)value toArray:(NSString *)key {
-    NCPWebParameter *array = [_paraDict objectForKey:key];
-    if (array && array.type == NCPWebFloatArray) {
+- (void)addToArray:(NSString *)key withFloat:(float)value {
+    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
-        NCPWebParameter *item = [NCPWebParameter paraWithFloat:value];
+        NCPWebParameter *item = [NCPWebParameter parameterWithFloat:value];
         [content addObject:item];
     }
 }
 
-- (void)addBool:(BOOL)value toArray:(NSString *)key {
-    NCPWebParameter *array = [_paraDict objectForKey:key];
-    if (array && array.type == NCPWebBoolArray) {
+- (void)addToArray:(NSString *)key withBool:(BOOL)value {
+    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
-        NCPWebParameter *item = [NCPWebParameter paraWithBool:value];
+        NCPWebParameter *item = [NCPWebParameter parameterWithBool:value];
         [content addObject:item];
     }
 }
 
-- (void)addString:(NSString *)value toArray:(NSString *)key {
-    NCPWebParameter *array = [_paraDict objectForKey:key];
-    if (array && array.type == NCPWebStringArray) {
+- (void)addToArray:(NSString *)key withString:(NSString *)value {
+    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
-        NCPWebParameter *item = [NCPWebParameter paraWithString:value];
+        NCPWebParameter *item = [NCPWebParameter parameterWithString:value];
         [content addObject:item];
     }
 }
 
-- (void)addData:(NSData *)value toArray:(NSString *)key {
-    NCPWebParameter *array = [_paraDict objectForKey:key];
-    if (array && array.type == NCPWebDataArray) {
+- (void)addToArray:(NSString *)key withData:(NSData *)value {
+    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
-        NCPWebParameter *item = [NCPWebParameter paraWithData:value];
+        NCPWebParameter *item = [NCPWebParameter parameterWithData:value];
         [content addObject:item];
     }
 }
 
 - (BOOL)containsKey:(NSString *)key {
-    if ([_paraDict objectForKey:key]) {
+    if ([self.paraDict objectForKey:key]) {
         return true;
     } else {
         return false;
@@ -138,7 +127,7 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 
 - (BOOL)removeKey:(NSString *)key {
     if ([self containsKey:key]) {
-        [_paraDict removeObjectForKey:key];
+        [self.paraDict removeObjectForKey:key];
         return YES;
     } else {
         return NO;
@@ -151,7 +140,7 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
     return [self sendWithCompletionHandler:nil];
 }
 
-- (BOOL)sendWithCompletionHandler:(void(^)(NSData *data, NSURLResponse *response, NSDictionary *object))handler {
+- (BOOL)sendWithCompletionHandler:(void(^)(NSDictionary *json))handler {
     // 检查page是否有效
     if (!_page) {
         // page没有被正确地赋值, 请求无法发出
@@ -180,7 +169,7 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
                     }
                     if (handler) {
                         NSError *jsonError;
-                        handler(data, response, [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError]);
+                        handler([NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError]);
                         if (jsonError) {
                             NCPLogWarn(@"JSON error occored in NSURLSession completionHandler: %@", error);
                         }
@@ -194,8 +183,8 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 - (NSData *)organizeHTTPBodyData {
     NSMutableData *buff = [NSMutableData data];
     BOOL first = YES;
-    for (NSString *key in [_paraDict allKeys]) {
-        NCPWebParameter *value = _paraDict[key];
+    for (NSString *key in [self.paraDict allKeys]) {
+        NCPWebParameter *value = self.paraDict[key];
         
         // 添加'&'连接符
         if (first) {
@@ -205,7 +194,20 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
         }
         
         // 添加当前参数的字节流
-        [buff appendData:[self organizeParameterData:value key:key]];
+        if (value.type != NCPWebArray) {
+            [buff appendData:[self organizeParameterData:value key:key]];
+        } else {
+            NSArray *array = value.content;
+            for (NCPWebParameter *item in array) {
+                // 添加'&'连接符
+                if (first) {
+                    first = NO;
+                } else {
+                    [buff appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+                }
+                [buff appendData:[self organizeParameterData:item key:key]];
+            }
+        }
     }
     
     return buff;
@@ -213,97 +215,27 @@ static const NSString *kNCPServerProjectName = @"NoiseComplainServer";
 
 - (NSData *)organizeParameterData:(NCPWebParameter *)value key:(NSString *)key {
     
-    // 获取前缀
-    NSString *prefix = [value prefix];
-    
-    // 数组型是否添加'&'标识符
-    BOOL first = YES;
-    
     switch (value.type) {
         case NCPWebInteger:
         case NCPWebFloat:
         case NCPWebString:
             // 数字, 字符串, 直接转码和添加
-            return [[NSString stringWithFormat:@"%@%@=%@", prefix, key, value.content] dataUsingEncoding:NSUTF8StringEncoding];
+            return [[NSString stringWithFormat:@"%@=%@", key, value.content] dataUsingEncoding:NSUTF8StringEncoding];
             break;
         case NCPWebBool:
             // 布尔型, 输出true或false
             if ([((NSNumber *)value.content) boolValue]) {
-                return [[NSString stringWithFormat:@"%@%@=true", prefix, key] dataUsingEncoding:NSUTF8StringEncoding];
+                return [[NSString stringWithFormat:@"%@=true", key] dataUsingEncoding:NSUTF8StringEncoding];
             } else {
-                return [[NSString stringWithFormat:@"%@%@=false", prefix, key] dataUsingEncoding:NSUTF8StringEncoding];
+                return [[NSString stringWithFormat:@"%@=false", key] dataUsingEncoding:NSUTF8StringEncoding];
             }
             break;
         case NCPWebData:
             // 二进制型, 转码为Base64
         {
             NSMutableString *buff = [NSMutableString string];
-            [buff appendFormat:@"%@%@=", prefix, key];
+            [buff appendFormat:@"%@=", key];
             [buff appendString:GTLEncodeBase64(value.content)];
-            return [buff dataUsingEncoding:NSUTF8StringEncoding];
-        }
-            break;
-        case NCPWebIntegerArray:
-        case NCPWebFloatArray:
-        case NCPWebStringArray:
-            // 数字, 字符串数组型
-        {
-            NSMutableString *buff = [NSMutableString string];
-            NSArray *array = value.content;
-            for (NCPWebParameter *item in array) {
-                
-                // 数组内添加'&'分隔符
-                if (first) {
-                    first = NO;
-                } else {
-                    [buff appendString:@"&"];
-                }
-                
-                [buff appendFormat:@"%@%@=%@", prefix, key, item.content];
-            }
-            return [buff dataUsingEncoding:NSUTF8StringEncoding];
-        }
-            break;
-        case NCPWebBoolArray:
-            // 布尔型数组型
-        {
-            NSMutableString *buff = [NSMutableString string];
-            NSArray *array = value.content;
-            for (NCPWebParameter *item in array) {
-                
-                // 数组内添加'&'分隔符
-                if (first) {
-                    first = NO;
-                } else {
-                    [buff appendString:@"&"];
-                }
-                
-                if ([((NSNumber *)item.content) boolValue]) {
-                    [buff appendFormat:@"%@%@=true", prefix, key];
-                } else {
-                    [buff appendFormat:@"%@%@=false", prefix, key];
-                }
-            }
-            return [buff dataUsingEncoding:NSUTF8StringEncoding];
-        }
-            break;
-        case NCPWebDataArray:
-            // 二进制数组型, 转码为Base64
-        {
-            NSMutableString *buff = [NSMutableString string];
-            NSArray *array = value.content;
-            for (NCPWebParameter *item in array) {
-                
-                // 数组内添加'&'分隔符
-                if (first) {
-                    first = NO;
-                } else {
-                    [buff appendString:@"&"];
-                }
-                
-                [buff appendFormat:@"%@%@=", prefix, key];
-                [buff appendString:GTLEncodeBase64(item.content)];
-            }
             return [buff dataUsingEncoding:NSUTF8StringEncoding];
         }
             break;

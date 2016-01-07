@@ -13,6 +13,8 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
 
+static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
+
 @interface NCPComplainFormViewController () <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
@@ -21,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelNoiseType;
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
-
-@property (nonatomic) NCPComplainForm *compalinForm;
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -54,8 +54,7 @@
  */
 - (void)viewDidLoad {
     // 创建一个新的表单对象
-    self.compalinForm = [NCPComplainForm form];
-    [NCPComplainForm setCurrent:self.compalinForm];
+    [NCPComplainForm setCurrent:[NCPComplainForm form]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,6 +104,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+-(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    NCPComplainForm *form = [NCPComplainForm current];
+    form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
+    form.latitude = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
+    form.altitude = [NSNumber numberWithFloat:userLocation.location.altitude];
+}
+
 #pragma mark - 动作事件
 
 - (IBAction)barButtonCancelClick:(id)sender {
@@ -123,10 +130,44 @@
 - (void)displayComplainForm
 {
     NCPComplainForm *form = [NCPComplainForm current];
-    self.labelNoiseLocation.text = (form.address==nil)?(self.labelNoiseLocation.text):(form.address);
-    self.labelNoiseType.text = (form.noiseType==nil)?(self.labelNoiseType.text):(form.noiseType);
-    self.labelSFAType.text = (form.sfaType==nil)?(self.labelSFAType.text):(form.sfaType);
-    self.labelComment.text = (form.comment==nil)?(self.labelComment.text):(form.comment);
+    
+    // 噪声强度
+    if (!form.intensity) {
+        self.labelIntensity.text = @"测量中";
+    } else {
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", form.intensity.floatValue];
+    }
+    
+    // 噪声源位置
+    if (!form.address) {
+        self.labelNoiseLocation.text = @"使用当前位置";
+    } else {
+        self.labelNoiseLocation.text = form.address;
+    }
+    
+    // 噪声类型
+    if (!form.noiseType) {
+        self.labelNoiseType.text = @"点击选择";
+    } else {
+        self.labelNoiseType.text = form.noiseType;
+    }
+    
+    // 声功能区类型
+    if (!form.sfaType) {
+        self.labelSFAType.text = @"点击选择";
+    } else {
+        self.labelSFAType.text = form.sfaType;
+    }
+    
+    // 描述信息
+    if (!form.comment) {
+        self.labelComment.text = @"点击添加";
+    } else {
+        if (form.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
+            self.labelComment.text = [NSString stringWithFormat:@"%@...",
+                                      [form.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
+        }
+    }
 }
 
 /*!
