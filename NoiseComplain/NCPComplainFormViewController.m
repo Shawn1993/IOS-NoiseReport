@@ -15,6 +15,8 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
 
+static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
+
 @interface NCPComplainFormViewController () <UITableViewDelegate>
 
 #pragma mark - 输出口
@@ -112,8 +114,6 @@
 
 
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
-
-    //!!!: 删除了NCPSystemValue.h的内容
     NCPComplainForm *form = [NCPComplainForm current];
     form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
     form.latitude = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
@@ -137,6 +137,44 @@
  */
 - (void)displayComplainForm {
     NCPComplainForm *form = [NCPComplainForm current];
+    
+    // 噪声强度
+    if (!form.intensity) {
+        self.labelIntensity.text = @"测量中";
+    } else {
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", form.intensity.floatValue];
+    }
+    
+    // 噪声源位置
+    if (!form.address) {
+        self.labelNoiseLocation.text = @"使用当前位置";
+    } else {
+        self.labelNoiseLocation.text = form.address;
+    }
+    
+    // 噪声类型
+    if (!form.noiseType) {
+        self.labelNoiseType.text = @"点击选择";
+    } else {
+        self.labelNoiseType.text = form.noiseType;
+    }
+    
+    // 声功能区类型
+    if (!form.sfaType) {
+        self.labelSFAType.text = @"点击选择";
+    } else {
+        self.labelSFAType.text = form.sfaType;
+    }
+    
+    // 描述信息
+    if (!form.comment) {
+        self.labelComment.text = @"点击添加";
+    } else {
+        if (form.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
+            self.labelComment.text = [NSString stringWithFormat:@"%@...",
+                                      [form.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
+        }
+    }
 }
 
 /*!

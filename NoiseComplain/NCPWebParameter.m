@@ -18,90 +18,40 @@
     return self;
 }
 
-+ (instancetype)paraWithInteger:(int)value {
++ (instancetype)parameterWithInteger:(int)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebInteger];
     para.content = [NSNumber numberWithInt:value];
     return para;
 }
 
-+ (instancetype)paraWithFloat:(float)value {
++ (instancetype)parameterWithFloat:(float)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebFloat];
     para.content = [NSNumber numberWithFloat:value];
     return para;
 }
 
-+ (instancetype)paraWithBool:(BOOL)value {
++ (instancetype)parameterWithBool:(BOOL)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebBool];
     para.content = [NSNumber numberWithBool:value];
     return para;
 }
 
-+ (instancetype)paraWithString:(NSString *)value {
++ (instancetype)parameterWithString:(NSString *)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebString];
     para.content = value;
     return para;
 }
 
-+ (instancetype)paraWithData:(NSData *)value {
++ (instancetype)parameterWithData:(NSData *)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebData];
     para.content = value;
     return para;
 }
 
-+ (instancetype)arrayWithType:(NCPWebParaTypeEnum)type {
-    if ([NCPWebParameter isArray:type]) {
-        NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:type];
-        para.content = [NSMutableArray array];
-        return para;
-    } else {
-        return nil;
-    }
++ (instancetype)array {
+    NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebArray];
+    para.content = [NSMutableArray array];
+    return para;
 }
-
-- (NSString *)prefix {
-    switch (_type) {
-        case NCPWebInteger:
-            return @"i";
-        case NCPWebFloat:
-            return @"f";
-        case NCPWebBool:
-            return @"b";
-        case NCPWebString:
-            return @"s";
-        case NCPWebData:
-            return @"d";
-            
-        case NCPWebIntegerArray:
-            return @"I";
-        case NCPWebFloatArray:
-            return @"F";
-        case NCPWebBoolArray:
-            return @"B";
-        case NCPWebStringArray:
-            return @"S";
-        case NCPWebDataArray:
-            return @"D";
-        default:
-            return nil;
-    }
-}
-
-- (BOOL)isArray {
-    return [NCPWebParameter isArray:_type];
-}
-
-+ (BOOL)isArray:(NCPWebParaTypeEnum)type {
-    switch (type) {
-        case NCPWebIntegerArray:
-        case NCPWebFloatArray:
-        case NCPWebBoolArray:
-        case NCPWebStringArray:
-        case NCPWebDataArray:
-            return YES;
-        default:
-            return NO;
-    }
-}
-
 
 @end
