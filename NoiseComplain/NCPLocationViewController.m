@@ -15,11 +15,13 @@
 
 
 #pragma mark - private interface
-@interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface NCPLocationViewController() <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mapViewContainer;
 
 @property (weak, nonatomic) IBOutlet UIButton *updateLocationButton;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @property (nonatomic) UIImageView *locationView;
 
@@ -29,11 +31,15 @@
 
 @property (nonatomic) BMKGeoCodeSearch *geoCodeSearch;
 
-@property (nonatomic, getter=isUseUserLocation) BOOL useUserLocation;
+@property (nonatomic, getter=isPinUseUserLocation) BOOL pinUseUserLocation;
+
+@property (nonatomic, getter=isMapRegionChange) BOOL mapRegionChange;
 
 @property (nonatomic) CLLocationCoordinate2D pinCoordinate;
 
 @property (nonatomic) CLLocationCoordinate2D locationCoordinate;
+
+@property (nonatomic) NSString *pinAddress;
 
 @end
 
@@ -52,8 +58,6 @@
     [self.mapViewContainer addSubview:self.locationView];
     
     self.locationService = [[BMKLocationService alloc] init];
-    [self.locationService startUserLocationService];
-    
     self.geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
     
     [self initData];
@@ -61,12 +65,15 @@
 
 -(void)initData
 {
+
     CLLocationDegrees latitude = [[[NCPComplainForm current] latitude] doubleValue];
     CLLocationDegrees longtitude = [[[NCPComplainForm current] longitude] doubleValue];
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude,longtitude);
-    self.useUserLocation = (latitude==0&&longtitude==0);
+    self.pinUseUserLocation = (latitude==0&&longtitude==0);
+    self.mapRegionChange = NO;
+    self.pinAddress = [[NCPComplainForm current] address];
     
-    if(!self.isUseUserLocation)
+    if(!self.isPinUseUserLocation)
     {
         [self.mapView setCenterCoordinate:coordinate animated:YES];
         [self setPinCoordinate:coordinate];
@@ -78,6 +85,7 @@
     self.mapView.delegate = self;
     self.locationService.delegate = self;
     self.geoCodeSearch.delegate = self;
+    [self.locationService startUserLocationService];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -85,6 +93,7 @@
     self.mapView.delegate = nil;
     self.locationService.delegate = nil;
     self.geoCodeSearch.delegate = nil;
+    [self.locationService stopUserLocationService];
 }
 
 -(void)viewDidLayoutSubviews
@@ -123,21 +132,47 @@
 {
     [NCPComplainForm current].latitude =[NSNumber numberWithDouble:[self pinCoordinate].latitude];
     [NCPComplainForm current].longitude =[NSNumber numberWithDouble:[self pinCoordinate].longitude];
-//    NSLog(@"%f,%f",[self pinCoordinate].latitude ,[self pinCoordinate].longitude);
-    [self.navigationController popViewControllerAnimated:YES];
+//    [NCPComplainForm current].address = (self.pinAddress&&self.pinAddress.length)?(self.pinAddress):(@"选点失败");
+    if((self.pinAddress && self.pinAddress.length )|| (!self.isMapRegionChange)){
+        [NCPComplainForm current].address =self.pinAddress;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else{
+        UIAlertView *alertView = [[UIAlertView alloc]                             initWithTitle:@"当前位置不可用"
+                                                                                        message:@"请重新选择"
+                                                                                       delegate:self
+                                                                              cancelButtonTitle:@"确定"
+                                                                              otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+    
 }
 
 - (IBAction)updateLocationButtonClick:(id)sender
 {
-    [self setPinCoordinate:[self locationCoordinate]];
-    [self.mapView setCenterCoordinate:[self pinCoordinate] animated:YES];
+    if(self.locationCoordinate.latitude&&self.locationCoordinate.longitude)
+    {
+        self.pinCoordinate = self.locationCoordinate;
+        [self.mapView setCenterCoordinate:[self pinCoordinate] animated:YES];
+    }
 }
+    
 
 #pragma mark - BMKMapViewDelegate
+- (void)mapView:(BMKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+    self.pinAddress = nil;
+}
+
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:self.mapView.center toCoordinateFromView:self.mapView];
     [self setPinCoordinate:coordinate];
+  
+    BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc] init];
+    option.reverseGeoPoint = self.pinCoordinate;
+    [self.geoCodeSearch reverseGeoCode:option];
+    
+    self.mapRegionChange =YES;
 }
 
 #pragma mark - BMKLocationServiceDelegate
@@ -145,14 +180,30 @@
 {
     if(!userLocation)
         return;
+    
     [self.mapView updateLocationData: userLocation];
     self.locationCoordinate =  userLocation.location.coordinate;
     
-    if(self.isUseUserLocation){
-        self.useUserLocation = NO;
+    if(self.isPinUseUserLocation){
+        self.pinUseUserLocation = NO;
         self.pinCoordinate = self.locationCoordinate;
         [self.mapView setCenterCoordinate:self.pinCoordinate animated:YES];
     }
+}
+
+- (void)didFailToLocateUserWithError:(NSError *)error{
+    NSLog(@"定位错误");
+}
+
+#pragma mark - BMKGeoCodeSearchDelegate
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        self.pinAddress = result.address;
+    }
+    else {
+        NSLog(@"抱歉，未找到结果");
+    }
+ 
 }
 
 @end
