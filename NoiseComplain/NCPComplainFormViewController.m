@@ -10,14 +10,10 @@
 #import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
 #import "NCPComplainFormDAO.h"
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
 
 @interface NCPComplainFormViewController () <UITableViewDelegate>
-
-#pragma mark - 输出口
 
 @property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
@@ -26,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
 
-#pragma mark - 动作事件
+@property (nonatomic) NCPComplainForm *compalinForm;
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -58,9 +54,8 @@
  */
 - (void)viewDidLoad {
     // 创建一个新的表单对象
-    NCPComplainForm *form = [NCPComplainForm form];
-    form.comment = @"null";
-    [NCPComplainForm setCurrent:form];
+    self.compalinForm = [NCPComplainForm form];
+    [NCPComplainForm setCurrent:self.compalinForm];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,16 +105,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
--(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
-
-    //!!!: 删除了NCPSystemValue.h的内容
-    NCPComplainForm *form = [NCPComplainForm current];
-    form.longitude = [NSNumber numberWithFloat:userLocation.location.coordinate.longitude];
-    form.latitude = [NSNumber numberWithFloat:userLocation.location.coordinate.latitude];
-    form.altitude = [NSNumber numberWithFloat:userLocation.location.altitude];
-}
-
 #pragma mark - 动作事件
 
 - (IBAction)barButtonCancelClick:(id)sender {
@@ -135,8 +120,13 @@
 /*!
  *  将投诉表单的内容显示在界面上
  */
-- (void)displayComplainForm {
+- (void)displayComplainForm
+{
     NCPComplainForm *form = [NCPComplainForm current];
+    self.labelNoiseLocation.text = (form.address==nil)?(self.labelNoiseLocation.text):(form.address);
+    self.labelNoiseType.text = (form.noiseType==nil)?(self.labelNoiseType.text):(form.noiseType);
+    self.labelSFAType.text = (form.sfaType==nil)?(self.labelSFAType.text):(form.sfaType);
+    self.labelComment.text = (form.comment==nil)?(self.labelComment.text):(form.comment);
 }
 
 /*!
