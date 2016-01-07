@@ -10,16 +10,12 @@
 #import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
 #import "NCPComplainFormDAO.h"
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
 
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 @interface NCPComplainFormViewController () <UITableViewDelegate>
-
-#pragma mark - 输出口
 
 @property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
@@ -28,7 +24,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
 
-#pragma mark - 动作事件
+@property (nonatomic) NCPComplainForm *compalinForm;
 
 /*!
  *  导航栏按钮Cancel点击事件
@@ -60,9 +56,8 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
  */
 - (void)viewDidLoad {
     // 创建一个新的表单对象
-    NCPComplainForm *form = [NCPComplainForm form];
-    form.comment = @"null";
-    [NCPComplainForm setCurrent:form];
+    self.compalinForm = [NCPComplainForm form];
+    [NCPComplainForm setCurrent:self.compalinForm];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,7 +130,8 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 /*!
  *  将投诉表单的内容显示在界面上
  */
-- (void)displayComplainForm {
+- (void)displayComplainForm
+{
     NCPComplainForm *form = [NCPComplainForm current];
     
     // 噪声强度
