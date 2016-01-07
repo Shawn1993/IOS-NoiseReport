@@ -2,8 +2,8 @@
 //  NCPComplainFormManagedObject.h
 //  NoiseComplain
 //
-//  Created by mura on 12/23/15.
-//  Copyright © 2015 sysu. All rights reserved.
+//  Created by mura on 1/5/16.
+//  Copyright © 2016 sysu. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
