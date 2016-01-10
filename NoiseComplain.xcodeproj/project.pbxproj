@@ -29,6 +29,7 @@
 		58B1265F1C2E6AF20095014F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B1265E1C2E6AF20095014F /* CoreTelephony.framework */; };
 		58B126611C2E6AFD0095014F /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B126601C2E6AFD0095014F /* libstdc++.6.0.9.tbd */; };
 		58B126631C2E6B340095014F /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58B126621C2E6B340095014F /* mapapi.bundle */; };
+		58C28E2D1C4130EE008353E3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C28E2C1C4130EE008353E3 /* MapKit.framework */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
 		58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */; };
 		58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */; };
@@ -108,6 +109,7 @@
 		58B1265E1C2E6AF20095014F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		58B126601C2E6AFD0095014F /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		58B126621C2E6B340095014F /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = ../BaiduMap_Framework/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
+		58C28E2C1C4130EE008353E3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		58C632431C25ADFD00869630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoiseRecordingView.xib; sourceTree = "<group>"; };
 		58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordedPower.h; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58C28E2D1C4130EE008353E3 /* MapKit.framework in Frameworks */,
 				58B126611C2E6AFD0095014F /* libstdc++.6.0.9.tbd in Frameworks */,
 				58B1265F1C2E6AF20095014F /* CoreTelephony.framework in Frameworks */,
 				58B1265D1C2E6AE20095014F /* libsqlite3.0.tbd in Frameworks */,
@@ -261,6 +264,7 @@
 		CA4B30D61C0F17050013E70E = {
 			isa = PBXGroup;
 			children = (
+				58C28E2C1C4130EE008353E3 /* MapKit.framework */,
 				58B126641C2E6B550095014F /* FrameWork */,
 				CA4B30E11C0F17050013E70E /* NoiseComplain */,
 				CA4B30FB1C0F17050013E70E /* NoiseComplainTests */,
