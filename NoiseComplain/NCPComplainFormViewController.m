@@ -59,12 +59,12 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
-
+    self.noiseRecorder.delegate = self;
+    [self.noiseRecorder startWithDuration:5];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.noiseRecorder.delegate = self;
-    [self.noiseRecorder startWithDuration:5];
     [self displayComplainForm];
 }
 
