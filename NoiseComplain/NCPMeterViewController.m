@@ -21,10 +21,10 @@
 #define ARROW_LENGTH 140
 #define ARROW_WIDTH 10
 
-@interface NCPMeterViewController (){
+@interface NCPMeterViewController ()<NCPNoiseRecorderDelegate>
+{
     NSTimer *mTimer;
     NCPNoiseMeter *mNoiseMeter;
-    NCPNoiseRecorder *mNoiseRecorder;
     double mValueSPL;
 }
 @property (weak, nonatomic) IBOutlet NCPDashboardView *dashboardView;
@@ -35,6 +35,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnRecord;
 
+@property (nonatomic) NCPNoiseRecorder *noiseRecorder;
 
 @end
 
@@ -47,29 +48,23 @@
 
     [super viewDidLoad];
     [self initView];
+    
+    self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self initNoiseMeter];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    
+    self.noiseRecorder.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    NCPLogVerbose(@"viewWillDisappear", nil);
+    self.noiseRecorder.delegate = nil;
+    
     if(mNoiseMeter){
         [mNoiseMeter stop];
         mNoiseMeter = nil;
     }
 }
-
-- (void)viewDidDisappear:(BOOL)animated{
-    NCPLogVerbose(@"viewDidDisappear", nil);
-}
-
-
 
 #pragma mark - 初始化方法
 
@@ -115,26 +110,16 @@
     UIImageView *recordingImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"record"]];
     recordingImageView.center = CGPointMake(view.frame.size.width/4, view.frame.size.height/2);
     [view addSubview:recordingImageView];
-
-    mNoiseRecorder = [[NCPNoiseRecorder alloc] init];
-    [mNoiseRecorder start];
     
 }
 
 -(void)touchUpOutsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
-    [mNoiseRecorder finish];
     NCPLogVerbose(@"在外面抬起", nil);
 }
 
 -(void)touchUpInsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
-    [mNoiseRecorder finishUsingBlock:^(float averagePower, float peakPower) {
-        NCPLogVerbose(@"测量成功", nil);
-        NCPLogVerbose(@"平均分贝%f",averagePower);
-        NCPLogVerbose(@"最高分呗%f",peakPower);
-    }];
-
 }
 
 -(void)dragOutsideBtnRecord:(id)sender{

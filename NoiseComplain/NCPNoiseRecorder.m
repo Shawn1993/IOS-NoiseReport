@@ -12,44 +12,38 @@
 
 /** 采样率 */
 #define SAMPLE_RATE 44110
-
 /** 声道数 */
 #define CHANNEL_NUM 1
-
 /** 位数 */
 #define BIT_DEPTH 8
-
 /** 文件格式 */
 #define FORMAT_ID kAudioFormatAppleLossless
 
-@interface  NCPNoiseRecorder(){
-    AVAudioRecorder *mAudioRecorder;
-}
+@interface  NCPNoiseRecorder()
 
-- (NSDictionary*)audioSettings;
--(NSURL*)filePath;
+@property (nonatomic) AVAudioRecorder *audioRecorder;
+
+@property (nonatomic) NSTimer *timer;
 
 @end
 
 @implementation NCPNoiseRecorder
 
-- (instancetype)init
+- (void) initAudiRecorder
 {
-    self = [super init];
-    if (self) {
-        if (!mAudioRecorder) {
-            NSError *error = nil ;
-            mAudioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
-            mAudioRecorder.meteringEnabled = YES;
-            if(error){
-                NCPLogVerbose(@"Error when recorder inits,%@",error.localizedDescription);
-            }
-            if(![mAudioRecorder prepareToRecord]){
-                NCPLogVerbose(@"Error when recorder prepare", nil);
-            }
+    if (!self.audioRecorder)
+    {
+        NSError *error = nil ;
+        self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
+        self.audioRecorder.meteringEnabled = YES;
+        if(error){
+            NCPLogVerbose(@"Error when recorder inits,%@",error.localizedDescription);
+        }
+        if(![self.audioRecorder prepareToRecord]){
+            NCPLogVerbose(@"Error when recorder prepare", nil);
         }
     }
-    return self;
+
 }
 
 #pragma mark - 获取配置的方法
@@ -71,25 +65,36 @@
     return settings;
 }
 
-- (void)start{
-    if(!mAudioRecorder)
+- (void)startWithDuration:(NSTimeInterval)duration{
+    [self.delegate willStartRecording];
+    
+    [self initAudiRecorder];
+    
+    if(self.audioRecorder.isRecording)
         return;
-    if(mAudioRecorder.isRecording)
-        return;
-    [mAudioRecorder record];
-    [mAudioRecorder updateMeters];
+    [self.audioRecorder record];
+    [self.audioRecorder updateMeters];
+    
+    [NSTimer scheduledTimerWithTimeInterval:duration
+                                     target:self
+                                   selector:@selector(timerAction:)
+                                   userInfo:nil
+                                    repeats:NO];
+    
 }
 
-- (void)finish{
-    [mAudioRecorder stop];
-    mAudioRecorder = nil;
+- (void)stop{
+    [self.audioRecorder updateMeters];
+    [self.delegate didUpdateAveragePower:100+[self.audioRecorder averagePowerForChannel:0]
+                               PeakPower:100+[self.audioRecorder peakPowerForChannel:0]];
+    [self.audioRecorder stop];
+    self.audioRecorder = nil;
+    
+    [self.delegate didStopRecording];
 }
 
-- (void)finishUsingBlock:(NCPRecorderBlock)block{
-    [mAudioRecorder updateMeters];
-    block([mAudioRecorder averagePowerForChannel:0],
-          [mAudioRecorder peakPowerForChannel:0]);
-    [self finish];
+- (void)timerAction:(NSTimer*) timer{
+    [self stop];
 }
 
 @end

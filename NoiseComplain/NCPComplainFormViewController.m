@@ -12,10 +12,11 @@
 #import "NCPComplainFormDAO.h"
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "NCPLog.h"
+#import "NCPNoiseRecorder.h"
 
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
-@interface NCPComplainFormViewController () <UITableViewDelegate>
+@interface NCPComplainFormViewController () <UITableViewDelegate,NCPNoiseRecorderDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
@@ -24,6 +25,8 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
 
+@property (nonatomic) NCPNoiseRecorder *noiseRecorder;
+@property (nonatomic) NCPComplainForm *complainForm;
 /*!
  *  导航栏按钮Cancel点击事件
  *
@@ -55,16 +58,38 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
+    self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // 刷新界面
+    self.noiseRecorder.delegate = self;
+    [self.noiseRecorder startWithDuration:5];
     [self displayComplainForm];
 }
 
+- (void)viewWillDisAppear:(BOOL)animated{
+    self.noiseRecorder.delegate = nil;
+}
+
 - (void)dealloc {
-    // 删除当前的表单对象
     [NCPComplainForm setCurrent:nil];
+}
+
+#pragma mark - NCPNoiseRecorderDelegate
+- (void)willStartRecording{
+    self.indicatorMeasuring.hidden = NO;
+    self.labelIntensity.text = @"测量中";
+}
+
+- (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower{
+    self.indicatorMeasuring.hidden = YES;
+    self.labelIntensity.text = [NSString stringWithFormat:@"%.1f 分贝",averagePoer];
+    self.complainForm.intensity = [NSNumber numberWithFloat:peakPower];
+}
+
+- (void)didStopRecording{
+    
 }
 
 #pragma mark - UITableView数据源协议与代理协议
@@ -81,6 +106,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
     switch (indexPath.section) {
         case 0:
             // 测量结果session
+            [self.noiseRecorder startWithDuration:5];
             break;
         case 1:
             // 噪声源位置session
@@ -129,43 +155,43 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
  */
 - (void)displayComplainForm
 {
-    NCPComplainForm *form = [NCPComplainForm current];
+    self.complainForm = [NCPComplainForm current];
     
     // 噪声强度
-    if (!form.intensity) {
+    if (!self.complainForm.intensity) {
         self.labelIntensity.text = @"测量中";
     } else {
-        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", form.intensity.floatValue];
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", self.complainForm.intensity.floatValue];
     }
     
     // 噪声源位置
-    if (!form.address) {
+    if (!self.complainForm.address) {
         self.labelNoiseLocation.text = @"使用当前位置";
     } else {
-        self.labelNoiseLocation.text = form.address;
+        self.labelNoiseLocation.text = self.complainForm.address;
     }
     
     // 噪声类型
-    if (!form.noiseType) {
+    if (!self.complainForm.noiseType) {
         self.labelNoiseType.text = @"点击选择";
     } else {
-        self.labelNoiseType.text = form.noiseType;
+        self.labelNoiseType.text = self.complainForm.noiseType;
     }
     
     // 声功能区类型
-    if (!form.sfaType) {
+    if (!self.complainForm.sfaType) {
         self.labelSFAType.text = @"点击选择";
     } else {
-        self.labelSFAType.text = form.sfaType;
+        self.labelSFAType.text = self.complainForm.sfaType;
     }
     
     // 描述信息
-    if (!form.comment) {
+    if (!self.complainForm.comment) {
         self.labelComment.text = @"点击添加";
     } else {
-        if (form.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
+        if (self.complainForm.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
             self.labelComment.text = [NSString stringWithFormat:@"%@...",
-                                      [form.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
+                                      [self.complainForm.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
         }
     }
 }
