@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/** 地图选点定位视图控制器 */
+/*!地图选点定位视图控制器*/
 @interface NCPLocationViewController : UIViewController
 
 @end

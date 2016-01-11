@@ -10,9 +10,7 @@
 
 @class NCPComplainForm;
 
-/*!
- *  噪声投诉表单视图控制器
- */
+/*!噪声投诉表单视图控制器*/
 @interface NCPComplainFormViewController : UITableViewController
 
 @end

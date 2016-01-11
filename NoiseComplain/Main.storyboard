@@ -356,52 +356,58 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7Lr-Zl-LWB">
+                                                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                                </activityIndicatorView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测量中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phK-Y0-wf8">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7Lr-Zl-LWB">
-                                                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7Lr-Zl-LWB" secondAttribute="trailing" constant="8" id="0T4-v6-ruV"/>
                                                 <constraint firstItem="ucY-tk-MqM" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="1Se-FA-BRk"/>
+                                                <constraint firstItem="phK-Y0-wf8" firstAttribute="baseline" secondItem="ucY-tk-MqM" secondAttribute="baseline" id="9bt-wX-UpU"/>
+                                                <constraint firstItem="phK-Y0-wf8" firstAttribute="leading" secondItem="7Lr-Zl-LWB" secondAttribute="trailing" constant="8" symbolic="YES" id="NtT-ao-WtP"/>
                                                 <constraint firstItem="ucY-tk-MqM" firstAttribute="leading" secondItem="ohH-A9-A2O" secondAttribute="leadingMargin" constant="8" id="SNU-UY-SZO"/>
+                                                <constraint firstItem="phK-Y0-wf8" firstAttribute="trailing" secondItem="ohH-A9-A2O" secondAttribute="trailingMargin" id="WGl-7K-wqS"/>
+                                                <constraint firstItem="phK-Y0-wf8" firstAttribute="top" secondItem="ohH-A9-A2O" secondAttribute="topMargin" constant="4" id="elx-mn-O63"/>
                                                 <constraint firstItem="phK-Y0-wf8" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="p86-hP-FZD"/>
                                                 <constraint firstItem="7Lr-Zl-LWB" firstAttribute="centerY" secondItem="ohH-A9-A2O" secondAttribute="centerY" id="raR-q3-rta"/>
-                                                <constraint firstItem="7Lr-Zl-LWB" firstAttribute="leading" secondItem="phK-Y0-wf8" secondAttribute="trailing" constant="8" id="vGM-5p-Qm7"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="ucY-tk-MqM"/>
-                                                    <exclude reference="phK-Y0-wf8"/>
                                                     <exclude reference="7Lr-Zl-LWB"/>
+                                                    <exclude reference="phK-Y0-wf8"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="0T4-v6-ruV"/>
-                                                    <exclude reference="raR-q3-rta"/>
-                                                    <exclude reference="vGM-5p-Qm7"/>
-                                                    <exclude reference="p86-hP-FZD"/>
                                                     <exclude reference="1Se-FA-BRk"/>
                                                     <exclude reference="SNU-UY-SZO"/>
+                                                    <exclude reference="raR-q3-rta"/>
+                                                    <exclude reference="9bt-wX-UpU"/>
+                                                    <exclude reference="NtT-ao-WtP"/>
+                                                    <exclude reference="WGl-7K-wqS"/>
+                                                    <exclude reference="elx-mn-O63"/>
+                                                    <exclude reference="p86-hP-FZD"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="ucY-tk-MqM"/>
-                                                    <include reference="phK-Y0-wf8"/>
                                                     <include reference="7Lr-Zl-LWB"/>
+                                                    <include reference="phK-Y0-wf8"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="0T4-v6-ruV"/>
-                                                    <include reference="raR-q3-rta"/>
-                                                    <include reference="vGM-5p-Qm7"/>
-                                                    <include reference="p86-hP-FZD"/>
                                                     <include reference="1Se-FA-BRk"/>
                                                     <include reference="SNU-UY-SZO"/>
+                                                    <include reference="raR-q3-rta"/>
+                                                    <include reference="9bt-wX-UpU"/>
+                                                    <include reference="NtT-ao-WtP"/>
+                                                    <include reference="WGl-7K-wqS"/>
+                                                    <include reference="elx-mn-O63"/>
+                                                    <include reference="p86-hP-FZD"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

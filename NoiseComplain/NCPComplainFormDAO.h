@@ -9,9 +9,7 @@
 #import "NCPCoreDataDAO.h"
 #import "NCPComplainForm.h"
 
-/*!
- *  用于操作NCPComplainForm对象的DAO类
- */
+/*!用于操作NCPComplainForm对象的DAO类*/
 @interface NCPComplainFormDAO : NCPCoreDataDAO <NCPCoreDataDAOProtocol>
 
 @end

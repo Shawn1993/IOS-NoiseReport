@@ -13,14 +13,9 @@
 
 #pragma mark 常量定义
 
-/*!
- *  服务器地址(包含端口号)
- */
+/*!服务器地址(包含端口号)*/
 static const NSString *kNCPServerURL = @"http://localhost:8080";
-
-/*!
- *  服务器上Web工程名称
- */
+/*!服务器上Web工程名称*/
 static const NSString *kNCPServerProjectName = @"NCPServer";
 
 @implementation NCPWebRequest

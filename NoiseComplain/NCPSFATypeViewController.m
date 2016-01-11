@@ -10,33 +10,20 @@
 #import "NCPComplainFormTableViewCell.h"
 #import "NCPComplainForm.h"
 
-/*!
- *  声功能区类型plist文件名
- */
+/*!声功能区类型plist文件名*/
 NSString *kNCPSFATypePListFileName = @"SFAType";
-
-/*!
- *  表格文字内容键名(String类型)
- */
+/*!表格文字内容键名(String)*/
 NSString *kNCPSFATypePListTextKey = @"name";
-
-/*!
- *  表格图标名键名(String类型, 对应Assets.xcassets)
- */
+/*!表格图标名键名(String, 对应Assets.xcassets)*/
 NSString *kNCPSFATypePListImageKey = @"image";
-
-/*!
- *  当表格图标不存在时的默认图标名
- */
+/*!当表格图标不存在时的默认图标名*/
 NSString *kNCPSFATypeDefaultImage = @"";
 
 #pragma mark Private category
 
 @interface NCPSFATypeViewController ()
 
-/*!
- *  plist文件对应Array
- */
+/*!plist文件对应Array*/
 @property (strong, nonatomic) NSArray *pList;
 
 @end
