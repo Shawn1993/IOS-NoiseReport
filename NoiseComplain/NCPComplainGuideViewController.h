@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 /** 噪声投诉引导视图控制器  */
-@interface NCPComplainGuideViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface NCPComplainGuideViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
