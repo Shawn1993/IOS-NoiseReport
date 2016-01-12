@@ -10,7 +10,7 @@
 #import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
 #import "NCPComplainFormDAO.h"
-#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "NCPLog.h"
 #import "NCPNoiseRecorder.h"
 
@@ -18,6 +18,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 @interface NCPComplainFormViewController () <UITableViewDelegate,NCPNoiseRecorderDelegate>
 
+/*!各输出口*/
 @property (weak, nonatomic) IBOutlet UILabel *labelIntensity;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
 @property (weak, nonatomic) IBOutlet UILabel *labelNoiseLocation;
@@ -25,25 +26,15 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 @property (weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property (weak, nonatomic) IBOutlet UILabel *labelComment;
 
+/*!噪音仪对象*/
 @property (nonatomic) NCPNoiseRecorder *noiseRecorder;
-@property (nonatomic) NCPComplainForm *complainForm;
-/*!
- *  导航栏按钮Cancel点击事件
- *
- *  @param sender sender
- */
-- (IBAction)barButtonCancelClick:(id)sender;
 
-/*!
- *  导航栏按钮Clear点击事件
- *
- *  @param sender sender
- */
+/*!导航栏按钮Cancel*/
+- (IBAction)barButtonCancelClick:(id)sender;
+/*!导航栏按钮Clear*/
 - (IBAction)barButtonClearClick:(id)sender;
 
-/*!
- *  定位服务
- */
+/*!定位服务*/
 @property (strong, nonatomic) BMKLocationService *locationService;
 
 @end
@@ -52,9 +43,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 #pragma mark - 生命周期事件
 
-/*!
- *  视图初始化
- */
+/*!视图即将初始化*/
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
@@ -63,20 +52,24 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
     [self.noiseRecorder startWithDuration:5];
 }
 
+/*!视图初始化完成*/
 - (void)viewWillAppear:(BOOL)animated {
     self.noiseRecorder.delegate = self;
     [self displayComplainForm];
 }
 
+/*!视图即将消失*/
 - (void)viewWillDisAppear:(BOOL)animated{
     self.noiseRecorder.delegate = nil;
 }
 
+/*!析构*/
 - (void)dealloc {
     [NCPComplainForm setCurrent:nil];
 }
 
 #pragma mark - NCPNoiseRecorderDelegate
+
 - (void)willStartRecording{
     self.indicatorMeasuring.hidden = NO;
     self.labelIntensity.text = @"测量中";
@@ -85,7 +78,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 - (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower{
     self.indicatorMeasuring.hidden = YES;
     self.labelIntensity.text = [NSString stringWithFormat:@"%.1f 分贝",averagePoer];
-    self.complainForm.intensity = [NSNumber numberWithFloat:peakPower];
+    [NCPComplainForm current].intensity = [NSNumber numberWithFloat:peakPower];
 }
 
 - (void)didStopRecording{
@@ -94,12 +87,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 #pragma mark - UITableView数据源协议与代理协议
 
-/*!
- *  表格选择代理方法
- *
- *  @param tableView 表格视图
- *  @param indexPath 表格索引路径
- */
+/*!表格选择代理方法*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -150,62 +138,56 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 #pragma mark - 私有方法
 
-/*!
- *  将投诉表单的内容显示在界面上
- */
+/*!将投诉表单的内容显示在界面上*/
 - (void)displayComplainForm
 {
-    self.complainForm = [NCPComplainForm current];
+    NCPComplainForm *form = [NCPComplainForm current];
     
     // 噪声强度
-    if (!self.complainForm.intensity) {
+    if (!form.intensity) {
         self.labelIntensity.text = @"测量中";
     } else {
-        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", self.complainForm.intensity.floatValue];
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.1fdB", form.intensity.floatValue];
     }
     
     // 噪声源位置
-    if (!self.complainForm.address) {
+    if (!form.address) {
         self.labelNoiseLocation.text = @"使用当前位置";
     } else {
-        self.labelNoiseLocation.text = self.complainForm.address;
+        self.labelNoiseLocation.text = form.address;
     }
     
     // 噪声类型
-    if (!self.complainForm.noiseType) {
+    if (!form.noiseType) {
         self.labelNoiseType.text = @"点击选择";
     } else {
-        self.labelNoiseType.text = self.complainForm.noiseType;
+        self.labelNoiseType.text = form.noiseType;
     }
     
     // 声功能区类型
-    if (!self.complainForm.sfaType) {
+    if (!form.sfaType) {
         self.labelSFAType.text = @"点击选择";
     } else {
-        self.labelSFAType.text = self.complainForm.sfaType;
+        self.labelSFAType.text = form.sfaType;
     }
     
     // 描述信息
-    if (!self.complainForm.comment) {
+    if (!form.comment) {
         self.labelComment.text = @"点击添加";
     } else {
-        if (self.complainForm.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
+        if (form.comment.length > kNCPComplainFormCommentDisplayMaxLength) {
             self.labelComment.text = [NSString stringWithFormat:@"%@...",
-                                      [self.complainForm.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
+                                      [form.comment substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)]];
         }
     }
 }
 
-/*!
- *  向服务器发送投诉表单
- */
+/*!向服务器发送投诉表单*/
 - (void)sendComplainForm:(NCPComplainForm *)form {
     // NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
 }
 
-/*!
- *  在本地保存此次投诉表单
- */
+/*!在本地保存此次投诉表单*/
 - (void)saveComplainForm:(NCPComplainForm *)form {
     // NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
 }

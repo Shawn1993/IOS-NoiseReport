@@ -9,11 +9,7 @@
 #ifndef NCPCoreDataDAOProtocol_h
 #define NCPCoreDataDAOProtocol_h
 
-/*!
- *  DAO相关协议
- *  <p>
- *  为了方便地实现各种DAO, 规定的一些方法, 提供实体相关的信息
- */
+/*!DAO相关协议, 提供实体相关的信息*/
 @protocol NCPCoreDataDAOProtocol <NSObject>
 
 @required
@@ -63,7 +59,7 @@
 
 @end
 
-/* 方法实现部分
+/* 方法实现部分, 可直接拷贝使用
 
 - (NSString *)entityName {
     

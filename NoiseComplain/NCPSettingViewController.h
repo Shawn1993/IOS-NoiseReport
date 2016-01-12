@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-/** 噪声仪选项视图控制器 */
+/*!噪声仪选项视图控制器*/
 @interface NCPSettingViewController : UITableViewController
 
 @end
