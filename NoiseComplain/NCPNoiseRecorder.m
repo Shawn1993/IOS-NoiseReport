@@ -66,6 +66,17 @@
 }
 
 - (void)startWithDuration:(NSTimeInterval)duration{
+    
+    [self start];
+    
+    [NSTimer scheduledTimerWithTimeInterval:duration
+                                     target:self
+                                   selector:@selector(timerAction:)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+- (void)start{
     [self.delegate willStartRecording];
     
     [self initAudiRecorder];
@@ -74,13 +85,6 @@
         return;
     [self.audioRecorder record];
     [self.audioRecorder updateMeters];
-    
-    [NSTimer scheduledTimerWithTimeInterval:duration
-                                     target:self
-                                   selector:@selector(timerAction:)
-                                   userInfo:nil
-                                    repeats:NO];
-    
 }
 
 - (void)stop{

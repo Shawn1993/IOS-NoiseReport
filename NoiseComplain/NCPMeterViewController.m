@@ -106,24 +106,41 @@
     view.layer.cornerRadius = 10;
     [self.view addSubview:view];
     
-    
     UIImageView *recordingImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"record"]];
     recordingImageView.center = CGPointMake(view.frame.size.width/4, view.frame.size.height/2);
     [view addSubview:recordingImageView];
+    
+    [self.noiseRecorder start];
     
 }
 
 -(void)touchUpOutsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
-    NCPLogVerbose(@"在外面抬起", nil);
+    [self.noiseRecorder stop];
 }
 
 -(void)touchUpInsideBtnRecord:(id)sender{
     [[self.view.window viewWithTag:100] removeFromSuperview];
+    [self.noiseRecorder stop];
 }
 
 -(void)dragOutsideBtnRecord:(id)sender{
-
+    
 }
+
+#pragma mark - NCPNoiseRecorderDelegate
+- (void)willStartRecording{
+    
+}
+
+- (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower{
+    
+    
+}
+
+- (void)didStopRecording{
+    
+}
+
 
 @end

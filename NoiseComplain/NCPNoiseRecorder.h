@@ -17,6 +17,8 @@ typedef void (^NCPRecorderBlock)(NCPPower averagePower, NCPPower peakPower);
 @interface NCPNoiseRecorder : NSObject
 
 - (void)startWithDuration:(NSTimeInterval)duration;
+- (void)start;
+- (void)stop;
 
 @property (nonatomic) id<NCPNoiseRecorderDelegate> delegate;
 
