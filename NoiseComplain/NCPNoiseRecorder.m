@@ -89,8 +89,8 @@
 
 - (void)stop{
     [self.audioRecorder updateMeters];
-    [self.delegate didUpdateAveragePower:100+[self.audioRecorder averagePowerForChannel:0]
-                               PeakPower:100+[self.audioRecorder peakPowerForChannel:0]];
+    [self.delegate didUpdateAveragePower:(120+[self.audioRecorder averagePowerForChannel:0])
+                               PeakPower:(120+[self.audioRecorder peakPowerForChannel:0])];
     [self.audioRecorder stop];
     self.audioRecorder = nil;
     

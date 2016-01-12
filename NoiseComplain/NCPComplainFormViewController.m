@@ -31,8 +31,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 
 /*!导航栏按钮Cancel*/
 - (IBAction)barButtonCancelClick:(id)sender;
-/*!导航栏按钮Clear*/
-- (IBAction)barButtonClearClick:(id)sender;
 
 /*!定位服务*/
 @property (strong, nonatomic) BMKLocationService *locationService;
@@ -78,7 +76,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 - (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower{
     self.indicatorMeasuring.hidden = YES;
     self.labelIntensity.text = [NSString stringWithFormat:@"%.1f 分贝",averagePoer];
-    [NCPComplainForm current].intensity = [NSNumber numberWithFloat:peakPower];
+    [NCPComplainForm current].intensity = [NSNumber numberWithFloat:averagePoer];
 }
 
 - (void)didStopRecording{
@@ -107,9 +105,12 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
         {
             // 将投诉表单发送至服务器
             [self sendComplainForm:[NCPComplainForm current]];
-            
             // 将投诉表单保存至本地
             [self saveComplainForm:[NCPComplainForm current]];
+            // 返回上一个页面
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"在为你提交投诉中" message:@"请稍后" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alertController animated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:nil];
         }
             break;
         default:
@@ -190,6 +191,10 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
 /*!在本地保存此次投诉表单*/
 - (void)saveComplainForm:(NCPComplainForm *)form {
     // NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
+}
+
+- (void)succesToSendComplainForm{
+    
 }
 
 @end

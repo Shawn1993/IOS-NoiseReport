@@ -33,7 +33,6 @@
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
 		58D4A60A1C2D9524004A914D /* NoiseRecordingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */; };
 		58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */; };
-		58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */; };
 		CA208CB51C3232080097652A /* NCPComplainFormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA208CB41C3232080097652A /* NCPComplainFormTableViewCell.m */; };
 		CA208CB91C3232790097652A /* NCPComplainGuideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA208CB81C3232790097652A /* NCPComplainGuideTableViewCell.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
@@ -114,8 +113,6 @@
 		58D4A6091C2D9524004A914D /* NoiseRecordingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoiseRecordingView.xib; sourceTree = "<group>"; };
 		58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordedPower.h; sourceTree = "<group>"; };
 		58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordedPower.m; sourceTree = "<group>"; };
-		58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordViewController.h; sourceTree = "<group>"; };
-		58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordViewController.m; sourceTree = "<group>"; };
 		CA208CB31C3232080097652A /* NCPComplainFormTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormTableViewCell.h; sourceTree = "<group>"; };
 		CA208CB41C3232080097652A /* NCPComplainFormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainFormTableViewCell.m; sourceTree = "<group>"; };
 		CA208CB71C3232790097652A /* NCPComplainGuideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainGuideTableViewCell.h; sourceTree = "<group>"; };
@@ -376,8 +373,6 @@
 				CA4B31291C0F18900013E70E /* NCPMeterViewController.m */,
 				CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */,
 				CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */,
-				58F1C11A1C2AFDEA00C8A70F /* NCPRecordViewController.h */,
-				58F1C11B1C2AFDEA00C8A70F /* NCPRecordViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -671,7 +666,6 @@
 				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
 				CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */,
 				CA208CB51C3232080097652A /* NCPComplainFormTableViewCell.m in Sources */,
-				58F1C11C1C2AFDEA00C8A70F /* NCPRecordViewController.m in Sources */,
 				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
 				581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */,
