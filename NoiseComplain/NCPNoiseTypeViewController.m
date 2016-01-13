@@ -72,11 +72,11 @@ NSString *kNCPNoiseTypeDefaultImage = nil;
         // 文字
         cell.textLabel.text = self.pList[row][kNCPNoiseTypePListTextKey];
         
-        // 图标
-        cell.imageView.image = [UIImage imageNamed:self.pList[row][kNCPNoiseTypePListImageKey]];
-        if (!cell.imageView.image) {
-            cell.imageView.image = [UIImage imageNamed:kNCPNoiseTypeDefaultImage];
-        }
+//        // 图标
+//        cell.imageView.image = [UIImage imageNamed:self.pList[row][kNCPNoiseTypePListImageKey]];
+//        if (!cell.imageView.image) {
+//            cell.imageView.image = [UIImage imageNamed:kNCPNoiseTypeDefaultImage];
+//        }
     }
     
     return cell;

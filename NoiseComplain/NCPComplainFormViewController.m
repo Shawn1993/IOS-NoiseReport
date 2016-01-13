@@ -108,15 +108,21 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 8;
             // 将投诉表单保存至本地
             [self saveComplainForm:[NCPComplainForm current]];
             // 返回上一个页面
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"在为你提交投诉中" message:@"请稍后" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"正在为你提交投诉中" message:@"请稍候" preferredStyle:UIAlertControllerStyleAlert];
             [self presentViewController:alertController animated:YES completion:nil];
-//            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
         }
             break;
         default:
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)timerAction{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
