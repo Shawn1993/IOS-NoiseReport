@@ -230,7 +230,11 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
         {
             NSMutableString *buff = [NSMutableString string];
             [buff appendFormat:@"%@=", key];
-            [buff appendString:GTLEncodeBase64(value.content)];
+            if (value.content) {
+                [buff appendString:GTLEncodeBase64(value.content)];
+            } else {
+                [buff appendString:@"null"];
+            }
             return [buff dataUsingEncoding:NSUTF8StringEncoding];
         }
             break;
