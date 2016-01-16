@@ -95,6 +95,7 @@
     if(!self.isPinUseUserLocation)
     {
         [self.mapView setCenterCoordinate:coordinate animated:YES];
+        self.mapView.zoomLevel= 17;
         [self setPinCoordinate:coordinate];
     }
 }
@@ -320,6 +321,7 @@
         self.pinUseUserLocation = NO;
         self.pinCoordinate = self.locationCoordinate;
         [self.mapView setCenterCoordinate:self.pinCoordinate animated:YES];
+        self.mapView.zoomLevel= 17;
     }
 }
 
