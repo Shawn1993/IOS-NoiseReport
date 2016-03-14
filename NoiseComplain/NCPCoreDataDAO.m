@@ -51,7 +51,7 @@ static void errorLog(NSError *error) {
     if (!_persistentStoreCoordinator) {
         // 初始化持久化存储协调器
         NSURL *storeURL = [[self applicationDocumentsDirectory]
-                           URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", kNCPCoreDataModelFileName]];
+                URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", kNCPCoreDataModelFileName]];
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
         [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:nil
@@ -80,34 +80,34 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return nil;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     // 建立一个用于填充的可变数组
     NSMutableArray *array = [NSMutableArray array];
-    
+
     // 查询全部
     NSManagedObjectContext *context = dao.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:[dao entityName]
                                               inManagedObjectContext:context];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = entity;
-    
+
     // 设置排序
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[dao keyName]
                                                                    ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     fetchRequest.sortDescriptors = sortDescriptors;
-    
+
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest
                                                error:&error];
     errorLog(error);
-    
+
     // 向数组中转换类型并添加内容
     for (NSManagedObject *mo in listData) {
         [array addObject:[dao objectWithManagedObject:mo]];
     }
-    
+
     return array;
 }
 
@@ -116,35 +116,35 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return nil;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     // 建立一个用于填充的可变数组
     NSMutableArray *array = [NSMutableArray array];
-    
+
     // 进行有条件查询
     NSManagedObjectContext *context = dao.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:[dao entityName]
                                               inManagedObjectContext:context];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = entity;
-    
+
     // 获取查询条件的可变参数
     va_list ap;
     va_start(ap, format);
     fetchRequest.predicate = [NSPredicate predicateWithFormat:format
                                                     arguments:ap];
     va_end(ap);
-    
+
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:
-                         fetchRequest error:&error];
+            fetchRequest                       error:&error];
     errorLog(error);
-    
+
     // 填充数组内容
     for (NSManagedObject *mo in listData) {
         [array addObject:[dao objectWithManagedObject:mo]];
     }
-    
+
     return array;
 }
 
@@ -153,11 +153,11 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return nil;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     // 设置查询条件进行查询
     NSArray *array = [dao findByPredicate:@"%@ = %@", [dao keyName], key];
-    
+
     if (array.count > 0) {
         return array.lastObject;
     } else {
@@ -170,18 +170,18 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return NO;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     NSManagedObjectContext *context = dao.managedObjectContext;
-    
+
     // TODO: 在插入前检查是否已经存在此实体
-    
+
     // 获取ManagedObject并为其赋值
     NSManagedObject *mo = [NSEntityDescription insertNewObjectForEntityForName:[dao entityName]
                                                         inManagedObjectContext:context];
     [dao assignWithObject:model
             managedObject:mo];
-    
+
     // 检查是否成功提交更改
     NSError *error = nil;
     if (context.hasChanges && ![context save:&error]) {
@@ -197,28 +197,28 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return NO;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     NSManagedObjectContext *context = dao.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:[dao entityName]
                                               inManagedObjectContext:context];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = entity;
-    
+
     // 设置查询条件
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", [dao keyName], [dao keyValueWithObject:model]];
     fetchRequest.predicate = predicate;
-    
+
     // 提交请求, 获取要删除的实体
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest
-                                               error:&error];
+    error:&error];
     errorLog(error);
-    
+
     if (listData.count > 0) {
         NSManagedObject *mo = listData.lastObject;
         [context deleteObject:mo];
-        
+
         // 检查是否提交成功
         error = nil;
         if (context.hasChanges && ![context save:&error]) {
@@ -228,7 +228,7 @@ static void errorLog(NSError *error) {
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -237,28 +237,28 @@ static void errorLog(NSError *error) {
     if (![self conformsToProtocol:@protocol(NCPCoreDataDAOProtocol)]) {
         return NO;
     }
-    NCPCoreDataDAO<NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO<NCPCoreDataDAOProtocol> *)self;
-    
+    NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
+
     NSManagedObjectContext *context = dao.managedObjectContext;
     NSEntityDescription *entity = [NSEntityDescription entityForName:[dao entityName]
                                               inManagedObjectContext:context];
-    
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = entity;
-    
+
     // 设置查询条件
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", [dao keyName], [dao keyValueWithObject:model]];
     fetchRequest.predicate = predicate;
-    
+
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest
                                                error:&error];
     errorLog(error);
-    
+
     if (listData.count > 0) {
         NSManagedObject *mo = listData.lastObject;
         [dao assignWithObject:model managedObject:mo];
-        
+
         error = nil;
         if (context.hasChanges && ![context save:&error]) {
             errorLog(error);

@@ -10,6 +10,6 @@
 
 @interface CALayer (Additions)
 
-@property (nonatomic,strong) UIColor *borderColorFromUIColor;
+@property(nonatomic, strong) UIColor *borderColorFromUIColor;
 
 @end

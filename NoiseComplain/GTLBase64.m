@@ -24,116 +24,116 @@ static char gWebSafeEncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno
 #pragma mark Encode
 
 static NSString *EncodeBase64StringCommon(NSData *data, const char *table) {
-  if (data == nil) return nil;
+    if (data == nil) return nil;
 
-  const uint8_t* input = [data bytes];
-  NSUInteger length = [data length];
+    const uint8_t *input = [data bytes];
+    NSUInteger length = [data length];
 
-  NSUInteger bufferSize = ((length + 2) / 3) * 4;
-  NSMutableData* buffer = [NSMutableData dataWithLength:bufferSize];
+    NSUInteger bufferSize = ((length + 2) / 3) * 4;
+    NSMutableData *buffer = [NSMutableData dataWithLength:bufferSize];
 
-  int8_t *output = [buffer mutableBytes];
+    int8_t *output = [buffer mutableBytes];
 
-  for (NSUInteger i = 0; i < length; i += 3) {
-    NSUInteger value = 0;
-    for (NSUInteger j = i; j < (i + 3); j++) {
-      value <<= 8;
+    for (NSUInteger i = 0; i < length; i += 3) {
+        NSUInteger value = 0;
+        for (NSUInteger j = i; j < (i + 3); j++) {
+            value <<= 8;
 
-      if (j < length) {
-        value |= (0xFF & input[j]);
-      }
+            if (j < length) {
+                value |= (0xFF & input[j]);
+            }
+        }
+
+        NSInteger idx = (i / 3) * 4;
+        output[idx + 0] = table[(value >> 18) & 0x3F];
+        output[idx + 1] = table[(value >> 12) & 0x3F];
+        output[idx + 2] = (i + 1) < length ? table[(value >> 6) & 0x3F] : '=';
+        output[idx + 3] = (i + 2) < length ? table[(value >> 0) & 0x3F] : '=';
     }
 
-    NSInteger idx = (i / 3) * 4;
-    output[idx + 0] =                    table[(value >> 18) & 0x3F];
-    output[idx + 1] =                    table[(value >> 12) & 0x3F];
-    output[idx + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
-    output[idx + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
-  }
-
-  NSString *result = [[NSString alloc] initWithData:buffer
-                                            encoding:NSASCIIStringEncoding];
-  return result;
+    NSString *result = [[NSString alloc] initWithData:buffer
+                                             encoding:NSASCIIStringEncoding];
+    return result;
 }
 
 NSString *GTLEncodeBase64(NSData *data) {
-  return EncodeBase64StringCommon(data, gStandardEncodingTable);
+    return EncodeBase64StringCommon(data, gStandardEncodingTable);
 }
 
 NSString *GTLEncodeWebSafeBase64(NSData *data) {
-  return EncodeBase64StringCommon(data, gWebSafeEncodingTable);
+    return EncodeBase64StringCommon(data, gWebSafeEncodingTable);
 }
 
 #pragma mark Decode
 
 static void CreateDecodingTable(const char *encodingTable,
-                                size_t encodingTableSize, char *decodingTable) {
-  memset(decodingTable, 0, 128);
-  for (unsigned int i = 0; i < encodingTableSize; i++) {
-    decodingTable[(unsigned int) encodingTable[i]] = (char)i;
-  }
+        size_t encodingTableSize, char *decodingTable) {
+    memset(decodingTable, 0, 128);
+    for (unsigned int i = 0; i < encodingTableSize; i++) {
+        decodingTable[(unsigned int) encodingTable[i]] = (char) i;
+    }
 }
 
 static NSData *DecodeBase64StringCommon(NSString *base64Str,
-                                        char *decodingTable) {
-  // The input string should be plain ASCII
-  const char *cString = [base64Str cStringUsingEncoding:NSASCIIStringEncoding];
-  if (cString == nil) return nil;
+        char *decodingTable) {
+    // The input string should be plain ASCII
+    const char *cString = [base64Str cStringUsingEncoding:NSASCIIStringEncoding];
+    if (cString == nil) return nil;
 
-  NSInteger inputLength = (NSInteger)strlen(cString);
-  if (inputLength % 4 != 0) return nil;
-  if (inputLength == 0) return [NSData data];
+    NSInteger inputLength = (NSInteger) strlen(cString);
+    if (inputLength % 4 != 0) return nil;
+    if (inputLength == 0) return [NSData data];
 
-  while (inputLength > 0 && cString[inputLength - 1] == '=') {
-    inputLength--;
-  }
-
-  NSInteger outputLength = inputLength * 3 / 4;
-  NSMutableData* data = [NSMutableData dataWithLength:(NSUInteger)outputLength];
-  uint8_t *output = [data mutableBytes];
-
-  NSInteger inputPoint = 0;
-  NSInteger outputPoint = 0;
-  char *table = decodingTable;
-
-  while (inputPoint < inputLength) {
-    int i0 = cString[inputPoint++];
-    int i1 = cString[inputPoint++];
-    int i2 = inputPoint < inputLength ? cString[inputPoint++] : 'A'; // 'A' will decode to \0
-    int i3 = inputPoint < inputLength ? cString[inputPoint++] : 'A';
-
-    output[outputPoint++] = (uint8_t)((table[i0] << 2) | (table[i1] >> 4));
-    if (outputPoint < outputLength) {
-      output[outputPoint++] = (uint8_t)(((table[i1] & 0xF) << 4) | (table[i2] >> 2));
+    while (inputLength > 0 && cString[inputLength - 1] == '=') {
+        inputLength--;
     }
-    if (outputPoint < outputLength) {
-      output[outputPoint++] = (uint8_t)(((table[i2] & 0x3) << 6) | table[i3]);
-    }
-  }
 
-  return data;
+    NSInteger outputLength = inputLength * 3 / 4;
+    NSMutableData *data = [NSMutableData dataWithLength:(NSUInteger) outputLength];
+    uint8_t *output = [data mutableBytes];
+
+    NSInteger inputPoint = 0;
+    NSInteger outputPoint = 0;
+    char *table = decodingTable;
+
+    while (inputPoint < inputLength) {
+        int i0 = cString[inputPoint++];
+        int i1 = cString[inputPoint++];
+        int i2 = inputPoint < inputLength ? cString[inputPoint++] : 'A'; // 'A' will decode to \0
+        int i3 = inputPoint < inputLength ? cString[inputPoint++] : 'A';
+
+        output[outputPoint++] = (uint8_t) ((table[i0] << 2) | (table[i1] >> 4));
+        if (outputPoint < outputLength) {
+            output[outputPoint++] = (uint8_t) (((table[i1] & 0xF) << 4) | (table[i2] >> 2));
+        }
+        if (outputPoint < outputLength) {
+            output[outputPoint++] = (uint8_t) (((table[i2] & 0x3) << 6) | table[i3]);
+        }
+    }
+
+    return data;
 }
 
 NSData *GTLDecodeBase64(NSString *base64Str) {
-  static char decodingTable[128];
-  static BOOL hasInited = NO;
+    static char decodingTable[128];
+    static BOOL hasInited = NO;
 
-  if (!hasInited) {
-    CreateDecodingTable(gStandardEncodingTable, sizeof(gStandardEncodingTable),
-                        decodingTable);
-    hasInited = YES;
-  }
-  return DecodeBase64StringCommon(base64Str, decodingTable);
+    if (!hasInited) {
+        CreateDecodingTable(gStandardEncodingTable, sizeof(gStandardEncodingTable),
+                decodingTable);
+        hasInited = YES;
+    }
+    return DecodeBase64StringCommon(base64Str, decodingTable);
 }
 
 NSData *GTLDecodeWebSafeBase64(NSString *base64Str) {
-  static char decodingTable[128];
-  static BOOL hasInited = NO;
+    static char decodingTable[128];
+    static BOOL hasInited = NO;
 
-  if (!hasInited) {
-    CreateDecodingTable(gWebSafeEncodingTable, sizeof(gWebSafeEncodingTable),
-                        decodingTable);
-    hasInited = YES;
-  }
-  return DecodeBase64StringCommon(base64Str, decodingTable);
+    if (!hasInited) {
+        CreateDecodingTable(gWebSafeEncodingTable, sizeof(gWebSafeEncodingTable),
+                decodingTable);
+        hasInited = YES;
+    }
+    return DecodeBase64StringCommon(base64Str, decodingTable);
 }

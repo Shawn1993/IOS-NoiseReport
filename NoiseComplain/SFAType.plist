@@ -2,23 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<dict>
-		<key>image</key>
-		<string></string>
-		<key>name</key>
-		<string>住宅区</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string></string>
-		<key>name</key>
-		<string>工业区</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string></string>
-		<key>name</key>
-		<string>教学区</string>
-	</dict>
+	<string>教学区</string>
+	<string>商业区</string>
+	<string>住宅区</string>
+	<string>工业区</string>
 </array>
 </plist>

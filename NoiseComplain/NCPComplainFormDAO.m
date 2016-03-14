@@ -17,14 +17,14 @@
 }
 
 - (id)objectWithManagedObject:(NSManagedObject *)mo {
-    NCPComplainFormManagedObject *tmo = (NCPComplainFormManagedObject *)mo;
+    NCPComplainFormManagedObject *tmo = (NCPComplainFormManagedObject *) mo;
     NCPComplainForm *tmodel = [[NCPComplainForm alloc] init];
+    tmodel.formId = tmo.formId;
     tmodel.comment = tmo.comment;
     tmodel.date = tmo.date;
     tmodel.intensity = tmo.intensity;
     tmodel.latitude = tmo.latitude;
     tmodel.longitude = tmo.longitude;
-    tmodel.altitude = tmo.altitude;
     tmodel.image = tmo.image;
     tmodel.sfaType = tmo.sfaType;
     tmodel.noiseType = tmo.noiseType;
@@ -33,14 +33,14 @@
 }
 
 - (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo {
-    NCPComplainForm *tmodel = (NCPComplainForm *)model;
-    NCPComplainFormManagedObject *tmo = (NCPComplainFormManagedObject *)mo;
+    NCPComplainForm *tmodel = (NCPComplainForm *) model;
+    NCPComplainFormManagedObject *tmo = (NCPComplainFormManagedObject *) mo;
+    tmo.formId = tmodel.formId;
     tmo.comment = tmodel.comment;
     tmo.date = tmodel.date;
     tmo.intensity = tmodel.intensity;
     tmo.latitude = tmodel.latitude;
     tmo.longitude = tmodel.longitude;
-    tmo.altitude = tmodel.altitude;
     tmo.image = tmodel.image;
     tmo.sfaType = tmodel.sfaType;
     tmo.noiseType = tmodel.noiseType;
@@ -49,11 +49,11 @@
 }
 
 - (NSString *)keyName {
-    return @"date";
+    return @"formId";
 }
 
 - (id)keyValueWithObject:(id)model {
-    return ((NCPComplainForm *)model).date;
+    return ((NCPComplainForm *) model).formId;
 }
 
 @end

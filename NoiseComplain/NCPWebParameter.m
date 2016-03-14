@@ -20,19 +20,19 @@
 
 + (instancetype)parameterWithInteger:(int)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebInteger];
-    para.content = [NSNumber numberWithInt:value];
+    para.content = @(value);
     return para;
 }
 
 + (instancetype)parameterWithFloat:(float)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebFloat];
-    para.content = [NSNumber numberWithFloat:value];
+    para.content = @(value);
     return para;
 }
 
 + (instancetype)parameterWithBool:(BOOL)value {
     NCPWebParameter *para = [[NCPWebParameter alloc] initWithType:NCPWebBool];
-    para.content = [NSNumber numberWithBool:value];
+    para.content = @(value);
     return para;
 }
 

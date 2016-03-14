@@ -11,7 +11,7 @@
 
 @interface NCPAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) BMKMapManager *mapManager;
+@property(strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) BMKMapManager *mapManager;
 
 @end

@@ -15,12 +15,12 @@
 
 @implementation NCPAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    self.mapManager = [[BMKMapManager alloc]init];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.mapManager = [[BMKMapManager alloc] init];
 
-    BOOL result = [self.mapManager start:@"cIvjsxRwYmIGgi1Gwob3V6i4"  generalDelegate:nil];
+    BOOL result = [self.mapManager start:@"cIvjsxRwYmIGgi1Gwob3V6i4" generalDelegate:nil];
     if (!result) {
-        NCPLogVerbose(@"manager start failed!", nil);
+        NCPLogError(@"manager start failed!", nil);
     }
     [self.window makeKeyAndVisible];
     return YES;

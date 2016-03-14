@@ -12,17 +12,20 @@
 @interface NCPNoiseMeter : NSObject
 
 /** 开始检测并记录数据: 计时器每跳的回调Block(刷新UI等) */
-- (void)startWithCallback:(void(^)(void))callback;
+- (void)startWithCallback:(void (^)(void))callback;
+
 /** 暂停噪声检测 */
 - (void)pause;
+
 /** 继续噪声检测 */
 - (void)resume;
+
 /** 停止记录数据 */
 - (void)stop;
 
 /** 最后一次平均值 */
-@property (readonly, assign, nonatomic) double lastAvg;
+@property(readonly, assign, nonatomic) double lastAvg;
 /** 最后一次峰值 */
-@property (readonly, assign, nonatomic) double lastPeak;
+@property(readonly, assign, nonatomic) double lastPeak;
 
 @end

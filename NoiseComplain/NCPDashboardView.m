@@ -28,20 +28,20 @@
 #define DEGREE_TO_RADIAN(x) ((x)*M_PI/180)
 #define RADIAN_TO_DEGREE(x) ((x)/M_PI*180)
 
-@interface NCPDashboardView()
+@interface NCPDashboardView ()
 
-- (void) drawTickMark:(CGContextRef) context;
+- (void)drawTickMark:(CGContextRef)context;
 
-@property (nonatomic, strong) NCPArrowView *arrowView;
-@property (nonatomic, strong) NSMutableArray *labels;
+@property(nonatomic, strong) NCPArrowView *arrowView;
+@property(nonatomic, strong) NSMutableArray *labels;
 
 @end
 
 @implementation NCPDashboardView
 
 # pragma mark - init
-- (instancetype)initWithFrame:(CGRect)frame
-{
+
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
@@ -49,7 +49,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initView];
@@ -58,20 +58,20 @@
 }
 
 
--(void)initView{
+- (void)initView {
     [self setBackgroundColor:[UIColor clearColor]];
     self.arrowView = [[NCPArrowView alloc] initWithFrame:CGRectMake(100, 100, ARROW_WIDTH, ARROW_LENGTH)];
     [self addSubview:self.arrowView];
-    
+
     [self initLable];
 }
 
--(void)initLable{
+- (void)initLable {
     self.labels = [[NSMutableArray alloc] init];
     for (int i = 0; i < LABLE_NUM; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         label.layer.anchorPoint = CGPointMake(0.5, 0.0);
-        label.text = [NSString stringWithFormat:@"%d",MINVALUE+i*10];
+        label.text = [NSString stringWithFormat:@"%d", MINVALUE + i * 10];
         [label sizeToFit];
         [self addSubview:label];
         [self.labels addObject:label];
@@ -80,95 +80,94 @@
 
 # pragma mark - layout
 
-- (void)layoutSubviews{
+- (void)layoutSubviews {
     self.arrowView.layer.anchorPoint = CGPointMake(0.5, 1.0);
     self.arrowView.center = CGPointMake(SIZE_W_2, SIZE_H);
-    self.arrowView.bounds= CGRectMake(0, 0, ARROW_WIDTH, ARROW_LENGTH);
-    
+    self.arrowView.bounds = CGRectMake(0, 0, ARROW_WIDTH, ARROW_LENGTH);
+
     CGPoint centerPoint = CGPointMake(SIZE_W_2, SIZE_H);
-    CGFloat raduis = RADUIS*0.98;
-    CGFloat angleDis = M_PI_2/(LABLE_NUM-1);
-    for (int i=0; i< LABLE_NUM; i++) {
+    CGFloat raduis = RADUIS * 0.98;
+    CGFloat angleDis = M_PI_2 / (LABLE_NUM - 1);
+    for (int i = 0; i < LABLE_NUM; i++) {
         UILabel *lable = [self.labels objectAtIndex:i];
-        
-        CGFloat x = centerPoint.x + (raduis-RADUIS_OFFSET_L)*cos(-M_PI_4*3+i*angleDis);
-        CGFloat y = centerPoint.y + (raduis-RADUIS_OFFSET_L)*sin(-M_PI_4*3+i*angleDis);
-        
+
+        CGFloat x = centerPoint.x + (raduis - RADUIS_OFFSET_L) * cos(-M_PI_4 * 3 + i * angleDis);
+        CGFloat y = centerPoint.y + (raduis - RADUIS_OFFSET_L) * sin(-M_PI_4 * 3 + i * angleDis);
+
         lable.center = CGPointMake(x, y);
-        lable.transform = CGAffineTransformMakeRotation(-M_PI_4+i*angleDis);
+        lable.transform = CGAffineTransformMakeRotation(-M_PI_4 + i * angleDis);
     }
 }
 
 # pragma mark - draw
+
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineWidth(context,1.0);
+    CGContextSetLineWidth(context, 1.0);
     CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
-    
+
     [self drawArc:context];
     [self drawTickMark:context];
 }
 
-- (void) drawDisk:(CGContextRef) context{
+- (void)drawDisk:(CGContextRef)context {
     CGContextBeginPath(context);
-    CGContextAddArc(context, SIZE_W_2, SIZE_H, CIRCLE_RADUIS, 0, M_PI*2, 0);
+    CGContextAddArc(context, SIZE_W_2, SIZE_H, CIRCLE_RADUIS, 0, M_PI * 2, 0);
     CGContextFillPath(context);
 }
 
-- (void)drawArc:(CGContextRef) context{
+- (void)drawArc:(CGContextRef)context {
     CGContextBeginPath(context);
-    CGContextAddArc(context, SIZE_W_2, SIZE_H, RADUIS, -M_PI_4*3, -M_PI_4, 0);
+    CGContextAddArc(context, SIZE_W_2, SIZE_H, RADUIS, -M_PI_4 * 3, -M_PI_4, 0);
     CGContextStrokePath(context);
 }
 
-- (void) drawTickMark:(CGContextRef) context{
+- (void)drawTickMark:(CGContextRef)context {
     CGPoint centerPoint = CGPointMake(SIZE_W_2, SIZE_H);
     CGFloat raduis = RADUIS;
-    CGFloat startAngle = -M_PI_4*3;
-    CGFloat angleDis = M_PI_2/25;
+    CGFloat startAngle = -M_PI_4 * 3;
+    CGFloat angleDis = M_PI_2 / 25;
     CGFloat raduisOffset = 2;
-    
+
     CGContextBeginPath(context);
-    
-    for (int i = 0; i<TICK_NUM; i++) {
-        if(i%5==0){
+
+    for (int i = 0; i < TICK_NUM; i++) {
+        if (i % 5 == 0) {
             raduisOffset = RADUIS_OFFSET_L;
-        }else{
+        } else {
             raduisOffset = RADUIS_OFFSET_S;
         }
-        CGFloat curAngle = startAngle + i* angleDis;
-        CGFloat x0 = centerPoint.x + (raduis+raduisOffset)*cos(curAngle);
-        CGFloat y0 = centerPoint.y + (raduis+raduisOffset)*sin(curAngle);
-        CGFloat x1 = centerPoint.x + (raduis-raduisOffset)*cos(curAngle);
-        CGFloat y1 = centerPoint.y + (raduis-raduisOffset)*sin(curAngle);
+        CGFloat curAngle = startAngle + i * angleDis;
+        CGFloat x0 = centerPoint.x + (raduis + raduisOffset) * cos(curAngle);
+        CGFloat y0 = centerPoint.y + (raduis + raduisOffset) * sin(curAngle);
+        CGFloat x1 = centerPoint.x + (raduis - raduisOffset) * cos(curAngle);
+        CGFloat y1 = centerPoint.y + (raduis - raduisOffset) * sin(curAngle);
         CGContextMoveToPoint(context, x0, y0);
         CGContextAddLineToPoint(context, x1, y1);
     }
-    
+
     CGContextStrokePath(context);
 }
 
 #pragma mark - 操作
 
--(void)showValue:(double) value{
+- (void)showValue:(double)value {
     CGFloat angle;
-    if(value<MINVALUE){
+    if (value < MINVALUE) {
         angle = -M_PI_4;
-    }else if(value>MAXVALUE){
+    } else if (value > MAXVALUE) {
         angle = M_PI_4;
-    }else{
-        angle = M_PI_2*(value-MINVALUE)/(MAXVALUE-MINVALUE)-M_PI_4;
+    } else {
+        angle = M_PI_2 * (value - MINVALUE) / (MAXVALUE - MINVALUE) - M_PI_4;
     }
     [self rotateArrow:angle];
 }
 
--(void)rotateArrow:(CGFloat)angle{
+- (void)rotateArrow:(CGFloat)angle {
     CGAffineTransform transform;
     transform = CGAffineTransformMakeRotation(angle);
     self.arrowView.transform = transform;
 }
-
-
 
 @end

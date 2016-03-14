@@ -10,6 +10,6 @@
 
 @interface NCPGraphView : UIView
 
--(void)addValue:(float) value;
+- (void)addValue:(float)value;
 
 @end

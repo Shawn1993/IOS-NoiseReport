@@ -16,10 +16,12 @@
 #import <Foundation/Foundation.h>
 
 NSData *GTLDecodeBase64(NSString *base64Str);
+
 NSString *GTLEncodeBase64(NSData *data);
 
 // "Web-safe" encoding substitutes - and _ for + and / in the encoding table,
 // per http://www.ietf.org/rfc/rfc4648.txt section 5.
 
 NSData *GTLDecodeWebSafeBase64(NSString *base64Str);
+
 NSString *GTLEncodeWebSafeBase64(NSData *data);

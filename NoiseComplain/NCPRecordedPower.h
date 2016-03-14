@@ -10,8 +10,8 @@
 
 @interface NCPRecordedPower : NSObject
 
-@property (nonatomic,strong) NSNumber *averagePower;
-@property (nonatomic,strong) NSNumber *peakPower;
-@property (nonatomic,strong) NSData *recordedData;
+@property(nonatomic, strong) NSNumber *averagePower;
+@property(nonatomic, strong) NSNumber *peakPower;
+@property(nonatomic, strong) NSData *recordedData;
 
 @end

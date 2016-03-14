@@ -14,9 +14,7 @@
 #pragma mark 常量定义
 
 /*!服务器地址(包含端口号)*/
-static const NSString *kNCPServerURL = @"http://localhost:8080";
-/*!服务器上Web工程名称*/
-static const NSString *kNCPServerProjectName = @"NCPServer";
+static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
 
 @implementation NCPWebRequest
 
@@ -39,36 +37,36 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 
 - (void)addParameter:(NSString *)key withInteger:(int)value {
     NCPWebParameter *para = [NCPWebParameter parameterWithInteger:value];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addParameter:(NSString *)key withFloat:(float)value {
     NCPWebParameter *para = [NCPWebParameter parameterWithFloat:value];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addParameter:(NSString *)key withBool:(BOOL)value {
     NCPWebParameter *para = [NCPWebParameter parameterWithBool:value];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addParameter:(NSString *)key withString:(NSString *)value {
     NCPWebParameter *para = [NCPWebParameter parameterWithString:value];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addParameter:(NSString *)key withData:(NSData *)value {
     NCPWebParameter *para = [NCPWebParameter parameterWithData:value];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addParameterArray:(NSString *)key {
     NCPWebParameter *para = [NCPWebParameter array];
-    [self.paraDict setObject:para forKey:key];
+    self.paraDict[key] = para;
 }
 
 - (void)addToArray:(NSString *)key withInteger:(int)value {
-    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    NCPWebParameter *array = self.paraDict[key];
     if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
         NCPWebParameter *item = [NCPWebParameter parameterWithInteger:value];
@@ -77,7 +75,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 }
 
 - (void)addToArray:(NSString *)key withFloat:(float)value {
-    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    NCPWebParameter *array = self.paraDict[key];
     if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
         NCPWebParameter *item = [NCPWebParameter parameterWithFloat:value];
@@ -86,7 +84,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 }
 
 - (void)addToArray:(NSString *)key withBool:(BOOL)value {
-    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    NCPWebParameter *array = self.paraDict[key];
     if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
         NCPWebParameter *item = [NCPWebParameter parameterWithBool:value];
@@ -95,7 +93,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 }
 
 - (void)addToArray:(NSString *)key withString:(NSString *)value {
-    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    NCPWebParameter *array = self.paraDict[key];
     if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
         NCPWebParameter *item = [NCPWebParameter parameterWithString:value];
@@ -104,7 +102,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 }
 
 - (void)addToArray:(NSString *)key withData:(NSData *)value {
-    NCPWebParameter *array = [self.paraDict objectForKey:key];
+    NCPWebParameter *array = self.paraDict[key];
     if (array && array.type == NCPWebArray) {
         NSMutableArray *content = array.content;
         NCPWebParameter *item = [NCPWebParameter parameterWithData:value];
@@ -113,7 +111,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
 }
 
 - (BOOL)containsKey:(NSString *)key {
-    if ([self.paraDict objectForKey:key]) {
+    if (self.paraDict[key]) {
         return true;
     } else {
         return false;
@@ -135,41 +133,49 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
     return [self sendWithCompletionHandler:nil];
 }
 
-- (BOOL)sendWithCompletionHandler:(void(^)(NSDictionary *json))handler {
+- (BOOL)sendWithCompletionHandler:(void (^)(NSDictionary *json, NSError* error))handler {
     // 检查page是否有效
     if (!_page) {
         // page没有被正确地赋值, 请求无法发出
         return NO;
     }
-    
+
     // 使用NSURLSession类进行网络连接
-    NSString *urlStr = [NSString stringWithFormat:@"%@/%@/%@", kNCPServerURL, kNCPServerProjectName, _page];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/%@", kNCPServerURLRoot, _page];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
+
     // 使用POST请求
     request.HTTPMethod = @"POST";
-    
+
     // 添加参数
     request.HTTPBody = [self organizeHTTPBodyData];
-    
+
+    NCPLogVerbose(@"Sending request to: \"%@\", HTTP body: \"%@\"", urlStr, [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
+
     // 发送请求
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData *data,
-                                    NSURLResponse *response,
-                                    NSError *error) {
+                        NSURLResponse *response,
+                        NSError *error) {
                     if (error) {
                         NCPLogWarn(@"Request error occored in NSURLSession completionHandler: %@", error);
                     }
                     if (handler) {
                         NSError *jsonError;
-                        handler([NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError]);
+
+                        // 检查收到的NSData, 如果没有获得有效的NSData, 不进行序列化
+                        NSDictionary *json;
+                        if (data) {
+                            json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+                        }
+                        handler(json, error);
                         if (jsonError) {
                             NCPLogWarn(@"JSON error occored in NSURLSession completionHandler: %@", error);
                         }
                     }
-               }] resume];
+                }] resume];
     return YES;
 }
 
@@ -180,14 +186,14 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
     BOOL first = YES;
     for (NSString *key in [self.paraDict allKeys]) {
         NCPWebParameter *value = self.paraDict[key];
-        
+
         // 添加'&'连接符
         if (first) {
             first = NO;
         } else {
             [buff appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
         }
-        
+
         // 添加当前参数的字节流
         if (value.type != NCPWebArray) {
             [buff appendData:[self organizeParameterData:value key:key]];
@@ -204,12 +210,12 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
             }
         }
     }
-    
+
     return buff;
 }
 
 - (NSData *)organizeParameterData:(NCPWebParameter *)value key:(NSString *)key {
-    
+
     switch (value.type) {
         case NCPWebInteger:
         case NCPWebFloat:
@@ -219,7 +225,7 @@ static const NSString *kNCPServerProjectName = @"NCPServer";
             break;
         case NCPWebBool:
             // 布尔型, 输出true或false
-            if ([((NSNumber *)value.content) boolValue]) {
+            if ([((NSNumber *) value.content) boolValue]) {
                 return [[NSString stringWithFormat:@"%@=true", key] dataUsingEncoding:NSUTF8StringEncoding];
             } else {
                 return [[NSString stringWithFormat:@"%@=false", key] dataUsingEncoding:NSUTF8StringEncoding];

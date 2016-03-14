@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef float NCPPower;
+
 typedef void (^NCPRecorderBlock)(NCPPower averagePower, NCPPower peakPower);
 
 
@@ -17,10 +18,12 @@ typedef void (^NCPRecorderBlock)(NCPPower averagePower, NCPPower peakPower);
 @interface NCPNoiseRecorder : NSObject
 
 - (void)startWithDuration:(NSTimeInterval)duration;
+
 - (void)start;
+
 - (void)stop;
 
-@property (nonatomic) id<NCPNoiseRecorderDelegate> delegate;
+@property(nonatomic) id <NCPNoiseRecorderDelegate> delegate;
 
 @end
 
@@ -29,8 +32,10 @@ typedef void (^NCPRecorderBlock)(NCPPower averagePower, NCPPower peakPower);
 
 @optional
 
-- (void) willStartRecording;
-- (void) didStopRecording;
-- (void) didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower;
+- (void)willStartRecording;
+
+- (void)didStopRecording;
+
+- (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower;
 
 @end

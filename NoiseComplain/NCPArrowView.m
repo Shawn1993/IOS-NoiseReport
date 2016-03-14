@@ -7,6 +7,7 @@
 //
 
 #import "NCPArrowView.h"
+
 #define SIZE_W (self.frame.size.width)
 #define SIZE_H (self.frame.size.height)
 #define SIZE_W_2 SIZE_W/2
@@ -14,8 +15,7 @@
 
 @implementation NCPArrowView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -24,21 +24,21 @@
 }
 
 
--(void)drawRect:(CGRect)rect{
+- (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     [self drawArrow:context Rect:rect];
 }
 
 
-- (void) drawArrow:(CGContextRef) context Rect:(CGRect) rect{
-    
+- (void)drawArrow:(CGContextRef)context Rect:(CGRect)rect {
+
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, rect.size.width/2, rect.size.height);
-    CGContextAddLineToPoint(context, rect.size.width/2, 0);
-    
-    CGContextMoveToPoint(context, 0, rect.size.width/2);
-    CGContextAddLineToPoint(context, rect.size.width/2, 0);
-    CGContextAddLineToPoint(context, rect.size.width, rect.size.width/2);
+    CGContextMoveToPoint(context, rect.size.width / 2, rect.size.height);
+    CGContextAddLineToPoint(context, rect.size.width / 2, 0);
+
+    CGContextMoveToPoint(context, 0, rect.size.width / 2);
+    CGContextAddLineToPoint(context, rect.size.width / 2, 0);
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.width / 2);
     CGContextStrokePath(context);
 }
 

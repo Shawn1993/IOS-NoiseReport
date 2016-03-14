@@ -2,23 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<dict>
-		<key>image</key>
-		<string>reportcard</string>
-		<key>name</key>
-		<string>生活噪音</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string>microphone_selected2</string>
-		<key>name</key>
-		<string>施工噪音</string>
-	</dict>
-	<dict>
-		<key>image</key>
-		<string>microphone</string>
-		<key>name</key>
-		<string>交通噪音</string>
-	</dict>
+	<string>交通噪音</string>
+	<string>生活噪音</string>
+	<string>建筑工地噪音</string>
 </array>
 </plist>

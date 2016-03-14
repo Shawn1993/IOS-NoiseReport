@@ -10,6 +10,6 @@
 
 @interface NCPDashboardView : UIView
 
--(void)showValue:(double)value;
+- (void)showValue:(double)value;
 
 @end

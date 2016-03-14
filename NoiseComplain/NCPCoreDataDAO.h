@@ -16,13 +16,13 @@
 #pragma mark - Core Data 堆栈
 
 /*!被管理对象上下文*/
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property(readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 /*!被管理对象模型*/
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 
 /*!持久化存储协调器*/
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property(readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 /*!获取应用程序沙箱目录*/
 - (NSURL *)applicationDocumentsDirectory;

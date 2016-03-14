@@ -8,17 +8,14 @@
 
 
 #import "CALayer+Addtions.h"
-#import <objc/runtime.h>
+
 @implementation CALayer (Additions)
 
-- (UIColor *)borderColorFromUIColor
-{
+- (UIColor *)borderColorFromUIColor {
     return [UIColor colorWithCGColor:self.borderColor];
 }
 
-
-- (void)setBorderColorFromUIColor:(UIColor *)color
-{
+- (void)setBorderColorFromUIColor:(UIColor *)color {
     self.borderColor = color.CGColor;
 }
 
