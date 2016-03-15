@@ -11,12 +11,22 @@
 #import "NCPComplainForm.h"
 #import "NCPComplainFormDAO.h"
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
+#import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
+#import "BaiduMapAPI_Search/BMKGeocodeSearchOption.h"
 #import "NCPLog.h"
 #import "NCPNoiseRecorder.h"
 
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
-@interface NCPComplainFormViewController () <UITableViewDelegate, NCPNoiseRecorderDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface NCPComplainFormViewController ()
+<
+UITableViewDelegate,
+NCPNoiseRecorderDelegate,
+UITextFieldDelegate,
+UITextViewDelegate,
+BMKLocationServiceDelegate,
+BMKGeoCodeSearchDelegate
+>
 
 #pragma mark - Storyboard输出口
 
@@ -46,6 +56,12 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 /*!定位服务*/
 @property(nonatomic) BMKLocationService *locationService;
 
+/*!地理编码服务*/
+@property(nonatomic) BMKGeoCodeSearch *geoCodeSearch;
+
+/*!地理编码信息*/
+@property(nonatomic) BMKReverseGeoCodeOption *reverseGeoCodeOption;
+
 @end
 
 @implementation NCPComplainFormViewController
@@ -59,18 +75,38 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
     self.noiseRecorder.delegate = self;
     [self.noiseRecorder startWithDuration:5];
+    
+    // 创建定位服务对象
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    
+    // 创建地理编码服务对象
+    self.geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
+    self.geoCodeSearch.delegate = self;
+    
+    // 创建地理编码信息对象
+    self.reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
+    
 }
 
 /*!视图初始化完成*/
 - (void)viewWillAppear:(BOOL)animated {
     self.noiseRecorder.delegate = self;
     [self displayComplainForm];
+    
+    [self.locationService startUserLocationService];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.locationService stopUserLocationService];
 }
 
 /*!视图即将消失*/
 - (void)viewWillUnload {
     [NCPComplainForm setCurrent:nil];
     self.noiseRecorder.delegate = nil;
+    self.locationService.delegate = nil;
+    self.geoCodeSearch.delegate = nil;
 }
 
 #pragma mark - 录音器代理
@@ -183,7 +219,28 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     NCPComplainForm *form = [NCPComplainForm current];
     form.longitude = @((float) userLocation.location.coordinate.longitude);
     form.latitude = @((float) userLocation.location.coordinate.latitude);
+    
+    // 通过坐标请求反编码，获取地址
+    self.reverseGeoCodeOption.reverseGeoPoint = userLocation.location.coordinate;
+    [self.geoCodeSearch reverseGeoCode:self.reverseGeoCodeOption];
+    
+    [self.locationService stopUserLocationService];
+
 }
+
+- (void)didFailToLocateUserWithError:(NSError *)error{
+
+}
+
+#pragma mark - 地理反编码功能
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+    if(error == BMK_SEARCH_NO_ERROR){
+        NCPComplainForm *form = [NCPComplainForm current];
+        form.address = result.address;
+        [self displayComplainForm];
+    }
+}
+
 
 #pragma mark - 文本框代理事件
 
