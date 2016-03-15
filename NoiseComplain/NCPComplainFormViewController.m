@@ -33,7 +33,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 @property(weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property(weak, nonatomic) IBOutlet UITextView *textViewComment;
 @property(weak, nonatomic) IBOutlet UILabel *labelCommentPlaceholder;
-@property (weak, nonatomic) IBOutlet UITableViewCell *tableCellComment;
+@property(weak, nonatomic) IBOutlet UITableViewCell *tableCellComment;
 
 #pragma mark - 成员变量
 
@@ -86,7 +86,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 - (void)didStopRecording {
 }
 
-#pragma mark - 表格选择事件
+#pragma mark - 表格视图代理
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -299,7 +299,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     [web addParameter:@"address" withString:form.address];
     [web addParameter:@"latitude" withFloat:form.latitude.floatValue];
     [web addParameter:@"longitude" withFloat:form.longitude.floatValue];
-    [web addParameter:@"image" withData:form.image];
+    // [web addParameter:@"image" withData:form.image];
     [web addParameter:@"sfaType" withString:form.sfaType];
     [web addParameter:@"noiseType" withString:form.noiseType];
 
@@ -309,7 +309,10 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
         if (json) {
             NCPLogInfo(@"Return JSON: %@", json);
             // 如果请求成功, 将投诉表单保存至本地
-            if (json[@"result"] && ((NSNumber *) json[@"result"]).intValue == 1 && json[@"formId"] && ((NSNumber *) json[@"fId"]).intValue) {
+            if (json[@"result"] &&
+                    ((NSNumber *) json[@"result"]).intValue != 0 &&
+                    json[@"formId"] &&
+                    ((NSNumber *) json[@"formId"]).intValue) {
                 form.formId = @(((NSNumber *) json[@"formId"]).intValue);
                 [self saveComplainForm:form];
                 [ac dismissViewControllerAnimated:YES completion:nil];

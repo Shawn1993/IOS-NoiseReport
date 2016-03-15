@@ -38,12 +38,16 @@ static NSString *kCellIdComplain = @"complainCell";
 #pragma mark - ViewController
 
 - (void)viewDidLoad {
-    // 检查历史投诉
-    [self reloadDataFromCoreData];
-
     // 设置编辑按钮
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    // 检查历史投诉
+    [self reloadDataFromCoreData];
+    [self.tableView reloadData];
+}
+
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
@@ -128,7 +132,7 @@ static NSString *kCellIdComplain = @"complainCell";
 
             // 组织提示框内容
             NCPComplainForm *form = self.historyArray[(NSUInteger) indexPath.row];
-            NSString *title = form.address ? [NSString stringWithFormat:@"%@的投诉", form.address] : @"投诉详情";
+            NSString *title = form.address ? [NSString stringWithFormat:@"%@", form.address] : @"投诉详情";
             NSMutableString *msg = [NSMutableString string];
             [msg appendFormat:@"投诉单号: %@\n", form.formId];
             [msg appendString:@"投诉日期: "];
@@ -199,7 +203,6 @@ static NSString *kCellIdComplain = @"complainCell";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // TODO: 删除记录
         NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
         [dao remove:self.historyArray[(NSUInteger) indexPath.row]];
         [self reloadDataFromCoreData];

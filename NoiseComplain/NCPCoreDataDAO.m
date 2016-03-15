@@ -13,17 +13,17 @@ static NSString *kNCPCoreDataModelFileName = @"NoiseComplain";
 
 static void errorLog(NSError *error) {
     if (error) {
-        NCPLogWarn(@"Core Data Error: %@", error);
+        NCPLogWarn(@"CoreData Error: %@", error);
     }
 }
 
-@implementation NCPCoreDataDAO
+@implementation NCPCoreDataDAO {
+    NSManagedObjectContext *_managedObjectContext;
+    NSManagedObjectModel *_managedObjectModel;
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+}
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
-#pragma mark - Core Data 堆栈
+#pragma mark - Core Data 对象
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {
@@ -131,8 +131,7 @@ static void errorLog(NSError *error) {
     // 获取查询条件的可变参数
     va_list ap;
     va_start(ap, format);
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:format
-                                                    arguments:ap];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:format arguments:ap];
     va_end(ap);
 
     NSError *error = nil;
@@ -156,9 +155,10 @@ static void errorLog(NSError *error) {
     NCPCoreDataDAO <NCPCoreDataDAOProtocol> *dao = (NCPCoreDataDAO <NCPCoreDataDAOProtocol> *) self;
 
     // 设置查询条件进行查询
-    NSArray *array = [dao findByPredicate:@"%@ = %@", [dao keyName], key];
+    NSArray *array = [dao findByPredicate:[dao predicate], key];
 
     if (array.count > 0) {
+        // TODO: 如果返回多个?
         return array.lastObject;
     } else {
         return nil;
@@ -174,13 +174,17 @@ static void errorLog(NSError *error) {
 
     NSManagedObjectContext *context = dao.managedObjectContext;
 
-    // TODO: 在插入前检查是否已经存在此实体
+    // 在插入前检查是否已经存在此实体
+    id exist = [dao findByKey:[dao keyValue:model]];
+    if (exist) {
+        [dao modify:model];
+        return NO;
+    }
 
     // 获取ManagedObject并为其赋值
     NSManagedObject *mo = [NSEntityDescription insertNewObjectForEntityForName:[dao entityName]
                                                         inManagedObjectContext:context];
-    [dao assignWithObject:model
-            managedObject:mo];
+    [dao assignWithObject:model managedObject:mo];
 
     // 检查是否成功提交更改
     NSError *error = nil;
@@ -206,13 +210,13 @@ static void errorLog(NSError *error) {
     fetchRequest.entity = entity;
 
     // 设置查询条件
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", [dao keyName], [dao keyValueWithObject:model]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[dao predicate], [dao keyValue:model]];
+    NSLog(@"%@",predicate);
     fetchRequest.predicate = predicate;
 
     // 提交请求, 获取要删除的实体
     NSError *error = nil;
-    NSArray *listData = [context executeFetchRequest:fetchRequest
-    error:&error];
+    NSArray *listData = [context executeFetchRequest:fetchRequest error:&error];
     errorLog(error);
 
     if (listData.count > 0) {
@@ -228,7 +232,6 @@ static void errorLog(NSError *error) {
             return YES;
         }
     }
-
     return NO;
 }
 
@@ -247,7 +250,7 @@ static void errorLog(NSError *error) {
     fetchRequest.entity = entity;
 
     // 设置查询条件
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", [dao keyName], [dao keyValueWithObject:model]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[dao predicate], [dao keyValue:model]];
     fetchRequest.predicate = predicate;
 
     NSError *error = nil;

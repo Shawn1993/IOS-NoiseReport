@@ -52,7 +52,11 @@
     return @"formId";
 }
 
-- (id)keyValueWithObject:(id)model {
+- (NSString *)predicate {
+    return @"formId = %@";
+}
+
+- (id)keyValue:(id)model {
     return ((NCPComplainForm *) model).formId;
 }
 
