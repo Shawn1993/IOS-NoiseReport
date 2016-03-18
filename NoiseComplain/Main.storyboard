@@ -357,7 +357,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection footerTitle="正在检测周围环境的平均噪声强度..." id="EA2-ro-Jhj">
+                            <tableViewSection footerTitle="您周围环境的平均噪声强度" id="EA2-ro-Jhj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mip-YG-xkx">
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
@@ -429,10 +429,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="点击自定义选择投诉地点，或自动选择手机定位地点" id="z2Y-cz-kN6">
+                            <tableViewSection footerTitle="点击选择投诉地点，或自动选择手机定位地点" id="z2Y-cz-kN6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Nkf-Bu-AeC">
-                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkf-Bu-AeC" id="lcH-07-z6E">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -508,7 +508,7 @@
                             <tableViewSection footerTitle="请描述一下您遇到的噪音污染现象" id="SCo-d6-2ri">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Fo-gf-zI0" detailTextLabel="aD4-db-wge" style="IBUITableViewCellStyleValue1" id="oRL-jh-bfW">
-                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRL-jh-bfW" id="3aa-MV-ud9">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -538,7 +538,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Qmn-je-IE8" detailTextLabel="Ugn-28-qBS" style="IBUITableViewCellStyleValue1" id="IfY-QW-yGw">
-                                        <rect key="frame" x="0.0" y="321" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfY-QW-yGw" id="xdm-Gr-Vi7">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -567,8 +567,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="HcJ-DS-Vp1">
-                                        <rect key="frame" x="0.0" y="365" width="600" height="176"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="HcJ-DS-Vp1">
+                                        <rect key="frame" x="0.0" y="364" width="600" height="176"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="HcJ-DS-Vp1" id="cJO-MC-xGN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="175.5"/>
@@ -636,7 +636,7 @@
                             <tableViewSection id="qHh-kp-9IO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="SIs-yg-m4b">
-                                        <rect key="frame" x="0.0" y="586" width="600" height="45"/>
+                                        <rect key="frame" x="0.0" y="584.5" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SIs-yg-m4b" id="8Yy-3e-IXM">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>

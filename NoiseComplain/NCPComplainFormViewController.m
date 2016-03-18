@@ -43,7 +43,7 @@ BMKGeoCodeSearchDelegate
 @property(weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property(weak, nonatomic) IBOutlet UITextView *textViewComment;
 @property(weak, nonatomic) IBOutlet UILabel *labelCommentPlaceholder;
-@property (weak, nonatomic) IBOutlet UITableViewCell *tableCellComment;
+@property(weak, nonatomic) IBOutlet UITableViewCell *tableCellComment;
 
 #pragma mark - 成员变量
 
@@ -122,7 +122,7 @@ BMKGeoCodeSearchDelegate
 - (void)didStopRecording {
 }
 
-#pragma mark - 表格选择事件
+#pragma mark - 表格视图代理
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -357,7 +357,7 @@ BMKGeoCodeSearchDelegate
     [web addParameter:@"address" withString:form.address];
     [web addParameter:@"latitude" withFloat:form.latitude.floatValue];
     [web addParameter:@"longitude" withFloat:form.longitude.floatValue];
-    [web addParameter:@"image" withData:form.image];
+    // [web addParameter:@"image" withData:form.image];
     [web addParameter:@"sfaType" withString:form.sfaType];
     [web addParameter:@"noiseType" withString:form.noiseType];
 

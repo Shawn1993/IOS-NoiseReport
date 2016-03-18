@@ -42,11 +42,18 @@
 - (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo;
 
 /*!
- *  主键名, 是排序和查找的依据
+ *  获取模型对象主键的名字(用于排序)
  *
- *  @return 字段名
+ *  @return 主键名字
  */
 - (NSString *)keyName;
+
+/*!
+ *  查询条件格式字符串
+ *
+ *  @return 查询条件字符串
+ */
+- (NSString *)predicate;
 
 /*!
  *  从模型对象中获取主键的值
@@ -55,32 +62,8 @@
  *
  *  @return 主键的值
  */
-- (id)keyValueWithObject:(id)model;
+- (id)keyValue:(id)model;
 
 @end
-
-/* 方法实现部分, 可直接拷贝使用
-
-- (NSString *)entityName {
-    
-}
-
-- (id)objectWithManagedObject:(NSManagedObject *)mo {
-    
-}
-
-- (NSManagedObject *)assignWithObject:(id)model managedObject:(NSManagedObject *)mo {
-    
-}
-
-- (NSString *)keyName {
-    
-}
-
-- (id)keyValueWithObject:(id)model {
-    
-}
- 
-*/
 
 #endif /* NCPCoreDataDAOProtocol_h */
