@@ -322,6 +322,7 @@ BMKGeoCodeSearchDelegate
 - (void)sendComplainForm:(NCPComplainForm *)form {
 
     // 检查是否填好了所需的所有信息
+    /*
     NSString *missing;
     if (!form.intensity || form.intensity.floatValue == 0.0f) {
         missing = @"请等待噪声强度测量完毕...";
@@ -339,7 +340,7 @@ BMKGeoCodeSearchDelegate
         [ac addAction:aa];
         [self presentViewController:ac animated:YES completion:nil];
         return;
-    }
+    }*/
 
     // 显示提示框
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"正在提交投诉中..."
@@ -363,31 +364,31 @@ BMKGeoCodeSearchDelegate
     // 发送网络请求
     [web sendWithCompletionHandler:^(NSDictionary *json, NSError *error) {
         NSString *errStr;
-        if (json) {
+        //if (json) {
             NCPLogInfo(@"Return JSON: %@", json);
             // 如果请求成功, 将投诉表单保存至本地
-            if (json[@"result"] && ((NSNumber *) json[@"result"]).intValue == 1 && json[@"formId"] && ((NSNumber *) json[@"fId"]).intValue) {
+            //if (json[@"result"] && ((NSNumber *) json[@"result"]).intValue == 1 && json[@"formId"] && ((NSNumber *) json[@"fId"]).intValue) {
                 form.formId = @(((NSNumber *) json[@"formId"]).intValue);
                 [self saveComplainForm:form];
                 [ac dismissViewControllerAnimated:YES completion:nil];
-            } else {
-                errStr = @"服务器返回数据异常";
-            }
-        } else {
-            errStr = [NSString stringWithFormat:@"网络连接异常: %@", error.localizedDescription];
-        }
-        if (errStr) {
-            // 如果请求出现错误, 进行提示
-            [ac dismissViewControllerAnimated:YES completion:^{
-                UIAlertController *eac = [UIAlertController alertControllerWithTitle:@"投诉失败"
-                                                                             message:errStr
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                [eac addAction:cancel];
-                [self presentViewController:eac animated:YES completion:nil];
-            }];
-
-        }
+            //} else {
+              //  errStr = @"服务器返回数据异常";
+            //}
+        //} else {
+        //    errStr = [NSString stringWithFormat:@"网络连接异常: %@", error.localizedDescription];
+        //}
+//        if (errStr) {
+//            // 如果请求出现错误, 进行提示
+//            [ac dismissViewControllerAnimated:YES completion:^{
+//                UIAlertController *eac = [UIAlertController alertControllerWithTitle:@"投诉失败"
+//                                                                             message:errStr
+//                                                                      preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//                [eac addAction:cancel];
+//                [self presentViewController:eac animated:YES completion:nil];
+//            }];
+//
+//        }
     }];
 }
 

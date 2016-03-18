@@ -9,6 +9,8 @@
 #import "NCPComplainGuideViewController.h"
 #import "NCPComplainFormDAO.h"
 #import "NCPLog.h"
+#import "NCPMapAlertViewController.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 /*!代表空的提示字符串*/
 static NSString *kNilStr = @"null";
@@ -22,6 +24,7 @@ static NSString *kCellIdHistory = @"historyCell";
 static NSString *kCellIdEmptyHistory = @"emptyHistoryCell";
 /*!投诉按钮单元格标识符*/
 static NSString *kCellIdComplain = @"complainCell";
+
 
 @interface NCPComplainGuideViewController ()
 
@@ -149,13 +152,31 @@ static NSString *kCellIdComplain = @"complainCell";
             UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
                                                                         message:msg
                                                                  preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
             UIAlertAction *map = [UIAlertAction actionWithTitle:@"查看地图"
                                                           style:UIAlertActionStyleDefault
-                                                        handler:(void (^)(UIAlertAction *)) ^{
+                                                        handler:(void (^)(UIAlertAction *)) ^
+            {
                 // TODO: 打开地图界面
-                NCPLogWarn(@"View Map~", nil);
+                NCPMapAlertViewController *mapController = [NCPMapAlertViewController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *map = [UIAlertAction actionWithTitle:@"关闭地图"
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:(void (^)(UIAlertAction *)) ^{
+                                                            
+                                                            }];
+            
+                [mapController addAction:map];
+                [mapController addAction:cancel];
+                
+      
+                [self presentViewController:mapController animated:NO completion:nil];
+                
+            
+                
             }];
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
             [ac addAction:map];
             [ac addAction:cancel];
             [self presentViewController:ac animated:YES completion:nil];
