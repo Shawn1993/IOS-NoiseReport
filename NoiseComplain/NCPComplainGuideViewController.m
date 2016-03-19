@@ -8,7 +8,8 @@
 
 #import "NCPComplainGuideViewController.h"
 #import "NCPComplainFormDAO.h"
-#import "NCPLog.h"
+#import "NCPMapAlertViewController.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 /*!代表空的提示字符串*/
 static NSString *kNilStr = @"null";
@@ -108,7 +109,8 @@ static NSString *kCellIdComplain = @"complainCell";
                 NCPComplainForm *form = self.historyArray[(NSUInteger) indexPath.row];
                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
                 [df setDateFormat:kDateFmtStr];
-                cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", form.date ? [df stringFromDate:form.date] : kNilStr, form.address ? form.address : kNilStr];
+                cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",
+                                                                 form.date ? [df stringFromDate:form.date] : kNilStr, form.address ? form.address : kNilStr];
                 return cell;
             }
         }
@@ -147,15 +149,23 @@ static NSString *kCellIdComplain = @"complainCell";
             UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
                                                                         message:msg
                                                                  preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+
+            [ac addAction:cancel];
             UIAlertAction *map = [UIAlertAction actionWithTitle:@"查看地图"
                                                           style:UIAlertActionStyleDefault
                                                         handler:(void (^)(UIAlertAction *)) ^{
-                // TODO: 打开地图界面
-                NCPLogWarn(@"View Map~", nil);
-            }];
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                                                            NCPMapAlertViewController *mapController = [NCPMapAlertViewController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                                                                                                                                                   message:nil
+                                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                            UIAlertAction *map = [UIAlertAction actionWithTitle:@"关闭地图"
+                                                                                                          style:UIAlertActionStyleDefault
+                                                                                                        handler:nil];
+                                                            [mapController addAction:map];
+                                                            [mapController addAction:cancel];
+                                                            [self presentViewController:mapController animated:NO completion:nil];
+                                                        }];
             [ac addAction:map];
-            [ac addAction:cancel];
             [self presentViewController:ac animated:YES completion:nil];
 
         } else {
