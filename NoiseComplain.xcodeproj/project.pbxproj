@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */; };
+		3351D30EDBD94739240DF560 /* NCPComplainForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3351D9EB28FE951941F15B75 /* NCPComplainForm.m */; };
+		3351D806EFE1A18EA4923C36 /* NCPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3351D92160FE6F02EDC2BD6A /* NCPAppDelegate.m */; };
+		3351D9D79186C195F70CE9D3 /* NCPNoiseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3351DAD0DFBEAE3552E93AB7 /* NCPNoiseRecorder.m */; };
 		5820E7301C3039EC0003C091 /* w1021.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5820E72F1C3039EC0003C091 /* w1021.gpx */; };
-		5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A39E1C2674B800A95609 /* NCPDashboardView.m */; };
-		5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850A3A11C2699A100A95609 /* NCPArrowView.m */; };
-		5857D0021C2D114500334579 /* NCPNoiseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5857D0011C2D114500334579 /* NCPNoiseRecorder.m */; };
 		58B126491C2E6A660095014F /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B126421C2E6A660095014F /* BaiduMapAPI_Base.framework */; };
 		58B1264A1C2E6A660095014F /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B126431C2E6A660095014F /* BaiduMapAPI_Cloud.framework */; };
 		58B1264B1C2E6A660095014F /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B126441C2E6A660095014F /* BaiduMapAPI_Location.framework */; };
@@ -31,7 +30,6 @@
 		58B126631C2E6B340095014F /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58B126621C2E6B340095014F /* mapapi.bundle */; };
 		58C28E2D1C4130EE008353E3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C28E2C1C4130EE008353E3 /* MapKit.framework */; };
 		58C632441C25ADFD00869630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C632431C25ADFD00869630 /* Assets.xcassets */; };
-		58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */; };
 		CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */; };
 		CA3E8FDF1C9000080094C78D /* NCPComplainFormManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E8FDC1C9000080094C78D /* NCPComplainFormManagedObject+CoreDataProperties.m */; };
 		CA3E8FE01C9000080094C78D /* NCPComplainFormManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3E8FDE1C9000080094C78D /* NCPComplainFormManagedObject.m */; };
@@ -39,24 +37,21 @@
 		CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B30F01C0F17050013E70E /* LaunchScreen.storyboard */; };
 		CA4B30FD1C0F17050013E70E /* NoiseComplainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30FC1C0F17050013E70E /* NoiseComplainTests.m */; };
 		CA4B31081C0F17050013E70E /* NoiseComplainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */; };
-		CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */; };
-		CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B311F1C0F18900013E70E /* NCPComplainForm.m */; };
 		CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */; };
 		CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */; };
-		CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31251C0F18900013E70E /* NCPGraphView.m */; };
 		CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31271C0F18900013E70E /* NCPLocationViewController.m */; };
 		CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31291C0F18900013E70E /* NCPMeterViewController.m */; };
-		CA4B31351C0F18900013E70E /* NCPNoiseMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */; };
-		CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */; };
 		CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4B31781C0F1A220013E70E /* Main.storyboard */; };
 		CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */; };
 		CA4B317D1C0F1B2C0013E70E /* SFAType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA4B317B1C0F1B2C0013E70E /* SFAType.plist */; };
 		CA540B8A1C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA540B881C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld */; };
+		CA83D3B61C9966B2009A72C4 /* NCPMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA83D3B51C9966B2009A72C4 /* NCPMeterView.m */; };
+		CA83D3B81C996849009A72C4 /* NCPMeterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA83D3B71C996849009A72C4 /* NCPMeterView.xib */; };
+		CA83D3BA1C998A9B009A72C4 /* NCPGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA83D3B91C998A9B009A72C4 /* NCPGraphView.xib */; };
+		CA83D3BD1C998AA9009A72C4 /* NCPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA83D3BC1C998AA9009A72C4 /* NCPGraphView.m */; };
 		CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0CB791C23F8C60055DE89 /* GTLBase64.m */; };
 		CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA42D711C294B970004C03B /* NCPComplainFormDAO.m */; };
 		CAA659EB1C269A1000D80605 /* NCPCoreDataDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA659EA1C269A1000D80605 /* NCPCoreDataDAO.m */; };
-		CAACDEB91C2BE4CC00456D5B /* NCPNoiseTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACDEB51C2BE4CC00456D5B /* NCPNoiseTypeViewController.m */; };
-		CAACDEBA1C2BE4CC00456D5B /* NCPSFATypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACDEB71C2BE4CC00456D5B /* NCPSFATypeViewController.m */; };
 		CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE671081C1AADF3003D8271 /* NCPWebRequest.m */; };
 /* End PBXBuildFile section */
 
@@ -78,15 +73,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		581D7A9E1C2A8B0E005E1153 /* CALayer+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addtions.h"; sourceTree = "<group>"; };
-		581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addtions.m"; sourceTree = "<group>"; };
+		3351D60473D559CD152362EB /* NCPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPAppDelegate.h; sourceTree = "<group>"; };
+		3351D92160FE6F02EDC2BD6A /* NCPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPAppDelegate.m; sourceTree = "<group>"; };
+		3351D93E196B69C3D73B13CC /* NCPNoiseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseRecorder.h; sourceTree = "<group>"; };
+		3351D9EB28FE951941F15B75 /* NCPComplainForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainForm.m; sourceTree = "<group>"; };
+		3351DAD0DFBEAE3552E93AB7 /* NCPNoiseRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseRecorder.m; sourceTree = "<group>"; };
+		3351DB56E6534CC00ED74789 /* NCPComplainForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainForm.h; sourceTree = "<group>"; };
 		5820E72F1C3039EC0003C091 /* w1021.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = w1021.gpx; path = ../w1021.gpx; sourceTree = "<group>"; };
-		5850A39D1C2674B800A95609 /* NCPDashboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPDashboardView.h; sourceTree = "<group>"; };
-		5850A39E1C2674B800A95609 /* NCPDashboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPDashboardView.m; sourceTree = "<group>"; };
-		5850A3A01C2699A100A95609 /* NCPArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPArrowView.h; sourceTree = "<group>"; };
-		5850A3A11C2699A100A95609 /* NCPArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPArrowView.m; sourceTree = "<group>"; };
-		5857D0001C2D114500334579 /* NCPNoiseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseRecorder.h; sourceTree = "<group>"; };
-		5857D0011C2D114500334579 /* NCPNoiseRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseRecorder.m; sourceTree = "<group>"; };
 		58B126421C2E6A660095014F /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = BaiduMap_Framework/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		58B126431C2E6A660095014F /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Cloud.framework; path = BaiduMap_Framework/BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
 		58B126441C2E6A660095014F /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Location.framework; path = BaiduMap_Framework/BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
@@ -106,8 +99,6 @@
 		58B126621C2E6B340095014F /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = ../BaiduMap_Framework/BaiduMapAPI_Map.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		58C28E2C1C4130EE008353E3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		58C632431C25ADFD00869630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPRecordedPower.h; sourceTree = "<group>"; };
-		58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPRecordedPower.m; sourceTree = "<group>"; };
 		CA3E4A261C212DA8005E56EC /* NCPWebParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebParameter.h; sourceTree = "<group>"; };
 		CA3E4A271C212DA8005E56EC /* NCPWebParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebParameter.m; sourceTree = "<group>"; };
 		CA3E8FDB1C9000080094C78D /* NCPComplainFormManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NCPComplainFormManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -124,40 +115,32 @@
 		CA4B31031C0F17050013E70E /* NoiseComplainUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoiseComplainUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoiseComplainUITests.m; sourceTree = "<group>"; };
 		CA4B31091C0F17050013E70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPAppDelegate.h; sourceTree = "<group>"; };
-		CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPAppDelegate.m; sourceTree = "<group>"; };
-		CA4B311E1C0F18900013E70E /* NCPComplainForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainForm.h; sourceTree = "<group>"; };
-		CA4B311F1C0F18900013E70E /* NCPComplainForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainForm.m; sourceTree = "<group>"; };
 		CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormViewController.h; sourceTree = "<group>"; };
 		CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainFormViewController.m; sourceTree = "<group>"; };
 		CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainGuideViewController.h; sourceTree = "<group>"; };
 		CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainGuideViewController.m; sourceTree = "<group>"; };
-		CA4B31241C0F18900013E70E /* NCPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPGraphView.h; sourceTree = "<group>"; };
-		CA4B31251C0F18900013E70E /* NCPGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPGraphView.m; sourceTree = "<group>"; };
 		CA4B31261C0F18900013E70E /* NCPLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPLocationViewController.h; sourceTree = "<group>"; };
 		CA4B31271C0F18900013E70E /* NCPLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPLocationViewController.m; sourceTree = "<group>"; };
 		CA4B31281C0F18900013E70E /* NCPMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPMeterViewController.h; sourceTree = "<group>"; };
 		CA4B31291C0F18900013E70E /* NCPMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPMeterViewController.m; sourceTree = "<group>"; };
-		CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseMeter.h; sourceTree = "<group>"; };
-		CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseMeter.m; sourceTree = "<group>"; };
-		CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPSettingViewController.h; sourceTree = "<group>"; };
-		CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPSettingViewController.m; sourceTree = "<group>"; };
 		CA4B31781C0F1A220013E70E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NoiseType.plist; sourceTree = "<group>"; };
 		CA4B317B1C0F1B2C0013E70E /* SFAType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SFAType.plist; sourceTree = "<group>"; };
 		CA540B891C27BE8B00F8E860 /* NoiseComplain.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoiseComplain.xcdatamodel; sourceTree = "<group>"; };
 		CA540B911C27D3D200F8E860 /* NCPCoreDataDAOProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPCoreDataDAOProtocol.h; sourceTree = "<group>"; };
 		CA540B991C27EEFA00F8E860 /* Sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Sample.md; sourceTree = "<group>"; };
+		CA83D3B41C9966B2009A72C4 /* NCPMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPMeterView.h; sourceTree = "<group>"; };
+		CA83D3B51C9966B2009A72C4 /* NCPMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPMeterView.m; sourceTree = "<group>"; };
+		CA83D3B71C996849009A72C4 /* NCPMeterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCPMeterView.xib; sourceTree = "<group>"; };
+		CA83D3B91C998A9B009A72C4 /* NCPGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCPGraphView.xib; sourceTree = "<group>"; };
+		CA83D3BB1C998AA9009A72C4 /* NCPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPGraphView.h; sourceTree = "<group>"; };
+		CA83D3BC1C998AA9009A72C4 /* NCPGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPGraphView.m; sourceTree = "<group>"; };
 		CAA0CB781C23F8C60055DE89 /* GTLBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTLBase64.h; sourceTree = "<group>"; };
 		CAA0CB791C23F8C60055DE89 /* GTLBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTLBase64.m; sourceTree = "<group>"; };
 		CAA42D701C294B970004C03B /* NCPComplainFormDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainFormDAO.h; sourceTree = "<group>"; };
 		CAA42D711C294B970004C03B /* NCPComplainFormDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainFormDAO.m; sourceTree = "<group>"; };
 		CAA659E91C269A1000D80605 /* NCPCoreDataDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPCoreDataDAO.h; sourceTree = "<group>"; };
 		CAA659EA1C269A1000D80605 /* NCPCoreDataDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPCoreDataDAO.m; sourceTree = "<group>"; };
-		CAACDEB41C2BE4CC00456D5B /* NCPNoiseTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPNoiseTypeViewController.h; sourceTree = "<group>"; };
-		CAACDEB51C2BE4CC00456D5B /* NCPNoiseTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPNoiseTypeViewController.m; sourceTree = "<group>"; };
-		CAACDEB61C2BE4CC00456D5B /* NCPSFATypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPSFATypeViewController.h; sourceTree = "<group>"; };
-		CAACDEB71C2BE4CC00456D5B /* NCPSFATypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPSFATypeViewController.m; sourceTree = "<group>"; };
 		CAC476E81C344BF9006C177F /* NCPLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPLog.h; sourceTree = "<group>"; };
 		CAE671071C1AADF3003D8271 /* NCPWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebRequest.h; sourceTree = "<group>"; };
 		CAE671081C1AADF3003D8271 /* NCPWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebRequest.m; sourceTree = "<group>"; };
@@ -205,6 +188,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3351D446C66C33709F5AA568 /* ComplainForm */ = {
+			isa = PBXGroup;
+			children = (
+				3351D9EB28FE951941F15B75 /* NCPComplainForm.m */,
+				3351DB56E6534CC00ED74789 /* NCPComplainForm.h */,
+			);
+			name = ComplainForm;
+			sourceTree = "<group>";
+		};
+		3351D5271CEF64093648D1D0 /* NoiseRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				3351D93E196B69C3D73B13CC /* NCPNoiseRecorder.h */,
+				3351DAD0DFBEAE3552E93AB7 /* NCPNoiseRecorder.m */,
+			);
+			name = NoiseRecorder;
+			sourceTree = "<group>";
+		};
+		3351DA6B30A586142DEA3E0C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3351D60473D559CD152362EB /* NCPAppDelegate.h */,
+				3351D92160FE6F02EDC2BD6A /* NCPAppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		58B126641C2E6B550095014F /* FrameWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +243,12 @@
 			children = (
 				CA4B31281C0F18900013E70E /* NCPMeterViewController.h */,
 				CA4B31291C0F18900013E70E /* NCPMeterViewController.m */,
-				CA4B312C1C0F18900013E70E /* NCPSettingViewController.h */,
-				CA4B312D1C0F18900013E70E /* NCPSettingViewController.m */,
+				CA83D3B41C9966B2009A72C4 /* NCPMeterView.h */,
+				CA83D3B51C9966B2009A72C4 /* NCPMeterView.m */,
+				CA83D3B71C996849009A72C4 /* NCPMeterView.xib */,
+				CA83D3BB1C998AA9009A72C4 /* NCPGraphView.h */,
+				CA83D3BC1C998AA9009A72C4 /* NCPGraphView.m */,
+				CA83D3B91C998A9B009A72C4 /* NCPGraphView.xib */,
 			);
 			name = Meter;
 			sourceTree = "<group>";
@@ -323,12 +337,8 @@
 		CA4B31161C0F17570013E70E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CA4B311C1C0F18900013E70E /* NCPAppDelegate.h */,
-				CA4B311D1C0F18900013E70E /* NCPAppDelegate.m */,
-				CA4B311A1C0F17990013E70E /* CustomViews */,
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
-				CA4B311B1C0F17A80013E70E /* Models */,
-				CAA0CBCF1C2689BC0055DE89 /* Utilities */,
+				CAA0CBCF1C2689BC0055DE89 /* Modules */,
 				CAB15E941C1E8B29001886F6 /* Libraries */,
 			);
 			name = Sources;
@@ -363,36 +373,6 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CA4B311A1C0F17990013E70E /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				CA4B31241C0F18900013E70E /* NCPGraphView.h */,
-				CA4B31251C0F18900013E70E /* NCPGraphView.m */,
-				5850A39D1C2674B800A95609 /* NCPDashboardView.h */,
-				5850A39E1C2674B800A95609 /* NCPDashboardView.m */,
-				5850A3A01C2699A100A95609 /* NCPArrowView.h */,
-				5850A3A11C2699A100A95609 /* NCPArrowView.m */,
-				581D7A9E1C2A8B0E005E1153 /* CALayer+Addtions.h */,
-				581D7A9F1C2A8B0E005E1153 /* CALayer+Addtions.m */,
-			);
-			name = CustomViews;
-			sourceTree = "<group>";
-		};
-		CA4B311B1C0F17A80013E70E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CA4B311E1C0F18900013E70E /* NCPComplainForm.h */,
-				CA4B311F1C0F18900013E70E /* NCPComplainForm.m */,
-				CA4B312A1C0F18900013E70E /* NCPNoiseMeter.h */,
-				CA4B312B1C0F18900013E70E /* NCPNoiseMeter.m */,
-				5857D0001C2D114500334579 /* NCPNoiseRecorder.h */,
-				5857D0011C2D114500334579 /* NCPNoiseRecorder.m */,
-				58D4A60B1C2DA5DB004A914D /* NCPRecordedPower.h */,
-				58D4A60C1C2DA5DB004A914D /* NCPRecordedPower.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		CA540B921C27ED5300F8E860 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,19 +395,22 @@
 			children = (
 				CA540B881C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld */,
 				CAA42D5F1C294A9A0004C03B /* BaseDAO */,
-				CAA42D601C294ACA0004C03B /* ComplainForm */,
+				CAA42D601C294ACA0004C03B /* ComplainFormDao */,
 			);
 			name = DataPersistence;
 			sourceTree = "<group>";
 		};
-		CAA0CBCF1C2689BC0055DE89 /* Utilities */ = {
+		CAA0CBCF1C2689BC0055DE89 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				CAA0CB831C25AE8B0055DE89 /* DataPersistence */,
 				CAB15E9E1C1E99CB001886F6 /* WebService */,
 				CAC476E81C344BF9006C177F /* NCPLog.h */,
+				3351D446C66C33709F5AA568 /* ComplainForm */,
+				3351D5271CEF64093648D1D0 /* NoiseRecorder */,
+				3351DA6B30A586142DEA3E0C /* AppDelegate */,
 			);
-			name = Utilities;
+			name = Modules;
 			sourceTree = "<group>";
 		};
 		CAA42D5F1C294A9A0004C03B /* BaseDAO */ = {
@@ -440,7 +423,7 @@
 			name = BaseDAO;
 			sourceTree = "<group>";
 		};
-		CAA42D601C294ACA0004C03B /* ComplainForm */ = {
+		CAA42D601C294ACA0004C03B /* ComplainFormDao */ = {
 			isa = PBXGroup;
 			children = (
 				CAA42D701C294B970004C03B /* NCPComplainFormDAO.h */,
@@ -450,7 +433,7 @@
 				CA3E8FDD1C9000080094C78D /* NCPComplainFormManagedObject.h */,
 				CA3E8FDE1C9000080094C78D /* NCPComplainFormManagedObject.m */,
 			);
-			name = ComplainForm;
+			name = ComplainFormDao;
 			sourceTree = "<group>";
 		};
 		CAACDEBB1C2BE4F600456D5B /* ComplainForm */ = {
@@ -458,10 +441,6 @@
 			children = (
 				CA4B31201C0F18900013E70E /* NCPComplainFormViewController.h */,
 				CA4B31211C0F18900013E70E /* NCPComplainFormViewController.m */,
-				CAACDEB41C2BE4CC00456D5B /* NCPNoiseTypeViewController.h */,
-				CAACDEB51C2BE4CC00456D5B /* NCPNoiseTypeViewController.m */,
-				CAACDEB61C2BE4CC00456D5B /* NCPSFATypeViewController.h */,
-				CAACDEB71C2BE4CC00456D5B /* NCPSFATypeViewController.m */,
 				CA4B31261C0F18900013E70E /* NCPLocationViewController.h */,
 				CA4B31271C0F18900013E70E /* NCPLocationViewController.m */,
 			);
@@ -596,10 +575,12 @@
 			files = (
 				CA4B31791C0F1A220013E70E /* Main.storyboard in Resources */,
 				CA4B317D1C0F1B2C0013E70E /* SFAType.plist in Resources */,
+				CA83D3B81C996849009A72C4 /* NCPMeterView.xib in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				5820E7301C3039EC0003C091 /* w1021.gpx in Resources */,
 				CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */,
 				58B126631C2E6B340095014F /* mapapi.bundle in Resources */,
+				CA83D3BA1C998A9B009A72C4 /* NCPGraphView.xib in Resources */,
 				58C632441C25ADFD00869630 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,30 +607,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */,
-				CA4B31361C0F18900013E70E /* NCPSettingViewController.m in Sources */,
 				CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */,
-				CAACDEB91C2BE4CC00456D5B /* NCPNoiseTypeViewController.m in Sources */,
 				CA540B8A1C27BE8B00F8E860 /* NoiseComplain.xcdatamodeld in Sources */,
-				CA4B312E1C0F18900013E70E /* NCPAppDelegate.m in Sources */,
 				CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */,
 				CAA659EB1C269A1000D80605 /* NCPCoreDataDAO.m in Sources */,
-				CA4B31351C0F18900013E70E /* NCPNoiseMeter.m in Sources */,
 				CA3E8FE01C9000080094C78D /* NCPComplainFormManagedObject.m in Sources */,
+				CA83D3B61C9966B2009A72C4 /* NCPMeterView.m in Sources */,
 				CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */,
 				CA4B30E41C0F17050013E70E /* main.mm in Sources */,
-				58D4A60D1C2DA5DB004A914D /* NCPRecordedPower.m in Sources */,
-				CA4B312F1C0F18900013E70E /* NCPComplainForm.m in Sources */,
 				CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */,
 				CA4B31331C0F18900013E70E /* NCPLocationViewController.m in Sources */,
-				5850A39F1C2674B800A95609 /* NCPDashboardView.m in Sources */,
 				CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */,
-				5850A3A21C2699A100A95609 /* NCPArrowView.m in Sources */,
 				CA3E4A281C212DA8005E56EC /* NCPWebParameter.m in Sources */,
 				CA3E8FDF1C9000080094C78D /* NCPComplainFormManagedObject+CoreDataProperties.m in Sources */,
-				581D7AA01C2A8B0E005E1153 /* CALayer+Addtions.m in Sources */,
-				CA4B31321C0F18900013E70E /* NCPGraphView.m in Sources */,
-				5857D0021C2D114500334579 /* NCPNoiseRecorder.m in Sources */,
-				CAACDEBA1C2BE4CC00456D5B /* NCPSFATypeViewController.m in Sources */,
+				3351D30EDBD94739240DF560 /* NCPComplainForm.m in Sources */,
+				3351D9D79186C195F70CE9D3 /* NCPNoiseRecorder.m in Sources */,
+				3351D806EFE1A18EA4923C36 /* NCPAppDelegate.m in Sources */,
+				CA83D3BD1C998AA9009A72C4 /* NCPGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,15 +1,13 @@
 //
-//  NCPGraoh.h
+//  NCPGraphView.h
 //  NoiseComplain
 //
-//  Created by cheikh on 2/12/2015.
-//  Copyright © 2015 sysu. All rights reserved.
+//  Created by mura on 3/16/16.
+//  Copyright © 2016 sysu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface NCPGraphView : UIView
-
-- (void)addValue:(float)value;
 
 @end

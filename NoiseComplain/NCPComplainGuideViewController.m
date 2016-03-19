@@ -35,7 +35,7 @@ static NSString *kCellIdComplain = @"complainCell";
 
 @implementation NCPComplainGuideViewController
 
-#pragma mark - ViewController
+#pragma mark - ViewController生命周期
 
 - (void)viewDidLoad {
     // 设置编辑按钮
@@ -46,12 +46,6 @@ static NSString *kCellIdComplain = @"complainCell";
     // 检查历史投诉
     [self reloadDataFromCoreData];
     [self.tableView reloadData];
-}
-
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [super encodeWithCoder:coder];
-    [coder encodeObject:self.tableView forKey:@"self.tableView"];
 }
 
 #pragma mark - TableView Datasource & Delegate

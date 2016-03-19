@@ -8,34 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-typedef float NCPPower;
-
-typedef void (^NCPRecorderBlock)(NCPPower averagePower, NCPPower peakPower);
-
-
-@protocol NCPNoiseRecorderDelegate;
-
 @interface NCPNoiseRecorder : NSObject
-
-- (void)startWithDuration:(NSTimeInterval)duration;
 
 - (void)start;
 
 - (void)stop;
 
-@property(nonatomic) id <NCPNoiseRecorderDelegate> delegate;
+- (void)startWithDuration:(NSTimeInterval)duration
+            timeupHandler:(void (^)(float current, float peak))handler;
 
-@end
+- (void)startWithTick:(NSTimeInterval)tick
+          tickHandler:(void (^)(float current, float peak))handler;
 
-
-@protocol NCPNoiseRecorderDelegate <NSObject>
-
-@optional
-
-- (void)willStartRecording;
-
-- (void)didStopRecording;
-
-- (void)didUpdateAveragePower:(NCPPower)averagePoer PeakPower:(NCPPower)peakPower;
+- (void)startWithDuration:(NSTimeInterval)duration
+            timeupHandler:(void (^)(float current, float peak))timeupHandler
+                     tick:(NSTimeInterval)tick
+              tickHandler:(void (^)(float current, float peak))tickHandler;
 
 @end

@@ -10,6 +10,4 @@
 
 @interface NCPComplainGuideViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-- (void)encodeWithCoder:(NSCoder *)coder;
-
 @end

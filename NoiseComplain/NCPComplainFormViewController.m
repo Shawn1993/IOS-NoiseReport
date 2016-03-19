@@ -12,21 +12,18 @@
 #import "NCPComplainFormDAO.h"
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
-#import "BaiduMapAPI_Search/BMKGeocodeSearchOption.h"
 #import "NCPLog.h"
 #import "NCPNoiseRecorder.h"
 
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 @interface NCPComplainFormViewController ()
-<
-UITableViewDelegate,
-NCPNoiseRecorderDelegate,
-UITextFieldDelegate,
-UITextViewDelegate,
-BMKLocationServiceDelegate,
-BMKGeoCodeSearchDelegate
->
+        <
+        UITableViewDelegate,
+        UITextViewDelegate,
+        BMKLocationServiceDelegate,
+        BMKGeoCodeSearchDelegate
+        >
 
 #pragma mark - Storyboard输出口
 
@@ -64,62 +61,57 @@ BMKGeoCodeSearchDelegate
 
 @end
 
+
 @implementation NCPComplainFormViewController
 
-#pragma mark - 生命周期事件
+#pragma mark - ViewController生命周期
 
 /*!视图即将初始化*/
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
-    self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
-    self.noiseRecorder.delegate = self;
-    [self.noiseRecorder startWithDuration:5];
-    
+
+    // 开始检测噪声
+    [self recordNoise];
+
     // 创建定位服务对象
     self.locationService = [[BMKLocationService alloc] init];
     self.locationService.delegate = self;
-    
+
     // 创建地理编码服务对象
     self.geoCodeSearch = [[BMKGeoCodeSearch alloc] init];
     self.geoCodeSearch.delegate = self;
-    
+
     // 创建地理编码信息对象
     self.reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
-    
+
 }
 
 /*!视图初始化完成*/
 - (void)viewWillAppear:(BOOL)animated {
-    self.noiseRecorder.delegate = self;
+    // 显示表格内容
     [self displayComplainForm];
-    
+
+    // 设置定位服务
     [self.locationService startUserLocationService];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
+    // 停止定位服务
     [self.locationService stopUserLocationService];
+
+    // 如果键盘开启, 将其先于视图关闭
+    if ([self.textViewComment isFirstResponder]) {
+        [self.textViewComment resignFirstResponder];
+    }
 }
 
 /*!视图即将消失*/
 - (void)viewWillUnload {
     [NCPComplainForm setCurrent:nil];
-    self.noiseRecorder.delegate = nil;
+    self.noiseRecorder = nil;
     self.locationService.delegate = nil;
     self.geoCodeSearch.delegate = nil;
-}
-
-#pragma mark - 录音器代理
-
-- (void)willStartRecording {
-}
-
-- (void)didUpdateAveragePower:(NCPPower)averagePower PeakPower:(NCPPower)peakPower {
-    [NCPComplainForm current].intensity = @(averagePower);
-    [self displayComplainForm];
-}
-
-- (void)didStopRecording {
 }
 
 #pragma mark - 表格视图代理
@@ -129,7 +121,7 @@ BMKGeoCodeSearchDelegate
     switch (indexPath.section) {
         case 0:
             // 测量结果session, 重新检测噪声强度
-            [self.noiseRecorder startWithDuration:5];
+            [self recordNoise];
             break;
         case 1:
             // 噪声源位置session, 使用segue, 不做响应
@@ -219,22 +211,23 @@ BMKGeoCodeSearchDelegate
     NCPComplainForm *form = [NCPComplainForm current];
     form.longitude = @((float) userLocation.location.coordinate.longitude);
     form.latitude = @((float) userLocation.location.coordinate.latitude);
-    
+
     // 通过坐标请求反编码，获取地址
     self.reverseGeoCodeOption.reverseGeoPoint = userLocation.location.coordinate;
     [self.geoCodeSearch reverseGeoCode:self.reverseGeoCodeOption];
-    
+
     [self.locationService stopUserLocationService];
 
 }
 
-- (void)didFailToLocateUserWithError:(NSError *)error{
+- (void)didFailToLocateUserWithError:(NSError *)error {
 
 }
 
 #pragma mark - 地理反编码功能
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
-    if(error == BMK_SEARCH_NO_ERROR){
+
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    if (error == BMK_SEARCH_NO_ERROR) {
         NCPComplainForm *form = [NCPComplainForm current];
         form.address = result.address;
         [self displayComplainForm];
@@ -246,7 +239,14 @@ BMKGeoCodeSearchDelegate
 
 /*!文本框开始编辑*/
 - (void)textViewDidBeginEditing:(UITextView *)textView {
+    // 隐藏占位符
     self.labelCommentPlaceholder.hidden = YES;
+
+    // 屏幕上移避免被遮挡
+
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]
+                          atScrollPosition:UITableViewScrollPositionMiddle
+                                  animated:YES];
 }
 
 /*!文本框输入文字*/
@@ -260,12 +260,15 @@ BMKGeoCodeSearchDelegate
 }
 
 /*!文本框结束编辑*/
-- (void)textViewDidEndEditing:(UITextView *)textView {
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    // 讲文本内容传入表单对象中
     [NCPComplainForm current].comment = [NSString stringWithString:self.textViewComment.text];
+
     // 检查是否需要隐藏placeHolder
     if (textView.text.length == 0) {
         self.labelCommentPlaceholder.hidden = NO;
     }
+    return YES;
 }
 
 #pragma mark - 导航栏动作事件
@@ -275,6 +278,16 @@ BMKGeoCodeSearchDelegate
 }
 
 #pragma mark - ViewController私有方法
+
+/*!开始一次后台的噪声测量*/
+- (void)recordNoise {
+    self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
+    [self.noiseRecorder startWithDuration:5 timeupHandler:^(float current, float peak) {
+        [NCPComplainForm current].intensity = @(current);
+        [self displayComplainForm];
+        self.noiseRecorder = nil;
+    }];
+}
 
 /*!根据当前投诉表单的内容, 更新当前界面*/
 - (void)displayComplainForm {

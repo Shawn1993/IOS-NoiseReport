@@ -8,7 +8,7 @@
 
 #import "NCPComplainForm.h"
 
-/*!当前投诉表单(static)*/
+/*!当前投诉表单对象*/
 static NCPComplainForm *gCurrentComplainForm = nil;
 
 @implementation NCPComplainForm

@@ -23,7 +23,7 @@ static void errorLog(NSError *error) {
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
-#pragma mark - Core Data 对象
+#pragma mark - CoreData
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {

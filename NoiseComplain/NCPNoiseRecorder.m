@@ -7,44 +7,48 @@
 //
 
 #import "NCPNoiseRecorder.h"
-#import "NCPLog.h"
 #import <AVFoundation/AVFoundation.h>
 
 /** 采样率 */
-#define SAMPLE_RATE 44110
+static const int kSampleRate = 44110;
 /** 声道数 */
-#define CHANNEL_NUM 1
-/** 位数 */
-#define BIT_DEPTH 8
-/** 文件格式 */
-#define FORMAT_ID kAudioFormatAppleLossless
+static const int kChannelNum = 1;
+
+// 最大值 & 最小值: 原始数值为(-160, 0), 将其缩放至新的区间中
+static const float kValueMax = 115;
+static const float kValueMin = -45;
 
 @interface NCPNoiseRecorder ()
 
-@property(nonatomic) AVAudioRecorder *audioRecorder;
+@property(nonatomic, strong) AVAudioRecorder *audioRecorder;
 
-@property(nonatomic) NSTimer *timer;
+// Tick
+@property(nonatomic, assign) NSTimeInterval tick;
+@property(nonatomic, strong) NSTimer *ticker;
+@property(nonatomic, strong) void (^tickHandler)(float current, float peak);
+
+// Duration
+@property(nonatomic, assign) NSTimeInterval duration;
+@property(nonatomic, strong) void (^timeupHandler)(float current, float peak);
+
+// Power
+@property(nonatomic, readonly, getter=currentPower) float currentPower;
+@property(nonatomic, readonly, getter=peakPower) float peakPower;
 
 @end
 
 @implementation NCPNoiseRecorder
 
+#pragma mark - 私有的方法
+
+/** 初始化录音器*/
 - (void)initAudiRecorder {
     if (!self.audioRecorder) {
-        NSError *error = nil;
-        self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:&error];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
+        self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[self filePath] settings:[self audioSettings] error:nil];
         self.audioRecorder.meteringEnabled = YES;
-        if (error) {
-            NCPLogVerbose(@"Error when recorder inits,%@", error.localizedDescription);
-        }
-        if (![self.audioRecorder prepareToRecord]) {
-            NCPLogVerbose(@"Error when recorder prepare", nil);
-        }
     }
-
 }
-
-#pragma mark - 获取配置的方法
 
 /** 获得实例－文件存储路径*/
 - (NSURL *)filePath {
@@ -55,46 +59,108 @@
 /** 获得实例－音频设定*/
 - (NSDictionary *)audioSettings {
     NSDictionary *settings = @{
-            AVFormatIDKey : @(FORMAT_ID),
-            AVSampleRateKey : @SAMPLE_RATE,
-            AVNumberOfChannelsKey : @CHANNEL_NUM,
+            AVFormatIDKey : @(kAudioFormatAppleLossless),
+            AVSampleRateKey : @(kSampleRate),
+            AVNumberOfChannelsKey : @(kChannelNum),
     };
     return settings;
 }
 
-- (void)startWithDuration:(NSTimeInterval)duration {
-
-    [self start];
-
-    [NSTimer scheduledTimerWithTimeInterval:duration
-                                     target:self
-                                   selector:@selector(timerAction:)
-                                   userInfo:nil
-                                    repeats:NO];
+/** 获取平均值*/
+- (float)currentPower {
+    return (([self.audioRecorder averagePowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
 }
 
-- (void)start {
-    [self.delegate willStartRecording];
+/** 获取峰值*/
+- (float)peakPower {
+    return (([self.audioRecorder peakPowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
+}
 
+#pragma mark - 公开方法
+
+- (void)start {
+    // 初始化录音器
     [self initAudiRecorder];
 
-    if (self.audioRecorder.isRecording)
+    if (self.audioRecorder.isRecording) {
+        // 如果正在录音, 返回
         return;
+    }
+
+    // 如果要Tick
+    if (self.tick > 0 && self.tickHandler) {
+        self.ticker = [NSTimer scheduledTimerWithTimeInterval:self.tick
+                                                       target:self
+                                                     selector:@selector(tickCallBack)
+                                                     userInfo:nil
+                                                      repeats:YES];
+    }
+
+    // 如果要定时结束
+    if (self.duration > 0 && self.timeupHandler) {
+        [NSTimer scheduledTimerWithTimeInterval:self.duration
+                                         target:self
+                                       selector:@selector(timeupCallBack)
+                                       userInfo:nil
+                                        repeats:NO];
+    }
+
+    // 开启录音器
     [self.audioRecorder record];
     [self.audioRecorder updateMeters];
 }
 
+
 - (void)stop {
-    [self.audioRecorder updateMeters];
-    [self.delegate didUpdateAveragePower:(120 + [self.audioRecorder averagePowerForChannel:0])
-                               PeakPower:(120 + [self.audioRecorder peakPowerForChannel:0])];
+
+    // 释放录音器
     [self.audioRecorder stop];
     self.audioRecorder = nil;
 
-    [self.delegate didStopRecording];
+    // 释放调用的Blocks和对象
+    self.tick = 0;
+    [self.ticker invalidate];
+    self.ticker = nil;
+    self.tickHandler = nil;
+    self.duration = 0;
+    self.timeupHandler = nil;
 }
 
-- (void)timerAction:(NSTimer *)timer {
+- (void)startWithDuration:(NSTimeInterval)duration
+            timeupHandler:(void (^)(float current, float peak))handler {
+    self.duration = duration;
+    self.timeupHandler = handler;
+    [self start];
+}
+
+- (void)startWithTick:(NSTimeInterval)tick
+          tickHandler:(void (^)(float current, float peak))handler {
+    self.tick = tick;
+    self.tickHandler = handler;
+    [self start];
+}
+
+- (void)startWithDuration:(NSTimeInterval)duration
+            timeupHandler:(void (^)(float current, float peak))timeupHandler
+                     tick:(NSTimeInterval)tick
+              tickHandler:(void (^)(float current, float peak))tickHandler {
+    self.duration = duration;
+    self.timeupHandler = timeupHandler;
+    self.tick = tick;
+    self.tickHandler = tickHandler;
+    [self start];
+}
+
+#pragma mark - 计时器回调方法
+
+- (void)tickCallBack {
+    [self.audioRecorder updateMeters];
+    self.tickHandler(self.currentPower, self.peakPower);
+}
+
+- (void)timeupCallBack {
+    [self.audioRecorder updateMeters];
+    self.timeupHandler(self.currentPower, self.peakPower);
     [self stop];
 }
 

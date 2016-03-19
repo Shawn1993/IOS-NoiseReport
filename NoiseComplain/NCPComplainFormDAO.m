@@ -8,7 +8,6 @@
 
 #import "NCPComplainFormDAO.h"
 #import "NCPComplainFormManagedObject+CoreDataProperties.h"
-#import "NCPComplainForm.h"
 
 @implementation NCPComplainFormDAO
 

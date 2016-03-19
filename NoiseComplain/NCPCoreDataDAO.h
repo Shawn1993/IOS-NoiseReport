@@ -13,7 +13,7 @@
 /*!Core Data DAO 基类*/
 @interface NCPCoreDataDAO : NSObject
 
-#pragma mark - Core Data 堆栈
+#pragma mark - CoreData
 
 /*!被管理对象上下文*/
 @property(readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
