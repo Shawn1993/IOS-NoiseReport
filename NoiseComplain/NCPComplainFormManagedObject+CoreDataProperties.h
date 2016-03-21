@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *latitude;
 @property (nullable, nonatomic, retain) NSString *comment;
 @property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSData *image;
 @property (nullable, nonatomic, retain) NSNumber *intensity;
 @property (nullable, nonatomic, retain) NSNumber *longitude;
 @property (nullable, nonatomic, retain) NSString *noiseType;

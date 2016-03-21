@@ -24,7 +24,6 @@
     tmodel.intensity = tmo.intensity;
     tmodel.latitude = tmo.latitude;
     tmodel.longitude = tmo.longitude;
-    tmodel.image = tmo.image;
     tmodel.sfaType = tmo.sfaType;
     tmodel.noiseType = tmo.noiseType;
     tmodel.address = tmo.address;
@@ -40,7 +39,6 @@
     tmo.intensity = tmodel.intensity;
     tmo.latitude = tmodel.latitude;
     tmo.longitude = tmodel.longitude;
-    tmo.image = tmodel.image;
     tmo.sfaType = tmodel.sfaType;
     tmo.noiseType = tmodel.noiseType;
     tmo.address = tmodel.address;

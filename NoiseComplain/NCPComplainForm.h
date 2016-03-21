@@ -11,7 +11,7 @@
 /*!投诉表单类*/
 @interface NCPComplainForm : NSObject
 
-/*!表格编号(int32)*/
+/*!表格编号(long)*/
 @property(nonnull, nonatomic, strong) NSNumber *formId;
 /*!描述信息*/
 @property(nullable, nonatomic, strong) NSString *comment;
@@ -25,8 +25,6 @@
 @property(nullable, nonatomic, strong) NSNumber *latitude;
 /*!经度(float)*/
 @property(nullable, nonatomic, strong) NSNumber *longitude;
-/*!描述图片*/
-@property(nullable, nonatomic, strong) NSData *image;
 /*!声功能区类型*/
 @property(nullable, nonatomic, strong) NSString *sfaType;
 /*!噪声类型*/

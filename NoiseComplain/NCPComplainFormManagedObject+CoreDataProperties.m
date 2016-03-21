@@ -17,7 +17,6 @@
 @dynamic latitude;
 @dynamic comment;
 @dynamic date;
-@dynamic image;
 @dynamic intensity;
 @dynamic longitude;
 @dynamic noiseType;

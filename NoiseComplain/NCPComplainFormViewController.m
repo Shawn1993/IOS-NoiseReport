@@ -360,16 +360,27 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
                                                          preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:ac animated:YES completion:nil];
 
+    // TODO: 使用MKNetWorkKit框架
+    /*
+    MKNetworkHost *host = [[MKNetworkHost alloc] initWithHostName:@"localhost:8080"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    MKNetworkRequest *request = [host requestWithPath:@"" params:params httpMethod:@"POST"];
+    [request addCompletionHandler:^(MKNetworkRequest *request) {
+
+    }];*/
+
     // 组织网络请求
     NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
     [web addParameter:@"devId" withString:[[UIDevice currentDevice].identifierForVendor UUIDString]];
     [web addParameter:@"comment" withString:form.comment];
-    [web addParameter:@"date" withString:[NSString stringWithFormat:@"%@", form.date]];
+    [web addParameter:@"date" withString:[df stringFromDate:form.date]];
     [web addParameter:@"intensity" withFloat:form.intensity.floatValue];
     [web addParameter:@"address" withString:form.address];
     [web addParameter:@"latitude" withFloat:form.latitude.floatValue];
     [web addParameter:@"longitude" withFloat:form.longitude.floatValue];
-    // [web addParameter:@"image" withData:form.image];
     [web addParameter:@"sfaType" withString:form.sfaType];
     [web addParameter:@"noiseType" withString:form.noiseType];
 
@@ -383,26 +394,46 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
                     ((NSNumber *) json[@"result"]).intValue != 0 &&
                     json[@"formId"] &&
                     ((NSNumber *) json[@"formId"]).intValue) {
-                form.formId = @(((NSNumber *) json[@"formId"]).intValue);
+                form.formId = @(((NSNumber *) json[@"formId"]).longValue);
                 [self saveComplainForm:form];
-                [ac dismissViewControllerAnimated:YES completion:nil];
-            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 投诉成功, 关闭页面
+                    [ac dismissViewControllerAnimated:YES completion:^{
+                        UIAlertController *fac = [UIAlertController alertControllerWithTitle:@"投诉成功"
+                                                                                     message:@"您的投诉已经成功发送!"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *finish = [UIAlertAction actionWithTitle:@"确定"
+                                                                         style:UIAlertActionStyleCancel
+                                                                       handler:(void (^)(UIAlertAction *)) ^{
+                                                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                                                               [self dismissViewControllerAnimated:YES completion:nil];
+                                                                           });
+                                                                       }];
+                        [fac addAction:finish];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self presentViewController:fac animated:YES completion:nil];
+                        });
+                    }];
+                });
+            }
+            else {
                 errStr = @"服务器返回数据异常";
             }
         } else {
             errStr = [NSString stringWithFormat:@"网络连接异常: %@", error.localizedDescription];
         }
         if (errStr) {
-            // 如果请求出现错误, 进行提示
-            [ac dismissViewControllerAnimated:YES completion:^{
-                UIAlertController *eac = [UIAlertController alertControllerWithTitle:@"投诉失败"
-                                                                             message:errStr
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                [eac addAction:cancel];
-                [self presentViewController:eac animated:YES completion:nil];
-            }];
-
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 如果请求出现错误, 进行提示
+                [ac dismissViewControllerAnimated:YES completion:^{
+                    UIAlertController *eac = [UIAlertController alertControllerWithTitle:@"投诉失败"
+                                                                                 message:errStr
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                    [eac addAction:cancel];
+                    [self presentViewController:eac animated:YES completion:nil];
+                }];
+            });
         }
     }];
 }

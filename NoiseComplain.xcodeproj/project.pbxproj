@@ -53,6 +53,7 @@
 		CAA0CB7A1C23F8C60055DE89 /* GTLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA0CB791C23F8C60055DE89 /* GTLBase64.m */; };
 		CAA42D721C294B970004C03B /* NCPComplainFormDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA42D711C294B970004C03B /* NCPComplainFormDAO.m */; };
 		CAA659EB1C269A1000D80605 /* NCPCoreDataDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA659EA1C269A1000D80605 /* NCPCoreDataDAO.m */; };
+		CACB974E1C9E6A0E00499BB1 /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = CACB974D1C9E6A0E00499BB1 /* Network.plist */; };
 		CAE671091C1AADF3003D8271 /* NCPWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE671081C1AADF3003D8271 /* NCPWebRequest.m */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		CAA659E91C269A1000D80605 /* NCPCoreDataDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPCoreDataDAO.h; sourceTree = "<group>"; };
 		CAA659EA1C269A1000D80605 /* NCPCoreDataDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPCoreDataDAO.m; sourceTree = "<group>"; };
 		CAC476E81C344BF9006C177F /* NCPLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPLog.h; sourceTree = "<group>"; };
+		CACB974D1C9E6A0E00499BB1 /* Network.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Network.plist; sourceTree = "<group>"; };
 		CAE671071C1AADF3003D8271 /* NCPWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPWebRequest.h; sourceTree = "<group>"; };
 		CAE671081C1AADF3003D8271 /* NCPWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPWebRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +223,8 @@
 		58B126641C2E6B550095014F /* FrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				58C28E2C1C4130EE008353E3 /* MapKit.framework */,
+				CAA0CB7B1C23F8C90055DE89 /* GTLBase64 */,
 				58B126601C2E6AFD0095014F /* libstdc++.6.0.9.tbd */,
 				58B1265E1C2E6AF20095014F /* CoreTelephony.framework */,
 				58B1265C1C2E6AE20095014F /* libsqlite3.0.tbd */,
@@ -270,7 +274,6 @@
 		CA4B30D61C0F17050013E70E = {
 			isa = PBXGroup;
 			children = (
-				58C28E2C1C4130EE008353E3 /* MapKit.framework */,
 				58B126641C2E6B550095014F /* FrameWork */,
 				CA4B30E11C0F17050013E70E /* NoiseComplain */,
 				CA4B30FB1C0F17050013E70E /* NoiseComplainTests */,
@@ -344,7 +347,6 @@
 			children = (
 				CA4B31191C0F178E0013E70E /* ViewControllers */,
 				CAA0CBCF1C2689BC0055DE89 /* Modules */,
-				CAB15E941C1E8B29001886F6 /* Libraries */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -364,6 +366,7 @@
 				CA4B317A1C0F1B2C0013E70E /* NoiseType.plist */,
 				CA4B317B1C0F1B2C0013E70E /* SFAType.plist */,
 				CA4B30F31C0F17050013E70E /* Info.plist */,
+				CACB974D1C9E6A0E00499BB1 /* Network.plist */,
 			);
 			name = PropertyList;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				CAA0CB791C23F8C60055DE89 /* GTLBase64.m */,
 			);
 			name = GTLBase64;
+			path = NoiseComplain;
 			sourceTree = "<group>";
 		};
 		CAA0CB831C25AE8B0055DE89 /* DataPersistence */ = {
@@ -450,14 +454,6 @@
 				CA4B31271C0F18900013E70E /* NCPLocationViewController.m */,
 			);
 			name = ComplainForm;
-			sourceTree = "<group>";
-		};
-		CAB15E941C1E8B29001886F6 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				CAA0CB7B1C23F8C90055DE89 /* GTLBase64 */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 		CAB15E9E1C1E99CB001886F6 /* WebService */ = {
@@ -583,6 +579,7 @@
 				CA83D3B81C996849009A72C4 /* NCPMeterView.xib in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				5820E7301C3039EC0003C091 /* w1021.gpx in Resources */,
+				CACB974E1C9E6A0E00499BB1 /* Network.plist in Resources */,
 				CA4B30F21C0F17050013E70E /* LaunchScreen.storyboard in Resources */,
 				58B126631C2E6B340095014F /* mapapi.bundle in Resources */,
 				CA83D3BA1C998A9B009A72C4 /* NCPGraphView.xib in Resources */,

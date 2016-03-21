@@ -14,7 +14,8 @@
 #pragma mark 常量定义
 
 /*!服务器地址(包含端口号)*/
-static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
+static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:24448/ncpserver";
+//static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
 
 @implementation NCPWebRequest
 
@@ -133,7 +134,7 @@ static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
     return [self sendWithCompletionHandler:nil];
 }
 
-- (BOOL)sendWithCompletionHandler:(void (^)(NSDictionary *json, NSError* error))handler {
+- (BOOL)sendWithCompletionHandler:(void (^)(NSDictionary *json, NSError *error))handler {
     // 检查page是否有效
     if (!_page) {
         // page没有被正确地赋值, 请求无法发出

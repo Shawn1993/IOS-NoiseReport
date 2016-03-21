@@ -9,7 +9,7 @@
 #import "NCPMeterView.h"
 
 static const float kValueMax = 120;
-static const float kValueMin = 40;
+static const float kValueMin = 0;
 
 static const float kFontRatio = 0.546f;
 static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
@@ -34,9 +34,9 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
 }
 
 - (void)layoutSubviews {
-    self.referencedView.frame = self.bounds;
-    self.value = kValueMin;
     [super layoutSubviews];
+    self.referencedView.frame = self.bounds;
+    [self setValueWithLable:kValueMin];
 }
 
 - (void)setValue:(float)value {
