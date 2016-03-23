@@ -9,13 +9,12 @@
 #import "NCPWebRequest.h"
 #import "NCPWebParameter.h"
 #import "GTLBase64.h"
-#import "NCPLog.h"
 
 #pragma mark 常量定义
 
 /*!服务器地址(包含端口号)*/
-static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:24448/ncpserver";
-//static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
+//static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:24448/ncpserver";
+static const NSString *kNCPServerURLRoot = @"http://localhost:8080";
 
 @implementation NCPWebRequest
 
@@ -152,7 +151,7 @@ static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:244
     // 添加参数
     request.HTTPBody = [self organizeHTTPBodyData];
 
-    NCPLogVerbose(@"Sending request to: \"%@\", HTTP body: \"%@\"", urlStr, [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
+    NSLog(@"Sending request: \"%@?%@\"", urlStr, [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding]);
 
     // 发送请求
     NSURLSession *session = [NSURLSession sharedSession];
@@ -161,7 +160,7 @@ static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:244
                         NSURLResponse *response,
                         NSError *error) {
                     if (error) {
-                        NCPLogWarn(@"Request error occored in NSURLSession completionHandler: %@", error);
+                        NSLog(@"Request error occored in NSURLSession completionHandler: %@", error);
                     }
                     if (handler) {
                         NSError *jsonError;
@@ -173,7 +172,7 @@ static const NSString *kNCPServerURLRoot = @"http://noisecomplain.nat123.net:244
                         }
                         handler(json, error);
                         if (jsonError) {
-                            NCPLogWarn(@"JSON error occored in NSURLSession completionHandler: %@", error);
+                            NSLog(@"JSON error occored in NSURLSession completionHandler: %@", error);
                         }
                     }
                 }] resume];

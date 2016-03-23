@@ -9,22 +9,25 @@
 #import "NCPComplainGuideViewController.h"
 #import "NCPComplainFormDAO.h"
 #import "NCPMapAlertViewController.h"
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
-/*!代表空的提示字符串*/
+#pragma mark - 常量定义
+
+// 代表空的提示字符串
 static NSString *kNilStr = @"null";
 
-/*!日期格式字符串*/
+// 日期格式字符串
 static NSString *kDateFmtStr = @"yyyy/MM/dd";
 
-/*!历史投诉表格单元格标识符*/
+// 历史投诉表格单元格标识符
 static NSString *kCellIdHistory = @"historyCell";
-/*!空历史投诉单元格标识符*/
+// 空历史投诉单元格标识符
 static NSString *kCellIdEmptyHistory = @"emptyHistoryCell";
-/*!投诉按钮单元格标识符*/
+// 投诉按钮单元格标识符
 static NSString *kCellIdComplain = @"complainCell";
 
 @interface NCPComplainGuideViewController ()
+
+#pragma mark - 成员变量
 
 // 历史投诉列表
 @property(strong, nonatomic) NSArray *historyArray;
@@ -49,7 +52,7 @@ static NSString *kCellIdComplain = @"complainCell";
     [self.tableView reloadData];
 }
 
-#pragma mark - TableView Datasource & Delegate
+#pragma mark - 表格代理与数据源
 
 - (void)reloadDataFromCoreData {
     NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
@@ -158,10 +161,10 @@ static NSString *kCellIdComplain = @"complainCell";
                                                             NCPMapAlertViewController *mapController = [NCPMapAlertViewController alertControllerWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                                                                                                                                                    message:nil
                                                                                                                                             preferredStyle:UIAlertControllerStyleAlert];
-                                                            UIAlertAction *map = [UIAlertAction actionWithTitle:@"关闭地图"
+                                                            UIAlertAction *ma = [UIAlertAction actionWithTitle:@"关闭地图"
                                                                                                           style:UIAlertActionStyleDefault
                                                                                                         handler:nil];
-                                                            [mapController addAction:map];
+                                                            [mapController addAction:ma];
                                                             [mapController addAction:cancel];
                                                             [self presentViewController:mapController animated:NO completion:nil];
                                                         }];

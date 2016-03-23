@@ -2,9 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>教学区</string>
-	<string>商业区</string>
-	<string>住宅区</string>
-	<string>工业区</string>
+	<string>0类:康复疗养院等</string>
+	<string>1类:住宅,医院,学校,行政办公等</string>
+	<string>2类:商业,集贸,商住混合区</string>
+	<string>3类:工业生产</string>
+	<string>4类:交通干线,铁路旁</string>
 </array>
 </plist>

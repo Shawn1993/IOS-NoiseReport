@@ -13,7 +13,11 @@
 
 @interface NCPMeterViewController ()
 
+#pragma mark - 成员变量
+
 @property(nonatomic, strong) NCPNoiseRecorder *recorder;
+
+#pragma mark - Storyboard输出口
 
 @property(weak, nonatomic) IBOutlet NCPMeterView *meterView;
 @property(weak, nonatomic) IBOutlet NCPGraphView *graphView;
@@ -54,15 +58,6 @@
     // 停止录音器
     [self.recorder stop];
     self.recorder = nil;
-}
-
-
-- (IBAction)test1:(id)sender {
-    self.meterView.value = self.meterView.value + 1;
-}
-
-- (IBAction)test2:(id)sender {
-    self.meterView.value = self.meterView.value - 1;
 }
 
 @end

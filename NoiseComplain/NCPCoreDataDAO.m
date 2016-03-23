@@ -7,20 +7,19 @@
 //
 
 #import "NCPCoreDataDAO.h"
-#import "NCPLog.h"
 
 static NSString *kNCPCoreDataModelFileName = @"NoiseComplain";
-
-static void errorLog(NSError *error) {
-    if (error) {
-        NCPLogWarn(@"CoreData Error: %@", error);
-    }
-}
 
 @implementation NCPCoreDataDAO {
     NSManagedObjectContext *_managedObjectContext;
     NSManagedObjectModel *_managedObjectModel;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+}
+
+- (void)errorLog:(NSError *)error {
+    if (error) {
+        NSLog(@"CoreData Error: %@", error);
+    }
 }
 
 #pragma mark - CoreData
@@ -101,7 +100,7 @@ static void errorLog(NSError *error) {
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest
                                                error:&error];
-    errorLog(error);
+    [self errorLog:error];
 
     // 向数组中转换类型并添加内容
     for (NSManagedObject *mo in listData) {
@@ -137,7 +136,7 @@ static void errorLog(NSError *error) {
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:
             fetchRequest                       error:&error];
-    errorLog(error);
+    [self errorLog:error];
 
     // 填充数组内容
     for (NSManagedObject *mo in listData) {
@@ -189,7 +188,7 @@ static void errorLog(NSError *error) {
     // 检查是否成功提交更改
     NSError *error = nil;
     if (context.hasChanges && ![context save:&error]) {
-        errorLog(error);
+        [self errorLog:error];
         return NO;
     } else {
         return YES;
@@ -211,13 +210,13 @@ static void errorLog(NSError *error) {
 
     // 设置查询条件
     NSPredicate *predicate = [NSPredicate predicateWithFormat:[dao predicate], [dao keyValue:model]];
-    NSLog(@"%@",predicate);
+    NSLog(@"%@", predicate);
     fetchRequest.predicate = predicate;
 
     // 提交请求, 获取要删除的实体
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest error:&error];
-    errorLog(error);
+    [self errorLog:error];
 
     if (listData.count > 0) {
         NSManagedObject *mo = listData.lastObject;
@@ -226,7 +225,7 @@ static void errorLog(NSError *error) {
         // 检查是否提交成功
         error = nil;
         if (context.hasChanges && ![context save:&error]) {
-            errorLog(error);
+            [self errorLog:error];
             return NO;
         } else {
             return YES;
@@ -256,7 +255,7 @@ static void errorLog(NSError *error) {
     NSError *error = nil;
     NSArray *listData = [context executeFetchRequest:fetchRequest
                                                error:&error];
-    errorLog(error);
+    [self errorLog:error];
 
     if (listData.count > 0) {
         NSManagedObject *mo = listData.lastObject;
@@ -264,7 +263,7 @@ static void errorLog(NSError *error) {
 
         error = nil;
         if (context.hasChanges && ![context save:&error]) {
-            errorLog(error);
+            [self errorLog:error];
             return NO;
         } else {
             return YES;

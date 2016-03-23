@@ -7,7 +7,6 @@
 //
 
 #import "NCPLocationViewController.h"
-#import "NCPLog.h"
 #import "NCPComplainForm.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
@@ -157,9 +156,9 @@
 
 - (IBAction)doneButtonClick:(id)sender {
     // 调试用: 查看返回定位结果
-    NCPLogVerbose(@"NCPLocationViewController: doneButtonClick", nil);
-    NCPLogVerbose(@"Latitude: %.2f", [self pinCoordinate].latitude);
-    NCPLogVerbose(@"Longitude: %.2f", [self pinCoordinate].longitude);
+    NSLog(@"NCPLocationViewController: doneButtonClick");
+    NSLog(@"Latitude: %.2f", [self pinCoordinate].latitude);
+    NSLog(@"Longitude: %.2f", [self pinCoordinate].longitude);
 
     [NCPComplainForm current].latitude = @([self pinCoordinate].latitude);
     [NCPComplainForm current].longitude = @([self pinCoordinate].longitude);
@@ -191,16 +190,16 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     self.tableView.hidden = NO;
-    NCPLogVerbose(@"searchBarShouldBeginEditing", nil);
+    NSLog(@"searchBarShouldBeginEditing");
     return YES;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    NCPLogVerbose(@"searchBarTextDidBeginEditing", nil);
+    NSLog(@"searchBarTextDidBeginEditing");
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    NCPLogVerbose(@"searchBarTextDidEndEditing", nil);
+    NSLog(@"searchBarTextDidEndEditing");
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

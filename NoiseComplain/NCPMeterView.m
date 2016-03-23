@@ -8,6 +8,8 @@
 
 #import "NCPMeterView.h"
 
+#pragma mark - 常量定义
+
 static const float kValueMax = 120;
 static const float kValueMin = 0;
 
@@ -16,6 +18,8 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
 
 @interface NCPMeterView ()
 
+#pragma mark - Xib输出口
+
 @property(weak, nonatomic) IBOutlet UIView *referencedView;
 @property(weak, nonatomic) IBOutlet UIImageView *imageLight;
 @property(weak, nonatomic) IBOutlet UILabel *labelValue;
@@ -23,6 +27,8 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
 @end
 
 @implementation NCPMeterView
+
+#pragma mark - 初始化与布局
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -38,6 +44,8 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
     self.referencedView.frame = self.bounds;
     [self setValueWithLable:kValueMin];
 }
+
+#pragma mark - 设置当前值
 
 - (void)setValue:(float)value {
     // 限制输入值大小
@@ -65,8 +73,8 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
     [self setNeedsDisplay];
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+#pragma mark - 绘制方法
+
 - (void)drawRect:(CGRect)rect {
 
     // Drawing code

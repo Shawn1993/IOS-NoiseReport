@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 噪声投诉列表ViewController
+ */
 @interface NCPComplainGuideViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

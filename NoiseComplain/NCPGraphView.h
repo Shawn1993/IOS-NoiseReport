@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 曲线图View
+ */
 @interface NCPGraphView : UIView
 
 @end

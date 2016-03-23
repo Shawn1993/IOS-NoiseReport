@@ -11,7 +11,10 @@
 
 @interface NCPAppDelegate : UIResponder <UIApplicationDelegate>
 
+// UIWindow对象
 @property(strong, nonatomic) UIWindow *window;
+
+// 百度地图主引擎对象
 @property(strong, nonatomic) BMKMapManager *mapManager;
 
 @end

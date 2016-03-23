@@ -8,22 +8,28 @@
 
 #import "NCPComplainForm.h"
 
-/*!当前投诉表单对象*/
+// 当前投诉表单对象
 static NCPComplainForm *gCurrentComplainForm = nil;
 
 @implementation NCPComplainForm
 
+#pragma mark - 初始化
+
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // 根据北京时间生成
+        // 初始化时, 生成NSDate对象
         _date = [NSDate date];
-        NSTimeZone *zone =[NSTimeZone systemTimeZone];
+
+        // 调整时区
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
         NSInteger interval = [zone secondsFromGMTForDate:_date];
         _date = [_date dateByAddingTimeInterval:interval];
     }
     return self;
 }
+
+#pragma mark - 实例设置与获取
 
 + (instancetype _Nullable)form {
     return [[NCPComplainForm alloc] init];
@@ -36,15 +42,5 @@ static NCPComplainForm *gCurrentComplainForm = nil;
 + (void)setCurrent:(NCPComplainForm *_Nullable)current {
     gCurrentComplainForm = current;
 }
-
-- (NSString *)description {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@"self.fId=%@", self.formId];
-    [description appendFormat:@", self.date=%@", self.date];
-    [description appendFormat:@", self.address=%@", self.address];
-    [description appendString:@">"];
-    return description;
-}
-
 
 @end

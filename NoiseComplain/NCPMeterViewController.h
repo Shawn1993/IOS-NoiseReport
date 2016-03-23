@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-/*!噪声仪视图控制器*/
+/**
+ * 噪声仪ViewController
+ */
 @interface NCPMeterViewController : UIViewController
 
 @end

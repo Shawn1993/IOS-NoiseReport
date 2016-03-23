@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * 噪声强度仪表盘View
+ */
 @interface NCPMeterView : UIView
 
 @property(nonatomic, assign, setter=setValue:) float value;

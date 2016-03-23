@@ -12,7 +12,6 @@
 #import "NCPComplainFormDAO.h"
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
-#import "NCPLog.h"
 #import "NCPNoiseRecorder.h"
 
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
@@ -27,15 +26,15 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - Storyboard输出口
 
-/*!噪声强度Section*/
+// 噪声强度Section
 @property(weak, nonatomic) IBOutlet UILabel *labelIntensity;
 @property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
 
-/*!投诉地点Section*/
+// 投诉地点Section
 @property(weak, nonatomic) IBOutlet UILabel *labelNoiseLocation;
 @property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorLocating;
 
-/*!噪声信息Section*/
+// 噪声信息Section
 @property(weak, nonatomic) IBOutlet UILabel *labelNoiseType;
 @property(weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property(weak, nonatomic) IBOutlet UITextView *textViewComment;
@@ -44,19 +43,19 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - 成员变量
 
-/*!噪音仪对象*/
+// 噪音仪对象
 @property(nonatomic) NCPNoiseRecorder *noiseRecorder;
 
-/*!导航栏按钮Cancel*/
+// 导航栏按钮Cancel
 - (IBAction)barButtonCancelClick:(id)sender;
 
-/*!定位服务*/
+// 定位服务
 @property(nonatomic) BMKLocationService *locationService;
 
-/*!地理编码服务*/
+// 地理编码服务
 @property(nonatomic) BMKGeoCodeSearch *geoCodeSearch;
 
-/*!地理编码信息*/
+// 地理编码信息
 @property(nonatomic) BMKReverseGeoCodeOption *reverseGeoCodeOption;
 
 @end
@@ -66,7 +65,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - ViewController生命周期
 
-/*!视图即将初始化*/
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
@@ -87,7 +85,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 }
 
-/*!视图初始化完成*/
 - (void)viewWillAppear:(BOOL)animated {
     // 显示表格内容
     [self displayComplainForm];
@@ -106,7 +103,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     }
 }
 
-/*!视图即将消失*/
 - (void)viewWillUnload {
     [NCPComplainForm setCurrent:nil];
     self.noiseRecorder = nil;
@@ -114,7 +110,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     self.geoCodeSearch.delegate = nil;
 }
 
-#pragma mark - 表格视图代理
+#pragma mark - 表格代理与数据源
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -237,7 +233,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - 文本框代理事件
 
-/*!文本框开始编辑*/
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     // 隐藏占位符
     self.labelCommentPlaceholder.hidden = YES;
@@ -249,7 +244,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
                                   animated:YES];
 }
 
-/*!文本框输入文字*/
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
 
     if ([text isEqualToString:@"\n"]) {
@@ -259,7 +253,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     return YES;
 }
 
-/*!文本框结束编辑*/
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     // 讲文本内容传入表单对象中
     [NCPComplainForm current].comment = [NSString stringWithString:self.textViewComment.text];
@@ -277,9 +270,9 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - ViewController私有方法
+#pragma mark - 其他私有方法
 
-/*!开始一次后台的噪声测量*/
+// 开始一次后台的噪声测量
 - (void)recordNoise {
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
     [self.noiseRecorder startWithDuration:5 timeupHandler:^(float current, float peak) {
@@ -289,7 +282,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     }];
 }
 
-/*!根据当前投诉表单的内容, 更新当前界面*/
+// 根据当前投诉表单的内容, 更新当前界面
 - (void)displayComplainForm {
     NCPComplainForm *form = [NCPComplainForm current];
 
@@ -331,7 +324,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     }
 }
 
-/*!向服务器发送投诉表单*/
+// 向服务器发送投诉表单
 - (void)sendComplainForm:(NCPComplainForm *)form {
 
     // 检查是否填好了所需的所有信息
@@ -388,7 +381,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     [web sendWithCompletionHandler:^(NSDictionary *json, NSError *error) {
         NSString *errStr;
         if (json) {
-            NCPLogInfo(@"Return JSON: %@", json);
+            NSLog(@"Return JSON: %@", json);
             // 如果请求成功, 将投诉表单保存至本地
             if (json[@"result"] &&
                     ((NSNumber *) json[@"result"]).intValue != 0 &&
@@ -438,11 +431,11 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     }];
 }
 
-/*!在本地保存此次投诉表单*/
+// 在本地保存此次投诉表单
 - (void)saveComplainForm:(NCPComplainForm *)form {
     NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
     [dao create:form];
-    NCPLogInfo(@"Persisted ComplainForms: %@", [dao findAll]);
+    NSLog(@"Persisted ComplainForms: %@", [dao findAll]);
 }
 
 @end

@@ -16,6 +16,8 @@
 
 @implementation NCPGraphView
 
+#pragma mark - 初始化与布局
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
