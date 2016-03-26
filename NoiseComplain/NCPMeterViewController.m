@@ -10,6 +10,9 @@
 #import "NCPNoiseRecorder.h"
 #import "NCPMeterView.h"
 #import "NCPGraphView.h"
+#import "NCPSQLiteDAO.h"
+
+#import "FMDB.h"
 
 @interface NCPMeterViewController ()
 
@@ -58,6 +61,11 @@
     // 停止录音器
     [self.recorder stop];
     self.recorder = nil;
+}
+
+- (IBAction)Test:(id)sender {
+    // 测试代码
+    [NCPSQLiteDAO createComplainForm:nil];
 }
 
 @end

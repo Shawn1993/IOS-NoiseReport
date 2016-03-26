@@ -16,7 +16,9 @@
 #pragma mark - 投诉信息字段
 
 // 表格编号(long)
-@property(nonnull, nonatomic, strong) NSNumber *formId;
+@property(nullable, nonatomic, strong) NSNumber *formId;
+// 设备ID
+@property(nonnull, nonatomic, strong) NSString *devId;
 // 描述信息
 @property(nullable, nonatomic, strong) NSString *comment;
 // 日期
@@ -29,6 +31,8 @@
 @property(nullable, nonatomic, strong) NSNumber *latitude;
 // 经度(float)
 @property(nullable, nonatomic, strong) NSNumber *longitude;
+// 坐标系
+@property(nonnull, nonatomic, strong) NSString *coord;
 // 声功能区类型
 @property(nullable, nonatomic, strong) NSString *sfaType;
 // 噪声类型

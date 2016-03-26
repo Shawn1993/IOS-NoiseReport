@@ -7,8 +7,9 @@
 //
 
 #import "NCPComplainGuideViewController.h"
-#import "NCPComplainFormDAO.h"
 #import "NCPMapAlertViewController.h"
+#import "NCPComplainForm.h"
+#import "NCPSQLiteDAO.h"
 
 #pragma mark - 常量定义
 
@@ -48,15 +49,14 @@ static NSString *kCellIdComplain = @"complainCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     // 检查历史投诉
-    [self reloadDataFromCoreData];
+    [self reloadHistoryData];
     [self.tableView reloadData];
 }
 
 #pragma mark - 表格代理与数据源
 
-- (void)reloadDataFromCoreData {
-    NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
-    self.historyArray = [dao findAll];
+- (void)reloadHistoryData {
+    self.historyArray = [NCPSQLiteDAO retrieveAllComplainForm];
     [self.tableView reloadData];
 }
 
@@ -162,8 +162,8 @@ static NSString *kCellIdComplain = @"complainCell";
                                                                                                                                                    message:nil
                                                                                                                                             preferredStyle:UIAlertControllerStyleAlert];
                                                             UIAlertAction *ma = [UIAlertAction actionWithTitle:@"关闭地图"
-                                                                                                          style:UIAlertActionStyleDefault
-                                                                                                        handler:nil];
+                                                                                                         style:UIAlertActionStyleDefault
+                                                                                                       handler:nil];
                                                             [mapController addAction:ma];
                                                             [mapController addAction:cancel];
                                                             [self presentViewController:mapController animated:NO completion:nil];
@@ -210,9 +210,8 @@ static NSString *kCellIdComplain = @"complainCell";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
-        [dao remove:self.historyArray[(NSUInteger) indexPath.row]];
-        [self reloadDataFromCoreData];
+        [NCPSQLiteDAO deleteComplainForm:self.historyArray[(NSUInteger) indexPath.row]];
+        [self reloadHistoryData];
         [self.tableView reloadData];
     }
 }

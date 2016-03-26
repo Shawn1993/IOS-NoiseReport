@@ -9,12 +9,19 @@
 #import "NCPComplainFormViewController.h"
 #import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
-#import "NCPComplainFormDAO.h"
+#import "NCPNoiseRecorder.h"
+#import "NCPSQLiteDAO.h"
+
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
-#import "NCPNoiseRecorder.h"
 
+#pragma mark - 常量定义
+
+// 字符显示最大长度
 static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
+
+static NSString *kNCPPListFileNoiseType = @"NoiseType";
+static NSString *kNCPPListFileSfaType = @"SfaType";
 
 @interface NCPComplainFormViewController ()
         <
@@ -65,6 +72,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - ViewController生命周期
 
+// 视图载入
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     [NCPComplainForm setCurrent:[NCPComplainForm form]];
@@ -82,9 +90,9 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
     // 创建地理编码信息对象
     self.reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
-
 }
 
+// 视图即将出现
 - (void)viewWillAppear:(BOOL)animated {
     // 显示表格内容
     [self displayComplainForm];
@@ -93,6 +101,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     [self.locationService startUserLocationService];
 }
 
+// 视图即将消失
 - (void)viewWillDisappear:(BOOL)animated {
     // 停止定位服务
     [self.locationService stopUserLocationService];
@@ -103,6 +112,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     }
 }
 
+// 视图即将析构
 - (void)viewWillUnload {
     [NCPComplainForm setCurrent:nil];
     self.noiseRecorder = nil;
@@ -110,14 +120,15 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     self.geoCodeSearch.delegate = nil;
 }
 
-#pragma mark - 表格代理与数据源
+#pragma mark - 表格点击事件
 
+// 表格点击代理事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     switch (indexPath.section) {
         case 0:
             // 测量结果session, 重新检测噪声强度
-            [self recordNoise];
+            [self redetectNoise];
             break;
         case 1:
             // 噪声源位置session, 使用segue, 不做响应
@@ -125,63 +136,18 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
         case 2:
             // 噪声源信息session
         {
-            BOOL actionSheet = NO;
-            NSString *title;
-            NSString *message;
-            NSString *pListFile;
-            void (^handler)(NSString *result);
-            NCPComplainForm *form = [NCPComplainForm current];
             switch (indexPath.row) {
                 case 0:
-                    //噪声类型
-                {
-                    actionSheet = YES;
-                    title = @"噪声类型选择";
-                    message = @"请选择你要投诉的噪声类型";
-                    pListFile = @"NoiseType";
-                    handler = ^(NSString *result) {
-                        form.noiseType = result;
-                    };
-                }
+                    // 噪声类型
+                    [self selectNoiseType];
                     break;
                 case 1:
-                    //声功能区
-                {
-                    actionSheet = YES;
-                    title = @"声功能区选择";
-                    message = @"请选择你所在的声功能区";
-                    pListFile = @"SFAType";
-                    handler = ^(NSString *result) {
-                        form.sfaType = result;
-                    };
-                }
+                    // 声功能区
+                    [self selectSfaType];
                     break;
                 default:
-                    //其它行
+                    // 其他行, 不使用代码响应
                     break;
-            }
-
-            // 如果是选择了要弹出列表的行, 弹出选择列表
-            if (actionSheet) {
-                NSString *plistPath = [[NSBundle mainBundle] pathForResource:pListFile ofType:@"plist"];
-                NSArray *pList = [[NSArray alloc] initWithContentsOfFile:plistPath];
-                UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
-                                                                            message:message
-                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
-                for (int i = 0; i < pList.count; i++) {
-                    NSString *act = pList[(NSUInteger) i];
-                    UIAlertAction *aa = [UIAlertAction actionWithTitle:act
-                                                                 style:UIAlertActionStyleDefault
-                                                               handler:(void (^)(UIAlertAction *)) ^{
-                                                                   handler(act);
-                                                                   [self displayComplainForm];
-                                                               }];
-                    [ac addAction:aa];
-                }
-
-                [ac addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-
-                [self presentViewController:ac animated:YES completion:nil];
             }
         }
             break;
@@ -201,8 +167,56 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+// 重新检测噪声强度
+- (void)redetectNoise {
+    [self recordNoise];
+}
+
+// 选择噪声类型
+- (void)selectNoiseType {
+    NSArray *array = NCPReadPListArray(kNCPPListFileNoiseType);
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"噪声类型选择"
+                                                                message:@"请选择你要投诉的噪声类型"
+                                                         preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSString *row in array) {
+        UIAlertAction *aa = [UIAlertAction actionWithTitle:row
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:(void (^)(UIAlertAction *)) ^{
+                                                       NCPComplainForm *form = [NCPComplainForm current];
+                                                       form.noiseType = row;
+                                                       [self displayComplainForm];
+                                                   }];
+        [ac addAction:aa];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:cancel];
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
+// 选择声功能区
+- (void)selectSfaType {
+    NSArray *array = NCPReadPListArray(kNCPPListFileSfaType);
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"环境类型选择"
+                                                                message:@"请选择你当前所处的环境类型"
+                                                         preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSString *row in array) {
+        UIAlertAction *aa = [UIAlertAction actionWithTitle:row
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:(void (^)(UIAlertAction *)) ^{
+                                                       NCPComplainForm *form = [NCPComplainForm current];
+                                                       form.sfaType = row;
+                                                       [self displayComplainForm];
+                                                   }];
+        [ac addAction:aa];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [ac addAction:cancel];
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
 #pragma mark - 定位功能
 
+// 定位位置更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
     NCPComplainForm *form = [NCPComplainForm current];
     form.longitude = @((float) userLocation.location.coordinate.longitude);
@@ -216,12 +230,14 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 }
 
+// 定位失败
 - (void)didFailToLocateUserWithError:(NSError *)error {
 
 }
 
 #pragma mark - 地理反编码功能
 
+// 获取位置信息
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     if (error == BMK_SEARCH_NO_ERROR) {
         NCPComplainForm *form = [NCPComplainForm current];
@@ -233,19 +249,19 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - 文本框代理事件
 
+// 文本框开始编辑
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     // 隐藏占位符
     self.labelCommentPlaceholder.hidden = YES;
 
     // 屏幕上移避免被遮挡
-
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]
                           atScrollPosition:UITableViewScrollPositionMiddle
                                   animated:YES];
 }
 
+// 文本框内容改变
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
@@ -253,8 +269,9 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
     return YES;
 }
 
+// 文本框结束编辑
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    // 讲文本内容传入表单对象中
+    // 将文本内容传入表单对象中
     [NCPComplainForm current].comment = [NSString stringWithString:self.textViewComment.text];
 
     // 检查是否需要隐藏placeHolder
@@ -266,6 +283,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
 
 #pragma mark - 导航栏动作事件
 
+// 取消按钮点击事件
 - (IBAction)barButtonCancelClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -353,27 +371,18 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
                                                          preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:ac animated:YES completion:nil];
 
-    // TODO: 使用MKNetWorkKit框架
-    /*
-    MKNetworkHost *host = [[MKNetworkHost alloc] initWithHostName:@"localhost:8080"];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
-    MKNetworkRequest *request = [host requestWithPath:@"" params:params httpMethod:@"POST"];
-    [request addCompletionHandler:^(MKNetworkRequest *request) {
-
-    }];*/
+    // TODO: 使用网络框架
 
     // 组织网络请求
     NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
-    [web addParameter:@"devId" withString:[[UIDevice currentDevice].identifierForVendor UUIDString]];
+    [web addParameter:@"devId" withString:form.devId];
     [web addParameter:@"comment" withString:form.comment];
-    [web addParameter:@"date" withString:[df stringFromDate:form.date]];
+    [web addParameter:@"date" withString:NCPStringFormDate(form.date)];
     [web addParameter:@"intensity" withFloat:form.intensity.floatValue];
     [web addParameter:@"address" withString:form.address];
     [web addParameter:@"latitude" withFloat:form.latitude.floatValue];
     [web addParameter:@"longitude" withFloat:form.longitude.floatValue];
+    [web addParameter:@"coord" withString:form.coord];
     [web addParameter:@"sfaType" withString:form.sfaType];
     [web addParameter:@"noiseType" withString:form.noiseType];
 
@@ -388,7 +397,7 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
                     json[@"formId"] &&
                     ((NSNumber *) json[@"formId"]).intValue) {
                 form.formId = @(((NSNumber *) json[@"formId"]).longValue);
-                [self saveComplainForm:form];
+                [NCPSQLiteDAO createComplainForm:form];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // 投诉成功, 关闭页面
                     [ac dismissViewControllerAnimated:YES completion:^{
@@ -429,13 +438,6 @@ static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
             });
         }
     }];
-}
-
-// 在本地保存此次投诉表单
-- (void)saveComplainForm:(NCPComplainForm *)form {
-    NCPComplainFormDAO *dao = [NCPComplainFormDAO dao];
-    [dao create:form];
-    NSLog(@"Persisted ComplainForms: %@", [dao findAll]);
 }
 
 @end

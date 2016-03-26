@@ -6,6 +6,7 @@
 //  Copyright © 2015 sysu. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "NCPComplainForm.h"
 
 // 当前投诉表单对象
@@ -25,6 +26,12 @@ static NCPComplainForm *gCurrentComplainForm = nil;
         NSTimeZone *zone = [NSTimeZone systemTimeZone];
         NSInteger interval = [zone secondsFromGMTForDate:_date];
         _date = [_date dateByAddingTimeInterval:interval];
+
+        // 插入设备标识符
+        _devId = [[UIDevice currentDevice].identifierForVendor UUIDString];
+
+        // 设置坐标系类型
+        _coord = @"BD-09";
     }
     return self;
 }
