@@ -15,4 +15,7 @@
 // 载入项目通用头文件
 #import "NCPGeneral.h"
 
+// 禁用NSLog
+// #define NSLog(...)
+
 #endif /* NCPPrefixHeader_pch */

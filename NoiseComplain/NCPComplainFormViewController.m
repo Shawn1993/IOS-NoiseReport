@@ -15,6 +15,8 @@
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
 
+#import "LGAlertView.h"
+
 #pragma mark - 常量定义
 
 // 字符显示最大长度
@@ -52,19 +54,13 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 投诉表单对象
 @property(nonatomic, strong) NCPComplainForm *form;
-
 // 噪音仪对象
 @property(nonatomic) NCPNoiseRecorder *noiseRecorder;
 
-// 导航栏按钮Cancel
-- (IBAction)barButtonCancelClick:(id)sender;
-
 // 定位服务
 @property(nonatomic) BMKLocationService *locationService;
-
 // 地理编码服务
 @property(nonatomic) BMKGeoCodeSearch *geoCodeSearch;
-
 // 地理编码信息
 @property(nonatomic) BMKReverseGeoCodeOption *reverseGeoCodeOption;
 
@@ -79,8 +75,6 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 - (void)viewDidLoad {
     // 创建一个新的表单对象
     self.form = [[NCPComplainForm alloc] init];
-
-    NSLog(@"viewDidLoad");
 
     // 开始检测噪声
     [self recordNoise];
@@ -102,8 +96,6 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     // 显示表格内容
     [self displayComplainForm];
 
-    NSLog(@"viewWillAppear");
-
     // 设置定位服务
     [self.locationService startUserLocationService];
 }
@@ -112,8 +104,6 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 - (void)viewWillDisappear:(BOOL)animated {
     // 停止定位服务
     [self.locationService stopUserLocationService];
-
-    NSLog(@"viewWillDisappear");
 
     // 如果键盘开启, 将其先于视图关闭
     if ([self.textViewComment isFirstResponder]) {
@@ -133,7 +123,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     }
 }
 
-#pragma mark - 表格点击事件
+#pragma mark - 表格点击响应
 
 // 表格点击代理事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,12 +156,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
             break;
         case 3:
             // 提交投诉session
-        {
-            // 将描述信息写入表单
-            self.form.comment = [NSString stringWithString:self.textViewComment.text];
-            // 提交投诉表单
             [self sendComplainForm];
-        }
             break;
         default:
             break;
@@ -186,42 +171,40 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 选择噪声类型
 - (void)selectNoiseType {
-    NSArray *array = NCPReadPListArray(kNCPPListFileNoiseType);
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"噪声类型选择"
-                                                                message:@"请选择你要投诉的噪声类型"
-                                                         preferredStyle:UIAlertControllerStyleActionSheet];
-    for (NSString *row in array) {
-        UIAlertAction *aa = [UIAlertAction actionWithTitle:row
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:(void (^)(UIAlertAction *)) ^{
-                                                       self.form.noiseType = row;
-                                                       [self displayComplainForm];
-                                                   }];
-        [ac addAction:aa];
-    }
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [ac addAction:cancel];
-    [self presentViewController:ac animated:YES completion:nil];
+    LGAlertView *noiseSheet = [LGAlertView alertViewWithTitle:@"噪声类型选择"
+                                                      message:@"请选择你要投诉的噪声类型"
+                                                        style:LGAlertViewStyleActionSheet
+                                                 buttonTitles:NCPReadPListArray(kNCPPListFileNoiseType)
+                                            cancelButtonTitle:@"取消"
+                                       destructiveButtonTitle:nil
+                                                actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
+                                                    self.form.noiseType = title;
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        [self displayComplainForm];
+                                                    });
+                                                }
+                                                cancelHandler:nil
+                                           destructiveHandler:nil];
+    [noiseSheet showAnimated:YES completionHandler:nil];
 }
 
 // 选择声功能区
 - (void)selectSfaType {
-    NSArray *array = NCPReadPListArray(kNCPPListFileSfaType);
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"环境类型选择"
-                                                                message:@"请选择你当前所处的环境类型"
-                                                         preferredStyle:UIAlertControllerStyleActionSheet];
-    for (NSString *row in array) {
-        UIAlertAction *aa = [UIAlertAction actionWithTitle:row
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:(void (^)(UIAlertAction *)) ^{
-                                                       self.form.sfaType = row;
-                                                       [self displayComplainForm];
-                                                   }];
-        [ac addAction:aa];
-    }
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [ac addAction:cancel];
-    [self presentViewController:ac animated:YES completion:nil];
+    LGAlertView *sfaSheet = [LGAlertView alertViewWithTitle:@"环境类型选择"
+                                                    message:@"请选择你当前所处的环境类型"
+                                                      style:LGAlertViewStyleActionSheet
+                                               buttonTitles:NCPReadPListArray(kNCPPListFileSfaType)
+                                          cancelButtonTitle:@"取消"
+                                     destructiveButtonTitle:nil
+                                              actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
+                                                  self.form.sfaType = title;
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [self displayComplainForm];
+                                                  });
+                                              }
+                                              cancelHandler:nil
+                                         destructiveHandler:nil];
+    [sfaSheet showAnimated:YES completionHandler:nil];
 }
 
 #pragma mark - 定位功能
@@ -293,7 +276,21 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 取消按钮点击事件
 - (IBAction)barButtonCancelClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // 弹出确认提示框
+    LGAlertView *confirmAlert = [LGAlertView alertViewWithTitle:@"提示"
+                                                        message:@"投诉尚未完成, 确定要退出吗?"
+                                                          style:LGAlertViewStyleAlert
+                                                   buttonTitles:nil
+                                              cancelButtonTitle:@"取消"
+                                         destructiveButtonTitle:@"退出"
+                                                  actionHandler:nil
+                                                  cancelHandler:nil
+                                             destructiveHandler:^(LGAlertView *alert) {
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                                 });
+                                             }];
+    [confirmAlert showAnimated:YES completionHandler:nil];
 }
 
 #pragma mark - 噪声测量
@@ -366,28 +363,57 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     return YES;
 }
 
-// 向服务器发送投诉表单
+// 准备发送投诉表单
 - (void)sendComplainForm {
-
     // 检查是否填好了所需的所有信息
-    if (![self checkComplainForm]) {
-        // TODO: 如果表单不完整, 中断发送
-        return;
+    if ([self checkComplainForm]) {
+        // 表单填写完整, 进行发送
+        [self sendCheckedComplainForm];
+    } else {
+        // 如果表单不完整, 中断发送
+        LGAlertView *checkAlert = [LGAlertView alertViewWithTitle:@"信息不完整"
+                                                          message:@"投诉信息还没有填写完整, 可能无法受理!\n是否仍然要提交投诉?"
+                                                            style:LGAlertViewStyleAlert
+                                                     buttonTitles:nil
+                                                cancelButtonTitle:@"取消"
+                                           destructiveButtonTitle:@"提交投诉"
+                                                    actionHandler:nil
+                                                    cancelHandler:nil
+                                               destructiveHandler:^(LGAlertView *alert) {
+                                                   // 虽然信息不完整, 但是仍然发送
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       [self sendCheckedComplainForm];
+                                                   });
+                                               }];
+        [checkAlert showAnimated:YES completionHandler:nil];
     }
-    // 表单填写完整
-    // TODO: 显示发送中提示框
+}
 
+// 向服务器发送投诉表单
+- (void)sendCheckedComplainForm {
+    // 表单填写完整, 弹出带有提示框
+    LGAlertView *sendAlert = [LGAlertView alertViewWithActivityIndicatorAndTitle:@"发送中"
+                                                                         message:@"正在将投诉发送至服务器..."
+                                                                           style:LGAlertViewStyleAlert
+                                                                    buttonTitles:nil
+                                                               cancelButtonTitle:@"取消"
+                                                          destructiveButtonTitle:nil];
+    [sendAlert showAnimated:YES completionHandler:nil];
     // 向服务器发送投诉表单
     [NCPWebService sendComplainForm:self.form
                             success:^(NSDictionary *json) {
                                 // 检查返回的JSON是否包含请求成功信息
                                 if (!json[@"result"] || ((NSNumber *) json[@"result"]).intValue == 0) {
-                                    // TODO: 服务器请求失败
+                                    NSString *errorMessage = @"服务器数据错误!";
+                                    if (json[@"errorMessage"]) {
+                                        [errorMessage stringByAppendingFormat:@"\n错误: %@", errorMessage];
+                                    }
+                                    [self showErrorAlert:sendAlert message:errorMessage];
                                     return;
                                 }
                                 // 检查返回的JSON是否包含formId信息
                                 if (!json[@"formId"] || ((NSNumber *) json[@"formId"]).longValue < 0) {
-                                    // TODO: 服务器请求失败
+                                    [self showErrorAlert:sendAlert message:@"服务器数据错误!\n错误: 未返回有效的投诉表单号"];
                                     return;
                                 }
 
@@ -398,12 +424,61 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
                                 //将投诉表单保存于本地
                                 [NCPSQLiteDAO createComplainForm:self.form];
 
-                                //TODO: 请求成功提示
-
+                                // 请求成功提示
+                                [self showSuccessAlert:sendAlert];
                             }
                             failure:^(NSError *error) {
-                                // TODO: 服务器请求失败
+                                [self showErrorAlert:sendAlert
+                                             message:[NSString stringWithFormat:@"服务器连接失败!\n错误: %@", error.localizedDescription]];
                             }];
+}
+
+// 显示投诉成功提示框
+- (void)showSuccessAlert:(LGAlertView *)lastAlert {
+    LGAlertView *successAlert = [LGAlertView alertViewWithTitle:@"投诉成功"
+                                                        message:@"您的投诉已经发送至服务器!\n返回投诉列表可以查看投诉受理进度"
+                                                          style:LGAlertViewStyleAlert
+                                                   buttonTitles:nil
+                                              cancelButtonTitle:@"返回投诉列表"
+                                         destructiveButtonTitle:nil
+                                                  actionHandler:nil
+                                                  cancelHandler:^(LGAlertView *alert) {
+                                                      // 关闭当前投诉页面
+                                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                      });
+                                                  }
+                                             destructiveHandler:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (lastAlert && lastAlert.isShowing) {
+            // 如果有正在显示的提示框
+            [lastAlert transitionToAlertView:successAlert completionHandler:nil];
+        } else {
+            // 开启新的提示框
+            [successAlert showAnimated:YES completionHandler:nil];
+        }
+    });
+}
+
+// 显示投诉错误提示框
+- (void)showErrorAlert:(LGAlertView *)lastAlert message:(NSString *)message {
+    // 显示错误提示
+    LGAlertView *errorAlert = [LGAlertView alertViewWithTitle:@"投诉失败"
+                                                      message:message
+                                                        style:LGAlertViewStyleAlert
+                                                 buttonTitles:nil
+                                            cancelButtonTitle:@"取消"
+                                       destructiveButtonTitle:nil];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (lastAlert && lastAlert.isShowing) {
+            // 如果有正在显示的提示框
+            [lastAlert transitionToAlertView:errorAlert completionHandler:nil];
+        } else {
+            // 开启新的提示框
+            [errorAlert showAnimated:YES completionHandler:nil];
+        }
+    });
 }
 
 @end

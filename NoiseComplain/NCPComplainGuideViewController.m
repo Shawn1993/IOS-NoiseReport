@@ -7,7 +7,6 @@
 //
 
 #import "NCPComplainGuideViewController.h"
-#import "NCPMapAlertViewController.h"
 #import "NCPComplainForm.h"
 #import "NCPSQLiteDAO.h"
 
@@ -129,6 +128,8 @@ static NSString *kCellIdComplain = @"complainCell";
         if (self.historyArray.count > 0) {
             // 历史投诉Section
 
+            // TODO: 使用新的ViewController
+            /*
             // 组织提示框内容
             NCPComplainForm *form = self.historyArray[(NSUInteger) indexPath.row];
             NSString *title = form.address ? [NSString stringWithFormat:@"%@", form.address] : @"投诉详情";
@@ -170,6 +171,7 @@ static NSString *kCellIdComplain = @"complainCell";
                                                         }];
             [ac addAction:map];
             [self presentViewController:ac animated:YES completion:nil];
+             */
 
         } else {
             // "没有历史投诉"

@@ -1,10 +1,10 @@
 #TODO List
 ---
 ##任务计划
-1. 重写AFNetworking网络模块
+1. ~~重写AFNetworking网络模块~~
 2. 重构整理代码
-2. 使用MBProgressHUD重写提示框
-3. 使用LGActionSheet重写ActionSheet选择框
+2. ~~使用MBProgressHUD重写提示框~~
+3. ~~使用LGActionSheet重写ActionSheet选择框~~
 4. 完成曲线图
 5. 开始进入新功能
 
