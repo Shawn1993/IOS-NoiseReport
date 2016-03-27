@@ -38,15 +38,4 @@
 // 噪声类型
 @property(nullable, nonatomic, strong) NSString *noiseType;
 
-#pragma mark - 类方法
-
-// 工厂方法
-+ (instancetype _Nullable)form;
-
-// 获取当前正在填写的表单(方便跨视图调用)
-+ (NCPComplainForm *_Nullable)current;
-
-// 设置当前正在填写的表单(方便跨视图调用)
-+ (void)setCurrent:(NCPComplainForm *_Nullable)current;
-
 @end

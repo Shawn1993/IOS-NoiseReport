@@ -36,18 +36,4 @@ static NCPComplainForm *gCurrentComplainForm = nil;
     return self;
 }
 
-#pragma mark - 实例设置与获取
-
-+ (instancetype _Nullable)form {
-    return [[NCPComplainForm alloc] init];
-}
-
-+ (NCPComplainForm *_Nullable)current {
-    return gCurrentComplainForm;
-}
-
-+ (void)setCurrent:(NCPComplainForm *_Nullable)current {
-    gCurrentComplainForm = current;
-}
-
 @end

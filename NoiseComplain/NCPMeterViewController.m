@@ -65,7 +65,7 @@
 
 - (IBAction)Test:(id)sender {
     // 测试代码
-    [NCPSQLiteDAO createComplainForm:nil];
+    NSLog(@"Test!");
 }
 
 @end

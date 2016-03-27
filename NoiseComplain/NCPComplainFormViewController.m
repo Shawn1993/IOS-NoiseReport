@@ -7,10 +7,10 @@
 //
 
 #import "NCPComplainFormViewController.h"
-#import "NCPWebRequest.h"
 #import "NCPComplainForm.h"
 #import "NCPNoiseRecorder.h"
 #import "NCPSQLiteDAO.h"
+#import "NCPWebService.h"
 
 #import "BaiduMapAPI_Location/BMKLocationComponent.h"
 #import "BaiduMapAPI_Search/BMKGeocodeSearch.h"
@@ -50,6 +50,9 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 #pragma mark - 成员变量
 
+// 投诉表单对象
+@property(nonatomic, strong) NCPComplainForm *form;
+
 // 噪音仪对象
 @property(nonatomic) NCPNoiseRecorder *noiseRecorder;
 
@@ -75,7 +78,9 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 // 视图载入
 - (void)viewDidLoad {
     // 创建一个新的表单对象
-    [NCPComplainForm setCurrent:[NCPComplainForm form]];
+    self.form = [[NCPComplainForm alloc] init];
+
+    NSLog(@"viewDidLoad");
 
     // 开始检测噪声
     [self recordNoise];
@@ -97,6 +102,8 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     // 显示表格内容
     [self displayComplainForm];
 
+    NSLog(@"viewWillAppear");
+
     // 设置定位服务
     [self.locationService startUserLocationService];
 }
@@ -106,18 +113,24 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     // 停止定位服务
     [self.locationService stopUserLocationService];
 
+    NSLog(@"viewWillDisappear");
+
     // 如果键盘开启, 将其先于视图关闭
     if ([self.textViewComment isFirstResponder]) {
         [self.textViewComment resignFirstResponder];
     }
 }
 
-// 视图即将析构
-- (void)viewWillUnload {
-    [NCPComplainForm setCurrent:nil];
-    self.noiseRecorder = nil;
-    self.locationService.delegate = nil;
-    self.geoCodeSearch.delegate = nil;
+#pragma mark - Segue传值
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // 向定位ViewController传递表单引用
+    if ([segue.identifier isEqualToString:@"ComplainFormToLocation"]) {
+        id dest = segue.destinationViewController;
+
+        // 传递ComplainForm引用
+        [dest setValue:self.form forKey:@"form"];
+    }
 }
 
 #pragma mark - 表格点击事件
@@ -154,11 +167,10 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
         case 3:
             // 提交投诉session
         {
-            NCPComplainForm *form = [NCPComplainForm current];
             // 将描述信息写入表单
-            form.comment = [NSString stringWithString:self.textViewComment.text];
+            self.form.comment = [NSString stringWithString:self.textViewComment.text];
             // 提交投诉表单
-            [self sendComplainForm:form];
+            [self sendComplainForm];
         }
             break;
         default:
@@ -182,8 +194,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
         UIAlertAction *aa = [UIAlertAction actionWithTitle:row
                                                      style:UIAlertActionStyleDefault
                                                    handler:(void (^)(UIAlertAction *)) ^{
-                                                       NCPComplainForm *form = [NCPComplainForm current];
-                                                       form.noiseType = row;
+                                                       self.form.noiseType = row;
                                                        [self displayComplainForm];
                                                    }];
         [ac addAction:aa];
@@ -203,8 +214,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
         UIAlertAction *aa = [UIAlertAction actionWithTitle:row
                                                      style:UIAlertActionStyleDefault
                                                    handler:(void (^)(UIAlertAction *)) ^{
-                                                       NCPComplainForm *form = [NCPComplainForm current];
-                                                       form.sfaType = row;
+                                                       self.form.sfaType = row;
                                                        [self displayComplainForm];
                                                    }];
         [ac addAction:aa];
@@ -218,9 +228,8 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 定位位置更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
-    NCPComplainForm *form = [NCPComplainForm current];
-    form.longitude = @((float) userLocation.location.coordinate.longitude);
-    form.latitude = @((float) userLocation.location.coordinate.latitude);
+    self.form.longitude = @((float) userLocation.location.coordinate.longitude);
+    self.form.latitude = @((float) userLocation.location.coordinate.latitude);
 
     // 通过坐标请求反编码，获取地址
     self.reverseGeoCodeOption.reverseGeoPoint = userLocation.location.coordinate;
@@ -235,13 +244,12 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 }
 
-#pragma mark - 地理反编码功能
+#pragma mark - 地理反编码
 
 // 获取位置信息
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     if (error == BMK_SEARCH_NO_ERROR) {
-        NCPComplainForm *form = [NCPComplainForm current];
-        form.address = result.address;
+        self.form.address = result.address;
         [self displayComplainForm];
     }
 }
@@ -272,7 +280,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 // 文本框结束编辑
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     // 将文本内容传入表单对象中
-    [NCPComplainForm current].comment = [NSString stringWithString:self.textViewComment.text];
+    self.form.comment = [NSString stringWithString:self.textViewComment.text];
 
     // 检查是否需要隐藏placeHolder
     if (textView.text.length == 0) {
@@ -288,37 +296,38 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - 其他私有方法
+#pragma mark - 噪声测量
 
 // 开始一次后台的噪声测量
 - (void)recordNoise {
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
     [self.noiseRecorder startWithDuration:5 timeupHandler:^(float current, float peak) {
-        [NCPComplainForm current].intensity = @(current);
+        self.form.intensity = @(current);
         [self displayComplainForm];
         self.noiseRecorder = nil;
     }];
 }
 
-// 根据当前投诉表单的内容, 更新当前界面
+#pragma mark - 界面元素刷新
+
+// 根据当前投诉表单的内容, 更新当前界面元素
 - (void)displayComplainForm {
-    NCPComplainForm *form = [NCPComplainForm current];
 
     // 噪声强度
-    if (!form.intensity) {
+    if (!self.form.intensity) {
         self.labelIntensity.text = @"测量中...";
         self.indicatorMeasuring.hidden = NO;
     } else {
-        self.labelIntensity.text = [NSString stringWithFormat:@"%.1f dB", form.intensity.floatValue];
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.1f dB", self.form.intensity.floatValue];
         self.indicatorMeasuring.hidden = YES;
     }
 
     // 噪声源位置
-    if (!form.address) {
+    if (!self.form.address) {
         self.labelNoiseLocation.text = @"定位中...";
         self.indicatorLocating.hidden = NO;
     } else {
-        NSString *address = form.address;
+        NSString *address = self.form.address;
         if (address.length > kNCPComplainFormCommentDisplayMaxLength) {
             address = [address substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)];
             address = [NSString stringWithFormat:@"%@...", address];
@@ -328,116 +337,73 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     }
 
     // 噪声类型
-    if (!form.noiseType) {
+    if (!self.form.noiseType) {
         self.labelNoiseType.text = @"点击选择";
     } else {
-        self.labelNoiseType.text = form.noiseType;
+        self.labelNoiseType.text = self.form.noiseType;
     }
 
     // 声功能区类型
-    if (!form.sfaType) {
+    if (!self.form.sfaType) {
         self.labelSFAType.text = @"点击选择";
     } else {
-        self.labelSFAType.text = form.sfaType;
+        self.labelSFAType.text = self.form.sfaType;
     }
 }
 
+#pragma mark - 投诉表单发送
+
+// 检查投诉表单是否可以发送了
+- (BOOL)checkComplainForm {
+    if (!self.form.intensity || self.form.intensity.floatValue == 0.0f) {
+        return NO;
+    } else if (!(self.form.latitude) ||
+            self.form.latitude.floatValue == 0.0f ||
+            !(self.form.longitude) ||
+            self.form.longitude.floatValue == 0.0f) {
+        return NO;
+    }
+    return YES;
+}
+
 // 向服务器发送投诉表单
-- (void)sendComplainForm:(NCPComplainForm *)form {
+- (void)sendComplainForm {
 
     // 检查是否填好了所需的所有信息
-    NSString *missing;
-    if (!form.intensity || form.intensity.floatValue == 0.0f) {
-        missing = @"请等待噪声强度测量完毕...";
-    } else if (!(form.latitude) || form.latitude.floatValue == 0.0f || !(form.longitude) || form.longitude.floatValue == 0.0f) {
-        missing = @"请等待定位完成，或手动选择投诉地点...";
-    }
-
-    if (missing) {
-        // 如果发现有缺失的必要信息, 进行提示
-        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"投诉信息不完整"
-                                                                    message:missing
-                                                             preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *aa = [UIAlertAction actionWithTitle:@"取消"
-                                                     style:UIAlertActionStyleCancel handler:nil];
-        [ac addAction:aa];
-        [self presentViewController:ac animated:YES completion:nil];
+    if (![self checkComplainForm]) {
+        // TODO: 如果表单不完整, 中断发送
         return;
     }
+    // 表单填写完整
+    // TODO: 显示发送中提示框
 
-    // 显示提示框
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"正在提交投诉中..."
-                                                                message:nil
-                                                         preferredStyle:UIAlertControllerStyleAlert];
-    [self presentViewController:ac animated:YES completion:nil];
+    // 向服务器发送投诉表单
+    [NCPWebService sendComplainForm:self.form
+                            success:^(NSDictionary *json) {
+                                // 检查返回的JSON是否包含请求成功信息
+                                if (!json[@"result"] || ((NSNumber *) json[@"result"]).intValue == 0) {
+                                    // TODO: 服务器请求失败
+                                    return;
+                                }
+                                // 检查返回的JSON是否包含formId信息
+                                if (!json[@"formId"] || ((NSNumber *) json[@"formId"]).longValue < 0) {
+                                    // TODO: 服务器请求失败
+                                    return;
+                                }
 
-    // TODO: 使用网络框架
+                                // 包含formId信息, 投诉请求成功
+                                long formId = ((NSNumber *) json[@"formId"]).longValue;
+                                self.form.formId = @(formId);
 
-    // 组织网络请求
-    NCPWebRequest *web = [NCPWebRequest requestWithPage:@"complain"];
-    [web addParameter:@"devId" withString:form.devId];
-    [web addParameter:@"comment" withString:form.comment];
-    [web addParameter:@"date" withString:NCPStringFormDate(form.date)];
-    [web addParameter:@"intensity" withFloat:form.intensity.floatValue];
-    [web addParameter:@"address" withString:form.address];
-    [web addParameter:@"latitude" withFloat:form.latitude.floatValue];
-    [web addParameter:@"longitude" withFloat:form.longitude.floatValue];
-    [web addParameter:@"coord" withString:form.coord];
-    [web addParameter:@"sfaType" withString:form.sfaType];
-    [web addParameter:@"noiseType" withString:form.noiseType];
+                                //将投诉表单保存于本地
+                                [NCPSQLiteDAO createComplainForm:self.form];
 
-    // 发送网络请求
-    [web sendWithCompletionHandler:^(NSDictionary *json, NSError *error) {
-        NSString *errStr;
-        if (json) {
-            NSLog(@"Return JSON: %@", json);
-            // 如果请求成功, 将投诉表单保存至本地
-            if (json[@"result"] &&
-                    ((NSNumber *) json[@"result"]).intValue != 0 &&
-                    json[@"formId"] &&
-                    ((NSNumber *) json[@"formId"]).intValue) {
-                form.formId = @(((NSNumber *) json[@"formId"]).longValue);
-                [NCPSQLiteDAO createComplainForm:form];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // 投诉成功, 关闭页面
-                    [ac dismissViewControllerAnimated:YES completion:^{
-                        UIAlertController *fac = [UIAlertController alertControllerWithTitle:@"投诉成功"
-                                                                                     message:@"您的投诉已经成功发送!"
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *finish = [UIAlertAction actionWithTitle:@"确定"
-                                                                         style:UIAlertActionStyleCancel
-                                                                       handler:(void (^)(UIAlertAction *)) ^{
-                                                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                                                               [self dismissViewControllerAnimated:YES completion:nil];
-                                                                           });
-                                                                       }];
-                        [fac addAction:finish];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self presentViewController:fac animated:YES completion:nil];
-                        });
-                    }];
-                });
-            }
-            else {
-                errStr = @"服务器返回数据异常";
-            }
-        } else {
-            errStr = [NSString stringWithFormat:@"网络连接异常: %@", error.localizedDescription];
-        }
-        if (errStr) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 如果请求出现错误, 进行提示
-                [ac dismissViewControllerAnimated:YES completion:^{
-                    UIAlertController *eac = [UIAlertController alertControllerWithTitle:@"投诉失败"
-                                                                                 message:errStr
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                    [eac addAction:cancel];
-                    [self presentViewController:eac animated:YES completion:nil];
-                }];
-            });
-        }
-    }];
+                                //TODO: 请求成功提示
+
+                            }
+                            failure:^(NSError *error) {
+                                // TODO: 服务器请求失败
+                            }];
 }
 
 @end

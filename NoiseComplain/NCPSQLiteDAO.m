@@ -7,6 +7,8 @@
 //
 
 #import "NCPSQLiteDAO.h"
+#import "NCPComplainForm.h"
+
 #import "FMDB.h"
 
 #pragma mark - 常量定义
@@ -108,7 +110,7 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
     FMResultSet *rs = [db executeQuery:@"SELECT * FROM complain_form"];
     while (rs.next) {
         // 新建ComplainForm对象并赋值
-        NCPComplainForm *form = [NCPComplainForm form];
+        NCPComplainForm *form = [[NCPComplainForm alloc] init];
         form.formId = @([rs longForColumn:@"form_id"]);
         form.devId = [rs stringForColumn:@"dev_id"];
         form.comment = [rs stringForColumn:@"comment"];

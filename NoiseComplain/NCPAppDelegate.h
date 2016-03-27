@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+
+@class BMKMapManager;
 
 @interface NCPAppDelegate : UIResponder <UIApplicationDelegate>
 

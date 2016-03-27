@@ -343,7 +343,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="6xt-aR-p5X" kind="show" id="ueQ-pp-1UD"/>
+                                            <segue destination="6xt-aR-p5X" kind="show" identifier="ComplainFormToLocation" id="ueQ-pp-1UD"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -578,7 +578,7 @@
                                                     <color key="textColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="69" y="11" width="102" height="21.5"/>
+                                                        <rect key="frame" x="69" y="11" width="102" height="22"/>
                                                     </variation>
                                                 </label>
                                             </subviews>

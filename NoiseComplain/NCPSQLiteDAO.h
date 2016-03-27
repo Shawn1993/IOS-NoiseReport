@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NCPComplainForm.h"
+
+@class NCPComplainForm;
 
 @interface NCPSQLiteDAO : NSObject
 

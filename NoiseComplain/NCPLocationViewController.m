@@ -42,32 +42,35 @@
 
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 
-/// 定位服务对象
+// 定位服务对象
 @property(nonatomic) BMKLocationService *locationService;
-/// 地理编码服务对象,可提供编码和反编码
+// 地理编码服务对象,可提供编码和反编码
 @property(nonatomic) BMKGeoCodeSearch *geoCodeSearch;
-/// 兴趣点搜索服务提供对象
+// 兴趣点搜索服务提供对象
 @property(nonatomic) BMKPoiSearch *poiSearch;
-/// 搜索建议服务提供对象
+// 搜索建议服务提供对象
 @property(nonatomic) BMKSuggestionSearch *suggestionSearch;
-/// 判断第一次进入改视图时，图钉处地图是否使用定位地理坐标
+// 判断第一次进入改视图时，图钉处地图是否使用定位地理坐标
 @property(nonatomic, getter=isPinUseUserLocation) BOOL pinUseUserLocation;
-/// 判断地图是否移动了
+// 判断地图是否移动了
 @property(nonatomic, getter=isMapRegionChange) BOOL mapRegionChange;
-/// 定位地理坐标
+// 定位地理坐标
 @property(nonatomic) CLLocationCoordinate2D locationCoordinate;
-/// 图钉地理坐标
+// 图钉地理坐标
 @property(nonatomic) CLLocationCoordinate2D pinCoordinate;
-/// 图钉地址信息
+// 图钉地址信息
 @property(nonatomic) NSString *pinAddress;
-/// 图钉层次化地址信息
+// 图钉层次化地址信息
 @property(nonatomic) BMKAddressComponent *pinAddressDetail;
-/// 搜索建议结果
+// 搜索建议结果
 @property(nonatomic) BMKSuggestionResult *suggestionResult;
-/// 兴趣点搜索结果
+// 兴趣点搜索结果
 @property(nonatomic) BMKPoiResult *poiResult;
-/// 判断是否使用搜索结果
+// 判断是否使用搜索结果
 @property(nonatomic, getter=isUsePoiResult) BOOL usePoiResult;
+
+// 投诉表单对象
+@property(nonatomic, weak) NCPComplainForm *form;
 
 @end
 
@@ -86,12 +89,12 @@
 }
 
 - (void)initData {
-    CLLocationDegrees latitude = [[[NCPComplainForm current] latitude] doubleValue];
-    CLLocationDegrees longtitude = [[[NCPComplainForm current] longitude] doubleValue];
+    CLLocationDegrees latitude = self.form.latitude.doubleValue;
+    CLLocationDegrees longtitude = self.form.longitude.doubleValue;
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longtitude);
     self.pinUseUserLocation = (latitude == 0 && longtitude == 0);
     self.mapRegionChange = NO;
-    self.pinAddress = [[NCPComplainForm current] address];
+    self.pinAddress = self.form.address;
 
     if (!self.isPinUseUserLocation) {
         [self.mapView setCenterCoordinate:coordinate animated:YES];
@@ -156,15 +159,15 @@
 
 - (IBAction)doneButtonClick:(id)sender {
     // 调试用: 查看返回定位结果
-    NSLog(@"NCPLocationViewController: doneButtonClick");
-    NSLog(@"Latitude: %.2f", [self pinCoordinate].latitude);
-    NSLog(@"Longitude: %.2f", [self pinCoordinate].longitude);
+    // NSLog(@"NCPLocationViewController: doneButtonClick");
+    // NSLog(@"Latitude: %.2f", [self pinCoordinate].latitude);
+    // NSLog(@"Longitude: %.2f", [self pinCoordinate].longitude);
 
-    [NCPComplainForm current].latitude = @([self pinCoordinate].latitude);
-    [NCPComplainForm current].longitude = @([self pinCoordinate].longitude);
+    self.form.latitude = @([self pinCoordinate].latitude);
+    self.form.longitude = @([self pinCoordinate].longitude);
 
     if ((self.pinAddress && self.pinAddress.length) || (!self.isMapRegionChange)) {
-        [NCPComplainForm current].address = self.pinAddress;
+        self.form.address = self.pinAddress;
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {
@@ -174,7 +177,6 @@
 
 
         [self presentViewController:alertController animated:YES completion:nil];
-
     }
 
 }

@@ -8,6 +8,8 @@
 
 #import "NCPAppDelegate.h"
 
+#import "BaiduMapAPI_Base/BMKMapManager.h"
+
 @interface NCPAppDelegate ()
 
 @end
