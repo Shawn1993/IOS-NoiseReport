@@ -13,6 +13,8 @@
  */
 @interface NCPNoiseRecorder : NSObject
 
+@property(nonatomic, readonly) BOOL isRecording;
+
 // 开始录音
 - (void)start;
 
@@ -21,16 +23,16 @@
 
 // 开始录音, 一段时间后, 结束录音并调用timeupHandler块
 - (void)startWithDuration:(NSTimeInterval)duration
-            timeupHandler:(void (^)(float current, float peak))handler;
+            timeupHandler:(void (^)(double current, double peak))handler;
 
 // 开始录音, 并定期调用tickHandler块
 - (void)startWithTick:(NSTimeInterval)tick
-          tickHandler:(void (^)(float current, float peak))handler;
+          tickHandler:(void (^)(double current, double peak))handler;
 
 // 开始录音, 定期调用tickHandler块, 一段时间后, 结束录音并调用timeupHandler块
 - (void)startWithDuration:(NSTimeInterval)duration
-            timeupHandler:(void (^)(float current, float peak))timeupHandler
+            timeupHandler:(void (^)(double current, double peak))timeupHandler
                      tick:(NSTimeInterval)tick
-              tickHandler:(void (^)(float current, float peak))tickHandler;
+              tickHandler:(void (^)(double current, double peak))tickHandler;
 
 @end

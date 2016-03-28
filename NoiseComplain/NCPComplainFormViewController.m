@@ -19,11 +19,18 @@
 
 #pragma mark - 常量定义
 
-// 字符显示最大长度
-static NSUInteger kNCPComplainFormCommentDisplayMaxLength = 10;
+// 打开地图ViewController的Segue标识符
+static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
+// 噪声类型PList文件名
 static NSString *kNCPPListFileNoiseType = @"NoiseType";
+// 声功能区PList文件名
 static NSString *kNCPPListFileSfaType = @"SfaType";
+
+// 上传的噪声强度记录间隔
+static NSTimeInterval kNCPIntensityInterval = 1.0 / 30;
+// 上传的噪声强度记录数 (注意不要超过ComplainForm最大容量)
+static int kNCPIntensityCount = 128;
 
 @interface NCPComplainFormViewController ()
         <
@@ -37,10 +44,10 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 噪声强度Section
 @property(weak, nonatomic) IBOutlet UILabel *labelIntensity;
-@property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorMeasuring;
+@property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorRecording;
 
 // 投诉地点Section
-@property(weak, nonatomic) IBOutlet UILabel *labelNoiseLocation;
+@property(weak, nonatomic) IBOutlet UILabel *labelLocatingStatus;
 @property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorLocating;
 
 // 噪声信息Section
@@ -48,7 +55,6 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 @property(weak, nonatomic) IBOutlet UILabel *labelSFAType;
 @property(weak, nonatomic) IBOutlet UITextView *textViewComment;
 @property(weak, nonatomic) IBOutlet UILabel *labelCommentPlaceholder;
-@property(weak, nonatomic) IBOutlet UITableViewCell *tableCellComment;
 
 #pragma mark - 成员变量
 
@@ -64,6 +70,9 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 // 地理编码信息
 @property(nonatomic) BMKReverseGeoCodeOption *reverseGeoCodeOption;
 
+// 自动定位失败标识符
+@property(nonatomic) BOOL autoLocatingFailed;
+
 @end
 
 
@@ -77,7 +86,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     self.form = [[NCPComplainForm alloc] init];
 
     // 开始检测噪声
-    [self recordNoise];
+    [self startRecord];
 
     // 创建定位服务对象
     self.locationService = [[BMKLocationService alloc] init];
@@ -89,15 +98,16 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
     // 创建地理编码信息对象
     self.reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
+
+    // 设置定位服务
+    [self.locationService startUserLocationService];
+    self.autoLocatingFailed = NO;
 }
 
 // 视图即将出现
 - (void)viewWillAppear:(BOOL)animated {
-    // 显示表格内容
+    // 刷新表格内容
     [self displayComplainForm];
-
-    // 设置定位服务
-    [self.locationService startUserLocationService];
 }
 
 // 视图即将消失
@@ -111,11 +121,32 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     }
 }
 
+#pragma mark - 导航栏动作事件
+
+// 取消按钮点击事件
+- (IBAction)barButtonCancelClick:(id)sender {
+    // 弹出确认提示框
+    LGAlertView *confirmAlert = [LGAlertView alertViewWithTitle:@"提示"
+                                                        message:@"投诉尚未完成, 确定要退出吗?"
+                                                          style:LGAlertViewStyleAlert
+                                                   buttonTitles:nil
+                                              cancelButtonTitle:@"取消"
+                                         destructiveButtonTitle:@"退出"
+                                                  actionHandler:nil
+                                                  cancelHandler:nil
+                                             destructiveHandler:^(LGAlertView *alert) {
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                                 });
+                                             }];
+    [confirmAlert showAnimated:YES completionHandler:nil];
+}
+
 #pragma mark - Segue传值
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // 向定位ViewController传递表单引用
-    if ([segue.identifier isEqualToString:@"ComplainFormToLocation"]) {
+    if ([segue.identifier isEqualToString:kNCPSegueIdToLocation]) {
         id dest = segue.destinationViewController;
 
         // 传递ComplainForm引用
@@ -123,7 +154,7 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     }
 }
 
-#pragma mark - 表格点击响应
+#pragma mark - 表格点击事件
 
 // 表格点击代理事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -131,7 +162,9 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     switch (indexPath.section) {
         case 0:
             // 测量结果session, 重新检测噪声强度
-            [self redetectNoise];
+            [self.form.intensities removeAllObjects];
+            [self displayComplainForm];
+            [self startRecord];
             break;
         case 1:
             // 噪声源位置session, 使用segue, 不做响应
@@ -162,11 +195,6 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-// 重新检测噪声强度
-- (void)redetectNoise {
-    [self recordNoise];
 }
 
 // 选择噪声类型
@@ -211,28 +239,30 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 
 // 定位位置更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
-    self.form.longitude = @((float) userLocation.location.coordinate.longitude);
-    self.form.latitude = @((float) userLocation.location.coordinate.latitude);
+    self.form.autoLongitude = @((float) userLocation.location.coordinate.longitude);
+    self.form.autoLatitude = @((float) userLocation.location.coordinate.latitude);
 
     // 通过坐标请求反编码，获取地址
     self.reverseGeoCodeOption.reverseGeoPoint = userLocation.location.coordinate;
     [self.geoCodeSearch reverseGeoCode:self.reverseGeoCodeOption];
 
+    // 停止定位服务
     [self.locationService stopUserLocationService];
-
 }
 
 // 定位失败
 - (void)didFailToLocateUserWithError:(NSError *)error {
-
+    self.autoLocatingFailed = YES;
+    [self displayComplainForm];
 }
 
-#pragma mark - 地理反编码
-
-// 获取位置信息
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+// 地理位置反编码(获取位置描述)
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher
+                           result:(BMKReverseGeoCodeResult *)result
+                        errorCode:(BMKSearchErrorCode)error {
     if (error == BMK_SEARCH_NO_ERROR) {
-        self.form.address = result.address;
+        self.form.autoAddress = result.address;
+        // 刷新定位状态与显示
         [self displayComplainForm];
     }
 }
@@ -272,37 +302,30 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     return YES;
 }
 
-#pragma mark - 导航栏动作事件
-
-// 取消按钮点击事件
-- (IBAction)barButtonCancelClick:(id)sender {
-    // 弹出确认提示框
-    LGAlertView *confirmAlert = [LGAlertView alertViewWithTitle:@"提示"
-                                                        message:@"投诉尚未完成, 确定要退出吗?"
-                                                          style:LGAlertViewStyleAlert
-                                                   buttonTitles:nil
-                                              cancelButtonTitle:@"取消"
-                                         destructiveButtonTitle:@"退出"
-                                                  actionHandler:nil
-                                                  cancelHandler:nil
-                                             destructiveHandler:^(LGAlertView *alert) {
-                                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                                     [self dismissViewControllerAnimated:YES completion:nil];
-                                                 });
-                                             }];
-    [confirmAlert showAnimated:YES completionHandler:nil];
-}
-
-#pragma mark - 噪声测量
+#pragma mark - 噪声测量功能
 
 // 开始一次后台的噪声测量
-- (void)recordNoise {
+- (void)startRecord {
+
+    // 检查当前是否已经有正在进行的录音器
+    if (self.noiseRecorder && self.noiseRecorder.isRecording) {
+        [self.noiseRecorder stop];
+    }
+
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
-    [self.noiseRecorder startWithDuration:5 timeupHandler:^(float current, float peak) {
-        self.form.intensity = @(current);
-        [self displayComplainForm];
-        self.noiseRecorder = nil;
-    }];
+    [self.noiseRecorder startWithTick:kNCPIntensityInterval
+                          tickHandler:^(double current, double peak) {
+                              // 将噪声记录添加至表单
+                              [self.form addIntensity:current];
+
+                              // 检查噪声记录是否有足够的数量
+                              if (self.form.intensities.count >= kNCPIntensityCount) {
+                                  // 结束测量
+                                  [self displayComplainForm];
+                                  [self.noiseRecorder stop];
+                                  self.noiseRecorder = nil;
+                              }
+                          }];
 }
 
 #pragma mark - 界面元素刷新
@@ -311,26 +334,38 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
 - (void)displayComplainForm {
 
     // 噪声强度
-    if (!self.form.intensity) {
+    if (self.form.intensities.count < kNCPIntensityCount) {
         self.labelIntensity.text = @"测量中...";
-        self.indicatorMeasuring.hidden = NO;
+        self.indicatorRecording.hidden = NO;
     } else {
-        self.labelIntensity.text = [NSString stringWithFormat:@"%.1f dB", self.form.intensity.floatValue];
-        self.indicatorMeasuring.hidden = YES;
+        self.labelIntensity.text = [NSString stringWithFormat:@"%.2f dB", self.form.averageIntensity];
+        self.indicatorRecording.hidden = YES;
     }
 
-    // 噪声源位置
-    if (!self.form.address) {
-        self.labelNoiseLocation.text = @"定位中...";
-        self.indicatorLocating.hidden = NO;
-    } else {
-        NSString *address = self.form.address;
-        if (address.length > kNCPComplainFormCommentDisplayMaxLength) {
-            address = [address substringWithRange:NSMakeRange(0, kNCPComplainFormCommentDisplayMaxLength)];
-            address = [NSString stringWithFormat:@"%@...", address];
-        }
-        self.labelNoiseLocation.text = address;
+    // 检查是否有定位结果
+    if (self.form.address) {
+        // 有定位结果
         self.indicatorLocating.hidden = YES;
+        // 检查定位状态
+        if (self.form.manualAddress) {
+            // 是手动定位结果
+            self.labelLocatingStatus.text = @"使用自定义地点";
+        } else {
+            // 是自冬=动定位结果
+            self.labelLocatingStatus.text = @"自动定位完成";
+        }
+        [self.tableView reloadData];
+    } else {
+        // 没有定位结果
+        if (self.autoLocatingFailed) {
+            // 自动定位失败
+            self.indicatorLocating.hidden = YES;
+            self.labelLocatingStatus.text = @"自动定位失败";
+        } else {
+            // 仍然在自动定位中
+            self.indicatorLocating.hidden = NO;
+            self.labelLocatingStatus.text = @"定位中...";
+        }
     }
 
     // 噪声类型
@@ -348,16 +383,30 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     }
 }
 
+// 为Section提供FooterView
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    // 只改变投诉地点的Footer
+    if (section == 1) {
+        // 只在有定位结果的时候显示
+        if (self.form.address) {
+            return self.form.address;
+        }
+    }
+    return [super tableView:tableView titleForFooterInSection:section];
+}
+
 #pragma mark - 投诉表单发送
 
 // 检查投诉表单是否可以发送了
 - (BOOL)checkComplainForm {
-    if (!self.form.intensity || self.form.intensity.floatValue == 0.0f) {
+    if (self.form.intensities.count < kNCPIntensityCount) {
+        // 噪声检测还没有完成
         return NO;
-    } else if (!(self.form.latitude) ||
-            self.form.latitude.floatValue == 0.0f ||
-            !(self.form.longitude) ||
-            self.form.longitude.floatValue == 0.0f) {
+    } else if (!self.form.autoAddress && !self.form.manualAddress) {
+        // 没有选择位置
+        return NO;
+    } else if (!self.form.noiseType || !self.form.sfaType) {
+        // 没有选择噪声或声功能区类型
         return NO;
     }
     return YES;
@@ -438,16 +487,16 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     LGAlertView *successAlert = [LGAlertView alertViewWithTitle:@"投诉成功"
                                                         message:@"您的投诉已经发送至服务器!\n返回投诉列表可以查看投诉受理进度"
                                                           style:LGAlertViewStyleAlert
-                                                   buttonTitles:nil
-                                              cancelButtonTitle:@"返回投诉列表"
+                                                   buttonTitles:@[@"返回列表"]
+                                              cancelButtonTitle:@"取消"
                                          destructiveButtonTitle:nil
-                                                  actionHandler:nil
-                                                  cancelHandler:^(LGAlertView *alert) {
+                                                  actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
                                                       // 关闭当前投诉页面
                                                       dispatch_async(dispatch_get_main_queue(), ^{
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                       });
                                                   }
+                                                  cancelHandler:nil
                                              destructiveHandler:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (lastAlert && lastAlert.isShowing) {
@@ -466,9 +515,17 @@ static NSString *kNCPPListFileSfaType = @"SfaType";
     LGAlertView *errorAlert = [LGAlertView alertViewWithTitle:@"投诉失败"
                                                       message:message
                                                         style:LGAlertViewStyleAlert
-                                                 buttonTitles:nil
+                                                 buttonTitles:@[@"返回列表"]
                                             cancelButtonTitle:@"取消"
-                                       destructiveButtonTitle:nil];
+                                       destructiveButtonTitle:nil
+                                                actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
+                                                    // 关闭当前投诉页面
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                                    });
+                                                }
+                                                cancelHandler:nil
+                                           destructiveHandler:nil];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (lastAlert && lastAlert.isShowing) {

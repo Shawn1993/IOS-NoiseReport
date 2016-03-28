@@ -29,6 +29,7 @@
 		CA1E3F501CA7E28900803B44 /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E3F471CA7E28900803B44 /* LGAlertViewTextField.m */; };
 		CA1E3F511CA7E28900803B44 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E3F491CA7E28900803B44 /* LGAlertViewWindow.m */; };
 		CA1E3F521CA7E28900803B44 /* UIWindow+LGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E3F4B1CA7E28900803B44 /* UIWindow+LGAlertView.m */; };
+		CA1E3F551CA8232900803B44 /* NCPComplainDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E3F541CA8232900803B44 /* NCPComplainDetailViewController.m */; };
 		CA4B30E41C0F17050013E70E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30E31C0F17050013E70E /* main.mm */; };
 		CA4B30FD1C0F17050013E70E /* NoiseComplainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B30FC1C0F17050013E70E /* NoiseComplainTests.m */; };
 		CA4B31081C0F17050013E70E /* NoiseComplainUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4B31071C0F17050013E70E /* NoiseComplainUITests.m */; };
@@ -120,6 +121,8 @@
 		CA1E3F491CA7E28900803B44 /* LGAlertViewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewWindow.m; path = NoiseComplain/Libarary/LGAlertView/LGAlertViewWindow.m; sourceTree = "<group>"; };
 		CA1E3F4A1CA7E28900803B44 /* UIWindow+LGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWindow+LGAlertView.h"; path = "NoiseComplain/Libarary/LGAlertView/UIWindow+LGAlertView.h"; sourceTree = "<group>"; };
 		CA1E3F4B1CA7E28900803B44 /* UIWindow+LGAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+LGAlertView.m"; path = "NoiseComplain/Libarary/LGAlertView/UIWindow+LGAlertView.m"; sourceTree = "<group>"; };
+		CA1E3F531CA8232900803B44 /* NCPComplainDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPComplainDetailViewController.h; sourceTree = "<group>"; };
+		CA1E3F541CA8232900803B44 /* NCPComplainDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPComplainDetailViewController.m; sourceTree = "<group>"; };
 		CA3690B21CA197A40015FF2C /* NCPPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCPPrefixHeader.pch; sourceTree = "<group>"; };
 		CA4B30DF1C0F17050013E70E /* NoiseComplain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseComplain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4B30E31C0F17050013E70E /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 			children = (
 				CA4B31221C0F18900013E70E /* NCPComplainGuideViewController.h */,
 				CA4B31231C0F18900013E70E /* NCPComplainGuideViewController.m */,
+				CA1E3F531CA8232900803B44 /* NCPComplainDetailViewController.h */,
+				CA1E3F541CA8232900803B44 /* NCPComplainDetailViewController.m */,
 			);
 			name = ComplainGuide;
 			sourceTree = "<group>";
@@ -681,6 +686,7 @@
 				CA4B31341C0F18900013E70E /* NCPMeterViewController.m in Sources */,
 				CA4B31301C0F18900013E70E /* NCPComplainFormViewController.m in Sources */,
 				CA83D3B61C9966B2009A72C4 /* NCPMeterView.m in Sources */,
+				CA1E3F551CA8232900803B44 /* NCPComplainDetailViewController.m in Sources */,
 				CA1E3F511CA7E28900803B44 /* LGAlertViewWindow.m in Sources */,
 				CAC7E8831CA27B9B00802998 /* AFHTTPSessionManager.m in Sources */,
 				CA4B31311C0F18900013E70E /* NCPComplainGuideViewController.m in Sources */,

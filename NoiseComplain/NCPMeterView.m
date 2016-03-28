@@ -10,11 +10,11 @@
 
 #pragma mark - 常量定义
 
-static const float kValueMax = 120;
-static const float kValueMin = 0;
+static const double kValueMax = 120;
+static const double kValueMin = 0;
 
-static const float kFontRatio = 0.546f;
-static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
+static const double kFontRatio = 0.546f;
+static const double kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
 
 @interface NCPMeterView ()
 
@@ -47,7 +47,7 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
 
 #pragma mark - 设置当前值
 
-- (void)setValue:(float)value {
+- (void)setValue:(double)value {
     // 限制输入值大小
     _value = value <= kValueMin ? kValueMin : value >= kValueMax ? kValueMax : value;
 
@@ -55,18 +55,18 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
     [self setNeedsDisplay];
 }
 
-- (void)setValueWithLable:(float)value {
+- (void)setValueWithLable:(double)value {
     // 限制输入值大小
     _value = value <= kValueMin ? kValueMin : value >= kValueMax ? kValueMax : value;
 
     // 计算字体
     CGRect rect = self.bounds;
-    float ratio = kFontRatio;
+    double ratio = kFontRatio;
     NSString *valueStr = [NSString stringWithFormat:@"%.0f", _value];
     if (valueStr.length > 0 && valueStr.length <= 4) {
         ratio *= kFontLengthRatio[valueStr.length - 1];
     }
-    self.labelValue.font = [UIFont fontWithName:@"Arial-BoldMT" size:rect.size.width * ratio];
+    self.labelValue.font = [UIFont fontWithName:@"Arial-BoldMT" size:(CGFloat) (rect.size.width * ratio)];
     self.labelValue.text = valueStr;
 
     // 刷新自身
@@ -97,4 +97,5 @@ static const float kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
     // 将遮罩图层加入imageLight
     self.imageLight.layer.mask = mask;
 }
+
 @end

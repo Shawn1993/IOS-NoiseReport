@@ -13,8 +13,8 @@
  */
 @interface NCPMeterView : UIView
 
-@property(nonatomic, assign, setter=setValue:) float value;
+@property(nonatomic, assign, setter=setValue:) double value;
 
-- (void)setValueWithLable:(float)value;
+- (void)setValueWithLable:(double)value;
 
 @end

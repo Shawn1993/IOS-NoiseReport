@@ -13,29 +13,64 @@
  */
 @interface NCPComplainForm : NSObject
 
-#pragma mark - 投诉信息字段
+#pragma mark - 投诉表单信息
 
 // 表格编号(long)
-@property(nullable, nonatomic, strong) NSNumber *formId;
+@property(nullable, nonatomic) NSNumber *formId;
 // 设备ID
-@property(nonnull, nonatomic, strong) NSString *devId;
-// 描述信息
-@property(nullable, nonatomic, strong) NSString *comment;
+@property(nonnull, nonatomic, readonly) NSString *devId;
+// 设备类型
+@property(nonnull, nonatomic, readonly) NSString *devType;
 // 日期
-@property(nonnull, nonatomic, strong) NSDate *date;
-// 噪声强度(float)
-@property(nullable, nonatomic, strong) NSNumber *intensity;
-// 地址信息
-@property(nullable, nonatomic, strong) NSString *address;
-// 纬度(float)
-@property(nullable, nonatomic, strong) NSNumber *latitude;
-// 经度(float)
-@property(nullable, nonatomic, strong) NSNumber *longitude;
-// 坐标系
-@property(nonnull, nonatomic, strong) NSString *coord;
+@property(nonnull, nonatomic) NSDate *date;
+
+#pragma mark - 噪声强度信息
+
+// 噪声强度(Array)
+@property(nullable, nonatomic, readonly) NSMutableArray *intensities;
+// 平均噪声强度(double)
+@property(nonatomic, readonly) double averageIntensity;
+// 噪声强度JSON字符串
+@property(nonnull, nonatomic) NSString *intensitiesJSON;
+
+#pragma mark - 地理位置信息
+
+// 坐标系类型
+@property(nonnull, nonatomic) NSString *coord;
+
+// 定位位置, 优先手动
+@property(nullable, nonatomic, readonly) NSString *address;
+// 定位纬度, 优先手动(double)
+@property(nullable, nonatomic, readonly) NSNumber *latitude;
+// 定位经度, 优先手动(double)
+@property(nullable, nonatomic, readonly) NSNumber *longitude;
+
+// 自动定位位置
+@property(nullable, nonatomic) NSString *autoAddress;
+// 自动定位纬度(double)
+@property(nullable, nonatomic) NSNumber *autoLatitude;
+// 自动定位经度(double)
+@property(nullable, nonatomic) NSNumber *autoLongitude;
+
+// 手动定位位置
+@property(nullable, nonatomic) NSString *manualAddress;
+// 手动定位纬度(double)
+@property(nullable, nonatomic) NSNumber *manualLatitude;
+// 手动定位经度(double)
+@property(nullable, nonatomic) NSNumber *manualLongitude;
+
+#pragma mark - 描述信息
+
 // 声功能区类型
-@property(nullable, nonatomic, strong) NSString *sfaType;
+@property(nullable, nonatomic) NSString *sfaType;
 // 噪声类型
-@property(nullable, nonatomic, strong) NSString *noiseType;
+@property(nullable, nonatomic) NSString *noiseType;
+// 描述信息
+@property(nullable, nonatomic) NSString *comment;
+
+#pragma mark - 噪声强度记录
+
+// 增加一条噪声强度记录
+- (void)addIntensity:(double)intensity;
 
 @end

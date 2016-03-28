@@ -12,12 +12,6 @@
 
 #pragma mark - 常量定义
 
-// 代表空的提示字符串
-static NSString *kNilStr = @"null";
-
-// 日期格式字符串
-static NSString *kDateFmtStr = @"yyyy/MM/dd";
-
 // 历史投诉表格单元格标识符
 static NSString *kCellIdHistory = @"historyCell";
 // 空历史投诉单元格标识符
@@ -106,13 +100,17 @@ static NSString *kCellIdComplain = @"complainCell";
                 // 没有历史投诉
                 return [tableView dequeueReusableCellWithIdentifier:kCellIdEmptyHistory];
             } else {
+
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdHistory];
                 // 设置表格行显示内容
                 NCPComplainForm *form = self.historyArray[(NSUInteger) indexPath.row];
                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:kDateFmtStr];
-                cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@",
-                                                                 form.date ? [df stringFromDate:form.date] : kNilStr, form.address ? form.address : kNilStr];
+                [df setDateFormat:@"yyyy/MM/dd"];
+                NSString *dateStr = [df stringFromDate:form.date];
+
+                cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", dateStr, form.address];
+
+                // 设置地址显示方式
                 return cell;
             }
         }
@@ -193,7 +191,7 @@ static NSString *kCellIdComplain = @"complainCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - TableView Editing
+#pragma mark - 表格编辑功能
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];

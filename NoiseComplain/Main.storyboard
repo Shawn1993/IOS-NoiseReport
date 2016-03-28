@@ -191,16 +191,16 @@
             </objects>
             <point key="canvasLocation" x="759" y="-1287"/>
         </scene>
-        <!--提交噪声投诉-->
+        <!--提交投诉-->
         <scene sceneID="Oag-1j-kU2">
             <objects>
                 <tableViewController id="tDA-M2-iT0" customClass="NCPComplainFormViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="150" id="raz-48-xSB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="120" id="raz-48-xSB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection footerTitle="您周围环境的平均噪声强度，不会上传录音" id="EA2-ro-Jhj">
+                            <tableViewSection footerTitle="您周围环境的平均噪声强度" id="EA2-ro-Jhj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mip-YG-xkx">
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
@@ -272,7 +272,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="点击选择投诉地点，或自动选择手机定位地点" id="z2Y-cz-kN6">
+                            <tableViewSection footerTitle="使用手机当前位置作为投诉地点" id="z2Y-cz-kN6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Nkf-Bu-AeC">
                                         <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
@@ -348,7 +348,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="请描述一下您遇到的噪音污染现象" id="SCo-d6-2ri">
+                            <tableViewSection footerTitle="请描述一下您遇到的噪音现象" id="SCo-d6-2ri">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Fo-gf-zI0" detailTextLabel="aD4-db-wge" style="IBUITableViewCellStyleValue1" id="oRL-jh-bfW">
                                         <rect key="frame" x="0.0" y="276" width="600" height="44"/>
@@ -371,7 +371,7 @@
                                                     <rect key="frame" x="497" y="12" width="68" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact">
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -387,7 +387,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="声功能区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qmn-je-IE8">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="所处环境" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qmn-je-IE8">
                                                     <rect key="frame" x="15" y="12" width="68" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -410,23 +410,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="HcJ-DS-Vp1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="jDA-lV-ZLE">
                                         <rect key="frame" x="0.0" y="364" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="HcJ-DS-Vp1" id="cJO-MC-xGN">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="jDA-lV-ZLE" id="lrD-42-5Sd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="131.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="thL-Oi-AK6">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Yf-Ba-Mzn">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="tDA-M2-iT0" id="HQX-k4-cQ9"/>
+                                                        <outlet property="delegate" destination="tDA-M2-iT0" id="SiY-MG-XB9"/>
                                                     </connections>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请在此输入文字描述..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTt-aA-PmM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入文字描述, 例如对您的影响..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnU-nm-v4e">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -437,39 +437,39 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="thL-Oi-AK6" secondAttribute="bottom" id="5fE-lQ-hlw"/>
-                                                <constraint firstItem="lTt-aA-PmM" firstAttribute="centerY" secondItem="thL-Oi-AK6" secondAttribute="centerY" id="JRe-KB-6ha"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="thL-Oi-AK6" secondAttribute="trailing" constant="8" id="SR3-UJ-j6E"/>
-                                                <constraint firstItem="thL-Oi-AK6" firstAttribute="top" secondItem="cJO-MC-xGN" secondAttribute="topMargin" id="eUb-oX-Fq0"/>
-                                                <constraint firstItem="thL-Oi-AK6" firstAttribute="leading" secondItem="cJO-MC-xGN" secondAttribute="leadingMargin" constant="8" id="ex9-iA-WQN"/>
-                                                <constraint firstItem="lTt-aA-PmM" firstAttribute="centerX" secondItem="thL-Oi-AK6" secondAttribute="centerX" id="fPY-k7-NCA"/>
+                                                <constraint firstItem="ZnU-nm-v4e" firstAttribute="centerY" secondItem="2Yf-Ba-Mzn" secondAttribute="centerY" id="8JE-Gi-Wxa"/>
+                                                <constraint firstItem="2Yf-Ba-Mzn" firstAttribute="top" secondItem="lrD-42-5Sd" secondAttribute="topMargin" id="BWC-WR-GRj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2Yf-Ba-Mzn" secondAttribute="trailing" constant="8" id="KjB-dD-TrW"/>
+                                                <constraint firstItem="ZnU-nm-v4e" firstAttribute="centerX" secondItem="2Yf-Ba-Mzn" secondAttribute="centerX" id="M4H-7e-IaY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2Yf-Ba-Mzn" secondAttribute="bottom" id="Nst-Rm-nJH"/>
+                                                <constraint firstItem="2Yf-Ba-Mzn" firstAttribute="leading" secondItem="lrD-42-5Sd" secondAttribute="leadingMargin" constant="8" id="Of2-dh-dAc"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
-                                                    <exclude reference="thL-Oi-AK6"/>
-                                                    <exclude reference="lTt-aA-PmM"/>
+                                                    <exclude reference="2Yf-Ba-Mzn"/>
+                                                    <exclude reference="ZnU-nm-v4e"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="JRe-KB-6ha"/>
-                                                    <exclude reference="fPY-k7-NCA"/>
-                                                    <exclude reference="5fE-lQ-hlw"/>
-                                                    <exclude reference="SR3-UJ-j6E"/>
-                                                    <exclude reference="eUb-oX-Fq0"/>
-                                                    <exclude reference="ex9-iA-WQN"/>
+                                                    <exclude reference="8JE-Gi-Wxa"/>
+                                                    <exclude reference="M4H-7e-IaY"/>
+                                                    <exclude reference="BWC-WR-GRj"/>
+                                                    <exclude reference="KjB-dD-TrW"/>
+                                                    <exclude reference="Nst-Rm-nJH"/>
+                                                    <exclude reference="Of2-dh-dAc"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
-                                                    <include reference="thL-Oi-AK6"/>
-                                                    <include reference="lTt-aA-PmM"/>
+                                                    <include reference="2Yf-Ba-Mzn"/>
+                                                    <include reference="ZnU-nm-v4e"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="JRe-KB-6ha"/>
-                                                    <include reference="fPY-k7-NCA"/>
-                                                    <include reference="5fE-lQ-hlw"/>
-                                                    <include reference="SR3-UJ-j6E"/>
-                                                    <include reference="eUb-oX-Fq0"/>
-                                                    <include reference="ex9-iA-WQN"/>
+                                                    <include reference="8JE-Gi-Wxa"/>
+                                                    <include reference="M4H-7e-IaY"/>
+                                                    <include reference="BWC-WR-GRj"/>
+                                                    <include reference="KjB-dD-TrW"/>
+                                                    <include reference="Nst-Rm-nJH"/>
+                                                    <include reference="Of2-dh-dAc"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -488,7 +488,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交投诉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1a-Zp-kBE">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact">
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -526,7 +526,7 @@
                             <outlet property="delegate" destination="tDA-M2-iT0" id="15V-wb-3QQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="提交噪声投诉" id="Dj5-Zu-76H">
+                    <navigationItem key="navigationItem" title="提交投诉" id="Dj5-Zu-76H">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xZJ-2c-H61">
                             <connections>
                                 <action selector="barButtonCancelClick:" destination="tDA-M2-iT0" id="UEH-VQ-fJf"/>
@@ -535,21 +535,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="indicatorLocating" destination="oMP-4N-k1c" id="XXf-0V-7Sj"/>
-                        <outlet property="indicatorMeasuring" destination="7Lr-Zl-LWB" id="GM8-Lm-ZV9"/>
-                        <outlet property="labelCommentPlaceholder" destination="lTt-aA-PmM" id="xAf-qt-u6w"/>
+                        <outlet property="indicatorRecording" destination="7Lr-Zl-LWB" id="GM8-Lm-ZV9"/>
+                        <outlet property="labelCommentPlaceholder" destination="ZnU-nm-v4e" id="XMa-Wx-mTM"/>
                         <outlet property="labelIntensity" destination="phK-Y0-wf8" id="MEE-ix-DVu"/>
-                        <outlet property="labelNoiseLocation" destination="aqu-2z-JoK" id="9cK-oS-i1l"/>
+                        <outlet property="labelLocatingStatus" destination="aqu-2z-JoK" id="OT7-pa-gaE"/>
                         <outlet property="labelNoiseType" destination="aD4-db-wge" id="nCQ-ES-VGa"/>
                         <outlet property="labelSFAType" destination="Ugn-28-qBS" id="1XR-wK-9uu"/>
-                        <outlet property="tableCellComment" destination="HcJ-DS-Vp1" id="lnZ-RN-IMF"/>
-                        <outlet property="textViewComment" destination="thL-Oi-AK6" id="J0K-yS-heR"/>
+                        <outlet property="textViewComment" destination="2Yf-Ba-Mzn" id="rtF-6J-0wI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x99-oe-Hrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2361" y="-318"/>
         </scene>
-        <!--噪声投诉-->
+        <!--投诉列表-->
         <scene sceneID="XLT-S2-Bqy">
             <objects>
                 <viewController id="wEL-gt-EwT" customClass="NCPComplainGuideViewController" sceneMemberID="viewController">
@@ -575,7 +574,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击开始投诉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsW-oW-yeE">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="69" y="11" width="102" height="22"/>
@@ -612,15 +611,15 @@
                                             <segue destination="1d9-tO-8ag" kind="presentation" id="Mmq-Xs-nNN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" textLabel="A5p-Yq-yhu" imageView="eGr-59-z8z" style="IBUITableViewCellStyleDefault" id="c2l-BO-QWv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historyCell" textLabel="A5p-Yq-yhu" imageView="eGr-59-z8z" style="IBUITableViewCellStyleDefault" id="c2l-BO-QWv">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c2l-BO-QWv" id="yp5-M5-iHP">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="&lt;投诉记录&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A5p-Yq-yhu">
-                                                    <rect key="frame" x="48" y="0.0" width="177" height="43.5"/>
+                                                    <rect key="frame" x="48" y="0.0" width="157" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -636,6 +635,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dEX-xZ-XsP" kind="show" identifier="ComplainGuideToDetail" id="sIW-pj-Hxc"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyHistoryCell" textLabel="ktb-3v-JHz" imageView="T6E-aO-f7j" style="IBUITableViewCellStyleDefault" id="gee-R1-Qj2">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -701,10 +703,10 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="噪声投诉" id="3e9-XP-hvy">
+                    <navigationItem key="navigationItem" title="投诉列表" id="3e9-XP-hvy">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="o7V-U5-9LF">
                             <connections>
-                                <segue destination="1d9-tO-8ag" kind="presentation" identifier="complainSegue" id="bia-HU-JRQ"/>
+                                <segue destination="1d9-tO-8ag" kind="presentation" identifier="" id="bia-HU-JRQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -715,6 +717,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6d-42-HaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="775.5" y="-318"/>
+        </scene>
+        <!--投诉详情-->
+        <scene sceneID="MWX-Da-AlV">
+            <objects>
+                <tableViewController id="dEX-xZ-XsP" customClass="NCPComplainDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="jY5-Sy-3wX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="HKn-5J-zqQ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CwT-u5-u18">
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CwT-u5-u18" id="GR4-WF-kAi">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WVG-Jr-CfZ">
+                                        <rect key="frame" x="0.0" y="143" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WVG-Jr-CfZ" id="NJh-wp-u0S">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="L5b-Ha-G7o">
+                                        <rect key="frame" x="0.0" y="187" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L5b-Ha-G7o" id="zrk-I0-xM2">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="dEX-xZ-XsP" id="IAg-Lu-YHN"/>
+                            <outlet property="delegate" destination="dEX-xZ-XsP" id="rFX-32-bWX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="投诉详情" id="Tjz-sO-Uzy"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="teg-rk-anv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="775.5" y="381.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdP-jt-wl5">

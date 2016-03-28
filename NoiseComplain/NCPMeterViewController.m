@@ -44,7 +44,7 @@
 
     // 初始化录音器
     self.recorder = [[NCPNoiseRecorder alloc] init];
-    [self.recorder startWithTick:1.0f / 30.0f tickHandler:^(float current, float peak) {
+    [self.recorder startWithTick:1.0f / 30.0f tickHandler:^(double current, double peak) {
         static int i = 0;
         if (i++ > 10) {
             i = 0;

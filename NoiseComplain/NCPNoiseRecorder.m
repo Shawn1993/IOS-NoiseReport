@@ -17,9 +17,9 @@ static const int kSampleRate = 44110;
 static const int kChannelNum = 1;
 
 // 最大值 & 最小值: 原始数值为(-160, 0), 将其缩放至新的区间中
-static const float kValueMax = 80;
+static const double kValueMax = 80;
 // 最小值
-static const float kValueMin = -30;
+static const double kValueMin = -30;
 
 @interface NCPNoiseRecorder ()
 
@@ -27,17 +27,17 @@ static const float kValueMin = -30;
 @property(nonatomic, strong) AVAudioRecorder *audioRecorder;
 
 // 声强
-@property(nonatomic, readonly, getter=currentValue) float currentValue;
-@property(nonatomic, readonly, getter=peakValue) float peakValue;
+@property(nonatomic, readonly, getter=currentValue) double currentValue;
+@property(nonatomic, readonly, getter=peakValue) double peakValue;
 
 #pragma mark - 定期调用属性
 @property(nonatomic, assign) NSTimeInterval tick;
 @property(nonatomic, strong) NSTimer *ticker;
-@property(nonatomic, strong) void (^tickHandler)(float current, float peak);
+@property(nonatomic, strong) void (^tickHandler)(double current, double peak);
 
 #pragma mark - 定时结束属性
 @property(nonatomic, assign) NSTimeInterval duration;
-@property(nonatomic, strong) void (^timeupHandler)(float current, float peak);
+@property(nonatomic, strong) void (^timeupHandler)(double current, double peak);
 
 @end
 
@@ -64,12 +64,12 @@ static const float kValueMin = -30;
 #pragma mark - 声强计算
 
 // 获取平均值
-- (float)currentValue {
+- (double)currentValue {
     return (([self.audioRecorder averagePowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
 }
 
 // 获取峰值
-- (float)peakValue {
+- (double)peakValue {
     return (([self.audioRecorder peakPowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
 }
 
@@ -105,6 +105,8 @@ static const float kValueMin = -30;
     // 开启录音器
     [self.audioRecorder record];
     [self.audioRecorder updateMeters];
+
+    _isRecording = YES;
 }
 
 
@@ -121,26 +123,28 @@ static const float kValueMin = -30;
     self.tickHandler = nil;
     self.duration = 0;
     self.timeupHandler = nil;
+
+    _isRecording = false;
 }
 
 - (void)startWithDuration:(NSTimeInterval)duration
-            timeupHandler:(void (^)(float current, float peak))handler {
+            timeupHandler:(void (^)(double current, double peak))handler {
     self.duration = duration;
     self.timeupHandler = handler;
     [self start];
 }
 
 - (void)startWithTick:(NSTimeInterval)tick
-          tickHandler:(void (^)(float current, float peak))handler {
+          tickHandler:(void (^)(double current, double peak))handler {
     self.tick = tick;
     self.tickHandler = handler;
     [self start];
 }
 
 - (void)startWithDuration:(NSTimeInterval)duration
-            timeupHandler:(void (^)(float current, float peak))timeupHandler
+            timeupHandler:(void (^)(double current, double peak))timeupHandler
                      tick:(NSTimeInterval)tick
-              tickHandler:(void (^)(float current, float peak))tickHandler {
+              tickHandler:(void (^)(double current, double peak))tickHandler {
     self.duration = duration;
     self.timeupHandler = timeupHandler;
     self.tick = tick;

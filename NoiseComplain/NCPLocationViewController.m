@@ -89,12 +89,30 @@
 }
 
 - (void)initData {
-    CLLocationDegrees latitude = self.form.latitude.doubleValue;
-    CLLocationDegrees longtitude = self.form.longitude.doubleValue;
+
+    // 获取当前地址值
+    double currentLatitude;
+    double currentLongitude;
+    NSString *currentAddress;
+    if (self.form.manualAddress) {
+        // 如果使用的是自定义地点
+        currentAddress = self.form.manualAddress;
+        currentLatitude = self.form.manualLatitude.doubleValue;
+        currentLongitude = self.form.manualLongitude.doubleValue;
+    } else {
+        // 使用自动定位地点
+        currentAddress = self.form.autoAddress;
+        currentLatitude = self.form.autoLatitude.doubleValue;
+        currentLongitude = self.form.autoLongitude.doubleValue;
+    }
+
+    CLLocationDegrees latitude = currentLatitude;
+    CLLocationDegrees longtitude = currentLongitude;
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longtitude);
+
     self.pinUseUserLocation = (latitude == 0 && longtitude == 0);
     self.mapRegionChange = NO;
-    self.pinAddress = self.form.address;
+    self.pinAddress = currentAddress;
 
     if (!self.isPinUseUserLocation) {
         [self.mapView setCenterCoordinate:coordinate animated:YES];
@@ -158,16 +176,12 @@
 # pragma mark - 按钮响应
 
 - (IBAction)doneButtonClick:(id)sender {
-    // 调试用: 查看返回定位结果
-    // NSLog(@"NCPLocationViewController: doneButtonClick");
-    // NSLog(@"Latitude: %.2f", [self pinCoordinate].latitude);
-    // NSLog(@"Longitude: %.2f", [self pinCoordinate].longitude);
 
-    self.form.latitude = @([self pinCoordinate].latitude);
-    self.form.longitude = @([self pinCoordinate].longitude);
+    self.form.manualLatitude = @([self pinCoordinate].latitude);
+    self.form.manualLongitude = @([self pinCoordinate].longitude);
 
     if ((self.pinAddress && self.pinAddress.length) || (!self.isMapRegionChange)) {
-        self.form.address = self.pinAddress;
+        self.form.manualAddress = self.pinAddress;
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {

@@ -26,3 +26,6 @@ NSDictionary *NCPReadPListDictionary(NSString *pList);
 
 // 获取Document目录路径
 NSString *NCPDocumentPath();
+
+// 获取本机设备类型
+NSString *NCPDeviceType();

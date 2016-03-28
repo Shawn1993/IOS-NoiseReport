@@ -12,7 +12,10 @@
 
 #pragma mark - 常量定义
 
+// 服务器主机名(与端口)
 static NSString *kNCPServerHost = @"http://localhost:8080";
+// 投诉页面路径
+static NSString *kNCPComplainPage = @"/complain";
 
 @implementation NCPWebService
 
@@ -25,19 +28,28 @@ static NSString *kNCPServerHost = @"http://localhost:8080";
     // 组织参数
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     [paras setValue:form.devId forKey:@"devId"];
-    [paras setValue:form.comment forKey:@"comment"];
+    [paras setValue:form.devType forKey:@"devType"];
     [paras setValue:NCPStringFormDate(form.date) forKey:@"date"];
-    [paras setValue:form.intensity forKey:@"intensity"];
-    [paras setValue:form.address forKey:@"address"];
-    [paras setValue:form.latitude forKey:@"latitude"];
-    [paras setValue:form.longitude forKey:@"longitude"];
+    
+    [paras setValue:@(form.averageIntensity) forKey:@"averageIntensity"];
+    [paras setValue:form.intensitiesJSON forKey:@"intensities"];
+
     [paras setValue:form.coord forKey:@"coord"];
+    [paras setValue:form.autoAddress forKey:@"autoAddress"];
+    [paras setValue:form.autoLatitude forKey:@"autoLatitude"];
+    [paras setValue:form.autoLongitude forKey:@"autoLongitude"];
+    [paras setValue:form.manualAddress forKey:@"manualAddress"];
+    [paras setValue:form.manualLatitude forKey:@"manualLatitude"];
+    [paras setValue:form.manualLongitude forKey:@"manualLongitude"];
+
     [paras setValue:form.sfaType forKey:@"sfaType"];
     [paras setValue:form.noiseType forKey:@"noiseType"];
+    [paras setValue:form.comment forKey:@"comment"];
 
+    // 发送请求
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:[kNCPServerHost stringByAppendingString:@"/complain"]
+    [manager POST:[kNCPServerHost stringByAppendingString:kNCPComplainPage]
        parameters:paras
          progress:nil
           success:^(NSURLSessionDataTask *task, id resp) {

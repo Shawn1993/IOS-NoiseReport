@@ -55,32 +55,57 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
     }
 
     // 检查表是否存在, 若不存在则创建
-    if (![NCPSQLiteDAO database:db containsTable:@"complain_form"]) {
+    if (![NCPSQLiteDAO database:db containsTable:@"complainForm"]) {
         // 创建新表
-        [db executeUpdate:@"CREATE TABLE complain_form ("
-                "form_id INTEGER PRIMARY KEY,"
-                "dev_id TEXT,"
-                "comment TEXT,"
+        [db executeUpdate:@"CREATE TABLE complainForm ("
+                "formId INTEGER PRIMARY KEY,"
                 "date TEXT,"
-                "intensity REAL,"
-                "address TEXT,"
-                "latitude REAL,"
-                "longitude REAL,"
+                "averageIntensity REAL,"
+                "intensities TEXT,"
                 "coord TEXT,"
-                "sfa_type TEXT,"
-                "noise_type TEXT"
+                "autoAddress TEXT,"
+                "autoLatitude REAL,"
+                "autoLongitude REAL,"
+                "manualAddress TEXT,"
+                "manualLatitude REAL,"
+                "manualLongitude REAL,"
+                "sfaType TEXT,"
+                "noiseType TEXT,"
+                "comment TEXT"
                 ")"];
     }
 
     // 插入新投诉表单
-    BOOL result = [db executeUpdate:@"INSERT INTO complain_form"
-                                            "(form_id, dev_id, comment,"
-                                            "date, intensity, address,"
-                                            "latitude, longitude, coord,"
-                                            "sfa_type, noise_type)"
-                                            "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                                    form.formId, form.devId, form.comment, NCPStringFormDate(form.date), form.intensity,
-                                    form.address, form.latitude, form.longitude, form.coord, form.sfaType, form.noiseType
+    BOOL result = [db executeUpdate:@"INSERT INTO complainForm "
+                                            "(formId,"
+                                            "date,"
+                                            "averageIntensity,"
+                                            "intensities,"
+                                            "coord,"
+                                            "autoAddress,"
+                                            "autoLatitude,"
+                                            "autoLongitude,"
+                                            "manualAddress,"
+                                            "manualLatitude,"
+                                            "manualLongitude,"
+                                            "sfaType,"
+                                            "noiseType,"
+                                            "comment) "
+                                            "VALUES (?,'?',?,'?','?','?',?,?,'?',?,?,'?','?','?')",
+                                    form.formId,
+                                    NCPStringFormDate(form.date),
+                                    form.averageIntensity,
+                                    form.intensitiesJSON,
+                                    form.coord,
+                                    form.autoAddress,
+                                    form.autoLatitude,
+                                    form.autoLongitude,
+                                    form.manualAddress,
+                                    form.manualLatitude,
+                                    form.manualLongitude,
+                                    form.sfaType,
+                                    form.noiseType,
+                                    form.comment
     ];
 
     [db close];
@@ -101,27 +126,37 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
     }
 
     // 检查表格是否存在
-    if (![NCPSQLiteDAO database:db containsTable:@"complain_form"]) {
+    if (![NCPSQLiteDAO database:db containsTable:@"complainForm"]) {
         // 返回空数组
         return array;
     }
 
     // 获取查询结果
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM complain_form"];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM complainForm"];
     while (rs.next) {
         // 新建ComplainForm对象并赋值
         NCPComplainForm *form = [[NCPComplainForm alloc] init];
-        form.formId = @([rs longForColumn:@"form_id"]);
-        form.devId = [rs stringForColumn:@"dev_id"];
-        form.comment = [rs stringForColumn:@"comment"];
+        form.formId = @([rs longForColumn:@"formId"]);
         form.date = NCPDateFormString([rs stringForColumn:@"date"]);
-        form.intensity = @([rs doubleForColumn:@"intensity"]);
-        form.address = [rs stringForColumn:@"address"];
-        form.latitude = @([rs doubleForColumn:@"latitude"]);
-        form.longitude = @([rs doubleForColumn:@"longitude"]);
+
+        form.intensitiesJSON = [rs stringForColumn:@"intensities"];
+        if (form.intensities.count == 0) {
+            [form addIntensity:[rs doubleForColumn:@"averageIntensity"]];
+        }
+
         form.coord = [rs stringForColumn:@"coord"];
-        form.sfaType = [rs stringForColumn:@"sfa_type"];
-        form.noiseType = [rs stringForColumn:@"noise_type"];
+        form.autoAddress = [rs stringForColumn:@"autoAddress"];
+        form.autoLatitude = @([rs doubleForColumn:@"autoLatitude"]);
+        form.autoLongitude = @([rs doubleForColumn:@"autoLongitude"]);
+
+        form.manualAddress = [rs stringForColumn:@"manualAddress"];
+        form.manualLatitude = @([rs doubleForColumn:@"manualLatitude"]);
+        form.manualLongitude = @([rs doubleForColumn:@"manualLongitude"]);
+
+        form.sfaType = [rs stringForColumn:@"sfaType"];
+        form.noiseType = [rs stringForColumn:@"noiseType"];
+        form.comment = [rs stringForColumn:@"comment"];
+
         [array addObject:form];
     }
 
