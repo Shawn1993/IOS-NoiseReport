@@ -22,16 +22,6 @@
 // 打开地图ViewController的Segue标识符
 static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
-// 噪声类型PList文件名
-static NSString *kNCPPListFileNoiseType = @"NoiseType";
-// 声功能区PList文件名
-static NSString *kNCPPListFileSfaType = @"SfaType";
-
-// 上传的噪声强度记录间隔
-static NSTimeInterval kNCPIntensityInterval = 1.0 / 30;
-// 上传的噪声强度记录数 (注意不要超过ComplainForm最大容量)
-static int kNCPIntensityCount = 128;
-
 @interface NCPComplainFormViewController ()
         <
         UITableViewDelegate,
@@ -48,7 +38,6 @@ static int kNCPIntensityCount = 128;
 
 // 投诉地点Section
 @property(weak, nonatomic) IBOutlet UILabel *labelLocatingStatus;
-@property(weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorLocating;
 
 // 噪声信息Section
 @property(weak, nonatomic) IBOutlet UILabel *labelNoiseType;
@@ -125,6 +114,11 @@ static int kNCPIntensityCount = 128;
 
 // 取消按钮点击事件
 - (IBAction)barButtonCancelClick:(id)sender {
+    // 关闭键盘
+    if ([self.textViewComment isFirstResponder]) {
+        [self.textViewComment resignFirstResponder];
+    }
+
     // 弹出确认提示框
     LGAlertView *confirmAlert = [LGAlertView alertViewWithTitle:@"提示"
                                                         message:@"投诉尚未完成, 确定要退出吗?"
@@ -147,17 +141,21 @@ static int kNCPIntensityCount = 128;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // 向定位ViewController传递表单引用
     if ([segue.identifier isEqualToString:kNCPSegueIdToLocation]) {
+        // 如果是去向定位视图
         id dest = segue.destinationViewController;
-
-        // 传递ComplainForm引用
         [dest setValue:self.form forKey:@"form"];
     }
+    [super prepareForSegue:segue sender:sender];
 }
 
 #pragma mark - 表格点击事件
 
 // 表格点击代理事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 关闭键盘
+    if ([self.textViewComment isFirstResponder]) {
+        [self.textViewComment resignFirstResponder];
+    }
 
     switch (indexPath.section) {
         case 0:
@@ -202,7 +200,7 @@ static int kNCPIntensityCount = 128;
     LGAlertView *noiseSheet = [LGAlertView alertViewWithTitle:@"噪声类型选择"
                                                       message:@"请选择你要投诉的噪声类型"
                                                         style:LGAlertViewStyleActionSheet
-                                                 buttonTitles:NCPReadPListArray(kNCPPListFileNoiseType)
+                                                 buttonTitles:NCPReadPListArray(NCPConfigString(@"NoiseTypePList"))
                                             cancelButtonTitle:@"取消"
                                        destructiveButtonTitle:nil
                                                 actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
@@ -221,7 +219,7 @@ static int kNCPIntensityCount = 128;
     LGAlertView *sfaSheet = [LGAlertView alertViewWithTitle:@"环境类型选择"
                                                     message:@"请选择你当前所处的环境类型"
                                                       style:LGAlertViewStyleActionSheet
-                                               buttonTitles:NCPReadPListArray(kNCPPListFileSfaType)
+                                               buttonTitles:NCPReadPListArray(NCPConfigString(@"SfaTypePList"))
                                           cancelButtonTitle:@"取消"
                                      destructiveButtonTitle:nil
                                               actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
@@ -313,13 +311,13 @@ static int kNCPIntensityCount = 128;
     }
 
     self.noiseRecorder = [[NCPNoiseRecorder alloc] init];
-    [self.noiseRecorder startWithTick:kNCPIntensityInterval
+    [self.noiseRecorder startWithTick:NCPConfigDouble(@"RecorderIntensityInterval")
                           tickHandler:^(double current, double peak) {
                               // 将噪声记录添加至表单
                               [self.form addIntensity:current];
 
                               // 检查噪声记录是否有足够的数量
-                              if (self.form.intensities.count >= kNCPIntensityCount) {
+                              if (self.form.isIntensitiesFull) {
                                   // 结束测量
                                   [self displayComplainForm];
                                   [self.noiseRecorder stop];
@@ -334,7 +332,7 @@ static int kNCPIntensityCount = 128;
 - (void)displayComplainForm {
 
     // 噪声强度
-    if (self.form.intensities.count < kNCPIntensityCount) {
+    if (!self.form.isIntensitiesFull) {
         self.labelIntensity.text = @"测量中...";
         self.indicatorRecording.hidden = NO;
     } else {
@@ -344,8 +342,6 @@ static int kNCPIntensityCount = 128;
 
     // 检查是否有定位结果
     if (self.form.address) {
-        // 有定位结果
-        self.indicatorLocating.hidden = YES;
         // 检查定位状态
         if (self.form.manualAddress) {
             // 是手动定位结果
@@ -359,11 +355,9 @@ static int kNCPIntensityCount = 128;
         // 没有定位结果
         if (self.autoLocatingFailed) {
             // 自动定位失败
-            self.indicatorLocating.hidden = YES;
             self.labelLocatingStatus.text = @"自动定位失败";
         } else {
             // 仍然在自动定位中
-            self.indicatorLocating.hidden = NO;
             self.labelLocatingStatus.text = @"定位中...";
         }
     }
@@ -399,7 +393,7 @@ static int kNCPIntensityCount = 128;
 
 // 检查投诉表单是否可以发送了
 - (BOOL)checkComplainForm {
-    if (self.form.intensities.count < kNCPIntensityCount) {
+    if (!self.form.isIntensitiesFull) {
         // 噪声检测还没有完成
         return NO;
     } else if (!self.form.autoAddress && !self.form.manualAddress) {
@@ -471,7 +465,7 @@ static int kNCPIntensityCount = 128;
                                 self.form.formId = @(formId);
 
                                 //将投诉表单保存于本地
-                                [NCPSQLiteDAO createComplainForm:self.form];
+                                [NCPSQLiteDAO insertComplainForm:self.form];
 
                                 // 请求成功提示
                                 [self showSuccessAlert:sendAlert];

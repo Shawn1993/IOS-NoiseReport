@@ -11,16 +11,6 @@
 
 #pragma mark - 配置常量
 
-// 采样率
-static const int kSampleRate = 44110;
-// 声道数
-static const int kChannelNum = 1;
-
-// 最大值 & 最小值: 原始数值为(-160, 0), 将其缩放至新的区间中
-static const double kValueMax = 80;
-// 最小值
-static const double kValueMin = -30;
-
 @interface NCPNoiseRecorder ()
 
 // 录音器对象(系统接口)
@@ -51,8 +41,8 @@ static const double kValueMin = -30;
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
         NSDictionary *settings = @{
                 AVFormatIDKey : @(kAudioFormatAppleLossless),
-                AVSampleRateKey : @(kSampleRate),
-                AVNumberOfChannelsKey : @(kChannelNum),
+                AVSampleRateKey : @(NCPConfigInteger(@"RecorderSampleRate")),
+                AVNumberOfChannelsKey : @(NCPConfigInteger(@"RecorderChannelNum")),
         };
         self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:@"/dev/null"]
                                                          settings:settings
@@ -63,14 +53,34 @@ static const double kValueMin = -30;
 
 #pragma mark - 声强计算
 
+// 获取最大值
+- (double)max {
+    static double max;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        max = NCPConfigDouble(@"RecorderMaxValue");
+    });
+    return max;
+}
+
+// 获取最大值
+- (double)min {
+    static double min;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        min = NCPConfigDouble(@"RecorderMinValue");
+    });
+    return min;
+}
+
 // 获取平均值
 - (double)currentValue {
-    return (([self.audioRecorder averagePowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
+    return (([self.audioRecorder averagePowerForChannel:0] + 160) * (self.max - self.min) / 160) + self.min;
 }
 
 // 获取峰值
 - (double)peakValue {
-    return (([self.audioRecorder peakPowerForChannel:0] + 160) * (kValueMax - kValueMin) / 160) + kValueMin;
+    return (([self.audioRecorder peakPowerForChannel:0] + 160) * (self.max - self.min) / 160) + self.min;
 }
 
 #pragma mark - 开启与停止

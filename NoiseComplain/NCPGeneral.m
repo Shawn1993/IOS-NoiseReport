@@ -8,24 +8,21 @@
 
 #import <sys/utsname.h>
 
-#pragma mark - 通用常量定义
+#pragma mark - 常量定义
 
-#pragma mark - 静态常量定义
-
-// 日期格式化格式字符串
-static NSString *kNCPDateFormat = @"yyyy-MM-dd-HH-mm-ss";
+NSString* kNCPConfigPListFile = @"config";
 
 #pragma mark - 日期格式化
 
 NSString *NCPStringFormDate(NSDate *date) {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:kNCPDateFormat];
+    [df setDateFormat:NCPConfigString(@"ServerDateFormat")];
     return [df stringFromDate:date];
 }
 
 NSDate *NCPDateFormString(NSString *string) {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:kNCPDateFormat];
+    [df setDateFormat:NCPConfigString(@"ServerDateFormat")];
     return [df dateFromString:string];
 }
 
@@ -51,6 +48,7 @@ NSString *NCPDocumentPath() {
 }
 
 #pragma mark - 设备类型获取
+
 NSString *NCPDeviceType() {
     struct utsname systemInfo;
     uname(&systemInfo);
@@ -120,4 +118,21 @@ NSString *NCPDeviceType() {
         return @"iPad mini 3";
 
     return deviceString;
+}
+
+#pragma mark - 获取配置常量
+
+// 获取一个字符串型常量
+NSString *NCPConfigString(NSString *key) {
+    return NCPReadPListDictionary(kNCPConfigPListFile)[key];
+}
+
+// 获取一个整型常量
+int NCPConfigInteger(NSString *key) {
+    return ((NSNumber *)NCPReadPListDictionary(kNCPConfigPListFile)[key]).intValue;
+}
+
+// 获取一个浮点型常量
+double NCPConfigDouble(NSString *key) {
+    return ((NSNumber *)NCPReadPListDictionary(kNCPConfigPListFile)[key]).doubleValue;
 }

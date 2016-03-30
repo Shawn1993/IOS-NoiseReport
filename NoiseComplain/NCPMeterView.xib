@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NCPMeterView">
             <connections>
-                <outlet property="imageLight" destination="WN7-l6-UYa" id="OyU-cS-5r0"/>
+                <outlet property="foreground" destination="WN7-l6-UYa" id="MAJ-Wb-uR8"/>
                 <outlet property="labelValue" destination="k0H-aa-93P" id="7Xt-K1-sRN"/>
                 <outlet property="referencedView" destination="iN0-l3-epB" id="hVz-j6-I1G"/>
             </connections>
@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meter_dark" translatesAutoresizingMaskIntoConstraints="NO" id="Ybf-xH-GfK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeterViewMeterBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Ybf-xH-GfK">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meter_light" translatesAutoresizingMaskIntoConstraints="NO" id="WN7-l6-UYa">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeterViewMeterForeground" translatesAutoresizingMaskIntoConstraints="NO" id="WN7-l6-UYa">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0H-aa-93P">
@@ -48,7 +48,7 @@
         </view>
     </objects>
     <resources>
-        <image name="meter_dark" width="812" height="812"/>
-        <image name="meter_light" width="812" height="812"/>
+        <image name="MeterViewMeterBackground" width="541" height="541"/>
+        <image name="MeterViewMeterForeground" width="541" height="541"/>
     </resources>
 </document>

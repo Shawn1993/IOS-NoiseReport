@@ -13,16 +13,11 @@
 
 #pragma mark - 常量定义
 
-// 常量: 数据库文件名
-static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
-
 @implementation NCPSQLiteDAO
-
-#pragma mark - SQLite通用方法
 
 // 获取(已经开启的)FMDB数据库对象
 + (FMDatabase *)database {
-    NSString *path = [NCPDocumentPath() stringByAppendingString:kNCPSQLiteFileName];
+    NSString *path = [NCPDocumentPath() stringByAppendingString:NCPConfigString(@"SQLiteFile")];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     if (db) {
         if ([db open]) {
@@ -46,7 +41,7 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
 #pragma mark - ComplainForm增删改查
 
 // 插入投诉表单
-+ (BOOL)createComplainForm:(NCPComplainForm *)form {
++ (BOOL)insertComplainForm:(NCPComplainForm *)form {
 
     // 获取数据库对象
     FMDatabase *db = [NCPSQLiteDAO database];
@@ -55,46 +50,46 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
     }
 
     // 检查表是否存在, 若不存在则创建
-    if (![NCPSQLiteDAO database:db containsTable:@"complainForm"]) {
+    if (![NCPSQLiteDAO database:db containsTable:@"complain_form"]) {
         // 创建新表
-        [db executeUpdate:@"CREATE TABLE complainForm ("
-                "formId INTEGER PRIMARY KEY,"
+        [db executeUpdate:@"CREATE TABLE complain_form ("
+                "form_id INTEGER PRIMARY KEY,"
                 "date TEXT,"
-                "averageIntensity REAL,"
+                "average_intensity REAL,"
                 "intensities TEXT,"
                 "coord TEXT,"
-                "autoAddress TEXT,"
-                "autoLatitude REAL,"
-                "autoLongitude REAL,"
-                "manualAddress TEXT,"
-                "manualLatitude REAL,"
-                "manualLongitude REAL,"
-                "sfaType TEXT,"
-                "noiseType TEXT,"
+                "auto_address TEXT,"
+                "auto_latitude REAL,"
+                "auto_longitude REAL,"
+                "manual_address TEXT,"
+                "manual_latitude REAL,"
+                "manual_longitude REAL,"
+                "sfa_type TEXT,"
+                "noise_type TEXT,"
                 "comment TEXT"
                 ")"];
     }
 
     // 插入新投诉表单
-    BOOL result = [db executeUpdate:@"INSERT INTO complainForm "
-                                            "(formId,"
+    BOOL result = [db executeUpdate:@"INSERT INTO complain_form "
+                                            "(form_id,"
                                             "date,"
-                                            "averageIntensity,"
+                                            "average_intensity,"
                                             "intensities,"
                                             "coord,"
-                                            "autoAddress,"
-                                            "autoLatitude,"
-                                            "autoLongitude,"
-                                            "manualAddress,"
-                                            "manualLatitude,"
-                                            "manualLongitude,"
-                                            "sfaType,"
-                                            "noiseType,"
+                                            "auto_address,"
+                                            "auto_latitude,"
+                                            "auto_longitude,"
+                                            "manual_address,"
+                                            "manual_latitude,"
+                                            "manual_longitude,"
+                                            "sfa_type,"
+                                            "noise_type,"
                                             "comment) "
-                                            "VALUES (?,'?',?,'?','?','?',?,?,'?',?,?,'?','?','?')",
+                                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                                     form.formId,
                                     NCPStringFormDate(form.date),
-                                    form.averageIntensity,
+                                    @(form.averageIntensity),
                                     form.intensitiesJSON,
                                     form.coord,
                                     form.autoAddress,
@@ -113,7 +108,7 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
 }
 
 // 查询全部投诉表单
-+ (NSArray *)retrieveAllComplainForm {
++ (NSArray *)selectAllComplainForm {
 
     // 准备储存结果的Array
     NSMutableArray *array = [NSMutableArray array];
@@ -126,35 +121,35 @@ static NSString *kNCPSQLiteFileName = @"ncp.sqlite";
     }
 
     // 检查表格是否存在
-    if (![NCPSQLiteDAO database:db containsTable:@"complainForm"]) {
+    if (![NCPSQLiteDAO database:db containsTable:@"complain_form"]) {
         // 返回空数组
         return array;
     }
 
     // 获取查询结果
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM complainForm"];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM complain_form"];
     while (rs.next) {
         // 新建ComplainForm对象并赋值
         NCPComplainForm *form = [[NCPComplainForm alloc] init];
-        form.formId = @([rs longForColumn:@"formId"]);
+        form.formId = @([rs longForColumn:@"form_id"]);
         form.date = NCPDateFormString([rs stringForColumn:@"date"]);
 
         form.intensitiesJSON = [rs stringForColumn:@"intensities"];
         if (form.intensities.count == 0) {
-            [form addIntensity:[rs doubleForColumn:@"averageIntensity"]];
+            [form addIntensity:[rs doubleForColumn:@"average_intensity"]];
         }
 
         form.coord = [rs stringForColumn:@"coord"];
-        form.autoAddress = [rs stringForColumn:@"autoAddress"];
-        form.autoLatitude = @([rs doubleForColumn:@"autoLatitude"]);
-        form.autoLongitude = @([rs doubleForColumn:@"autoLongitude"]);
+        form.autoAddress = [rs stringForColumn:@"auto_address"];
+        form.autoLatitude = @([rs doubleForColumn:@"auto_latitude"]);
+        form.autoLongitude = @([rs doubleForColumn:@"auto_longitude"]);
 
-        form.manualAddress = [rs stringForColumn:@"manualAddress"];
-        form.manualLatitude = @([rs doubleForColumn:@"manualLatitude"]);
-        form.manualLongitude = @([rs doubleForColumn:@"manualLongitude"]);
+        form.manualAddress = [rs stringForColumn:@"manual_address"];
+        form.manualLatitude = @([rs doubleForColumn:@"manual_latitude"]);
+        form.manualLongitude = @([rs doubleForColumn:@"manual_longitude"]);
 
-        form.sfaType = [rs stringForColumn:@"sfaType"];
-        form.noiseType = [rs stringForColumn:@"noiseType"];
+        form.sfaType = [rs stringForColumn:@"sfa_type"];
+        form.noiseType = [rs stringForColumn:@"noise_type"];
         form.comment = [rs stringForColumn:@"comment"];
 
         [array addObject:form];

@@ -32,6 +32,8 @@
 @property(nonatomic, readonly) double averageIntensity;
 // 噪声强度JSON字符串
 @property(nonnull, nonatomic) NSString *intensitiesJSON;
+// 噪声强度是否已经存储满了
+@property(nonatomic, readonly) BOOL isIntensitiesFull;
 
 #pragma mark - 地理位置信息
 

@@ -12,11 +12,13 @@
 
 @interface NCPSQLiteDAO : NSObject
 
+#pragma mark - ComplainForm操作
+
 // 插入投诉表单
-+ (BOOL)createComplainForm:(NCPComplainForm *)form;
++ (BOOL)insertComplainForm:(NCPComplainForm *)form;
 
 // 查询全部投诉表单
-+ (NSArray *)retrieveAllComplainForm;
++ (NSArray *)selectAllComplainForm;
 
 // 删除一条投诉表单
 + (BOOL)deleteComplainForm:(NCPComplainForm *)form;

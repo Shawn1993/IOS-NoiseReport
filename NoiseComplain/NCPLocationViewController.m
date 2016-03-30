@@ -69,9 +69,6 @@
 // 判断是否使用搜索结果
 @property(nonatomic, getter=isUsePoiResult) BOOL usePoiResult;
 
-// 投诉表单对象
-@property(nonatomic, weak) NCPComplainForm *form;
-
 @end
 
 
@@ -232,7 +229,6 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     BMKCitySearchOption *option = [[BMKCitySearchOption alloc] init];
     option.city = self.pinAddressDetail.city;
-//    NSLog(@"城市 %@",option.city);
     option.keyword = searchBar.text;
     [self.poiSearch poiSearchInCity:option];
 }

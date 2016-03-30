@@ -12,11 +12,6 @@
 
 #pragma mark - 常量定义
 
-// 服务器主机名(与端口)
-static NSString *kNCPServerHost = @"http://localhost:8080";
-// 投诉页面路径
-static NSString *kNCPComplainPage = @"/complain";
-
 @implementation NCPWebService
 
 #pragma mark - 投诉请求
@@ -30,7 +25,7 @@ static NSString *kNCPComplainPage = @"/complain";
     [paras setValue:form.devId forKey:@"devId"];
     [paras setValue:form.devType forKey:@"devType"];
     [paras setValue:NCPStringFormDate(form.date) forKey:@"date"];
-    
+
     [paras setValue:@(form.averageIntensity) forKey:@"averageIntensity"];
     [paras setValue:form.intensitiesJSON forKey:@"intensities"];
 
@@ -49,7 +44,7 @@ static NSString *kNCPComplainPage = @"/complain";
     // 发送请求
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager POST:[kNCPServerHost stringByAppendingString:kNCPComplainPage]
+    [manager POST:[NCPConfigString(@"ServerHost") stringByAppendingString:NCPConfigString(@"ServerComplainPage")]
        parameters:paras
          progress:nil
           success:^(NSURLSessionDataTask *task, id resp) {

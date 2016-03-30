@@ -10,6 +10,8 @@
 
 @interface NCPGraphView ()
 
+#pragma mark - Xib输出口
+
 @property (weak, nonatomic) IBOutlet UIView *referencedView;
 
 @end
@@ -18,6 +20,7 @@
 
 #pragma mark - 初始化与布局
 
+// 初始化方法
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
@@ -27,17 +30,17 @@
     return self;
 }
 
+// 布局子视图
 - (void)layoutSubviews {
     self.referencedView.frame = self.bounds;
     [super layoutSubviews];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+#pragma mark - 绘制方法
+
+// 绘制方法
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 }
-*/
 
 @end

@@ -10,20 +10,19 @@
 #import "NCPNoiseRecorder.h"
 #import "NCPMeterView.h"
 #import "NCPGraphView.h"
-#import "NCPSQLiteDAO.h"
-
-#import "FMDB.h"
 
 @interface NCPMeterViewController ()
+
+#pragma mark - Storyboard输出口
+
+// 噪声仪表View
+@property(weak, nonatomic) IBOutlet NCPMeterView *meterView;
+// 噪声曲线图View
+@property(weak, nonatomic) IBOutlet NCPGraphView *graphView;
 
 #pragma mark - 成员变量
 
 @property(nonatomic, strong) NCPNoiseRecorder *recorder;
-
-#pragma mark - Storyboard输出口
-
-@property(weak, nonatomic) IBOutlet NCPMeterView *meterView;
-@property(weak, nonatomic) IBOutlet NCPGraphView *graphView;
 
 @end
 
@@ -31,6 +30,7 @@
 
 #pragma mark - ViewController生命周期
 
+// 视图载入完成
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -39,6 +39,7 @@
     self.graphView.backgroundColor = [UIColor clearColor];
 }
 
+// 视图即将出现
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -55,6 +56,7 @@
     }];
 }
 
+// 视图即将消失
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
@@ -63,6 +65,7 @@
     self.recorder = nil;
 }
 
+// 测试临时方法
 - (IBAction)Test:(id)sender {
     // 测试代码
     NSLog(@"Test!");

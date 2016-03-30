@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NCPComplainForm.h"
 
-// 噪声强度数组初始容量
-static NSUInteger kNCPIntensitiesInitCapacity = 32;
-// 噪声强度数组最大容量
-static NSUInteger kNCPIntensitiesMaxCapacity = 256;
-
 @implementation NCPComplainForm
 
 #pragma mark - 初始化
@@ -37,7 +32,7 @@ static NSUInteger kNCPIntensitiesMaxCapacity = 256;
         _coord = @"BD-09";
 
         // 为噪声强度数组进行初始化
-        _intensities = [NSMutableArray arrayWithCapacity:kNCPIntensitiesInitCapacity];
+        _intensities = [NSMutableArray arrayWithCapacity:(NSUInteger) NCPConfigInteger(@"ComplainFormIntensitiesCapacity")];
     }
     return self;
 }
@@ -70,10 +65,15 @@ static NSUInteger kNCPIntensitiesMaxCapacity = 256;
 
 #pragma mark - 噪声强度记录与获取
 
+// 获取噪声噪声记录最大值
+- (BOOL)isIntensitiesFull {
+    return self.intensities.count >= NCPConfigInteger(@"ComplainFormIntensitiesCapacity");
+}
+
 // 增加一条噪声强度记录
 - (void)addIntensity:(double)intensity {
     // 检查是否已经有了过多的记录
-    if (self.intensities.count >= kNCPIntensitiesMaxCapacity) {
+    if (self.isIntensitiesFull) {
         [self.intensities removeObjectAtIndex:0];
     }
     // 增加一条新的记录

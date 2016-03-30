@@ -11,6 +11,12 @@
 /**
  * 噪声投诉详情与受理进度ViewController
  */
+
+@class NCPComplainForm;
+
 @interface NCPComplainDetailViewController : UITableViewController
+
+// 投诉表单对象
+@property(nonatomic, weak) NCPComplainForm *form;
 
 @end
