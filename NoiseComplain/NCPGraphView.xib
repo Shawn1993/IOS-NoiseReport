@@ -25,9 +25,9 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeterViewDot" translatesAutoresizingMaskIntoConstraints="NO" id="E7x-xd-06P">
-                    <rect key="frame" x="8" y="288" width="24" height="24"/>
+                    <rect key="frame" x="8" y="285" width="30" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="A2o-BI-jdL"/>
+                        <constraint firstAttribute="width" constant="30" id="A2o-BI-jdL"/>
                         <constraint firstAttribute="width" secondItem="E7x-xd-06P" secondAttribute="height" multiplier="1:1" id="dQ9-le-j2a"/>
                     </constraints>
                 </imageView>

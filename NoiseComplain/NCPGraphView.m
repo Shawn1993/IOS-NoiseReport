@@ -31,31 +31,31 @@ static double min() {
 }
 
 // 获取值最大数量
-static NSUInteger capacity() {
-    static NSUInteger capacity;
+static int capacity() {
+    static int capacity;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        capacity = (NSUInteger) NCPConfigInteger(@"GraphViewCapacity");
+        capacity = NCPConfigInteger(@"GraphViewCapacity");
     });
     return capacity;
 }
 
 // 获取网格列数
-static NSUInteger gridColumn() {
-    static NSUInteger column;
+static int gridColumn() {
+    static int column;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        column = (NSUInteger) NCPConfigInteger(@"GraphViewGridColumn");
+        column = NCPConfigInteger(@"GraphViewGridColumn");
     });
     return column;
 }
 
 // 获取网格行数
-static NSUInteger gridRow() {
-    static NSUInteger row;
+static int gridRow() {
+    static int row;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        row = (NSUInteger) NCPConfigInteger(@"GraphViewGridRow");
+        row = NCPConfigInteger(@"GraphViewGridRow");
     });
     return row;
 }
@@ -80,6 +80,15 @@ static double gridMin() {
     return min;
 }
 
+// 获取平滑系数
+static int smooth() {
+    static int dilute;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dilute = NCPConfigInteger(@"GraphViewSmooth");
+    });
+    return dilute;
+}
 
 #pragma maek - 计算纵坐标
 
@@ -101,7 +110,7 @@ static CGFloat calY(CGRect rect, double value) {
 @property(nonatomic, readonly) NSMutableArray *values;
 @property(nonatomic, readonly) double last;
 @property(nonatomic) double average;
-@property(nonatomic) int offset;
+@property(nonatomic) unsigned long offset;
 
 @end
 
@@ -147,8 +156,8 @@ static CGFloat calY(CGRect rect, double value) {
 
     // 计算平均值
     double sum = 0.0;
-    for (NSNumber *value in self.values) {
-        sum += value.doubleValue;
+    for (NSNumber *v in self.values) {
+        sum += v.doubleValue;
     }
     self.average = sum / self.values.count;
 
@@ -190,58 +199,78 @@ static CGFloat calY(CGRect rect, double value) {
     // 计算坐标
     CGFloat start = self.imageDot.frame.origin.x + dotThick;
     CGFloat end = rect.origin.x + rect.size.width - dotThick;
-    CGFloat step = (end - start) / capacity();
-    CGFloat x = start;
+    CGFloat step = (end - start) / (capacity() - smooth());
 
     // 绘制轨迹线
-    CGContextRef c = UIGraphicsGetCurrentContext();
-    CGMutablePathRef p = CGPathCreateMutable();
-    CGPathMoveToPoint(p, NULL, start, dotY);
-    for (int i = (int) self.values.count - 1; i >= 0; i--) {
+    CGContextRef ctx1 = UIGraphicsGetCurrentContext();
+    CGMutablePathRef ph1 = CGPathCreateMutable();
+    CGFloat x = start;
+    CGPathMoveToPoint(ph1, NULL, start, dotY);
+    int index = (int) (self.values.count - 1);
+    for (int i = 0; i < self.offset % smooth(); i++) {
+        CGPathAddLineToPoint(ph1, NULL, x, calY(rect, ((NSNumber *) self.values[(NSUInteger) index]).doubleValue));
         x += step;
-        CGFloat y = calY(rect, ((NSNumber *) self.values[(NSUInteger) i]).doubleValue);
-        CGPathAddLineToPoint(p, NULL, x, y);
+        index--;
     }
-    CGContextAddPath(c, p);
-    CGContextSetLineWidth(c, 4.5);
-    CGContextSetRGBStrokeColor(c, 0.7412, 0.7176, 0.8980, 0.7);
-    CGContextStrokePath(c);
+    if (index >= 0) {
+        CGPathAddLineToPoint(ph1, NULL, x, calY(rect, ((NSNumber *) self.values[(NSUInteger) index]).doubleValue));
+    }
+    while (index >= 3 * smooth()) {
+        double vm1 = ((NSNumber *) self.values[(NSUInteger) index]).doubleValue;
+        double v0 = ((NSNumber *) self.values[(NSUInteger) (index - smooth())]).doubleValue;
+        double v1 = ((NSNumber *) self.values[(NSUInteger) (index - 2 * smooth())]).doubleValue;
+        double v2 = ((NSNumber *) self.values[(NSUInteger) (index - 3 * smooth())]).doubleValue;
+        double k0 = (v1 - vm1) / 2;
+        double k1 = (v2 - v0) / 2;
+        CGPoint p0 = CGPointMake(x, calY(rect, v0));
+        CGPoint c0 = CGPointMake(x + step * smooth() / 2, calY(rect, v0 + k0 / 2));
+        CGPoint c1 = CGPointMake(x + step * smooth() / 2, calY(rect, v1 - k1 / 2));
+        CGPoint p1 = CGPointMake(x + step * smooth(), calY(rect, v1));
+        CGContextMoveToPoint(ctx1, p0.x, p0.y);
+        CGContextAddCurveToPoint(ctx1, c0.x, c0.y, c1.x, c1.y, p1.x, p1.y);
+        x += step * smooth();
+        index -= smooth();
+    }
+    CGContextAddPath(ctx1, ph1);
+    CGContextSetLineWidth(ctx1, 6);
+    CGContextSetRGBStrokeColor(ctx1, 0.7412, 0.7176, 0.8980, 0.65);
+    CGContextStrokePath(ctx1);
 
     // 绘制模糊发光
-    CGContextRef c2 = UIGraphicsGetCurrentContext();
-    CGPathRef p2 = CGPathCreateCopy(p);
-    CGContextAddPath(c2, p2);
-    CGContextSetLineWidth(c2, 7);
-    CGContextSetRGBStrokeColor(c2, 0.7412, 0.7176, 0.8980, 0.09);
-    CGContextStrokePath(c2);
+    /*CGContextRef ctx2 = UIGraphicsGetCurrentContext();
+    CGPathRef ph2 = CGPathCreateCopy(ph1);
+    CGContextAddPath(ctx2, ph2);
+    CGContextSetLineWidth(ctx2, 9);
+    CGContextSetRGBStrokeColor(ctx2, 0.7412, 0.7176, 0.8980, 0.5);
+    CGContextStrokePath(ctx2);*/
 
-    // 绘制边框
+    // 绘制网格
     CGFloat left = rect.origin.x + 8;
     CGFloat right = left + rect.size.width - 16;
     CGFloat top = rect.origin.y + 8;
     CGFloat bottom = top + rect.size.height - 16;
-    CGContextRef c3 = UIGraphicsGetCurrentContext();
-    CGMutablePathRef p3 = CGPathCreateMutable();
-    int gridColumnStep = (int) (capacity() / gridColumn());
-    for (int j = self.offset % gridColumnStep; j <= capacity(); j += gridColumnStep) {
-        CGPathMoveToPoint(p3, NULL, left + j * step, top);
-        CGPathAddLineToPoint(p3, NULL, left + j * step, bottom);
+    CGContextRef ctx3 = UIGraphicsGetCurrentContext();
+    CGMutablePathRef ph3 = CGPathCreateMutable();
+    int gridColumnStep = capacity() / gridColumn();
+    for (long j = self.offset % gridColumnStep; j <= capacity(); j += gridColumnStep) {
+        CGPathMoveToPoint(ph3, NULL, left + j * step, top);
+        CGPathAddLineToPoint(ph3, NULL, left + j * step, bottom);
     }
     if (gridRow() > 2) {
         double gridRowStep = (gridMax() - gridMin()) / gridRow();
         for (double k = gridMin(); k <= gridMax(); k += gridRowStep) {
-            CGPathMoveToPoint(p3, NULL, left, calY(rect, k));
-            CGPathAddLineToPoint(p3, NULL, right, calY(rect, k));
+            CGPathMoveToPoint(ph3, NULL, left, calY(rect, k));
+            CGPathAddLineToPoint(ph3, NULL, right, calY(rect, k));
         }
     }
-    CGContextAddPath(c3, p3);
-    CGContextSetLineWidth(c3, 1);
-    CGContextSetCMYKStrokeColor(c3, 0.7, 0.67, 0.29, 0.1, 0.2);
-    CGContextStrokePath(c3);
+    CGContextAddPath(ctx3, ph3);
+    CGContextSetLineWidth(ctx3, 1);
+    CGContextSetCMYKStrokeColor(ctx3, 0.7, 0.67, 0.29, 0.1, 0.2);
+    CGContextStrokePath(ctx3);
 
-    CGPathRelease(p);
-    CGPathRelease(p2);
-    CGPathRelease(p3);
+    CGPathRelease(ph1);
+    // CGPathRelease(ph2);
+    CGPathRelease(ph3);
 }
 
 @end

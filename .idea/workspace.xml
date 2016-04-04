@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cccb078a-3d38-423f-922d-ea2f6395a9a3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewAverageLine.imageset/MeterViewAverageLine@3x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewCursor.imageset/MeterViewCursor@3x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewDot.imageset/MeterViewDot@3x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewAverageLine.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewCursor.imageset/Contents.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewDot.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/MeterViewMeterBackground@3x.png" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/MeterViewMeterBackground@3x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/MeterViewMeterForeground@3x.png" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/MeterViewMeterForeground@3x.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NoiseComplain-Redesign.iml" afterPath="$PROJECT_DIR$/.idea/NoiseComplain-Redesign.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/NoiseComplain.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Main.storyboard" afterPath="$PROJECT_DIR$/NoiseComplain/Main.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.xib" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/config.plist" afterPath="$PROJECT_DIR$/NoiseComplain/config.plist" />
     </list>
     <ignored path="NoiseComplain-Redesign.iws" />
@@ -47,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/NoiseComplain/config.plist">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-26.444445">
-              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+              <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -96,8 +79,8 @@
       <file leaf-file-name="NCPGraphView.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45570973">
-              <caret line="221" column="48" selection-start-line="221" selection-start-column="48" selection-end-line="221" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.6189968">
+              <caret line="247" column="37" selection-start-line="247" selection-start-column="37" selection-end-line="247" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -932,7 +915,7 @@
     <entry file="file://$PROJECT_DIR$/NoiseComplain/config.plist">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.444445">
-          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -995,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45570973">
-          <caret line="221" column="48" selection-start-line="221" selection-start-column="48" selection-end-line="221" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.6189968">
+          <caret line="247" column="37" selection-start-line="247" selection-start-column="37" selection-end-line="247" selection-end-column="37" />
           <folding />
         </state>
       </provider>

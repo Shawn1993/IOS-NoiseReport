@@ -43,7 +43,7 @@
 	<key>GraphViewMinValue</key>
 	<integer>0</integer>
 	<key>GraphViewCapacity</key>
-	<integer>120</integer>
+	<integer>100</integer>
 	<key>GraphViewGridRow</key>
 	<integer>4</integer>
 	<key>GraphViewGridColumn</key>
@@ -52,5 +52,7 @@
 	<integer>105</integer>
 	<key>GraphViewGridMinValue</key>
 	<integer>15</integer>
+	<key>GraphViewSmooth</key>
+	<integer>3</integer>
 </dict>
 </plist>
