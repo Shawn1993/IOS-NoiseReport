@@ -237,8 +237,12 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
 // 定位位置更新
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
-    self.form.autoLongitude = @((float) userLocation.location.coordinate.longitude);
-    self.form.autoLatitude = @((float) userLocation.location.coordinate.latitude);
+    self.form.autoLongitude = @(userLocation.location.coordinate.longitude);
+    self.form.autoLatitude = @(userLocation.location.coordinate.latitude);
+    self.form.autoAltitude = @(userLocation.location.altitude);
+
+    self.form.autoHorizontalAccuracy = @(userLocation.location.horizontalAccuracy);
+    self.form.autoVerticalAccuracy = @(userLocation.location.verticalAccuracy);
 
     // 通过坐标请求反编码，获取地址
     self.reverseGeoCodeOption.reverseGeoPoint = userLocation.location.coordinate;
@@ -445,18 +449,9 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     // 向服务器发送投诉表单
     [NCPWebService sendComplainForm:self.form
                             success:^(NSDictionary *json) {
-                                // 检查返回的JSON是否包含请求成功信息
-                                if (!json[@"result"] || ((NSNumber *) json[@"result"]).intValue == 0) {
-                                    NSString *errorMessage = @"服务器数据错误!";
-                                    if (json[@"errorMessage"]) {
-                                        [errorMessage stringByAppendingFormat:@"\n错误: %@", errorMessage];
-                                    }
-                                    [self showErrorAlert:sendAlert message:errorMessage];
-                                    return;
-                                }
                                 // 检查返回的JSON是否包含formId信息
                                 if (!json[@"formId"] || ((NSNumber *) json[@"formId"]).longValue < 0) {
-                                    [self showErrorAlert:sendAlert message:@"服务器数据错误!\n错误: 未返回有效的投诉表单号"];
+                                    [self showErrorAlert:sendAlert message:@"服务器返回数据错误!\n错误: 未返回有效的投诉表单号"];
                                     return;
                                 }
 
@@ -470,9 +465,9 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                                 // 请求成功提示
                                 [self showSuccessAlert:sendAlert];
                             }
-                            failure:^(NSError *error) {
+                            failure:^(NSString *error) {
                                 [self showErrorAlert:sendAlert
-                                             message:[NSString stringWithFormat:@"服务器连接失败!\n错误: %@", error.localizedDescription]];
+                                             message:[NSString stringWithFormat:@"与服务器通信失败!\n%@", error]];
                             }];
 }
 

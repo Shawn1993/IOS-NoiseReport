@@ -21,14 +21,18 @@
 	<key>SQLiteFile</key>
 	<string>ncp.sqlite</string>
 	<key>ServerHost</key>
-	<string>http://222.200.176.92:58080/ncpserver</string>
+	<string>http://localhost:8080</string>
+	<key>ServerErrorMessageKey</key>
+	<string>error</string>
 	<key>ServerComplainPage</key>
 	<string>/api/complain</string>
-	<key>ServerDateFormat</key>
+	<key>RequestDateFormat</key>
 	<string>yyyy-MM-dd-HH-mm-ss</string>
 	<key>MeterViewMaxValue</key>
-	<integer>130</integer>
+	<integer>120</integer>
 	<key>MeterViewMinValue</key>
-	<integer>20</integer>
+	<integer>0</integer>
+	<key>DeviceTypePList</key>
+	<string>DevType</string>
 </dict>
 </plist>

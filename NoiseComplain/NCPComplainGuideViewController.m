@@ -165,6 +165,7 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
         } else {
             // 点击了某个投诉记录
             self.historyIndex = (int) indexPath.row;
+            [self performSegueWithIdentifier:kNCPSegueIdToDetail sender:self];
         }
     }
     // 取消选择

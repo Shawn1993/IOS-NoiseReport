@@ -53,6 +53,12 @@
 @property(nullable, nonatomic) NSNumber *autoLatitude;
 // 自动定位经度(double)
 @property(nullable, nonatomic) NSNumber *autoLongitude;
+// 自动定位海拔(double)
+@property(nullable, nonatomic) NSNumber *autoAltitude;
+// 自动定位水平精度(double)
+@property(nullable, nonatomic) NSNumber *autoHorizontalAccuracy;
+// 自动定位垂直精度(double)
+@property(nullable, nonatomic) NSNumber *autoVerticalAccuracy;
 
 // 手动定位位置
 @property(nullable, nonatomic) NSString *manualAddress;

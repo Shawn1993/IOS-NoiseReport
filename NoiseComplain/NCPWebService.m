@@ -18,13 +18,13 @@
 
 + (void)sendComplainForm:(NCPComplainForm *)form
                  success:(void (^)(NSDictionary *))success
-                 failure:(void (^)(NSError *))failure; {
+                 failure:(void (^)(NSString *))failure; {
 
     // 组织参数
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
     [paras setValue:form.devId forKey:@"devId"];
     [paras setValue:form.devType forKey:@"devType"];
-    [paras setValue:NCPStringFormDate(form.date) forKey:@"date"];
+    [paras setValue:NCPRequestFormatStringFormDate(form.date) forKey:@"date"];
 
     [paras setValue:@(form.averageIntensity) forKey:@"averageIntensity"];
     [paras setValue:form.intensitiesJSON forKey:@"intensities"];
@@ -33,6 +33,10 @@
     [paras setValue:form.autoAddress forKey:@"autoAddress"];
     [paras setValue:form.autoLatitude forKey:@"autoLatitude"];
     [paras setValue:form.autoLongitude forKey:@"autoLongitude"];
+    [paras setValue:form.autoAltitude forKey:@"autoAltitude"];
+    [paras setValue:form.autoHorizontalAccuracy forKey:@"autoHorizontalAccuracy"];
+    [paras setValue:form.autoVerticalAccuracy forKey:@"autoVerticalAccuracy"];
+
     [paras setValue:form.manualAddress forKey:@"manualAddress"];
     [paras setValue:form.manualLatitude forKey:@"manualLatitude"];
     [paras setValue:form.manualLongitude forKey:@"manualLongitude"];
@@ -48,19 +52,31 @@
        parameters:paras
          progress:nil
           success:^(NSURLSessionDataTask *task, id resp) {
-              // 请求成功, 解析JSON字符串, 进行处理
               NSError *error;
               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:(NSData *) resp options:0 error:&error];
               if (error) {
-                  failure(error);
+                  failure(error.localizedDescription);
               } else {
-                  // 成功请求并解析返回的字符串
+                  // 解析成功, 请求成功
                   success(json);
               }
           }
           failure:^(NSURLSessionDataTask *task, NSError *error) {
               // 请求失败, 返回错误消息
-              failure(error);
+              NSLog(@"Failure!!!");
+              NSData *data = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+              if (data) {
+                  NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                  NSError *jError;
+                  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jError];
+                  if (jError) {
+                      failure(jError.localizedDescription);
+                  } else {
+                      failure(json[NCPConfigString(@"ServerErrorMessageKey")]);
+                  }
+              } else {
+                  failure(error.localizedDescription);
+              }
           }];
 }
 

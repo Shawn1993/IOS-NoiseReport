@@ -10,11 +10,11 @@
 
 #pragma mark - 日期格式化与解析
 
-// 根据自定义格式格式化NSDate
-NSString *NCPStringFormDate(NSDate *date);
+// 使用与服务器通信的格式格式化NSDate
+NSString *NCPRequestFormatStringFormDate(NSDate *date);
 
-// 根据自定义格式获取NSDate对象
-NSDate *NCPDateFormString(NSString *string);
+// 根据服务器 格式获取NSDate对象
+NSDate *NCPDateFormRequestFormatString(NSString *string);
 
 #pragma mark - PList读取
 

@@ -15,6 +15,6 @@
 // 向服务器发送投诉表单
 + (void)sendComplainForm:(NCPComplainForm *)form
                  success:(void (^)(NSDictionary *))success
-                 failure:(void (^)(NSError *))failure;
+                 failure:(void (^)(NSString *))failure;
 
 @end

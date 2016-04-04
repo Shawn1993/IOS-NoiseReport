@@ -88,7 +88,7 @@
                                             "comment) "
                                             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                                     form.formId,
-                                    NCPStringFormDate(form.date),
+                    NCPRequestFormatStringFormDate(form.date),
                                     @(form.averageIntensity),
                                     form.intensitiesJSON,
                                     form.coord,
@@ -132,7 +132,7 @@
         // 新建ComplainForm对象并赋值
         NCPComplainForm *form = [[NCPComplainForm alloc] init];
         form.formId = @([rs longForColumn:@"form_id"]);
-        form.date = NCPDateFormString([rs stringForColumn:@"date"]);
+        form.date = NCPDateFormRequestFormatString([rs stringForColumn:@"date"]);
 
         form.intensitiesJSON = [rs stringForColumn:@"intensities"];
         if (form.intensities.count == 0) {

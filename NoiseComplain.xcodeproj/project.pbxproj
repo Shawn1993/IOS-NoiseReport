@@ -45,6 +45,7 @@
 		CA83D3B81C996849009A72C4 /* NCPMeterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA83D3B71C996849009A72C4 /* NCPMeterView.xib */; };
 		CA83D3BA1C998A9B009A72C4 /* NCPGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA83D3B91C998A9B009A72C4 /* NCPGraphView.xib */; };
 		CA83D3BD1C998AA9009A72C4 /* NCPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA83D3BC1C998AA9009A72C4 /* NCPGraphView.m */; };
+		CAC7AF0C1CAE0F1900E60533 /* DevType.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAC7AF0B1CAE0F1900E60533 /* DevType.plist */; };
 		CAC7E8661CA27B0900802998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC7E8651CA27B0900802998 /* LaunchScreen.storyboard */; };
 		CAC7E86F1CA27B8E00802998 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC7E8681CA27B8E00802998 /* BaiduMapAPI_Base.framework */; };
 		CAC7E8701CA27B8E00802998 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC7E8691CA27B8E00802998 /* BaiduMapAPI_Cloud.framework */; };
@@ -153,6 +154,7 @@
 		CA83D3B91C998A9B009A72C4 /* NCPGraphView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCPGraphView.xib; sourceTree = "<group>"; };
 		CA83D3BB1C998AA9009A72C4 /* NCPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPGraphView.h; sourceTree = "<group>"; };
 		CA83D3BC1C998AA9009A72C4 /* NCPGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPGraphView.m; sourceTree = "<group>"; };
+		CAC7AF0B1CAE0F1900E60533 /* DevType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevType.plist; sourceTree = "<group>"; };
 		CAC7E8651CA27B0900802998 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAC7E8681CA27B8E00802998 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = NoiseComplain/Libarary/BaiduMap/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		CAC7E8691CA27B8E00802998 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Cloud.framework; path = NoiseComplain/Libarary/BaiduMap/BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				CA4B317B1C0F1B2C0013E70E /* SfaType.plist */,
 				CA4B30F31C0F17050013E70E /* Info.plist */,
 				CA4D336D1CABE3CE006E158D /* config.plist */,
+				CAC7AF0B1CAE0F1900E60533 /* DevType.plist */,
 			);
 			name = PropertyList;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				CAC7E8661CA27B0900802998 /* LaunchScreen.storyboard in Resources */,
 				CA83D3B81C996849009A72C4 /* NCPMeterView.xib in Resources */,
 				CA4D336E1CABE3CE006E158D /* config.plist in Resources */,
+				CAC7AF0C1CAE0F1900E60533 /* DevType.plist in Resources */,
 				CA4B317C1C0F1B2C0013E70E /* NoiseType.plist in Resources */,
 				CA4D336B1CABAD3D006E158D /* Assets.xcassets in Resources */,
 				CA83D3BA1C998A9B009A72C4 /* NCPGraphView.xib in Resources */,
