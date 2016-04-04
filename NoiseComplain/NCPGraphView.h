@@ -13,4 +13,9 @@
  */
 @interface NCPGraphView : UIView
 
+#pragma mark - 添加值
+
+// 添加一个值
+- (void)addValue:(double)value;
+
 @end

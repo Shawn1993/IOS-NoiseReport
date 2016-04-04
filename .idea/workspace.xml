@@ -2,42 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cccb078a-3d38-423f-922d-ea2f6395a9a3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/DevType.plist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewAverageLine.imageset/MeterViewAverageLine@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewCursor.imageset/MeterViewCursor@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewDot.imageset/MeterViewDot@3x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewAverageLine.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewCursor.imageset/Contents.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewDot.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/MeterViewMeterBackground@3x.png" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/MeterViewMeterBackground@3x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/MeterViewMeterForeground@3x.png" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/MeterViewMeterForeground@3x.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NoiseComplain-Redesign.iml" afterPath="$PROJECT_DIR$/.idea/NoiseComplain-Redesign.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/NoiseComplain.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/ComplainFormSendIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/ComplainFormSendIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailDateIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailDateIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailFormIdIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailFormIdIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailIntensityIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailIntensityIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailLocationIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailLocationIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailNoiseTypeIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailNoiseTypeIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailProcessIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailProcessIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailSfaTypeIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/DetailSfaTypeIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/GuideEmptyRecordIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/GuideEmptyRecordIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/GuideRecordIcon.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/GuideRecordIcon.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonBackground.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonBackground.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonBackgroundPressed.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonBackgroundPressed.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonUpdateLocation.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewButtonUpdateLocation.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewPin.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/LocationViewPin.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewBackground.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewBackground.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterBackground.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/MeterViewMeterForeground.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarBlackList.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarBlackList.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarBlackListSelected.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarBlackListSelected.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarComplain.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarComplain.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarComplainSelected.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarComplainSelected.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarMeter.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarMeter.imageset/Contents.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarMeterSelected.imageset/Contents.json" afterPath="$PROJECT_DIR$/NoiseComplain/Assets.xcassets/TabBarMeterSelected.imageset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/Main.storyboard" afterPath="$PROJECT_DIR$/NoiseComplain/Main.storyboard" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPComplainForm.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPComplainForm.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPComplainFormViewController.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPComplainFormViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPComplainGuideViewController.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPComplainGuideViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGeneral.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGeneral.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGeneral.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGeneral.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPSQLiteDAO.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPSQLiteDAO.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPWebService.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPWebService.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPWebService.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPWebService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.xib" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterView.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/config.plist" afterPath="$PROJECT_DIR$/NoiseComplain/config.plist" />
     </list>
     <ignored path="NoiseComplain-Redesign.iws" />
@@ -59,71 +43,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NCPComplainGuideViewController.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPComplainGuideViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="178" column="50" selection-start-line="178" selection-start-column="50" selection-end-line="178" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NCPComplainForm.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPComplainForm.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NCPComplainForm.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPComplainForm.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NCPWebService.m" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPWebService.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9861555">
-              <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="config.plist" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NoiseComplain/config.plist">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+            <state vertical-scroll-proportion="-26.444445">
+              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NCPGeneral.m" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGeneral.m">
+      <file leaf-file-name="NCPMeterViewController.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DevType.plist" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/DevType.plist">
+      <file leaf-file-name="NCPMeterViewController.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,17 +77,57 @@
         <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.m">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+              <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NCPWebService.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPWebService.h">
+      <file leaf-file-name="NCPMeterView.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NCPGraphView.m" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.45570973">
+              <caret line="221" column="48" selection-start-line="221" selection-start-column="48" selection-end-line="221" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NCPNoiseRecorder.m" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NCPNoiseRecorder.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NCPGraphView.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -179,16 +163,11 @@
         <option value="$PROJECT_DIR$/NoiseComplain/NCPComplainDetailViewController.h" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPLocationViewController.h" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPLocationViewController.m" />
-        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" />
-        <option value="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPComplainDetailViewController.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPSQLiteDAO.h" />
-        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPComplainForm.m" />
-        <option value="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPSQLiteDAO.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPPrefixHeader.pch" />
-        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPComplainForm.h" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPGeneral.h" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPWebService.h" />
@@ -198,6 +177,12 @@
         <option value="$PROJECT_DIR$/NoiseComplain/DevType.plist" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPComplainFormViewController.m" />
         <option value="$PROJECT_DIR$/NoiseComplain/NCPWebService.m" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterView.h" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterView.m" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPGraphView.h" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m" />
+        <option value="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" />
       </list>
     </option>
   </component>
@@ -317,28 +302,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Complain" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NoiseComplain" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NoiseComplain" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sources" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ViewControllers" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -547,7 +510,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mura/Projects/Xcode/NoiseComplain-Redesign/NoiseComplain/NCPWebService.m" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/mura/Projects/Xcode/NoiseComplain-Redesign/NoiseComplain/NCPMeterView.h" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="NoiseComplain" />
   </component>
   <component name="RunManager" selected="Application.NoiseComplain">
@@ -615,27 +578,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1057" width="1920" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19009584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19009584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27150258" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30259067" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16986156" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26435643" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27227724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3029703" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905138" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26435643" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -651,7 +614,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -831,45 +794,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2514793">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/main.mm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -901,20 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95020324">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="73" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPLocationViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -926,6 +840,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -976,16 +891,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPWebService.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9861555">
-          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/config.plist">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1006,14 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPWebService.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1026,6 +925,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="466" column="29" selection-start-line="466" selection-start-column="29" selection-end-line="466" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/config.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.444445">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPNoiseRecorder.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPMeterViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45570973">
+          <caret line="221" column="48" selection-start-line="221" selection-start-column="48" selection-end-line="221" selection-end-column="48" />
           <folding />
         </state>
       </provider>

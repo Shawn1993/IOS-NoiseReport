@@ -430,18 +430,10 @@
 		CA4B31191C0F178E0013E70E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CA4D336C1CABE393006E158D /* BlackList */,
 				CAACDEBB1C2BE4F600456D5B /* Complain */,
 				CA1BBE2E1C8E811800C2FAE3 /* Meter */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		CA4D336C1CABE393006E158D /* BlackList */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = BlackList;
 			sourceTree = "<group>";
 		};
 		CA540B921C27ED5300F8E860 /* Documents */ = {

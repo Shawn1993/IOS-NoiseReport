@@ -48,6 +48,7 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2p-cq-t8Z" customClass="NCPGraphView">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="g2p-cq-t8Z" secondAttribute="height" multiplier="3:2" id="0DZ-qv-fml"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="g2p-cq-t8Z" secondAttribute="height" multiplier="2:1" id="Z29-DH-Ns6"/>
@@ -67,6 +68,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NeB-QJ-IZf" customClass="NCPMeterView">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="NeB-QJ-IZf" secondAttribute="height" multiplier="1:1" id="HXF-KO-jad"/>
                                         </constraints>
@@ -84,7 +86,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dTF-80-wDW" secondAttribute="trailing" id="2rI-x5-Zbz"/>
-                                    <constraint firstItem="g2p-cq-t8Z" firstAttribute="top" relation="lessThanOrEqual" secondItem="NeB-QJ-IZf" secondAttribute="bottom" priority="510" constant="24" id="645-JK-Yfe"/>
+                                    <constraint firstItem="g2p-cq-t8Z" firstAttribute="top" relation="lessThanOrEqual" secondItem="NeB-QJ-IZf" secondAttribute="bottom" priority="510" constant="18" id="645-JK-Yfe"/>
                                     <constraint firstItem="NeB-QJ-IZf" firstAttribute="top" secondItem="htn-Px-xYI" secondAttribute="top" constant="48" id="7cp-K8-TSa"/>
                                     <constraint firstItem="g2p-cq-t8Z" firstAttribute="top" relation="lessThanOrEqual" secondItem="NeB-QJ-IZf" secondAttribute="bottom" priority="480" id="Iu1-oG-ZD5"/>
                                     <constraint firstItem="dTF-80-wDW" firstAttribute="top" secondItem="htn-Px-xYI" secondAttribute="top" id="Oto-NW-HLA"/>
@@ -298,7 +300,7 @@
                             <tableViewSection footerTitle="使用手机当前位置作为投诉地点" id="z2Y-cz-kN6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LA7-hV-EQz" detailTextLabel="HY7-0k-CUd" imageView="oFU-dC-d2Q" style="IBUITableViewCellStyleValue1" id="Nkf-Bu-AeC">
-                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkf-Bu-AeC" id="lcH-07-z6E">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -339,7 +341,7 @@
                             <tableViewSection footerTitle="请描述一下您遇到的噪音现象" id="SCo-d6-2ri">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Fo-gf-zI0" detailTextLabel="aD4-db-wge" imageView="AYe-yY-Xop" style="IBUITableViewCellStyleValue1" id="oRL-jh-bfW">
-                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRL-jh-bfW" id="3aa-MV-ud9">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -373,7 +375,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Qmn-je-IE8" detailTextLabel="Ugn-28-qBS" imageView="jbJ-e3-Dd7" style="IBUITableViewCellStyleValue1" id="IfY-QW-yGw">
-                                        <rect key="frame" x="0.0" y="320" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="321" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfY-QW-yGw" id="xdm-Gr-Vi7">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -407,7 +409,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="jDA-lV-ZLE">
-                                        <rect key="frame" x="0.0" y="364" width="600" height="132"/>
+                                        <rect key="frame" x="0.0" y="365" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="jDA-lV-ZLE" id="lrD-42-5Sd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="131.5"/>
@@ -475,7 +477,7 @@
                             <tableViewSection id="qHh-kp-9IO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="SIs-yg-m4b">
-                                        <rect key="frame" x="0.0" y="540.5" width="600" height="45"/>
+                                        <rect key="frame" x="0.0" y="542" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SIs-yg-m4b" id="8Yy-3e-IXM">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
@@ -571,81 +573,6 @@
             </objects>
             <point key="canvasLocation" x="2517" y="-842.25"/>
         </scene>
-        <!--黑点地图-->
-        <scene sceneID="4VH-Do-g7B">
-            <objects>
-                <navigationController id="2cU-RQ-nLl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="黑点地图" image="TabBarBlackList" selectedImage="TabBarBlackListSelected" id="l9t-qX-BEJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wof-Gu-P0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.082352941176470587" green="0.058823529411764705" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="VXh-KY-PuE" kind="relationship" relationship="rootViewController" id="K9A-us-rVM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bLL-3e-VmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-15" y="-63.75"/>
-        </scene>
-        <!--噪声黑点地图-->
-        <scene sceneID="Zot-K3-y2M">
-            <objects>
-                <viewController id="VXh-KY-PuE" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CfS-f6-QwL"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Hz-62-2nP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1RH-15-5V7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-hL-45c">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5Gg-hL-45c" firstAttribute="top" secondItem="CfS-f6-QwL" secondAttribute="bottom" id="4oM-rM-RSN"/>
-                            <constraint firstItem="4Hz-62-2nP" firstAttribute="top" secondItem="5Gg-hL-45c" secondAttribute="bottom" id="M7J-cT-9jP"/>
-                            <constraint firstItem="5Gg-hL-45c" firstAttribute="leading" secondItem="1RH-15-5V7" secondAttribute="leadingMargin" constant="-20" id="ZPf-fc-fJB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Gg-hL-45c" secondAttribute="trailing" constant="-20" id="cdN-so-N7e"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="5Gg-hL-45c"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="M7J-cT-9jP"/>
-                                <exclude reference="4oM-rM-RSN"/>
-                                <exclude reference="ZPf-fc-fJB"/>
-                                <exclude reference="cdN-so-N7e"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="5Gg-hL-45c"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="M7J-cT-9jP"/>
-                                <include reference="4oM-rM-RSN"/>
-                                <include reference="ZPf-fc-fJB"/>
-                                <include reference="cdN-so-N7e"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="噪声黑点地图" id="rvE-tK-PO1"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GK9-c1-hvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="775.5" y="-63.75"/>
-        </scene>
         <!--投诉记录列表-->
         <scene sceneID="XLT-S2-Bqy">
             <objects>
@@ -674,9 +601,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.43414610619999999" green="0.070609278979999995" blue="0.69631153349999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <rect key="frame" x="72" y="11" width="96" height="22"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -1364,7 +1290,6 @@
                     <connections>
                         <segue destination="PhM-yN-tRS" kind="relationship" relationship="viewControllers" id="pEC-D2-lf3"/>
                         <segue destination="Kwe-bb-v5U" kind="relationship" relationship="viewControllers" id="dkH-tC-MK7"/>
-                        <segue destination="2cU-RQ-nLl" kind="relationship" relationship="viewControllers" id="zcG-Tm-WKu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSP-92-eGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1387,8 +1312,6 @@
         <image name="LocationViewButtonUpdateLocation" width="40" height="40"/>
         <image name="LocationViewPin" width="24" height="40"/>
         <image name="MeterViewBackground" width="889" height="1264"/>
-        <image name="TabBarBlackList" width="30" height="30"/>
-        <image name="TabBarBlackListSelected" width="30" height="30"/>
         <image name="TabBarComplain" width="30" height="30"/>
         <image name="TabBarComplainSelected" width="30" height="30"/>
         <image name="TabBarMeter" width="30" height="30"/>

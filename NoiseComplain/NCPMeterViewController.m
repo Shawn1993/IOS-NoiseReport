@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // 清除自定义View的背景颜色
+    // 清除Storyboard中View的背景颜色
     self.meterView.backgroundColor = [UIColor clearColor];
     self.graphView.backgroundColor = [UIColor clearColor];
 }
@@ -45,14 +45,16 @@
 
     // 初始化录音器
     self.recorder = [[NCPNoiseRecorder alloc] init];
-    [self.recorder startWithTick:1.0f / 30.0f tickHandler:^(double current, double peak) {
+    const int j = (const int) (NCPConfigDouble(@"MeterVCRefreshPerSecond") / NCPConfigDouble(@"MeterVCRefreshLabelPerSecond"));
+    [self.recorder startWithTick:1.0f / NCPConfigDouble(@"MeterVCRefreshPerSecond") tickHandler:^(double current, double peak) {
         static int i = 0;
-        if (i++ > 10) {
+        if (++i > j) {
             i = 0;
             [self.meterView setValueWithLable:current];
         } else {
             self.meterView.value = current;
         }
+        [self.graphView addValue:current];
     }];
 }
 
@@ -64,6 +66,7 @@
     [self.recorder stop];
     self.recorder = nil;
 }
+
 
 // 测试临时方法
 - (IBAction)Test:(id)sender {

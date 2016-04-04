@@ -26,13 +26,31 @@
 	<string>error</string>
 	<key>ServerComplainPage</key>
 	<string>/api/complain</string>
+	<key>DeviceTypePList</key>
+	<string>DevType</string>
 	<key>RequestDateFormat</key>
 	<string>yyyy-MM-dd-HH-mm-ss</string>
+	<key>MeterVCRefreshPerSecond</key>
+	<integer>40</integer>
+	<key>MeterVCRefreshLabelPerSecond</key>
+	<integer>3</integer>
 	<key>MeterViewMaxValue</key>
 	<integer>120</integer>
 	<key>MeterViewMinValue</key>
 	<integer>0</integer>
-	<key>DeviceTypePList</key>
-	<string>DevType</string>
+	<key>GraphViewMaxValue</key>
+	<integer>120</integer>
+	<key>GraphViewMinValue</key>
+	<integer>0</integer>
+	<key>GraphViewCapacity</key>
+	<integer>120</integer>
+	<key>GraphViewGridRow</key>
+	<integer>4</integer>
+	<key>GraphViewGridColumn</key>
+	<integer>5</integer>
+	<key>GraphViewGridMaxValue</key>
+	<integer>105</integer>
+	<key>GraphViewGridMinValue</key>
+	<integer>15</integer>
 </dict>
 </plist>

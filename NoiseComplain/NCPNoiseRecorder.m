@@ -9,7 +9,27 @@
 #import "NCPNoiseRecorder.h"
 #import <AVFoundation/AVFoundation.h>
 
-#pragma mark - 配置常量
+#pragma mark - 配置信息获取
+
+// 获取最大值
+static double max() {
+    static double max;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        max = NCPConfigDouble(@"RecorderMaxValue");
+    });
+    return max;
+}
+
+// 获取最大值
+static double min() {
+    static double min;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        min = NCPConfigDouble(@"RecorderMinValue");
+    });
+    return min;
+}
 
 @interface NCPNoiseRecorder ()
 
@@ -17,8 +37,8 @@
 @property(nonatomic, strong) AVAudioRecorder *audioRecorder;
 
 // 声强
-@property(nonatomic, readonly, getter=currentValue) double currentValue;
-@property(nonatomic, readonly, getter=peakValue) double peakValue;
+@property(nonatomic, readonly) double currentValue;
+@property(nonatomic, readonly) double peakValue;
 
 #pragma mark - 定期调用属性
 @property(nonatomic, assign) NSTimeInterval tick;
@@ -53,34 +73,18 @@
 
 #pragma mark - 声强计算
 
-// 获取最大值
-- (double)max {
-    static double max;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        max = NCPConfigDouble(@"RecorderMaxValue");
-    });
-    return max;
-}
-
-// 获取最大值
-- (double)min {
-    static double min;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        min = NCPConfigDouble(@"RecorderMinValue");
-    });
-    return min;
-}
-
 // 获取平均值
 - (double)currentValue {
-    return (([self.audioRecorder averagePowerForChannel:0] + 160) * (self.max - self.min) / 160) + self.min;
+    static double last = 0.0f;
+    double current = (([self.audioRecorder averagePowerForChannel:0] + 160) * (max() - min()) / 160) + min();
+    double average = (current + last) / 2.0;
+    last = current;
+    return average;
 }
 
 // 获取峰值
 - (double)peakValue {
-    return (([self.audioRecorder peakPowerForChannel:0] + 160) * (self.max - self.min) / 160) + self.min;
+    return (([self.audioRecorder peakPowerForChannel:0] + 160) * (max() - min()) / 160) + min();
 }
 
 #pragma mark - 开启与停止
@@ -165,6 +169,7 @@
 #pragma mark - 计时器回调
 
 - (void)tickCallBack {
+    // 刷新录音器
     [self.audioRecorder updateMeters];
     self.tickHandler(self.currentValue, self.peakValue);
 }
