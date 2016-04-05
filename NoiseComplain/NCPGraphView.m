@@ -80,16 +80,6 @@ static double gridMin() {
     return min;
 }
 
-// 获取平滑系数
-static int smooth() {
-    static int dilute;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dilute = NCPConfigInteger(@"GraphViewSmooth");
-    });
-    return dilute;
-}
-
 #pragma maek - 计算纵坐标
 
 // 计算纵坐标
@@ -199,37 +189,27 @@ static CGFloat calY(CGRect rect, double value) {
     // 计算坐标
     CGFloat start = self.imageDot.frame.origin.x + dotThick;
     CGFloat end = rect.origin.x + rect.size.width - dotThick;
-    CGFloat step = (end - start) / (capacity() - smooth());
+    CGFloat step = (end - start) / (capacity() - 3);
 
     // 绘制轨迹线
     CGContextRef ctx1 = UIGraphicsGetCurrentContext();
     CGMutablePathRef ph1 = CGPathCreateMutable();
     CGFloat x = start;
-    CGPathMoveToPoint(ph1, NULL, start, dotY);
     int index = (int) (self.values.count - 1);
-    for (int i = 0; i < self.offset % smooth(); i++) {
-        CGPathAddLineToPoint(ph1, NULL, x, calY(rect, ((NSNumber *) self.values[(NSUInteger) index]).doubleValue));
+    while (index >= 3) {
+        double vm1 = ((NSNumber *) self.values[(NSUInteger) index]).doubleValue;
+        double v0 = ((NSNumber *) self.values[(NSUInteger) (index - 1)]).doubleValue;
+        double v1 = ((NSNumber *) self.values[(NSUInteger) (index - 2)]).doubleValue;
+        double v2 = ((NSNumber *) self.values[(NSUInteger) (index - 3)]).doubleValue;
+        double c0 = v0 + (v1 - vm1) / 4;
+        double c1 = v1 - (v2 - v0) / 4;
+        CGContextMoveToPoint(ctx1, x, calY(rect, v0));
+        CGContextAddCurveToPoint(ctx1,
+                x + step / 2, calY(rect, c0),
+                x + step / 2, calY(rect, c1),
+                x + step, calY(rect, v1));
         x += step;
         index--;
-    }
-    if (index >= 0) {
-        CGPathAddLineToPoint(ph1, NULL, x, calY(rect, ((NSNumber *) self.values[(NSUInteger) index]).doubleValue));
-    }
-    while (index >= 3 * smooth()) {
-        double vm1 = ((NSNumber *) self.values[(NSUInteger) index]).doubleValue;
-        double v0 = ((NSNumber *) self.values[(NSUInteger) (index - smooth())]).doubleValue;
-        double v1 = ((NSNumber *) self.values[(NSUInteger) (index - 2 * smooth())]).doubleValue;
-        double v2 = ((NSNumber *) self.values[(NSUInteger) (index - 3 * smooth())]).doubleValue;
-        double k0 = (v1 - vm1) / 2;
-        double k1 = (v2 - v0) / 2;
-        CGPoint p0 = CGPointMake(x, calY(rect, v0));
-        CGPoint c0 = CGPointMake(x + step * smooth() / 2, calY(rect, v0 + k0 / 2));
-        CGPoint c1 = CGPointMake(x + step * smooth() / 2, calY(rect, v1 - k1 / 2));
-        CGPoint p1 = CGPointMake(x + step * smooth(), calY(rect, v1));
-        CGContextMoveToPoint(ctx1, p0.x, p0.y);
-        CGContextAddCurveToPoint(ctx1, c0.x, c0.y, c1.x, c1.y, p1.x, p1.y);
-        x += step * smooth();
-        index -= smooth();
     }
     CGContextAddPath(ctx1, ph1);
     CGContextSetLineWidth(ctx1, 6);

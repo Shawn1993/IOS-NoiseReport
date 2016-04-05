@@ -31,7 +31,7 @@
 	<key>RequestDateFormat</key>
 	<string>yyyy-MM-dd-HH-mm-ss</string>
 	<key>MeterVCRefreshPerSecond</key>
-	<integer>40</integer>
+	<integer>30</integer>
 	<key>MeterVCRefreshLabelPerSecond</key>
 	<integer>3</integer>
 	<key>MeterViewMaxValue</key>
@@ -43,7 +43,7 @@
 	<key>GraphViewMinValue</key>
 	<integer>0</integer>
 	<key>GraphViewCapacity</key>
-	<integer>100</integer>
+	<integer>60</integer>
 	<key>GraphViewGridRow</key>
 	<integer>4</integer>
 	<key>GraphViewGridColumn</key>

@@ -4,7 +4,6 @@
     <list default="true" id="cccb078a-3d38-423f-922d-ea2f6395a9a3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" afterPath="$PROJECT_DIR$/NoiseComplain/NCPGraphView.xib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NoiseComplain/config.plist" afterPath="$PROJECT_DIR$/NoiseComplain/config.plist" />
     </list>
     <ignored path="NoiseComplain-Redesign.iws" />
@@ -79,8 +78,8 @@
       <file leaf-file-name="NCPGraphView.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6189968">
-              <caret line="247" column="37" selection-start-line="247" selection-start-column="37" selection-end-line="247" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.29242262">
+              <caret line="197" column="46" selection-start-line="197" selection-start-column="46" selection-end-line="197" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -978,8 +977,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NoiseComplain/NCPGraphView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6189968">
-          <caret line="247" column="37" selection-start-line="247" selection-start-column="37" selection-end-line="247" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.29242262">
+          <caret line="197" column="46" selection-start-line="197" selection-start-column="46" selection-end-line="197" selection-end-column="46" />
           <folding />
         </state>
       </provider>
