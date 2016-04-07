@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class NSArray;
+
 #pragma mark - 日期格式化与解析
 
 // 使用与服务器通信的格式格式化NSDate
@@ -42,3 +44,6 @@ int NCPConfigInteger(NSString *key);
 
 // 获取一个浮点型常量
 double NCPConfigDouble(NSString *key);
+
+// 获取一个数组型乘凉
+NSArray *NCPConfigArray(NSString *key);

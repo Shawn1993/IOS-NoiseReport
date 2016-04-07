@@ -74,3 +74,8 @@ int NCPConfigInteger(NSString *key) {
 double NCPConfigDouble(NSString *key) {
     return ((NSNumber *) NCPReadPListDictionary(kNCPConfigPListFile)[key]).doubleValue;
 }
+
+// 获取一个数组型常量
+NSArray *NCPConfigArray(NSString *key) {
+    return NCPReadPListDictionary(kNCPConfigPListFile)[key];
+}

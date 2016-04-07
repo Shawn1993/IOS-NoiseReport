@@ -21,7 +21,7 @@
 	<key>SQLiteFile</key>
 	<string>ncp.sqlite</string>
 	<key>ServerHost</key>
-	<string>http://localhost:8080</string>
+	<string>http://222.200.176.92:58080/ncpserver</string>
 	<key>ServerErrorMessageKey</key>
 	<string>error</string>
 	<key>ServerComplainPage</key>
@@ -38,12 +38,21 @@
 	<integer>120</integer>
 	<key>MeterViewMinValue</key>
 	<integer>0</integer>
+	<key>MeterViewFontSize</key>
+	<real>0.536</real>
+	<key>MeterViewFontRatios</key>
+	<array>
+		<real>1</real>
+		<string>0.833</string>
+		<string>0.708</string>
+		<string>0.602</string>
+	</array>
 	<key>GraphViewMaxValue</key>
 	<integer>120</integer>
 	<key>GraphViewMinValue</key>
 	<integer>0</integer>
 	<key>GraphViewCapacity</key>
-	<integer>60</integer>
+	<integer>75</integer>
 	<key>GraphViewGridRow</key>
 	<integer>4</integer>
 	<key>GraphViewGridColumn</key>

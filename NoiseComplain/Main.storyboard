@@ -300,7 +300,7 @@
                             <tableViewSection footerTitle="使用手机当前位置作为投诉地点" id="z2Y-cz-kN6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LA7-hV-EQz" detailTextLabel="HY7-0k-CUd" imageView="oFU-dC-d2Q" style="IBUITableViewCellStyleValue1" id="Nkf-Bu-AeC">
-                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkf-Bu-AeC" id="lcH-07-z6E">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -341,7 +341,7 @@
                             <tableViewSection footerTitle="请描述一下您遇到的噪音现象" id="SCo-d6-2ri">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Fo-gf-zI0" detailTextLabel="aD4-db-wge" imageView="AYe-yY-Xop" style="IBUITableViewCellStyleValue1" id="oRL-jh-bfW">
-                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRL-jh-bfW" id="3aa-MV-ud9">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -375,7 +375,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Qmn-je-IE8" detailTextLabel="Ugn-28-qBS" imageView="jbJ-e3-Dd7" style="IBUITableViewCellStyleValue1" id="IfY-QW-yGw">
-                                        <rect key="frame" x="0.0" y="321" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfY-QW-yGw" id="xdm-Gr-Vi7">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -409,7 +409,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="jDA-lV-ZLE">
-                                        <rect key="frame" x="0.0" y="365" width="600" height="132"/>
+                                        <rect key="frame" x="0.0" y="364" width="600" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="jDA-lV-ZLE" id="lrD-42-5Sd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="131.5"/>
@@ -477,7 +477,7 @@
                             <tableViewSection id="qHh-kp-9IO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="SIs-yg-m4b">
-                                        <rect key="frame" x="0.0" y="542" width="600" height="45"/>
+                                        <rect key="frame" x="0.0" y="540.5" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SIs-yg-m4b" id="8Yy-3e-IXM">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
@@ -573,7 +573,7 @@
             </objects>
             <point key="canvasLocation" x="2517" y="-842.25"/>
         </scene>
-        <!--投诉记录列表-->
+        <!--投诉列表-->
         <scene sceneID="XLT-S2-Bqy">
             <objects>
                 <viewController id="wEL-gt-EwT" customClass="NCPComplainGuideViewController" sceneMemberID="viewController">
@@ -734,7 +734,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="投诉记录列表" id="3e9-XP-hvy">
+                    <navigationItem key="navigationItem" title="投诉列表" id="3e9-XP-hvy">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="o7V-U5-9LF">
                             <connections>
                                 <segue destination="1d9-tO-8ag" kind="presentation" identifier="ComplainGuideToComplainForm" id="bia-HU-JRQ"/>
@@ -794,12 +794,69 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="176" id="gXt-VN-6ro">
+                                        <rect key="frame" x="0.0" y="157.5" width="600" height="176"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gXt-VN-6ro" id="OF0-b2-b0U">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="175.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="91s-ZR-8e8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="processCell" id="AMF-ah-lLi">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AMF-ah-lLi" id="pAD-IP-AVp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </tableViewCellContentView>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                    <sections/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="dEX-xZ-XsP" id="Vvw-og-sM1"/>
+                                                        <outlet property="delegate" destination="dEX-xZ-XsP" id="vUt-mS-URv"/>
+                                                    </connections>
+                                                </tableView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="91s-ZR-8e8" secondAttribute="bottom" id="DwA-zF-Ay2"/>
+                                                <constraint firstItem="91s-ZR-8e8" firstAttribute="top" secondItem="OF0-b2-b0U" secondAttribute="topMargin" id="K6C-uq-QS3"/>
+                                                <constraint firstItem="91s-ZR-8e8" firstAttribute="leading" secondItem="OF0-b2-b0U" secondAttribute="leadingMargin" id="fSP-bS-1Wj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="91s-ZR-8e8" secondAttribute="trailing" id="neS-Y7-JaO"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="91s-ZR-8e8"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="DwA-zF-Ay2"/>
+                                                    <exclude reference="K6C-uq-QS3"/>
+                                                    <exclude reference="fSP-bS-1Wj"/>
+                                                    <exclude reference="neS-Y7-JaO"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="91s-ZR-8e8"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="DwA-zF-Ay2"/>
+                                                    <include reference="K6C-uq-QS3"/>
+                                                    <include reference="fSP-bS-1Wj"/>
+                                                    <include reference="neS-Y7-JaO"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="投诉表单信息" id="HKn-5J-zqQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tyr-ys-fVw" detailTextLabel="ZPZ-kj-YPE" imageView="dJs-tH-6PQ" style="IBUITableViewCellStyleValue1" id="CwT-u5-u18">
-                                        <rect key="frame" x="0.0" y="207.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="383.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CwT-u5-u18" id="GR4-WF-kAi">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -833,7 +890,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="oEk-0F-25P" detailTextLabel="6Ae-oL-dMl" imageView="h5H-wo-pWD" style="IBUITableViewCellStyleValue1" id="WVG-Jr-CfZ">
-                                        <rect key="frame" x="0.0" y="251.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="427.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WVG-Jr-CfZ" id="NJh-wp-u0S">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -867,7 +924,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Gkv-WN-25f" detailTextLabel="nsJ-La-25a" imageView="Y8p-rs-WrQ" style="IBUITableViewCellStyleValue1" id="L5b-Ha-G7o">
-                                        <rect key="frame" x="0.0" y="295.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="471.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L5b-Ha-G7o" id="zrk-I0-xM2">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -905,7 +962,7 @@
                             <tableViewSection headerTitle="投诉地址" id="98K-Km-1yw">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="dkV-WD-R6g" detailTextLabel="4pP-gn-Rlr" imageView="Y6g-eH-ZYv" style="IBUITableViewCellStyleValue1" id="zyU-Gd-8V5">
-                                        <rect key="frame" x="0.0" y="389.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="565.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zyU-Gd-8V5" id="7ts-oX-H49">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -943,7 +1000,7 @@
                             <tableViewSection headerTitle="投诉描述" footerTitle=" " id="Vcr-O7-KGj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Sjc-MG-ZpF" detailTextLabel="RKM-HQ-R0c" imageView="GUa-82-cOR" style="IBUITableViewCellStyleValue1" id="UKL-qF-wWc">
-                                        <rect key="frame" x="0.0" y="483.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="659.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UKL-qF-wWc" id="Pu9-mJ-gcF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -977,7 +1034,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ivk-59-xFa" detailTextLabel="jUA-Vk-B38" imageView="RtA-1v-uni" style="IBUITableViewCellStyleValue1" id="bIr-zT-HqO">
-                                        <rect key="frame" x="0.0" y="527.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="703.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bIr-zT-HqO" id="b92-SM-0tH">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1027,6 +1084,7 @@
                         <outlet property="labelNoiseType" destination="RKM-HQ-R0c" id="S9J-ct-o50"/>
                         <outlet property="labelProcess" destination="nDD-2g-Gyg" id="TbG-QX-Zov"/>
                         <outlet property="labelSfaType" destination="jUA-Vk-B38" id="dBR-UK-BWs"/>
+                        <outlet property="tableViewProcess" destination="91s-ZR-8e8" id="pQw-AL-UwC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teg-rk-anv" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -64,8 +64,8 @@
                 "manual_address TEXT,"
                 "manual_latitude REAL,"
                 "manual_longitude REAL,"
-                "sfa_type TEXT,"
-                "noise_type TEXT,"
+                "sfa_type INTEGER,"
+                "noise_type INTEGER,"
                 "comment TEXT"
                 ")"];
     }
@@ -88,7 +88,7 @@
                                             "comment) "
                                             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                                     form.formId,
-                    NCPRequestFormatStringFormDate(form.date),
+                                    NCPRequestFormatStringFormDate(form.date),
                                     @(form.averageIntensity),
                                     form.intensitiesJSON,
                                     form.coord,
@@ -98,8 +98,8 @@
                                     form.manualAddress,
                                     form.manualLatitude,
                                     form.manualLongitude,
-                                    form.sfaType,
-                                    form.noiseType,
+                                    @(form.sfaType),
+                                    @(form.noiseType),
                                     form.comment
     ];
 
@@ -148,8 +148,8 @@
         form.manualLatitude = @([rs doubleForColumn:@"manual_latitude"]);
         form.manualLongitude = @([rs doubleForColumn:@"manual_longitude"]);
 
-        form.sfaType = [rs stringForColumn:@"sfa_type"];
-        form.noiseType = [rs stringForColumn:@"noise_type"];
+        form.sfaType = (NSUInteger) [rs intForColumn:@"sfa_type"];
+        form.noiseType = (NSUInteger) [rs intForColumn:@"noise_type"];
         form.comment = [rs stringForColumn:@"comment"];
 
         [array addObject:form];

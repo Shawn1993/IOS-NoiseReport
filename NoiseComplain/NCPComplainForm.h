@@ -69,10 +69,24 @@
 
 #pragma mark - 描述信息
 
-// 声功能区类型
-@property(nullable, nonatomic) NSString *sfaType;
-// 噪声类型
-@property(nullable, nonatomic) NSString *noiseType;
+// 噪声类型序号
+@property(nonatomic) NSUInteger noiseType;
+// 噪声类型显示标题
+@property(nullable, nonatomic, readonly) NSString *noiseTypeTitle;
+// 噪声类型短标题
+@property(nullable, nonatomic, readonly) NSString *noiseTypeShort;
+// 噪声类型上传内容
+@property(nullable, nonatomic, readonly) NSString *noiseTypePost;
+
+// 声功能区序号
+@property(nonatomic) NSUInteger sfaType;
+// 声功能区类型标题
+@property(nullable, nonatomic, readonly) NSString *sfaTypeTitle;
+// 声功能区短标题
+@property(nullable, nonatomic, readonly) NSString *sfaTypeShort;
+// 声功能区上传内容
+@property(nullable, nonatomic, readonly) NSString *sfaTypePost;
+
 // 描述信息
 @property(nullable, nonatomic) NSString *comment;
 

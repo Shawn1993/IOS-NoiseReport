@@ -8,14 +8,27 @@
 
 #import "NCPMeterView.h"
 
-#pragma mark - 常量定义
+#pragma mark - 获取配置常量
 
-// 字体大小比例
-static const double kFontRatio = 0.546f;
-// 字数不同时的字体大小比例
-static const double kFontLengthRatio[4] = {1.0f, 0.833f, 0.708f, 0.602f};
+// 获取字体大小
+static double fontSize() {
+    static double size;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        size = NCPConfigDouble(@"MeterViewFontSize");
+    });
+    return size;
+}
 
-#pragma mark - 获取最大最小值
+// 获取不同字数下的字体大小比例
+static double fontRatio(int i) {
+    static NSArray *ratios;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ratios = NCPConfigArray(@"MeterViewFontRatios");
+    });
+    return ((NSNumber *) ratios[(NSUInteger) i]).doubleValue;
+}
 
 // 获取最大值
 static double max() {
@@ -87,10 +100,10 @@ static double min() {
 
     // 计算字体
     CGRect rect = self.bounds;
-    double ratio = kFontRatio;
+    double ratio = fontSize();
     NSString *valueStr = [NSString stringWithFormat:@"%.0f", _value];
     if (valueStr.length > 0 && valueStr.length <= 4) {
-        ratio *= kFontLengthRatio[valueStr.length - 1];
+        ratio *= fontRatio((int) valueStr.length - 1);
     }
     self.labelValue.font = [UIFont fontWithName:@"Arial-BoldMT" size:(CGFloat) (rect.size.width * ratio)];
     self.labelValue.text = valueStr;

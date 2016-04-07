@@ -22,6 +22,7 @@
 
     // 组织参数
     NSMutableDictionary *paras = [NSMutableDictionary dictionary];
+    [paras setValue:@"iOS" forKey:@"platform"];
     [paras setValue:form.devId forKey:@"devId"];
     [paras setValue:form.devType forKey:@"devType"];
     [paras setValue:NCPRequestFormatStringFormDate(form.date) forKey:@"date"];
@@ -41,8 +42,8 @@
     [paras setValue:form.manualLatitude forKey:@"manualLatitude"];
     [paras setValue:form.manualLongitude forKey:@"manualLongitude"];
 
-    [paras setValue:form.sfaType forKey:@"sfaType"];
-    [paras setValue:form.noiseType forKey:@"noiseType"];
+    [paras setValue:form.sfaTypePost forKey:@"sfaType"];
+    [paras setValue:form.noiseTypePost forKey:@"noiseType"];
     [paras setValue:form.comment forKey:@"comment"];
 
     // 发送请求
@@ -55,6 +56,7 @@
               NSError *error;
               NSDictionary *json = [NSJSONSerialization JSONObjectWithData:(NSData *) resp options:0 error:&error];
               if (error) {
+                  NSLog(@"JSON Error(success block): %@", [[NSString alloc] initWithData:resp encoding:NSUTF8StringEncoding]);
                   failure(error.localizedDescription);
               } else {
                   // 解析成功, 请求成功
@@ -70,6 +72,7 @@
                   NSError *jError;
                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jError];
                   if (jError) {
+                      NSLog(@"JSON Error(failure block): %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                       failure(jError.localizedDescription);
                   } else {
                       failure(json[NCPConfigString(@"ServerErrorMessageKey")]);

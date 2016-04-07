@@ -113,4 +113,72 @@
     }
 }
 
+#pragma mark - 噪声类型与声功能区类型
+
+// 噪声类型显示标题
+- (NSString *)noiseTypeTitle {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+            return type[@"title"];
+        }
+    }
+    return @"undefined";
+}
+
+// 噪声类型显示标题
+- (NSString *)noiseTypeShort {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+            return type[@"short"];
+        }
+    }
+    return @"undefined";
+}
+
+// 噪声类型上传内容
+- (NSString *)noiseTypePost {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+            return type[@"post"];
+        }
+    }
+    return @"undefined";
+}
+
+// 声功能区类型标题
+- (NSString *)sfaTypeTitle {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.sfaType) {
+            return type[@"title"];
+        }
+    }
+    return @"undefined";
+}
+
+// 声功能区显示标题
+- (NSString *)sfaTypeShort {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.sfaType) {
+            return type[@"short"];
+        }
+    }
+    return @"undefined";
+}
+
+// 声功能区上传内容
+- (NSString *)sfaTypePost {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
+    for (NSDictionary *type in types) {
+        if (((NSNumber *) type[@"index"]).intValue == self.sfaType) {
+            return type[@"post"];
+        }
+    }
+    return @"undefined";
+}
+
 @end

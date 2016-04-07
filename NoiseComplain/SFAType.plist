@@ -2,10 +2,55 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>0类: 康复疗养院等</string>
-	<string>1类:住宅,医院,学校,行政办公等</string>
-	<string>2类:商业,集贸,商住混合区</string>
-	<string>3类:工业生产</string>
-	<string>4类:交通干线,铁路旁</string>
+	<dict>
+		<key>index</key>
+		<integer>1</integer>
+		<key>title</key>
+		<string>0类: 康复疗养院等</string>
+		<key>short</key>
+		<string>康复疗养院等</string>
+		<key>post</key>
+		<string>0类</string>
+	</dict>
+	<dict>
+		<key>index</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>1类:住宅,医院,学校,行政办公等</string>
+		<key>short</key>
+		<string>住宅,医院,学校,行政办公等</string>
+		<key>post</key>
+		<string>1类</string>
+	</dict>
+	<dict>
+		<key>index</key>
+		<integer>3</integer>
+		<key>title</key>
+		<string>2类:商业,集贸,商住混合区</string>
+		<key>short</key>
+		<string>商业,集贸,商住混合区</string>
+		<key>post</key>
+		<string>2类</string>
+	</dict>
+	<dict>
+		<key>index</key>
+		<integer>4</integer>
+		<key>title</key>
+		<string>3类:工业生产</string>
+		<key>short</key>
+		<string>工业生产</string>
+		<key>post</key>
+		<string>3类</string>
+	</dict>
+	<dict>
+		<key>index</key>
+		<integer>5</integer>
+		<key>title</key>
+		<string>4类:交通干线,铁路旁</string>
+		<key>short</key>
+		<string>交通干线,铁路旁</string>
+		<key>post</key>
+		<string>4类</string>
+	</dict>
 </array>
 </plist>

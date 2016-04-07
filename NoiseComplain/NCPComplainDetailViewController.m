@@ -21,16 +21,20 @@ static NSString *kNCPDateFormat = @"yyyy-MM-dd HH:mm:ss";
 
 #pragma mark - Storyboard输出口
 
+// 各种UILabel
 @property(weak, nonatomic) IBOutlet UILabel *labelProcess;
-
 @property(weak, nonatomic) IBOutlet UILabel *labelFormId;
 @property(weak, nonatomic) IBOutlet UILabel *labelDate;
 @property(weak, nonatomic) IBOutlet UILabel *labelAverageIntensity;
-
 @property(weak, nonatomic) IBOutlet UILabel *labelAddress;
-
 @property(weak, nonatomic) IBOutlet UILabel *labelNoiseType;
 @property(weak, nonatomic) IBOutlet UILabel *labelSfaType;
+
+// 进度TableView
+@property (weak, nonatomic) IBOutlet UITableView *tableViewProcess;
+
+// 进度数组
+@property (nonatomic) NSMutableArray *processes;
 
 @end
 
@@ -61,8 +65,8 @@ static NSString *kNCPDateFormat = @"yyyy-MM-dd HH:mm:ss";
             [NSString stringWithFormat:@"%.2f dB", self.form.averageIntensity] :
             kNCPNullString;
     self.labelAddress.text = self.form.address ? self.form.address : kNCPNullString;
-    self.labelNoiseType.text = self.form.noiseType ? self.form.noiseType : kNCPNullString;
-    self.labelSfaType.text = self.form.sfaType ? self.form.sfaType : kNCPNullString;
+    self.labelNoiseType.text = self.form.noiseType ? self.form.noiseTypeShort : kNCPNullString;
+    self.labelSfaType.text = self.form.sfaType ? self.form.sfaTypeShort : kNCPNullString;
 }
 
 // 设置表格Footer

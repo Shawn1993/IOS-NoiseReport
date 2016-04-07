@@ -197,14 +197,25 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
 // 选择噪声类型
 - (void)selectNoiseType {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
+    NSMutableArray *titles = [NSMutableArray arrayWithCapacity:types.count];
+    for (NSUInteger i = 0; i < types.count; i++) {
+        [titles addObject:((NSDictionary *) types[i])[@"title"]];
+    }
     LGAlertView *noiseSheet = [LGAlertView alertViewWithTitle:@"噪声类型选择"
                                                       message:@"请选择你要投诉的噪声类型"
                                                         style:LGAlertViewStyleActionSheet
-                                                 buttonTitles:NCPReadPListArray(NCPConfigString(@"NoiseTypePList"))
+                                                 buttonTitles:titles
                                             cancelButtonTitle:@"取消"
                                        destructiveButtonTitle:nil
                                                 actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
-                                                    self.form.noiseType = title;
+                                                    int i = -1;
+                                                    for (NSDictionary *type in types) {
+                                                        if ([((NSString *) type[@"title"]) isEqualToString:title]) {
+                                                            i = ((NSNumber *) type[@"index"]).intValue;
+                                                        }
+                                                    }
+                                                    self.form.noiseType = (NSUInteger) i;
                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                         [self displayComplainForm];
                                                     });
@@ -216,14 +227,25 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
 // 选择声功能区
 - (void)selectSfaType {
+    NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
+    NSMutableArray *titles = [NSMutableArray arrayWithCapacity:types.count];
+    for (NSUInteger i = 0; i < types.count; i++) {
+        [titles addObject:((NSDictionary *)types[i])[@"title"]];
+    }
     LGAlertView *sfaSheet = [LGAlertView alertViewWithTitle:@"环境类型选择"
                                                     message:@"请选择你当前所处的环境类型"
                                                       style:LGAlertViewStyleActionSheet
-                                               buttonTitles:NCPReadPListArray(NCPConfigString(@"SfaTypePList"))
+                                               buttonTitles:titles
                                           cancelButtonTitle:@"取消"
                                      destructiveButtonTitle:nil
                                               actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
-                                                  self.form.sfaType = title;
+                                                  int i = -1;
+                                                  for (NSDictionary *type in types) {
+                                                      if ([((NSString *) type[@"title"]) isEqualToString:title]) {
+                                                          i = ((NSNumber *) type[@"index"]).intValue;
+                                                      }
+                                                  }
+                                                  self.form.sfaType = (NSUInteger) i;
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                       [self displayComplainForm];
                                                   });
@@ -370,14 +392,14 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     if (!self.form.noiseType) {
         self.labelNoiseType.text = @"点击选择";
     } else {
-        self.labelNoiseType.text = self.form.noiseType;
+        self.labelNoiseType.text = self.form.noiseTypeShort;
     }
 
     // 声功能区类型
     if (!self.form.sfaType) {
         self.labelSFAType.text = @"点击选择";
     } else {
-        self.labelSFAType.text = self.form.sfaType;
+        self.labelSFAType.text = self.form.sfaTypeShort;
     }
 }
 
