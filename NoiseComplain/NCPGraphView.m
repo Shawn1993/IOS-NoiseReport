@@ -31,31 +31,31 @@ static double min() {
 }
 
 // 获取值最大数量
-static int capacity() {
-    static int capacity;
+static NSUInteger capacity() {
+    static NSUInteger capacity;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        capacity = NCPConfigInteger(@"GraphViewCapacity");
+        capacity = NCPConfigUnsignedInteger(@"GraphViewCapacity");
     });
     return capacity;
 }
 
 // 获取网格列数
-static int gridColumn() {
-    static int column;
+static NSUInteger gridColumn() {
+    static NSUInteger column;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        column = NCPConfigInteger(@"GraphViewGridColumn");
+        column = NCPConfigUnsignedInteger(@"GraphViewGridColumn");
     });
     return column;
 }
 
 // 获取网格行数
-static int gridRow() {
-    static int row;
+static NSUInteger gridRow() {
+    static NSUInteger row;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        row = NCPConfigInteger(@"GraphViewGridRow");
+        row = NCPConfigUnsignedInteger(@"GraphViewGridRow");
     });
     return row;
 }
@@ -89,9 +89,8 @@ static CGFloat calY(CGRect rect, double value) {
 
 @interface NCPGraphView ()
 
-#pragma mark - Xib输出口
+#pragma mark - Storyboard输出口
 
-@property(weak, nonatomic) IBOutlet UIView *referencedView;
 @property(weak, nonatomic) IBOutlet UIImageView *imageDot;
 @property(weak, nonatomic) IBOutlet UIImageView *imageLine;
 @property(weak, nonatomic) IBOutlet UILabel *labelAverage;
@@ -113,21 +112,11 @@ static CGFloat calY(CGRect rect, double value) {
     self = [super initWithCoder:coder];
     if (self) {
         // 初始化数组, 并赋予初值
-        _values = [NSMutableArray arrayWithCapacity:(NSUInteger) NCPConfigInteger(@"GraphViewCapacity")];
+        _values = [NSMutableArray arrayWithCapacity:capacity()];
         [_values addObject:@((max() + min()) / 2)];
         self.offset = 1;
-
-        // 读取Xib
-        [[NSBundle mainBundle] loadNibNamed:@"NCPGraphView" owner:self options:nil];
-        [self addSubview:self.referencedView];
     }
     return self;
-}
-
-// 布局子视图
-- (void)layoutSubviews {
-    self.referencedView.frame = self.bounds;
-    [super layoutSubviews];
 }
 
 #pragma mark - 设置与获取值
@@ -195,12 +184,12 @@ static CGFloat calY(CGRect rect, double value) {
     CGContextRef ctx1 = UIGraphicsGetCurrentContext();
     CGMutablePathRef ph1 = CGPathCreateMutable();
     CGFloat x = start;
-    int index = (int) (self.values.count - 1);
+    NSUInteger index = self.values.count - 1;
     while (index >= 3) {
-        double vm1 = ((NSNumber *) self.values[(NSUInteger) index]).doubleValue;
-        double v0 = ((NSNumber *) self.values[(NSUInteger) (index - 1)]).doubleValue;
-        double v1 = ((NSNumber *) self.values[(NSUInteger) (index - 2)]).doubleValue;
-        double v2 = ((NSNumber *) self.values[(NSUInteger) (index - 3)]).doubleValue;
+        double vm1 = ((NSNumber *) self.values[index]).doubleValue;
+        double v0 = ((NSNumber *) self.values[index - 1]).doubleValue;
+        double v1 = ((NSNumber *) self.values[index - 2]).doubleValue;
+        double v2 = ((NSNumber *) self.values[index - 3]).doubleValue;
         double c0 = v0 + (v1 - vm1) / 4;
         double c1 = v1 - (v2 - v0) / 4;
         CGContextMoveToPoint(ctx1, x, calY(rect, v0));
@@ -216,14 +205,6 @@ static CGFloat calY(CGRect rect, double value) {
     CGContextSetRGBStrokeColor(ctx1, 0.7412, 0.7176, 0.8980, 0.65);
     CGContextStrokePath(ctx1);
 
-    // 绘制模糊发光
-    /*CGContextRef ctx2 = UIGraphicsGetCurrentContext();
-    CGPathRef ph2 = CGPathCreateCopy(ph1);
-    CGContextAddPath(ctx2, ph2);
-    CGContextSetLineWidth(ctx2, 9);
-    CGContextSetRGBStrokeColor(ctx2, 0.7412, 0.7176, 0.8980, 0.5);
-    CGContextStrokePath(ctx2);*/
-
     // 绘制网格
     CGFloat left = rect.origin.x + 8;
     CGFloat right = left + rect.size.width - 16;
@@ -231,7 +212,7 @@ static CGFloat calY(CGRect rect, double value) {
     CGFloat bottom = top + rect.size.height - 16;
     CGContextRef ctx3 = UIGraphicsGetCurrentContext();
     CGMutablePathRef ph3 = CGPathCreateMutable();
-    int gridColumnStep = capacity() / gridColumn();
+    NSUInteger gridColumnStep = capacity() / gridColumn();
     for (long j = self.offset % gridColumnStep; j <= capacity(); j += gridColumnStep) {
         CGPathMoveToPoint(ph3, NULL, left + j * step, top);
         CGPathAddLineToPoint(ph3, NULL, left + j * step, bottom);

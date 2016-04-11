@@ -28,18 +28,16 @@
 	<string>/api/complain</string>
 	<key>DeviceTypePList</key>
 	<string>DevType</string>
-	<key>RequestDateFormat</key>
-	<string>yyyy-MM-dd-HH-mm-ss</string>
 	<key>MeterVCRefreshPerSecond</key>
-	<integer>30</integer>
+	<integer>45</integer>
 	<key>MeterVCRefreshLabelPerSecond</key>
-	<integer>3</integer>
+	<integer>2</integer>
 	<key>MeterViewMaxValue</key>
 	<integer>120</integer>
 	<key>MeterViewMinValue</key>
-	<integer>0</integer>
+	<integer>20</integer>
 	<key>MeterViewFontSize</key>
-	<real>0.536</real>
+	<real>0.53</real>
 	<key>MeterViewFontRatios</key>
 	<array>
 		<real>1</real>
@@ -52,7 +50,7 @@
 	<key>GraphViewMinValue</key>
 	<integer>0</integer>
 	<key>GraphViewCapacity</key>
-	<integer>75</integer>
+	<integer>90</integer>
 	<key>GraphViewGridRow</key>
 	<integer>4</integer>
 	<key>GraphViewGridColumn</key>
@@ -63,5 +61,11 @@
 	<integer>15</integer>
 	<key>GraphViewSmooth</key>
 	<integer>3</integer>
+	<key>DateFormatDisplayShort</key>
+	<string>yyyy/MM/dd</string>
+	<key>DateFormatDisplayLong</key>
+	<string>yyyy/MM/dd HH:mm:ss</string>
+	<key>DateFormatStorage</key>
+	<string>yyyy-MM-dd-HH-mm-ss</string>
 </dict>
 </plist>

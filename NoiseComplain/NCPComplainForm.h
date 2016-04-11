@@ -21,8 +21,15 @@
 @property(nonnull, nonatomic, readonly) NSString *devId;
 // 设备类型
 @property(nonnull, nonatomic, readonly) NSString *devType;
+
 // 日期
 @property(nonnull, nonatomic) NSDate *date;
+// 显示用长日期
+@property(nonnull, nonatomic, readonly) NSString *dateLong;
+// 显示用短日期
+@property(nonnull, nonatomic, readonly) NSString *dateShort;
+// 存储/请求用日期
+@property(nonnull, nonatomic) NSString *dateStorage;
 
 #pragma mark - 噪声强度信息
 
@@ -70,7 +77,7 @@
 #pragma mark - 描述信息
 
 // 噪声类型序号
-@property(nonatomic) NSUInteger noiseType;
+@property(nonatomic) NSInteger noiseType;
 // 噪声类型显示标题
 @property(nullable, nonatomic, readonly) NSString *noiseTypeTitle;
 // 噪声类型短标题
@@ -79,7 +86,7 @@
 @property(nullable, nonatomic, readonly) NSString *noiseTypePost;
 
 // 声功能区序号
-@property(nonatomic) NSUInteger sfaType;
+@property(nonatomic) NSInteger sfaType;
 // 声功能区类型标题
 @property(nullable, nonatomic, readonly) NSString *sfaTypeTitle;
 // 声功能区短标题

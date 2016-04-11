@@ -6,7 +6,7 @@
 //  Copyright © 2015 sysu. All rights reserved.
 //
 
-#import "NCPComplainFormViewController.h"
+#import "NCPPostViewController.h"
 #import "NCPComplainForm.h"
 #import "NCPNoiseRecorder.h"
 #import "NCPSQLiteDAO.h"
@@ -20,9 +20,9 @@
 #pragma mark - 常量定义
 
 // 打开地图ViewController的Segue标识符
-static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
+static NSString *const kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
-@interface NCPComplainFormViewController ()
+@interface NCPPostViewController ()
         <
         UITableViewDelegate,
         UITextViewDelegate,
@@ -59,13 +59,13 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 // 地理编码信息
 @property(nonatomic) BMKReverseGeoCodeOption *reverseGeoCodeOption;
 
-// 自动定位失败标识符
+// 自动定位失败标识位
 @property(nonatomic) BOOL autoLocatingFailed;
 
 @end
 
 
-@implementation NCPComplainFormViewController
+@implementation NCPPostViewController
 
 #pragma mark - ViewController生命周期
 
@@ -121,7 +121,7 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
 
     // 弹出确认提示框
     LGAlertView *confirmAlert = [LGAlertView alertViewWithTitle:@"提示"
-                                                        message:@"投诉尚未完成, 确定要退出吗?"
+                                                        message:@"投诉尚未完成，确定要退出吗？"
                                                           style:LGAlertViewStyleAlert
                                                    buttonTitles:nil
                                               cancelButtonTitle:@"取消"
@@ -157,41 +157,25 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
         [self.textViewComment resignFirstResponder];
     }
 
-    switch (indexPath.section) {
-        case 0:
-            // 测量结果session, 重新检测噪声强度
-            [self.form.intensities removeAllObjects];
-            [self displayComplainForm];
-            [self startRecord];
-            break;
-        case 1:
-            // 噪声源位置session, 使用segue, 不做响应
-            break;
-        case 2:
-            // 噪声源信息session
-        {
-            switch (indexPath.row) {
-                case 0:
-                    // 噪声类型
-                    [self selectNoiseType];
-                    break;
-                case 1:
-                    // 声功能区
-                    [self selectSfaType];
-                    break;
-                default:
-                    // 其他行, 不使用代码响应
-                    break;
-            }
+    if (indexPath.section == 0) {
+        // 测量结果session, 重新检测噪声强度
+        [self.form.intensities removeAllObjects];
+        [self displayComplainForm];
+        [self startRecord];
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            // 选择噪声类型
+            [self selectNoiseType];
+        } else if (indexPath.row == 1) {
+            // 选择声功能区
+            [self selectSfaType];
         }
-            break;
-        case 3:
-            // 提交投诉session
-            [self sendComplainForm];
-            break;
-        default:
-            break;
+    } else if (indexPath.section == 3) {
+        // 提交投诉
+        [self sendComplainForm];
     }
+
+    // 取消焦点
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -209,13 +193,13 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                                             cancelButtonTitle:@"取消"
                                        destructiveButtonTitle:nil
                                                 actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
-                                                    int i = -1;
+                                                    NSInteger i = -1;
                                                     for (NSDictionary *type in types) {
                                                         if ([((NSString *) type[@"title"]) isEqualToString:title]) {
-                                                            i = ((NSNumber *) type[@"index"]).intValue;
+                                                            i = ((NSNumber *) type[@"index"]).integerValue;
                                                         }
                                                     }
-                                                    self.form.noiseType = (NSUInteger) i;
+                                                    self.form.noiseType = i;
                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                         [self displayComplainForm];
                                                     });
@@ -230,7 +214,7 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
     NSMutableArray *titles = [NSMutableArray arrayWithCapacity:types.count];
     for (NSUInteger i = 0; i < types.count; i++) {
-        [titles addObject:((NSDictionary *)types[i])[@"title"]];
+        [titles addObject:((NSDictionary *) types[i])[@"title"]];
     }
     LGAlertView *sfaSheet = [LGAlertView alertViewWithTitle:@"环境类型选择"
                                                     message:@"请选择你当前所处的环境类型"
@@ -239,13 +223,13 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                                           cancelButtonTitle:@"取消"
                                      destructiveButtonTitle:nil
                                               actionHandler:^(LGAlertView *alert, NSString *title, NSUInteger index) {
-                                                  int i = -1;
+                                                  NSInteger i = -1;
                                                   for (NSDictionary *type in types) {
                                                       if ([((NSString *) type[@"title"]) isEqualToString:title]) {
-                                                          i = ((NSNumber *) type[@"index"]).intValue;
+                                                          i = ((NSNumber *) type[@"index"]).integerValue;
                                                       }
                                                   }
-                                                  self.form.sfaType = (NSUInteger) i;
+                                                  self.form.sfaType = i;
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                       [self displayComplainForm];
                                                   });
@@ -300,8 +284,8 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     self.labelCommentPlaceholder.hidden = YES;
 
     // 屏幕上移避免被遮挡
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]
-                          atScrollPosition:UITableViewScrollPositionMiddle
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]
+                          atScrollPosition:UITableViewScrollPositionTop
                                   animated:YES];
 }
 
@@ -352,7 +336,7 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                           }];
 }
 
-#pragma mark - 界面元素刷新
+#pragma mark - 界面元素刷新与表视图数据源
 
 // 根据当前投诉表单的内容, 更新当前界面元素
 - (void)displayComplainForm {
@@ -415,6 +399,16 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     return [super tableView:tableView titleForFooterInSection:section];
 }
 
+// 设置FooterView高度
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    // 只改变最后一个Footer
+    if (section == 3) {
+        return 180;
+    }
+    return [super tableView:tableView heightForFooterInSection:section];
+}
+
+
 #pragma mark - 投诉表单发送
 
 // 检查投诉表单是否可以发送了
@@ -441,7 +435,7 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
     } else {
         // 如果表单不完整, 中断发送
         LGAlertView *checkAlert = [LGAlertView alertViewWithTitle:@"信息不完整"
-                                                          message:@"投诉信息还没有填写完整, 可能无法受理!\n是否仍然要提交投诉?"
+                                                          message:@"投诉信息还没有填写完整，可能无法受理！\n是否仍然要提交投诉？"
                                                             style:LGAlertViewStyleAlert
                                                      buttonTitles:nil
                                                 cancelButtonTitle:@"取消"
@@ -473,7 +467,7 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                             success:^(NSDictionary *json) {
                                 // 检查返回的JSON是否包含formId信息
                                 if (!json[@"formId"] || ((NSNumber *) json[@"formId"]).longValue < 0) {
-                                    [self showErrorAlert:sendAlert message:@"服务器返回数据错误!\n错误: 未返回有效的投诉表单号"];
+                                    [self showErrorAlert:sendAlert message:@"服务器返回数据错误！\n错误：未返回有效的投诉表单号"];
                                     return;
                                 }
 
@@ -489,14 +483,14 @@ static NSString *kNCPSegueIdToLocation = @"ComplainFormToLocation";
                             }
                             failure:^(NSString *error) {
                                 [self showErrorAlert:sendAlert
-                                             message:[NSString stringWithFormat:@"与服务器通信失败!\n%@", error]];
+                                             message:[NSString stringWithFormat:@"与服务器通信失败！\n%@", error]];
                             }];
 }
 
 // 显示投诉成功提示框
 - (void)showSuccessAlert:(LGAlertView *)lastAlert {
     LGAlertView *successAlert = [LGAlertView alertViewWithTitle:@"投诉成功"
-                                                        message:@"您的投诉已经发送至服务器!\n返回投诉列表可以查看投诉受理进度"
+                                                        message:@"您的投诉已经发送至服务器！\n返回投诉列表可以查看投诉受理进度"
                                                           style:LGAlertViewStyleAlert
                                                    buttonTitles:@[@"返回列表"]
                                               cancelButtonTitle:@"取消"

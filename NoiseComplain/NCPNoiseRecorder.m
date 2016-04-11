@@ -61,7 +61,7 @@ static double min() {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
         NSDictionary *settings = @{
                 AVFormatIDKey : @(kAudioFormatAppleLossless),
-                AVSampleRateKey : @(NCPConfigInteger(@"RecorderSampleRate")),
+                AVSampleRateKey : @(NCPConfigDouble(@"RecorderSampleRate")),
                 AVNumberOfChannelsKey : @(NCPConfigInteger(@"RecorderChannelNum")),
         };
         self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath:@"/dev/null"]

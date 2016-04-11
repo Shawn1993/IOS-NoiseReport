@@ -21,13 +21,13 @@ static double fontSize() {
 }
 
 // 获取不同字数下的字体大小比例
-static double fontRatio(int i) {
+static double fontRatio(NSUInteger i) {
     static NSArray *ratios;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ratios = NCPConfigArray(@"MeterViewFontRatios");
     });
-    return ((NSNumber *) ratios[(NSUInteger) i]).doubleValue;
+    return ((NSNumber *) ratios[i]).doubleValue;
 }
 
 // 获取最大值
@@ -54,7 +54,6 @@ static double min() {
 
 #pragma mark - Xib输出口
 
-@property(weak, nonatomic) IBOutlet UIView *referencedView;
 @property(weak, nonatomic) IBOutlet UIImageView *imageForeground;
 @property(weak, nonatomic) IBOutlet UILabel *labelValue;
 @property(weak, nonatomic) IBOutlet UIImageView *imageCursor;
@@ -63,23 +62,11 @@ static double min() {
 
 @implementation NCPMeterView
 
-#pragma mark - 初始化与布局
-
-// 初始化方法
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"NCPMeterView" owner:self options:nil];
-        [self addSubview:self.referencedView];
-    }
-    return self;
-}
-
 // 布局子视图
 - (void)layoutSubviews {
+    // 设置初始值
+    [self setValueWithLable:(max() + min()) / 2];
     [super layoutSubviews];
-    self.referencedView.frame = self.bounds;
-    [self setValueWithLable:min()];
 }
 
 #pragma mark - 设置当前值方法
@@ -103,7 +90,7 @@ static double min() {
     double ratio = fontSize();
     NSString *valueStr = [NSString stringWithFormat:@"%.0f", _value];
     if (valueStr.length > 0 && valueStr.length <= 4) {
-        ratio *= fontRatio((int) valueStr.length - 1);
+        ratio *= fontRatio(valueStr.length - 1);
     }
     self.labelValue.font = [UIFont fontWithName:@"Arial-BoldMT" size:(CGFloat) (rect.size.width * ratio)];
     self.labelValue.text = valueStr;
@@ -122,7 +109,7 @@ static double min() {
     CGFloat centerY = rect.size.height / 2.0f + rect.origin.y;
     CGFloat radius = rect.size.width / 2.0f;
     const CGFloat zeroAngle = (const CGFloat) M_PI_4 * 3;
-    CGFloat endAngle = (CGFloat) ((self.value - min()) * M_PI * 2 / (max() - min()) + zeroAngle - M_PI_4);
+    CGFloat endAngle = (CGFloat) ((self.value - min()) * M_PI * 1.5 / (max() - min()) + zeroAngle);
 
     // 创建遮罩图层
     CAShapeLayer *mask = [CAShapeLayer layer];

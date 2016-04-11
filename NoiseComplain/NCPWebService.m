@@ -10,8 +10,6 @@
 #import "NCPComplainForm.h"
 #import "AFNetworking.h"
 
-#pragma mark - 常量定义
-
 @implementation NCPWebService
 
 #pragma mark - 投诉请求
@@ -25,7 +23,7 @@
     [paras setValue:@"iOS" forKey:@"platform"];
     [paras setValue:form.devId forKey:@"devId"];
     [paras setValue:form.devType forKey:@"devType"];
-    [paras setValue:NCPRequestFormatStringFormDate(form.date) forKey:@"date"];
+    [paras setValue:form.dateStorage forKey:@"date"];
 
     [paras setValue:@(form.averageIntensity) forKey:@"averageIntensity"];
     [paras setValue:form.intensitiesJSON forKey:@"intensities"];

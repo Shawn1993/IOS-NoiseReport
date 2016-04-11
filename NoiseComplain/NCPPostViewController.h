@@ -11,6 +11,6 @@
 /**
  * 噪声投诉表单ViewController
  */
-@interface NCPComplainFormViewController : UITableViewController
+@interface NCPPostViewController : UITableViewController
 
 @end

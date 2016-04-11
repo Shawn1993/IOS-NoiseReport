@@ -19,11 +19,6 @@
         // 初始化时, 生成NSDate对象
         _date = [NSDate date];
 
-        // 调整时区
-        NSTimeZone *zone = [NSTimeZone systemTimeZone];
-        NSInteger interval = [zone secondsFromGMTForDate:_date];
-        _date = [_date dateByAddingTimeInterval:interval];
-
         // 设置设备标识符
         _devId = [[UIDevice currentDevice].identifierForVendor UUIDString];
         _devType = NCPDeviceType();
@@ -32,15 +27,45 @@
         _coord = @"BD-09";
 
         // 为噪声强度数组进行初始化
-        _intensities = [NSMutableArray arrayWithCapacity:(NSUInteger) NCPConfigInteger(@"ComplainFormIntensitiesCapacity")];
+        _intensities = [NSMutableArray arrayWithCapacity:NCPConfigUnsignedInteger(@"ComplainFormIntensitiesCapacity")];
     }
     return self;
+}
+
+#pragma mark - 日期格式转换
+
+// 显示用长日期
+- (NSString *)dateLong {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:NCPConfigString(@"DateFormatDisplayLong")];
+    return [df stringFromDate:self.date];
+}
+
+// 显示用短日期
+- (NSString *)dateShort {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:NCPConfigString(@"DateFormatDisplayShort")];
+    return [df stringFromDate:self.date];
+}
+
+// 存储/请求用日期
+- (NSString *)dateStorage {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:NCPConfigString(@"DateFormatStorage")];
+    return [df stringFromDate:self.date];
+}
+
+// 使用存储/请求用日期设置日期值
+- (void)setDateStorage:(NSString *)dateStorage {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:NCPConfigString(@"DateFormatStorage")];
+    self.date = [df dateFromString:dateStorage];
 }
 
 #pragma mark - 默认地址获取
 
 - (NSString *)address {
-    if (self.manualAddress) {
+    if (self.manualAddress && self.manualAddress.length > 0) {
         return self.manualAddress;
     } else {
         return self.autoAddress;
@@ -48,7 +73,7 @@
 }
 
 - (NSNumber *)latitude {
-    if (self.manualLatitude) {
+    if (self.manualLatitude && self.manualLatitude.doubleValue != 0) {
         return self.manualLatitude;
     } else {
         return self.autoLatitude;
@@ -56,7 +81,7 @@
 }
 
 - (NSNumber *)longitude {
-    if (self.manualLongitude) {
+    if (self.manualLongitude && self.manualLongitude.doubleValue != 0) {
         return self.manualLongitude;
     } else {
         return self.autoLongitude;
@@ -67,7 +92,7 @@
 
 // 获取噪声噪声记录最大值
 - (BOOL)isIntensitiesFull {
-    return self.intensities.count >= NCPConfigInteger(@"ComplainFormIntensitiesCapacity");
+    return self.intensities.count >= NCPConfigUnsignedInteger(@"ComplainFormIntensitiesCapacity");
 }
 
 // 增加一条噪声强度记录
@@ -119,7 +144,7 @@
 - (NSString *)noiseTypeTitle {
     NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
     for (NSDictionary *type in types) {
-        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+        if (((NSNumber *) type[@"index"]).integerValue == self.noiseType) {
             return type[@"title"];
         }
     }
@@ -130,7 +155,7 @@
 - (NSString *)noiseTypeShort {
     NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
     for (NSDictionary *type in types) {
-        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+        if (((NSNumber *) type[@"index"]).integerValue == self.noiseType) {
             return type[@"short"];
         }
     }
@@ -141,7 +166,7 @@
 - (NSString *)noiseTypePost {
     NSArray *types = NCPReadPListArray(NCPConfigString(@"NoiseTypePList"));
     for (NSDictionary *type in types) {
-        if (((NSNumber *) type[@"index"]).intValue == self.noiseType) {
+        if (((NSNumber *) type[@"index"]).integerValue == self.noiseType) {
             return type[@"post"];
         }
     }
@@ -163,7 +188,7 @@
 - (NSString *)sfaTypeShort {
     NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
     for (NSDictionary *type in types) {
-        if (((NSNumber *) type[@"index"]).intValue == self.sfaType) {
+        if (((NSNumber *) type[@"index"]).integerValue == self.sfaType) {
             return type[@"short"];
         }
     }
@@ -174,7 +199,7 @@
 - (NSString *)sfaTypePost {
     NSArray *types = NCPReadPListArray(NCPConfigString(@"SfaTypePList"));
     for (NSDictionary *type in types) {
-        if (((NSNumber *) type[@"index"]).intValue == self.sfaType) {
+        if (((NSNumber *) type[@"index"]).integerValue == self.sfaType) {
             return type[@"post"];
         }
     }

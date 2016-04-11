@@ -6,7 +6,7 @@
 //  Copyright © 2015 sysu. All rights reserved.
 //
 
-#import "NCPComplainGuideViewController.h"
+#import "NCPHistoryViewController.h"
 #import "NCPComplainForm.h"
 #import "NCPSQLiteDAO.h"
 
@@ -15,18 +15,18 @@
 #pragma mark - 常量定义
 
 // 历史投诉表格单元格标识符
-static NSString *kNCPCellIdHistory = @"historyCell";
+static NSString *const kNCPCellIdHistory = @"historyCell";
 // 空历史投诉单元格标识符
-static NSString *kNCPCellIdEmptyHistory = @"emptyHistoryCell";
+static NSString *const kNCPCellIdEmptyHistory = @"emptyHistoryCell";
 // 投诉按钮单元格标识符
-static NSString *kNCPCellIdComplain = @"complainCell";
+static NSString *const kNCPCellIdComplain = @"complainCell";
 
 // 提交投诉Segue标识符
-static NSString *kNCPSegueIdToComplainForm = @"ComplainGuideToComplainForm";
+static NSString *const kNCPSegueIdToComplainForm = @"ComplainGuideToComplainForm";
 // 投诉记录详情Segue标识符
-static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
+static NSString *const kNCPSegueIdToProcess = @"ComplainGuideToProcess";
 
-@interface NCPComplainGuideViewController ()
+@interface NCPHistoryViewController ()
 
 #pragma mark - StoryBoard输出口
 
@@ -39,11 +39,11 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
 @property(nonatomic) NSArray *historyArray;
 
 // 选择的投诉记录索引
-@property(nonatomic) int historyIndex;
+@property(nonatomic) NSUInteger historyIndex;
 
 @end
 
-@implementation NCPComplainGuideViewController
+@implementation NCPHistoryViewController
 
 #pragma mark - ViewController生命周期
 
@@ -106,7 +106,7 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
     return nil;
 }
 
-// 表格单元格数据源
+// 表格单元格
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     switch (indexPath.section) {
@@ -124,12 +124,8 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNCPCellIdHistory];
                 // 设置表格行显示内容
                 NCPComplainForm *form = self.historyArray[(NSUInteger) indexPath.row];
-                NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"yyyy/MM/dd"];
-                NSString *dateStr = [df stringFromDate:form.date];
-
-                cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", dateStr, form.address];
-
+                cell.textLabel.text = [NSString stringWithFormat:@"%@", form.dateShort];
+                cell.detailTextLabel.text = form.address;
                 // 设置地址显示方式
                 return cell;
             }
@@ -151,7 +147,7 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
         if (self.historyArray.count == 0) {
             // 点击了"没有投诉记录"单元格
             LGAlertView *complainAlert = [LGAlertView alertViewWithTitle:@"没有投诉记录"
-                                                                 message:@"还没有进行过投诉, 要提交噪声投诉吗?"
+                                                                 message:@"还没有进行过投诉，要发起新的噪声投诉吗？"
                                                                    style:LGAlertViewStyleAlert
                                                             buttonTitles:@[@"投诉"]
                                                        cancelButtonTitle:@"取消"
@@ -164,8 +160,8 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
             [complainAlert showAnimated:YES completionHandler:nil];
         } else {
             // 点击了某个投诉记录
-            self.historyIndex = (int) indexPath.row;
-            [self performSegueWithIdentifier:kNCPSegueIdToDetail sender:self];
+            self.historyIndex = (NSUInteger) indexPath.row;
+            [self performSegueWithIdentifier:kNCPSegueIdToProcess sender:self];
         }
     }
     // 取消选择
@@ -174,14 +170,13 @@ static NSString *kNCPSegueIdToDetail = @"ComplainGuideToDetail";
 
 // Segue跳转前传值
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kNCPSegueIdToDetail]) {
-        // 如果是去向记录详情的Segue
+    if ([segue.identifier isEqualToString:kNCPSegueIdToProcess]) {
+        // 如果是去向受理进度的Segue
         id dest = segue.destinationViewController;
-        [dest setValue:self.historyArray[(NSUInteger) self.historyIndex] forKey:@"form"];
+        [dest setValue:self.historyArray[self.historyIndex] forKey:@"form"];
     }
     [super prepareForSegue:segue sender:sender];
 }
-
 
 #pragma mark - 表格编辑功能
 

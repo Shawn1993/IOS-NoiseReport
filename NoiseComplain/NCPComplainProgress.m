@@ -6,8 +6,8 @@
 //  Copyright © 2016 sysu. All rights reserved.
 //
 
-#import "NCPComplainProcess.h"
+#import "NCPComplainProgress.h"
 
-@implementation NCPComplainProcess
+@implementation NCPComplainProgress
 
 @end

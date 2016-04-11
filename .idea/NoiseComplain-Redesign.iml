@@ -10,41 +10,43 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplainUITests/NoiseComplainUITests.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplainUITests/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPPostViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPMeterViewController.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainProcess.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/config.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/main.mm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NoiseType.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPLocationViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPSQLiteDAO.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainGuideViewController.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainForm.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Main.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainForm.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPSQLiteDAO.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPDetailViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/BaiduMap/BaiduMapAPI_Map.framework/Resources/mapapi.bundle" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLResponseSerialization.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFSecurityPolicy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLSessionManager.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFNetworkReachabilityManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFHTTPSessionManager.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLRequestSerialization.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFSecurityPolicy.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLRequestSerialization.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFHTTPSessionManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLSessionManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFNetworking.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLSessionManager.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLRequestSerialization.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLResponseSerialization.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFURLSessionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFHTTPSessionManager.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFNetworking.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFHTTPSessionManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFSecurityPolicy.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFNetworkReachabilityManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFSecurityPolicy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/AFNetworking/AFNetworkReachabilityManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabaseAdditions.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDB.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabase.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMResultSet.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDB.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabaseAdditions.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabaseQueue.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMResultSet.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabasePool.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabaseQueue.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabase.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabasePool.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabaseQueue.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabase.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/FMDB/FMDatabasePool.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/UIWindow+LGAlertView.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/LGAlertViewTextField.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/LGAlertViewCell.m" isTestSource="false" />
@@ -60,37 +62,37 @@
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/LGAlertViewTextField.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/UIWindow+LGAlertView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Libarary/LGAlertView/LGAlertViewController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainFormViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPPrefixHeader.pch" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGeneral.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPLocationViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGeneral.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPAppDelegate.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPLocationViewController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPAppDelegate.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPLocationViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPProgressViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPHistoryViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/SfaType.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPWebService.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainDetailViewController.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainFormViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPHistoryViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPProgressViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPProgressTableCell.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPWebService.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainDetailViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGraphView.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/DevType.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/LaunchScreen.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPProgressTableCell.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGraphView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Sample.md" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainProgress.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPMeterViewController.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Main.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGraphView.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainGuideViewController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainProgress.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPDetailViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPNoiseRecorder.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Sample.md" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/TODO.md" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPMeterView.xib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPNoiseRecorder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainProcess.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGraphView.xib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGeneral.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPGeneral.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPAppDelegate.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPMeterView.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/Assets.xcassets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainForm.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPPostViewController.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPComplainForm.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplain/NCPMeterView.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplainTests/NoiseComplainTests.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoiseComplainTests/Info.plist" isTestSource="false" />

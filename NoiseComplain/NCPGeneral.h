@@ -10,14 +10,6 @@
 
 @class NSArray;
 
-#pragma mark - 日期格式化与解析
-
-// 使用与服务器通信的格式格式化NSDate
-NSString *NCPRequestFormatStringFormDate(NSDate *date);
-
-// 根据服务器 格式获取NSDate对象
-NSDate *NCPDateFormRequestFormatString(NSString *string);
-
 #pragma mark - PList读取
 
 // 获取PList数组对象
@@ -40,7 +32,10 @@ NSString *NCPDeviceType();
 NSString *NCPConfigString(NSString *key);
 
 // 获取一个整型常量
-int NCPConfigInteger(NSString *key);
+NSInteger NCPConfigInteger(NSString *key);
+
+// 获取一个无符号整型常量
+NSUInteger NCPConfigUnsignedInteger(NSString *key);
 
 // 获取一个浮点型常量
 double NCPConfigDouble(NSString *key);

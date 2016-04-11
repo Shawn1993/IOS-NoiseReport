@@ -11,6 +11,6 @@
 /**
  * 噪声投诉列表ViewController
  */
-@interface NCPComplainGuideViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface NCPHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

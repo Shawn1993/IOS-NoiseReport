@@ -11,8 +11,6 @@
 
 #import "FMDB.h"
 
-#pragma mark - 常量定义
-
 @implementation NCPSQLiteDAO
 
 // 获取(已经开启的)FMDB数据库对象
@@ -88,7 +86,7 @@
                                             "comment) "
                                             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                                     form.formId,
-                                    NCPRequestFormatStringFormDate(form.date),
+                                    form.dateStorage,
                                     @(form.averageIntensity),
                                     form.intensitiesJSON,
                                     form.coord,
@@ -132,7 +130,7 @@
         // 新建ComplainForm对象并赋值
         NCPComplainForm *form = [[NCPComplainForm alloc] init];
         form.formId = @([rs longForColumn:@"form_id"]);
-        form.date = NCPDateFormRequestFormatString([rs stringForColumn:@"date"]);
+        form.dateStorage = [rs stringForColumn:@"date"];
 
         form.intensitiesJSON = [rs stringForColumn:@"intensities"];
         if (form.intensities.count == 0) {

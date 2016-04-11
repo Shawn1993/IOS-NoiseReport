@@ -45,9 +45,9 @@
 
     // 初始化录音器
     self.recorder = [[NCPNoiseRecorder alloc] init];
-    const int j = (const int) (NCPConfigDouble(@"MeterVCRefreshPerSecond") / NCPConfigDouble(@"MeterVCRefreshLabelPerSecond"));
+    const NSUInteger j = (const NSUInteger) (NCPConfigDouble(@"MeterVCRefreshPerSecond") / NCPConfigDouble(@"MeterVCRefreshLabelPerSecond"));
     [self.recorder startWithTick:1.0f / NCPConfigDouble(@"MeterVCRefreshPerSecond") tickHandler:^(double current, double peak) {
-        static int i = 0;
+        static NSUInteger i = 0;
         if (++i > j) {
             i = 0;
             [self.meterView setValueWithLable:current];
@@ -65,13 +65,6 @@
     // 停止录音器
     [self.recorder stop];
     self.recorder = nil;
-}
-
-
-// 测试临时方法
-- (IBAction)Test:(id)sender {
-    // 测试代码
-    NSLog(@"Test!");
 }
 
 @end

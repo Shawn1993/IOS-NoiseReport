@@ -10,21 +10,8 @@
 
 #pragma mark - 常量定义
 
-NSString *kNCPConfigPListFile = @"config";
-
-#pragma mark - 日期格式化
-
-NSString *NCPRequestFormatStringFormDate(NSDate *date) {
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:NCPConfigString(@"RequestDateFormat")];
-    return [df stringFromDate:date];
-}
-
-NSDate *NCPDateFormRequestFormatString(NSString *string) {
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:NCPConfigString(@"RequestDateFormat")];
-    return [df dateFromString:string];
-}
+// 配置PList文件名
+static NSString *const kNCPConfigPListFile = @"config";
 
 #pragma mark - PList文件读取
 
@@ -66,8 +53,13 @@ NSString *NCPConfigString(NSString *key) {
 }
 
 // 获取一个整型常量
-int NCPConfigInteger(NSString *key) {
-    return ((NSNumber *) NCPReadPListDictionary(kNCPConfigPListFile)[key]).intValue;
+NSInteger NCPConfigInteger(NSString *key) {
+    return ((NSNumber *) NCPReadPListDictionary(kNCPConfigPListFile)[key]).integerValue;
+}
+
+// 获取一个无符号整型常量
+NSUInteger NCPConfigUnsignedInteger(NSString *key) {
+    return ((NSNumber *) NCPReadPListDictionary(kNCPConfigPListFile)[key]).unsignedIntegerValue;
 }
 
 // 获取一个浮点型常量
